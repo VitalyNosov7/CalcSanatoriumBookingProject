@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../CalcSanatoriumBooking.UnitTests/CalcSanatoriumBooking.UnitTests.csproj" Id="e65c1304-02b3-4058-81bd-ded7aeee437f" />
+  <Project Path="CalcSanatoriumBooking.csproj" />
+</Solution>
