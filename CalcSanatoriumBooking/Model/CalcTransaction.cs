@@ -6,7 +6,7 @@ namespace CalcSanatoriumBooking.Model
 	///     Текущая операция расчета.
 	///     Из экземпляров этого класса формируется окончательный расчет бронирования.   
 	/// </summary>
-	public class CurrentCalcTransaction
+	public class CalcTransaction
 	{
 		/// <summary>	
 		///		Идентификатор транзакции.
@@ -74,7 +74,7 @@ namespace CalcSanatoriumBooking.Model
 			set => _currentMathOperation = value;
 		}
 
-		public CurrentCalcTransaction(Int32 currentTransactionId,
+		public CalcTransaction(Int32 currentTransactionId,
 										Int32 nextCalcNumber,
 										Int32 currentOperandA,
 										Int32 currentOperandB,

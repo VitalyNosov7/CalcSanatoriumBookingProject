@@ -43,16 +43,16 @@ namespace CalcSanatoriumBooking.Model
 		}
 
 		/// <summary>	Текущие операции расчета.	</summary>
-		private List<CurrentCalcTransaction>? _currentCalcTransactionList = default;
+		private List<CalcTransaction>? _currentCalcTransactionList = default;
 
 		/// <summary>	Текущие операции расчета.	</summary>
-		public List<CurrentCalcTransaction> CurrentCalcTransactionList
+		public List<CalcTransaction> CurrentCalcTransactionList
 		{
 			get => _currentCalcTransactionList!;
 			set => _currentCalcTransactionList = value;
 		}
 
-        public CalcBookingCost(List<CurrentCalcTransaction> currentCalcTransactionList)
+        public CalcBookingCost(List<CalcTransaction> currentCalcTransactionList)
         {
 			CurrentCalcTransactionList = currentCalcTransactionList;
 

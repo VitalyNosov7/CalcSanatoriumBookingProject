@@ -6,11 +6,14 @@ namespace CalcSanatoriumBooking.UnitTests.DataTests
     [TestFixture]
     public class CalcBookingCostTests
     {
-		/// <summary>   Получить экземпляр класса CalcBookingCost	</summary>
-		/// <returns>	Экземпляр класса CalcBookingCost	</returns>
-		private CalcBookingCost MakeCalcBookingCost()
+
+        List<CalcTransaction> testCalcTransactionList = new List<CalcTransaction>();
+
+        /// <summary>   Получить экземпляр класса CalcBookingCost	</summary>
+        /// <returns>	Экземпляр класса CalcBookingCost	</returns>
+        private CalcBookingCost MakeCalcBookingCost()
         {
-            return new CalcBookingCost();
+            return new CalcBookingCost(testCalcTransactionList);
 		}
 
 		/// <summary>	Тест на значение по умолчанию, равное нулю.	</summary>
