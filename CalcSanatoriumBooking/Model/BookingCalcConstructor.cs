@@ -2,12 +2,12 @@
 
 namespace CalcSanatoriumBooking.Model
 {
+	//	TODO:	Переименовать класс, чтобы было понятно его назначение!
 	/// <summary>   
-	///		Порядок расчета бронирования.
 	///     В этом классе  формирунтся данные о порядке расчета бронирования.
 	///     Далее эти данные передаются в класс CalcBookingCost для окончательного расчета.
 	/// </summary>
-	public class BookingCalcProcedure
+	public class BookingCalcConstructor
 	{
 		/// <summary>	
 		///		Идентификатор транзакции.
@@ -34,27 +34,6 @@ namespace CalcSanatoriumBooking.Model
 			get => _currentCalcTransactionList!;
 			set => _currentCalcTransactionList = value;
 		}
-
-		/// <summary>	Создать очередной , текущий расчет.	</summary>
-		//public void CreateCurrentCalcTransaction(Int32 currentTransactionId,
-		//											Int32 nextCalcNumber,
-		//											Int32 currentOperandA,
-		//											Int32 currentOperandB,
-		//											MathOperation currentMathOperation)
-
-		//{
-		//	try
-		//	{
-		//		CurrentCalcTransaction currentCalcTransaction = new CurrentCalcTransaction(currentTransactionId,
-		//																				nextCalcNumber,
-		//																				currentOperandA,
-		//																				currentOperandB,
-		//																				currentMathOperation);
-		//		AddCurrentCalcTransaction(currentCalcTransaction);
-		//	}
-		//	catch (Exception) { }
-		//}
-
 
 		/// <summary>	Добавить очередной , текущий расчет в список.	</summary>
 		public void AddCurrentCalcTransaction(	Int32 currentTransactionId,
