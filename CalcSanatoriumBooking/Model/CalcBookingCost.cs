@@ -10,16 +10,16 @@ namespace CalcSanatoriumBooking.Model
 		///		Идентификатор транзакции.
 		///		Все идентификаторы с одинаковым значением, относятся к одному расчету.	
 		///	</summary>
-		private Int32 _transactionId = default;
+		private Int32 _calcId = default;
 
 		/// <summary>	
 		///		Идентификатор транзакции.
 		///		Все идентификаторы с одинаковым значением, относятся к одному расчету.	
 		///	</summary>
-		public Int32 TransactionId
-		{
-			get => _transactionId;
-			set => _transactionId = value;
+		public Int32 СalcId
+        {
+			get => _calcId;
+			set => _calcId = value;
 		}
 
 		/// <summary>   Расчет стоимости бронирования.    </summary>
@@ -43,27 +43,27 @@ namespace CalcSanatoriumBooking.Model
 		}
 
 		/// <summary>	Текущие операции расчета.	</summary>
-		private List<CalcTransaction>? _currentCalcTransactionList = default;
+		private List<CalcAction>? _currentCalcActionList = default;
 
 		/// <summary>	Текущие операции расчета.	</summary>
-		public List<CalcTransaction> CurrentCalcTransactionList
+		public List<CalcAction> CurrentCalcActionList
 		{
-			get => _currentCalcTransactionList!;
-			set => _currentCalcTransactionList = value;
+			get => _currentCalcActionList!;
+			set => _currentCalcActionList = value;
 		}
 
-        public CalcBookingCost(List<CalcTransaction> currentCalcTransactionList)
-        {
-			CurrentCalcTransactionList = currentCalcTransactionList;
+		public CalcBookingCost(List<CalcAction> currentCalcActionList)
+		{
+            CurrentCalcActionList = currentCalcActionList;
 
 		}
 
 
-        /// <summary>	Вызов математических операций.	</summary>
-        /// <param name="operandA">	Операнд А	</param>
-        /// <param name="operandB">	Операнд В	</param>
-        /// <param name="mathOperator">	Математическая операция	</param>
-        public Int32 PerformCalc(Int32 operandA, Int32 operandB, MathOperation mathOperator)
+		/// <summary>	Вызов математических операций.	</summary>
+		/// <param name="operandA">	Операнд А	</param>
+		/// <param name="operandB">	Операнд В	</param>
+		/// <param name="mathOperator">	Математическая операция	</param>
+		public Int32 PerformCalc(Int32 operandA, Int32 operandB, MathOperation mathOperator)
 		{
 			Int32 result = default;
 			try

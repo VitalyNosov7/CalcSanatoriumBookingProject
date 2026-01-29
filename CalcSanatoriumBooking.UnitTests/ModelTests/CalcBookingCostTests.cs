@@ -7,7 +7,7 @@ namespace CalcSanatoriumBooking.UnitTests.DataTests
     public class CalcBookingCostTests
     {
 
-        List<CalcTransaction> testCalcTransactionList = new List<CalcTransaction>();
+        List<CalcAction> testCalcTransactionList = new List<CalcAction>();
 
         /// <summary>   Получить экземпляр класса CalcBookingCost	</summary>
         /// <returns>	Экземпляр класса CalcBookingCost	</returns>
