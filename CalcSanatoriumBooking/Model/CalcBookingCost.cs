@@ -3,24 +3,8 @@
 namespace CalcSanatoriumBooking.Model
 {
 	/// <summary>   Расчет стоимости путевки в санаторий.   </summary>
-	public class CalcBookingCost
+	public class CalcBookingCost : BookingCalc
 	{
-
-		/// <summary>	
-		///		Идентификатор транзакции.
-		///		Все идентификаторы с одинаковым значением, относятся к одному расчету.	
-		///	</summary>
-		private Int32 _calcId = default;
-
-		/// <summary>	
-		///		Идентификатор транзакции.
-		///		Все идентификаторы с одинаковым значением, относятся к одному расчету.	
-		///	</summary>
-		public Int32 СalcId
-        {
-			get => _calcId;
-			set => _calcId = value;
-		}
 
 		/// <summary>   Расчет стоимости бронирования.    </summary>
 		private Decimal _bookingCost = default;

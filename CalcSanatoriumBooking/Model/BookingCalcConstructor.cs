@@ -7,23 +7,8 @@ namespace CalcSanatoriumBooking.Model
     ///     В этом классе  формирунтся данные о порядке расчета бронирования.
     ///     Далее эти данные передаются в класс CalcBookingCost для окончательного расчета.
     /// </summary>
-    public class BookingCalcConstructor
-    {
-        /// <summary>	
-        ///		Идентификатор расчета.
-        ///		Все идентификаторы с одинаковым значением, относятся к одному расчету.	
-        ///	</summary>
-        private Int32 _calcId = default;
-
-        /// <summary>	
-        ///		Идентификатор расчета.
-        ///		Все идентификаторы с одинаковым значением, относятся к одному расчету.	
-        ///	</summary>
-        public Int32 СalcId
-        {
-            get => _calcId;
-            set => _calcId = value;
-        }
+    public class BookingCalcConstructor : BookingCalc
+	{
 
         /// <summary>	Текущие операции расчета.	</summary>
         private List<CalcAction>? _currentCalcActionList = default;
