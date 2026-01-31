@@ -4,9 +4,9 @@ namespace CalcSanatoriumBooking.Model
 {
     /// <summary>
     ///     Текущая операция расчета.
-    ///     Из экземпляров этого класса формируется окончательный расчет бронирования.   
+    ///     Из экземпляров этого класса формируется окончательный порядок расчета бронирования.   
     /// </summary>
-    public class CalcAction : BookingCalc
+    public class CalcAction : BookingCalcID
 	{
 
         /// <summary>	Очередной, порядковый номер, расчета. </summary>

@@ -5,7 +5,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace CalcSanatoriumBooking.Model
 {
     /// <summary>   Данные бронирования.    </summary>
-    public class BookingPeriod : BookingCalc
+    public class BookingPeriod : BookingCalcID
 	{
 		/// <summary>   Дата начала периода расчета бронирования. </summary>
 		private DateTime _startDatePeriodBookingCalc = default;
