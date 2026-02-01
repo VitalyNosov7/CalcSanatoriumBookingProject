@@ -25,6 +25,8 @@ namespace CalcSanatoriumBooking.Model
 			set => _bookingCostToString = value;
 		}
 
+		//	TODO:	Оставить  поле List<CalcAction> только для чтения, а свойство убрать?
+
 		/// <summary>	Текущие операции расчета.	</summary>
 		private List<CalcAction>? _currentCalcActionList = default;
 
@@ -40,6 +42,9 @@ namespace CalcSanatoriumBooking.Model
 		public Decimal GetCostBooking()
 		{
 			Decimal result = default;
+
+			//	TODO:	
+
 			return result;
 		}
 	}
