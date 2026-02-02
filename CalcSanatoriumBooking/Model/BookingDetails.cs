@@ -5,14 +5,14 @@ namespace CalcSanatoriumBooking.Model
     /// <summary>   Данные бронирования.    </summary>
     public class BookingDetails : BookingCalcID
 	{
-		//  Санаторий
+        //  Санаторий
 
-		//	Дата создания бронирования
+        //	Дата создания бронирования
+        private DateTime _dateBookingCreation = default;
+        //  Дата начала заезда
 
-		//  Дата начала заезда
-
-		//  Дата окончания заезда
+        //  Дата окончания заезда
 
 
-	}
+    }
 }
