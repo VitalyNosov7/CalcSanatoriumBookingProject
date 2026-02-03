@@ -5,10 +5,10 @@ namespace CalcSanatoriumBooking.Model
     /// <summary>   Информация о госте. </summary>
     public class Guest : Person
     {
-        /// <summary>   Идентификатор персоны.  </summary>
+        /// <summary>   Идентификатор гостя.  </summary>
         private Int32 _guestID = default;
 
-        /// <summary>   Идентификатор персоны.  </summary>
+        /// <summary>   Идентификатор гостя.  </summary>
         public Int32 GuestID
         {
             get { return _guestID; }

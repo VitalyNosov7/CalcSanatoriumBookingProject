@@ -5,6 +5,7 @@ namespace CalcSanatoriumBooking.Model
     /// <summary>   Данные бронирования.    </summary>
     public class BookingDetails : BookingCalcID
     {
+
         //  Санаторий
 
         /// <summary>   Дата создания бронирования. </summary>
