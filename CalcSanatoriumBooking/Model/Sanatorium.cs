@@ -22,7 +22,7 @@ namespace CalcSanatoriumBooking.Model
         public String SanatoriumName
         {
             get { return _sanatoriumName; }
-            set { _sanatoriumName = value;
+            set { _sanatoriumName = value; }
         }
     }
 }

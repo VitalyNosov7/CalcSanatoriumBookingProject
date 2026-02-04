@@ -6,7 +6,15 @@ namespace CalcSanatoriumBooking.Model
     public class BookingDetails : BookingCalcID
     {
 
-        //  Санаторий
+        /// <summary>   Санаторий. </summary>
+        private Sanatorium? _currentSanatorium = default;
+
+        /// <summary>   Санаторий. </summary>
+        public Sanatorium CurrentSanatorium
+        {
+            get { return _currentSanatorium!; }
+            set { _currentSanatorium = value; }
+        }
 
         /// <summary>   Дата создания бронирования. </summary>
         private DateTime _dateBookingCreation = default;
@@ -32,7 +40,7 @@ namespace CalcSanatoriumBooking.Model
         private DateTime _bookingEndDate = default;
 
         /// <summary>   Дата окончания бронирования. </summary>
-        public DateTime BookingEndDate 
+        public DateTime BookingEndDate
         {
             get { return _bookingEndDate; }
             set { _bookingEndDate = value; }
@@ -42,10 +50,22 @@ namespace CalcSanatoriumBooking.Model
         private List<Guest>? _currentGuestList = default;
 
         /// <summary>   Список гостей. </summary>
-        public List<Guest>? CurrentGuestList
+        public List<Guest> CurrentGuestList
         {
-            get { return _currentGuestList; }
+            get { return _currentGuestList!; }
             set { _currentGuestList = value; }
         }
+
+        public void AddGuest()
+        {
+            try
+            {
+                Guest currentGuest = new Guest();
+
+                CurrentGuestList.Add(currentGuest);
+            }
+            catch (Exception) { }
+            
         }
     }
+}

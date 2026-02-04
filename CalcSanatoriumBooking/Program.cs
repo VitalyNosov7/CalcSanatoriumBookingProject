@@ -12,6 +12,8 @@ namespace CalcSanatoriumBooking
             Console.WriteLine($"Дата по умолчанию равна: {DefaultDateTime}");
             Gender gender = default;
             Console.WriteLine($"Пол по умолчанию равна: {gender}");
+            TypeAccommodationSanatorium typeAccommodationSanatorium = default;
+            Console.WriteLine($"Вид размещения по умолчанию:  {typeAccommodationSanatorium}");
 
 
             //         CalcBookingCost currentCalcBookingCost = new CalcBookingCost();
