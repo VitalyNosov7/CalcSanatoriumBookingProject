@@ -11,6 +11,12 @@ namespace CalcSanatoriumBooking.Model
         //			В этом классе будет собираться расчет (в определенном порядке) и записываться в List<CalcAction>
         //			м затем для окончательного расчета будет передаваться в класс BookimgCalc
 
+
+        public BookingCalcConstructor(Int32 calcId)
+        {
+            СalcId = calcId;
+        }
+
         /// <summary>   Данные бронирования.    </summary>
         private BookingDetails? _currentBookingDetails = default;
 

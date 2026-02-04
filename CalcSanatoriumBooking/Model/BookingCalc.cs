@@ -27,6 +27,7 @@ namespace CalcSanatoriumBooking.Model
 
 		//	TODO:	Оставить  поле List<CalcAction> только для чтения, а свойство убрать?
 
+
 		/// <summary>	Текущие операции расчета.	</summary>
 		private List<CalcAction>? _currentCalcActionList = default;
 

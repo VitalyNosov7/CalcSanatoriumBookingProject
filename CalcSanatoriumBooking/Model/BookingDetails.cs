@@ -6,6 +6,11 @@ namespace CalcSanatoriumBooking.Model
     public class BookingDetails : BookingCalcID
     {
 
+        public BookingDetails(Int32 calcId)
+        {
+            СalcId = calcId;
+        }
+
         /// <summary>   Санаторий. </summary>
         private Sanatorium? _currentSanatorium = default;
 

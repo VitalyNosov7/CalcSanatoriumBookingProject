@@ -1,7 +1,7 @@
 ﻿
 
 using CalcSanatoriumBooking.Resources;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace CalcSanatoriumBooking.Model
 {
