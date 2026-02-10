@@ -39,8 +39,8 @@ namespace CalcSanatoriumBooking.Model
 
 
 
-        /// <summary>	Добавить очередной , текущий расчет в список.	</summary>
-        public void AddCurrentCalcAction(Int32 currentСalcId,
+        /// <summary>	Создать(добавить) очередной , текущий расчет в список List<CalcAction>.	</summary>
+        public void CreateCurrentCalcAction(Int32 currentСalcId,
                                               Int32 currentSerialNumberCalc,
                                               Int32 currentOperandA,
                                               Int32 currentOperandB,
@@ -58,5 +58,24 @@ namespace CalcSanatoriumBooking.Model
             }
             catch (Exception) { }
         }
+
+        /// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
+        public void ReadCurrentCalcAction()
+        {
+
+        }
+
+        /// <summary>	Редактировать(изменить)  расчет из списка List<CalcAction>.	</summary>
+        public void UpdateCurrentCalcAction()
+        {
+
+        }
+
+        /// <summary>	Удалить  расчет из списка List<CalcAction>.	</summary>
+        public void UDeleteCurrentCalcAction()
+        {
+
+        }
+
     }
 }
