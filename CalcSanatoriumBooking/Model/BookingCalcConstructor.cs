@@ -60,19 +60,19 @@ namespace CalcSanatoriumBooking.Model
         }
 
         /// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
-        public void ReadCurrentCalcAction()
+        public void ReadCurrentCalcAction(Int32 itemNumber)
         {
 
         }
 
         /// <summary>	Редактировать(изменить)  расчет из списка List<CalcAction>.	</summary>
-        public void UpdateCurrentCalcAction()
+        public void UpdateCurrentCalcAction(Int32 itemNumber)
         {
 
         }
 
         /// <summary>	Удалить  расчет из списка List<CalcAction>.	</summary>
-        public void UDeleteCurrentCalcAction()
+        public void DeleteCurrentCalcAction(Int32 itemNumber)
         {
 
         }

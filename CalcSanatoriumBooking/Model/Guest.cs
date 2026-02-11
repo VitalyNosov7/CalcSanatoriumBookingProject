@@ -6,7 +6,7 @@ using CalcSanatoriumBooking.Resources;
 namespace CalcSanatoriumBooking.Model
 {
     /// <summary>   Информация о госте. </summary>
-    public class Guest : Person
+    public class Guest 
     {
         /// <summary>   Идентификатор гостя.  </summary>
         private Int32 _guestID = default;
@@ -16,6 +16,16 @@ namespace CalcSanatoriumBooking.Model
         {
             get { return _guestID; }
             set { _guestID = value; }
+        }
+
+        /// <summary>   Информация о персоне.  </summary>
+        private Person _currentPerson = new Person();
+
+        /// <summary>   Информация о персоне.  </summary>
+        public Person CurrentPerson
+        {
+            get { return _currentPerson; }
+            set { _currentPerson = value; }
         }
 
         /// <summary>   Дата начала проживания. </summary>

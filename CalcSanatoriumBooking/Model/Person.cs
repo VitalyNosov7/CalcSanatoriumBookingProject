@@ -65,5 +65,22 @@ namespace CalcSanatoriumBooking.Model
             get { return _gender; }
             set { _gender = value; }
         }
+
+        /// <summary>	Создать персону.	</summary>
+        /// <param name="personId">Идентификатор персоны</param>
+        /// <param name="surname">Фамилия персоны</param>
+        /// <param name="name">Имя персоны</param>
+        /// <param name="patronymic">Отчество персоны</param>
+        /// <param name="birthdate">Дата роджения персоны</param>
+        /// <param name="gender">Пол персоны</param>
+        public void CreatePerson(Int32 personId, 
+                                    String surname,
+                                    String name,
+                                    String patronymic,
+                                    DateTime birthdate,
+                                    Gender gender)
+        {
+
+        }
     }
 }
