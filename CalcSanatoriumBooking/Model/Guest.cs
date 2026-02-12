@@ -19,12 +19,12 @@ namespace CalcSanatoriumBooking.Model
         }
 
         /// <summary>   Информация о персоне.  </summary>
-        private Person _currentPerson = new Person();
+        private Person? _currentPerson;
 
         /// <summary>   Информация о персоне.  </summary>
         public Person CurrentPerson
         {
-            get { return _currentPerson; }
+            get { return _currentPerson!; }
             set { _currentPerson = value; }
         }
 

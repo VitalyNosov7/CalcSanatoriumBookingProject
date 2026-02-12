@@ -2,9 +2,9 @@
 
 using CalcSanatoriumBooking.Model;
 
-namespace CalcSanatoriumBooking.Controller
+namespace CalcSanatoriumBooking.Controllers
 {
-    public class ControllerBookingCalc : BookingCalcID
+    public class BookingCalcController : BookingCalcID
         
     {
         /// <summary>   Данные бронирования.    </summary>
@@ -28,7 +28,7 @@ namespace CalcSanatoriumBooking.Controller
         }
 
 
-        public ControllerBookingCalc(Int32 calcId)
+        public BookingCalcController(Int32 calcId)
         {
             СalcId = calcId;
             CurrentBookingDetails = new BookingDetails(calcId);

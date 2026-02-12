@@ -1,11 +1,11 @@
 ﻿
 
-namespace CalcSanatoriumBooking.Controller
+namespace CalcSanatoriumBooking.Controllers
 {
     /// <summary>
     ///     В этом контроллере  происходит сборка расчета  бронирования.
     /// </summary>
-    public class ControllerBookingCalcConstructor
+    public class BookingCalcConstructorController
     {
         public void CreateBookingCalc()
         {
