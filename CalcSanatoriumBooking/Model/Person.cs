@@ -5,7 +5,7 @@ using CalcSanatoriumBooking.Resources;
 namespace CalcSanatoriumBooking.Model
 {
     /// <summary>   Информация о персоне.   </summary>
-    public class Person
+    public class Person 
     {
         /// <summary>   Идентификатор персоны.  </summary>
         private Int32 _personID = default;
