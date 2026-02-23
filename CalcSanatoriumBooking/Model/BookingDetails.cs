@@ -1,5 +1,7 @@
 ﻿
 
+using CalcSanatoriumBooking.Data;
+
 namespace CalcSanatoriumBooking.Model
 {
     /// <summary>   Данные бронирования.    </summary>
@@ -90,5 +92,15 @@ namespace CalcSanatoriumBooking.Model
             get { return _currentGuestList!; }
             set { _currentGuestList = value; }
         }
-    }
+
+		/// <summary>Список стоимости бронирования</summary>
+		private List<PriceBooking>? _currentPriceBooking = default;
+
+		/// <summary>Список стоимости бронирования</summary>
+		public List<PriceBooking> CurrentPriceBooking
+		{
+			get { return _currentPriceBooking!; }
+			set { _currentPriceBooking = value; }
+		}
+	}
 }
