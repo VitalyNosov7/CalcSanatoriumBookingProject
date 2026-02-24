@@ -60,11 +60,11 @@ namespace CalcSanatoriumBooking.Data
 		/// <param name="startDatePrice">Дата начала действия стоимости бронирования</param>
 		/// <param name="endDatePrice">Дата окончания действия стоимости бронирования</param>
 		/// <param name="currentPriceBooking">Cтоимость бронирования</param>
-		public PriceBooking(String indexBookingCategory,
-							DateOnly datePriceActual,
-							DateOnly startDatePrice,
-							DateOnly endDatePrice,
-							Int32 currentPriceBooking)
+		public PriceBooking(String indexBookingCategory
+							,DateOnly datePriceActual
+							,DateOnly startDatePrice
+							,DateOnly endDatePrice
+							,Int32 currentPriceBooking)
 		{
 			IndexBookingCategory = indexBookingCategory;
 			DatePriceActual = datePriceActual;

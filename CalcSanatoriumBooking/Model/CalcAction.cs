@@ -59,11 +59,11 @@ namespace CalcSanatoriumBooking.Model
             set => _currentMathOperation = value;
         }
 
-        public CalcAction(Int32 currentСalcId,
-                            Int32 serialNumberCalc,
-                            Int32 currentOperandA,
-                            Int32 currentOperandB,
-                            MathOperation currentMathOperation)
+        public CalcAction(Int32 currentСalcId
+                            ,Int32 serialNumberCalc
+                            ,Int32 currentOperandA
+                            ,Int32 currentOperandB
+                            ,MathOperation currentMathOperation)
         {
             СalcId = currentСalcId;
             SerialNumberCalc = serialNumberCalc;
