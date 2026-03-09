@@ -6,7 +6,7 @@ namespace CalcSanatoriumBooking.Model
 {
 	//	TODO:	Не понятно назначение этого класса!
 
-    /// <summary>   Данные бронирования.    </summary>
+    /// <summary>   Данные периода бронирования.    </summary>
     public class BookingPeriod : BookingCalcID
 	{
 		/// <summary>   Дата начала периода расчета бронирования. </summary>

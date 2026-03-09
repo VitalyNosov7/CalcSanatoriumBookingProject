@@ -1,11 +1,10 @@
 ﻿
-using CalcSanatoriumBooking.Data;
 using CalcSanatoriumBooking.Resources;
 
 namespace CalcSanatoriumBooking.Model
 {
 	/// <summary>	Конструктор расчета бронирования.	</summary>
-	public class BookingCalcConstructor : BookingCalcID
+	public class BookingCalcManager : BookingCalcID
 	{
 		//	TODO:	разработать в этом классе алгоритм сборки расчета используя классы:
 		//			(CalcShapes ?); CalcAction; CalcOperation; BookingPeriod
@@ -13,7 +12,7 @@ namespace CalcSanatoriumBooking.Model
 		//			м затем для окончательного расчета будет передаваться в класс BookimgCalc
 
 
-		public BookingCalcConstructor(Int32 calcId)
+		public BookingCalcManager(Int32 calcId)
 		{
 			СalcId = calcId;
 		}

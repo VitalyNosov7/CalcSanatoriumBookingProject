@@ -18,10 +18,10 @@ namespace CalcSanatoriumBooking.Controllers
         }
 
         /// <summary>   Конструктор расчета бронирования.   </summary>
-        private BookingCalcConstructor? _currentBookingCalcConstructor = default;
+        private BookingCalcManager? _currentBookingCalcConstructor = default;
 
         /// <summary>   Конструктор расчета бронирования.   </summary>
-        public BookingCalcConstructor CurrentBookingCalcConstructor
+        public BookingCalcManager CurrentBookingCalcConstructor
         {
             get { return _currentBookingCalcConstructor!; }
             set { _currentBookingCalcConstructor = value; }
@@ -32,7 +32,7 @@ namespace CalcSanatoriumBooking.Controllers
         {
             СalcId = calcId;
             CurrentBookingDetails = new BookingDetails(calcId);
-            CurrentBookingCalcConstructor = new BookingCalcConstructor(calcId);
+            CurrentBookingCalcConstructor = new BookingCalcManager(calcId);
 
         }
 

@@ -33,21 +33,21 @@ namespace CalcSanatoriumBooking.Model
 			set { _currentRoomCategory = value; }
 		}
 
-		/// <summary>Категория номера</summary>
+		/// <summary>Тип(вид) размещения</summary>
 		private TypeOfAccommodation? _currentTypeOfAccommodation = default;
 
-		/// <summary>Категория номера</summary>
-		public TypeOfAccommodation CurrentTypeOfAccommodation
+        /// <summary>Тип(вид) размещения</summary>
+        public TypeOfAccommodation CurrentTypeOfAccommodation
 		{
 			get { return _currentTypeOfAccommodation!; }
 			set { _currentTypeOfAccommodation = value; }
 		}
 
-		//  TODO:   Тариф лечения
+        /// <summary>Тариф(лечение, оздоровление, климатолечение и т.п)</summary>
+        private SanatoriumTariff? _currentSanatoriumTariff = default;
 
-		private SanatoriumTariff? _currentSanatoriumTariff = default;
-
-		public SanatoriumTariff CurrentSanatoriumTariff
+        /// <summary>Тариф(лечение, оздоровление, климатолечение и т.п)</summary>
+        public SanatoriumTariff CurrentSanatoriumTariff
 		{
 			get { return _currentSanatoriumTariff!; }
 			set { _currentSanatoriumTariff = value; }
