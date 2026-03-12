@@ -60,19 +60,46 @@ namespace CalcSanatoriumBooking.Model
 		}
 
 		/// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
-		public void ReadCurrentCalcAction(Int32 itemNumber)
+		public void ReadCurrentCalcAction(Int32 searchСalcId)
 		{
+			//	Пример поиска в списке:
 
-		}
+			//class Book
+			//{
+			//    public int Price { get; set; }
+			//    public string Name { get; set; }
+			//}
 
-		/// <summary>	Редактировать(изменить)  расчет из списка List<CalcAction>.	</summary>
-		public void UpdateCurrentCalcAction(Int32 itemNumber)
+			//static void Main(string[] args)
+			//{
+			//    // заполняем книги
+			//    List<Book> books = new List<Book>();
+			//    books.Add(new Book() { Price = 10, Name = "aaa" });
+			//    books.Add(new Book() { Price = 13, Name = "eee" });
+			//    books.Add(new Book() { Price = 5, Name = "ttt" });
+			//    books.Add(new Book() { Price = 45, Name = "ooo" });
+
+			//    // ищем 1 элемент
+			//    Book found = books.Find(item => item.Price == 13);
+
+			//    // выводим элемент на экран
+			//    Console.WriteLine("Цена:{0}, Название:{1}", found.Price, found.Name);
+			//}
+			// КОНЕЦ	Пример поиска в списке:
+
+			// List<CalcAction> processedCalcActionList = CurrentCalcActionList;
+			CalcAction? foundCalcAction = CurrentCalcActionList.Find(item => item.СalcId == searchСalcId);
+
+        }
+
+        /// <summary>	Редактировать(изменить)  расчет из списка List<CalcAction>.	</summary>
+        public void UpdateCurrentCalcAction(Int32 searchСalcId)
 		{
 
 		}
 
 		/// <summary>	Удалить  расчет из списка List<CalcAction>.	</summary>
-		public void DeleteCurrentCalcAction(Int32 itemNumber)
+		public void DeleteCurrentCalcAction(Int32 searchСalcId)
 		{
 
 		}
