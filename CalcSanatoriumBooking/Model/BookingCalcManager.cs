@@ -88,7 +88,12 @@ namespace CalcSanatoriumBooking.Model
 			// КОНЕЦ	Пример поиска в списке:
 
 			// List<CalcAction> processedCalcActionList = CurrentCalcActionList;
-			CalcAction? foundCalcAction = CurrentCalcActionList.Find(item => item.СalcId == searchСalcId);
+
+			if (CurrentCalcActionList.Exists(item => item.СalcId == searchСalcId))
+			{
+                CalcAction? foundCalcAction = CurrentCalcActionList.Find(item => item.СalcId == searchСalcId);
+            }
+			
 
         }
 
