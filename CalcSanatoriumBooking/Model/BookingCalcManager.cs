@@ -60,7 +60,7 @@ namespace CalcSanatoriumBooking.Model
 		}
 
 		/// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
-		public void ReadCurrentCalcAction(Int32 searchСalcId)
+		public CalcAction ReadCurrentCalcAction(Int32 searchSerialNumberCalc)
 		{
 			//	Пример поиска в списке:
 
@@ -88,19 +88,32 @@ namespace CalcSanatoriumBooking.Model
 			// КОНЕЦ	Пример поиска в списке:
 
 			// List<CalcAction> processedCalcActionList = CurrentCalcActionList;
+			CalcAction? foundCalcAction = default;
 
-			if (CurrentCalcActionList.Exists(item => item.СalcId == searchСalcId))
+			if (CurrentCalcActionList.Exists(item => item.СalcId == searchSerialNumberCalc))
 			{
-                CalcAction? foundCalcAction = CurrentCalcActionList.Find(item => item.СalcId == searchСalcId);
-            }
-			
+				foundCalcAction = CurrentCalcActionList.Find(item => item.SerialNumberCalc == searchSerialNumberCalc);				
+			}
+			return foundCalcAction!;
 
-        }
+		}
 
         /// <summary>	Редактировать(изменить)  расчет из списка List<CalcAction>.	</summary>
-        public void UpdateCurrentCalcAction(Int32 searchСalcId)
+        public void UpdateCurrentCalcAction(Int32 searchSerialNumberCalc
+											, Int32 currentSerialNumberCalc
+											, Int32 currentOperandA
+											, Int32 currentOperandB
+											, MathOperation currentMathOperation)
 		{
-
+			CalcAction? editableCalcAction = default;
+			editableCalcAction = ReadCurrentCalcAction(searchSerialNumberCalc);
+			if(editableCalcAction != null)
+			{
+				editableCalcAction.SerialNumberCalc = currentSerialNumberCalc;
+				editableCalcAction.OperandA = currentOperandA;
+				editableCalcAction.OperandB = currentOperandB;
+				editableCalcAction.CurrentMathOperation = currentMathOperation;
+			}
 		}
 
 		/// <summary>	Удалить  расчет из списка List<CalcAction>.	</summary>
