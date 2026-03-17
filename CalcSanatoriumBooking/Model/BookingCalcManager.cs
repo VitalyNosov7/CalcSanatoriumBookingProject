@@ -62,33 +62,35 @@ namespace CalcSanatoriumBooking.Model
 		/// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
 		public CalcAction ReadCurrentCalcAction(Int32 searchSerialNumberCalc)
 		{
-			//	Пример поиска в списке:
+            #region Пример поиска в списке
+            //	Пример поиска в списке:
 
-			//class Book
-			//{
-			//    public int Price { get; set; }
-			//    public string Name { get; set; }
-			//}
+            //class Book
+            //{
+            //    public int Price { get; set; }
+            //    public string Name { get; set; }
+            //}
 
-			//static void Main(string[] args)
-			//{
-			//    // заполняем книги
-			//    List<Book> books = new List<Book>();
-			//    books.Add(new Book() { Price = 10, Name = "aaa" });
-			//    books.Add(new Book() { Price = 13, Name = "eee" });
-			//    books.Add(new Book() { Price = 5, Name = "ttt" });
-			//    books.Add(new Book() { Price = 45, Name = "ooo" });
+            //static void Main(string[] args)
+            //{
+            //    // заполняем книги
+            //    List<Book> books = new List<Book>();
+            //    books.Add(new Book() { Price = 10, Name = "aaa" });
+            //    books.Add(new Book() { Price = 13, Name = "eee" });
+            //    books.Add(new Book() { Price = 5, Name = "ttt" });
+            //    books.Add(new Book() { Price = 45, Name = "ooo" });
 
-			//    // ищем 1 элемент
-			//    Book found = books.Find(item => item.Price == 13);
+            //    // ищем 1 элемент
+            //    Book found = books.Find(item => item.Price == 13);
 
-			//    // выводим элемент на экран
-			//    Console.WriteLine("Цена:{0}, Название:{1}", found.Price, found.Name);
-			//}
-			// КОНЕЦ	Пример поиска в списке:
+            //    // выводим элемент на экран
+            //    Console.WriteLine("Цена:{0}, Название:{1}", found.Price, found.Name);
+            //}
+            // КОНЕЦ	Пример поиска в списке:
+            #endregion Пример поиска в списке
 
-			// List<CalcAction> processedCalcActionList = CurrentCalcActionList;
-			CalcAction? foundCalcAction = default;
+            // List<CalcAction> processedCalcActionList = CurrentCalcActionList;
+            CalcAction? foundCalcAction = default;
 
 			if (CurrentCalcActionList.Exists(item => item.СalcId == searchSerialNumberCalc))
 			{

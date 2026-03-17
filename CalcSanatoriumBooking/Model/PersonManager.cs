@@ -18,7 +18,8 @@ namespace CalcSanatoriumBooking.Model
 			get
 			{
 				if (_currentPerson == null) { } //	TODO:	Что должно происходить если null?
-				return _currentPerson!;
+				return _currentPerson!; 
+				
 			}
 			set { _currentPerson = value; }
 		}
