@@ -3,65 +3,67 @@ using CalcSanatoriumBooking.Resources;
 
 namespace CalcSanatoriumBooking.Model
 {
-	/// <summary>	Конструктор расчета бронирования.	</summary>
-	public class BookingCalcManager : BookingCalcID
-	{
-		//	TODO:	разработать в этом классе алгоритм сборки расчета используя классы:
-		//			(CalcShapes ?); CalcAction; CalcOperation; BookingPeriod
-		//			В этом классе будет собираться расчет (в определенном порядке) и записываться в List<CalcAction>
-		//			м затем для окончательного расчета будет передаваться в класс BookimgCalc
+    /// <summary>	Конструктор расчета бронирования.	</summary>
+    public class BookingCalcManager : BookingCalcID
+    {
+        //	TODO:	разработать в этом классе алгоритм сборки расчета используя классы:
+        //			(CalcShapes ?); CalcAction; CalcOperation; BookingPeriod
+        //			В этом классе будет собираться расчет (в определенном порядке) и записываться в List<CalcAction>
+        //			м затем для окончательного расчета будет передаваться в класс BookimgCalc
 
 
-		public BookingCalcManager(Int32 calcId)
-		{
-			СalcId = calcId;
-		}
+        public BookingCalcManager(Int32 calcId)
+        {
+            СalcId = calcId;
+        }
 
-		/// <summary>   Данные бронирования.    </summary>
-		private BookingDetails? _currentBookingDetails = default;
+        /// <summary>   Данные бронирования.    </summary>
+        private BookingDetails? _currentBookingDetails = default;
 
-		/// <summary>   Данные бронирования.    </summary>
-		public BookingDetails CurrentBookingDetails
-		{
-			get { return _currentBookingDetails!; }
-			set { _currentBookingDetails = value; }
-		}
+        /// <summary>   Данные бронирования.    </summary>
+        public BookingDetails CurrentBookingDetails
+        {
+            get { return _currentBookingDetails!; }
+            set { _currentBookingDetails = value; }
+        }
 
-		/// <summary>	Текущие операции расчета.	</summary>
-		private List<CalcAction>? _currentCalcActionList = default;
+        /// <summary>	Текущие операции расчета.	</summary>
+        private List<CalcAction>? _currentCalcActionList = default;
 
-		/// <summary>	Текущие операции расчета.	</summary>
-		public List<CalcAction> CurrentCalcActionList
-		{
-			get { return _currentCalcActionList!; }
-			set { _currentCalcActionList = value; }
-		}
+        /// <summary>	Текущие операции расчета.	</summary>
+        public List<CalcAction> CurrentCalcActionList
+        {
+            get { return _currentCalcActionList!; }
+            set { _currentCalcActionList = value; }
+        }
 
 
 
-		/// <summary>	Создать(добавить) очередной , текущий расчет в список List<CalcAction>.	</summary>
-		public void CreateCurrentCalcAction(Int32 currentСalcId
-											  , Int32 currentSerialNumberCalc
-											  , Int32 currentOperandA
-											  , Int32 currentOperandB
-											  , MathOperation currentMathOperation)
-		{
-			try
-			{
-				CalcAction currentCalcAction = new CalcAction(currentСalcId
-															  , currentSerialNumberCalc
-															  , currentOperandA
-															  , currentOperandB
-															  , currentMathOperation);
-				CurrentCalcActionList.Add(currentCalcAction);
+        /// <summary>	Создать(добавить) очередной , текущий расчет в список List<CalcAction>.	</summary>
+        public void CreateCurrentCalcAction(Int32 currentСalcId
+                                            , Int32 currentGroupNumberCalc
+                                            , Int32 currentSerialNumberCalc
+                                            , Int32 currentOperandA
+                                            , Int32 currentOperandB
+                                            , MathOperation currentMathOperation)
+        {
+            try
+            {
+                CalcAction currentCalcAction = new CalcAction(currentСalcId
+                                                            , currentGroupNumberCalc
+                                                            , currentSerialNumberCalc
+                                                            , currentOperandA
+                                                            , currentOperandB
+                                                            , currentMathOperation);
+                CurrentCalcActionList.Add(currentCalcAction);
 
-			}
-			catch (Exception) { }
-		}
+            }
+            catch (Exception) { }
+        }
 
-		/// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
-		public CalcAction ReadCurrentCalcAction(Int32 searchSerialNumberCalc)
-		{
+        /// <summary>	Прочитать(получиль)  расчет из списка List<CalcAction>.	</summary>
+        public CalcAction ReadCurrentCalcAction(Int32 searchSerialNumberCalc)
+        {
             #region Пример поиска в списке
             //	Пример поиска в списке:
 
@@ -92,37 +94,39 @@ namespace CalcSanatoriumBooking.Model
             // List<CalcAction> processedCalcActionList = CurrentCalcActionList;
             CalcAction? foundCalcAction = default;
 
-			if (CurrentCalcActionList.Exists(item => item.СalcId == searchSerialNumberCalc))
-			{
-				foundCalcAction = CurrentCalcActionList.Find(item => item.SerialNumberCalc == searchSerialNumberCalc);				
-			}
-			return foundCalcAction!;
+            if (CurrentCalcActionList.Exists(item => item.СalcId == searchSerialNumberCalc))
+            {
+                foundCalcAction = CurrentCalcActionList.Find(item => item.SerialNumberCalc == searchSerialNumberCalc);
+            }
+            return foundCalcAction!;
 
-		}
+        }
 
         /// <summary>	Редактировать(изменить)  расчет из списка List<CalcAction>.	</summary>
         public void UpdateCurrentCalcAction(Int32 searchSerialNumberCalc
-											, Int32 currentSerialNumberCalc
-											, Int32 currentOperandA
-											, Int32 currentOperandB
-											, MathOperation currentMathOperation)
-		{
-			CalcAction? editableCalcAction = default;
-			editableCalcAction = ReadCurrentCalcAction(searchSerialNumberCalc);
-			if(editableCalcAction != null)
-			{
-				editableCalcAction.SerialNumberCalc = currentSerialNumberCalc;
-				editableCalcAction.OperandA = currentOperandA;
-				editableCalcAction.OperandB = currentOperandB;
-				editableCalcAction.CurrentMathOperation = currentMathOperation;
-			}
-		}
+                                            , Int32 currentGroupNumberCalc
+                                            , Int32 currentSerialNumberCalc
+                                            , Int32 currentOperandA
+                                            , Int32 currentOperandB
+                                            , MathOperation currentMathOperation)
+        {
+            CalcAction? editableCalcAction = default;
+            editableCalcAction = ReadCurrentCalcAction(searchSerialNumberCalc);
+            if (editableCalcAction != null)
+            {
+                editableCalcAction.GroupNumberCalc = currentGroupNumberCalc;
+                editableCalcAction.SerialNumberCalc = currentSerialNumberCalc;
+                editableCalcAction.OperandA = currentOperandA;
+                editableCalcAction.OperandB = currentOperandB;
+                editableCalcAction.CurrentMathOperation = currentMathOperation;
+            }
+        }
 
-		/// <summary>	Удалить  расчет из списка List<CalcAction>.	</summary>
-		public void DeleteCurrentCalcAction(Int32 searchСalcId)
-		{
+        /// <summary>	Удалить  расчет из списка List<CalcAction>.	</summary>
+        public void DeleteCurrentCalcAction(Int32 searchСalcId)
+        {
 
-		}
+        }
 
-	}
+    }
 }

@@ -7,7 +7,16 @@ namespace CalcSanatoriumBooking.Model
     ///     Из экземпляров этого класса формируется окончательный порядок расчета бронирования.   
     /// </summary>
     public class CalcAction : BookingCalcID
-	{
+    {
+        /// <summary>   Номер группы расчета.   </summary>
+        private Int32 _groupNumberCalc = default;
+
+        /// <summary>   Номер группы расчета.   </summary>
+        public Int32 GroupNumberCalc
+        {
+            get { return _groupNumberCalc; }
+            set { _groupNumberCalc = value; }
+        }
 
         /// <summary>	Очередной, порядковый номер, расчета. </summary>
         private Int32 _serialNumberCalc = default;
@@ -15,8 +24,8 @@ namespace CalcSanatoriumBooking.Model
         /// <summary>	Очередной, порядковый номер, расчета. </summary>
         public Int32 SerialNumberCalc
         {
-            get => _serialNumberCalc;
-            set => _serialNumberCalc = value;
+            get { return _serialNumberCalc; }
+            set { _serialNumberCalc = value; }
         }
 
         /// <summary>	Первый операнд. </summary>
@@ -25,8 +34,8 @@ namespace CalcSanatoriumBooking.Model
         /// <summary>	Первый операнд. </summary>
         public Int32 OperandA
         {
-            get => _operandA;
-            set => _operandA = value;
+            get { return _operandA; }
+            set { _operandA = value; }
         }
 
         /// <summary>	Второй операнд. </summary>
@@ -35,8 +44,8 @@ namespace CalcSanatoriumBooking.Model
         /// <summary>	Второй операнд. </summary>
         public Int32 OperandB
         {
-            get => _operandB;
-            set => _operandB = value;
+            get { return _operandB; }
+            set { _operandB = value; }
         }
 
         /// <summary>	Результат текущего расчета. </summary>
@@ -45,8 +54,8 @@ namespace CalcSanatoriumBooking.Model
         /// <summary>	Результат текущего расчета. </summary>
         public Int32 ResultCurrentCalc
         {
-            get => _resultCurrentCalc;
-            set => _resultCurrentCalc = value;
+            get { return _resultCurrentCalc; }
+            set { _resultCurrentCalc = value; }
         }
 
         /// <summary>	Текущая математическая операция. </summary>
@@ -55,17 +64,19 @@ namespace CalcSanatoriumBooking.Model
         /// <summary>	Текущая математическая операция. </summary>
         public MathOperation CurrentMathOperation
         {
-            get => _currentMathOperation;
-            set => _currentMathOperation = value;
+            get { return _currentMathOperation; }
+            set { _currentMathOperation = value; }
         }
 
         public CalcAction(Int32 currentСalcId
-                            ,Int32 serialNumberCalc
-                            ,Int32 currentOperandA
-                            ,Int32 currentOperandB
-                            ,MathOperation currentMathOperation)
+                            , Int32 groupNumberCalc
+                            , Int32 serialNumberCalc
+                            , Int32 currentOperandA
+                            , Int32 currentOperandB
+                            , MathOperation currentMathOperation)
         {
             СalcId = currentСalcId;
+            GroupNumberCalc = groupNumberCalc;
             SerialNumberCalc = serialNumberCalc;
             OperandA = currentOperandA;
             OperandB = currentOperandB;
