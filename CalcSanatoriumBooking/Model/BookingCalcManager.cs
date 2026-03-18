@@ -36,7 +36,7 @@ namespace CalcSanatoriumBooking.Model
             get { return _currentCalcActionList!; }
             set { _currentCalcActionList = value; }
         }
-
+        
 
 
         /// <summary>	Создать(добавить) очередной , текущий расчет в список List<CalcAction>.	</summary>

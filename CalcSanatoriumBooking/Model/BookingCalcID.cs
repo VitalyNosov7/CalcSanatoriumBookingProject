@@ -16,8 +16,8 @@ namespace CalcSanatoriumBooking.Model
 		///	</summary>
 		public  Int32 СalcId
 		{
-			get => _calcId;
-			set => _calcId = value;
+			get { return _calcId; }
+			set { _calcId = value; }
 		}
 	}
 }

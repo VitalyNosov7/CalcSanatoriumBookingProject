@@ -1,18 +1,19 @@
 ﻿
-
 namespace CalcSanatoriumBooking.Model
 {
 	/// <summary>	Расчет стоимости бронирования.	</summary>
     public class BookingCalc : BookingCalcID
 	{
-		/// <summary>   Расчет стоимости бронирования.    </summary>
-		private Decimal _bookingCost = default;
+        //	TODO:	Разработать алгоритм, в котором будет производиться расчет из данных списка  List<CalcAction>
+
+        /// <summary>   Расчет стоимости бронирования.    </summary>
+        private Decimal _bookingCost = default;
 
 		/// <summary>   Расчет стоимости бронирования.    </summary>
 		public Decimal BookingCost
 		{
-			get => _bookingCost;
-			set => _bookingCost = value;
+			get { return _bookingCost; }
+			set { _bookingCost = value; }
 		}
 
 		/// <summary>   Строковое представление расчета стоимости бронирования.    </summary>
@@ -21,8 +22,8 @@ namespace CalcSanatoriumBooking.Model
 		/// <summary>   Строковое представление расчета стоимости бронирования.    </summary>
 		public String BookingCostToString
 		{
-			get => _bookingCostToString;
-			set => _bookingCostToString = value;
+			get { return _bookingCostToString; }
+			set { _bookingCostToString = value; }
 		}
 
 		//	TODO:	Оставить  поле List<CalcAction> только для чтения, а свойство убрать?
@@ -34,8 +35,8 @@ namespace CalcSanatoriumBooking.Model
 		/// <summary>	Текущие операции расчета.	</summary>
 		public List<CalcAction> CurrentCalcActionList
 		{
-			get => _currentCalcActionList!;
-			set => _currentCalcActionList = value;
+			get { return _currentCalcActionList!; }
+			set { _currentCalcActionList = value; }
 		}
 
 
