@@ -1,5 +1,4 @@
-﻿
-namespace CalcSanatoriumBooking.Model
+﻿namespace CalcSanatoriumBooking.Data
 {
 	/// <summary>Категория номера</summary>
 	public class RoomCategory

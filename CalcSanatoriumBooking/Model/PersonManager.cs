@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using CalcSanatoriumBooking.Data;
 using CalcSanatoriumBooking.Resources;
 
 namespace CalcSanatoriumBooking.Model

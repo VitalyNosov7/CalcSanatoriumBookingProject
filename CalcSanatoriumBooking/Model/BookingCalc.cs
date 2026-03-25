@@ -1,4 +1,6 @@
 ﻿
+using CalcSanatoriumBooking.Data;
+
 namespace CalcSanatoriumBooking.Model
 {
 	/// <summary>	Расчет стоимости бронирования.	</summary>

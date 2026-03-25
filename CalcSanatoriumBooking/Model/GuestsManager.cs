@@ -1,4 +1,6 @@
-﻿namespace CalcSanatoriumBooking.Model
+﻿using CalcSanatoriumBooking.Data;
+
+namespace CalcSanatoriumBooking.Model
 {
 	//  В этом классе создается список гостей.
 	public class GuestsManager

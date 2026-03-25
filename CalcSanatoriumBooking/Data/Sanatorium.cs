@@ -1,6 +1,4 @@
-﻿
-
-namespace CalcSanatoriumBooking.Model
+﻿namespace CalcSanatoriumBooking.Data
 {
 	/// <summary>   Санаторий.  </summary>
 	public class Sanatorium

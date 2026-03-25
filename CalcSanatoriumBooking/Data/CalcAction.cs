@@ -1,6 +1,7 @@
-﻿using CalcSanatoriumBooking.Resources;
+﻿using CalcSanatoriumBooking.Model;
+using CalcSanatoriumBooking.Resources;
 
-namespace CalcSanatoriumBooking.Model
+namespace CalcSanatoriumBooking.Data
 {
     /// <summary>
     ///     Текущая операция расчета.

@@ -1,8 +1,6 @@
-﻿
+﻿using CalcSanatoriumBooking.Model;
 
-using CalcSanatoriumBooking.Data;
-
-namespace CalcSanatoriumBooking.Model
+namespace CalcSanatoriumBooking.Data
 {
 	/// <summary>   Данные бронирования.    </summary>
 	public class BookingDetails : BookingCalcID

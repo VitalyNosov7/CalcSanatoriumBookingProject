@@ -1,9 +1,8 @@
-﻿
-
+﻿using CalcSanatoriumBooking.Model;
 using CalcSanatoriumBooking.Resources;
 
 
-namespace CalcSanatoriumBooking.Model
+namespace CalcSanatoriumBooking.Data
 {
 	/// <summary>   Информация о госте. </summary>
 	public class Guest
