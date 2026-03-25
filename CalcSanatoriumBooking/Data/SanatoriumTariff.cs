@@ -1,5 +1,4 @@
-﻿
-namespace CalcSanatoriumBooking.Model
+﻿namespace CalcSanatoriumBooking.Data
 {
     /// <summary>Тариф санатория(с лечением, без лечения, климатолечение, оздоровление)</summary>
     public class SanatoriumTariff

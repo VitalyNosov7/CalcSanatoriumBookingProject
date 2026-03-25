@@ -1,7 +1,6 @@
-﻿using CalcSanatoriumBooking.Data;
-using CalcSanatoriumBooking.Resources;
+﻿using CalcSanatoriumBooking.Resources;
 
-namespace CalcSanatoriumBooking.Model
+namespace CalcSanatoriumBooking.Data
 {
 	/// <summary>Тестовые данные </summary>
 	public class TestData
