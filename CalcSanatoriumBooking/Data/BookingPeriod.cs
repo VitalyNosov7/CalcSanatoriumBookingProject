@@ -1,6 +1,4 @@
-﻿using CalcSanatoriumBooking.Model;
-
-namespace CalcSanatoriumBooking.Data
+﻿namespace CalcSanatoriumBooking.Data
 {
 	//	TODO:	Не понятно назначение этого класса!
 

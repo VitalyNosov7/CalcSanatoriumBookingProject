@@ -7,13 +7,13 @@ namespace CalcSanatoriumBooking.Model
     /// <summary>	Конструктор расчета бронирования.	</summary>
     public class BookingCalcManager : BookingCalcID
     {
-        //	TODO:	разработать в этом классе алгоритм сборки расчета используя классы:
-        //			(CalcShapes ?); CalcAction; CalcOperation; BookingPeriod
-        //			В этом классе будет собираться расчет (в определенном порядке) и записываться в List<CalcAction>
-        //			м затем для окончательного расчета будет передаваться в класс BookimgCalc
+		//	TODO:	разработать в этом классе алгоритм сборки расчета используя классы:
+		//			BookingDetails; CalcAction; CalcOperation; BookingPeriod
+		//			В этом классе будет собираться расчет (в определенном порядке) и записываться в List<CalcAction>
+		//			м затем для окончательного расчета будет передаваться в класс BookimgCalc
 
 
-        public BookingCalcManager(Int32 calcId)
+		public BookingCalcManager(Int32 calcId)
         {
             СalcId = calcId;
         }

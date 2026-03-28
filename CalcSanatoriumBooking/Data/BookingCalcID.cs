@@ -1,6 +1,4 @@
-﻿
-
-namespace CalcSanatoriumBooking.Model
+﻿namespace CalcSanatoriumBooking.Data
 {
     public abstract class BookingCalcID 
     {
