@@ -3,6 +3,12 @@
 	/// <summary>   Санаторий.  </summary>
 	public class Sanatorium
 	{
+		public Sanatorium(Int32 sanatoriumID, String sanatoriumName)
+		{
+			SanatoriumID = sanatoriumID;
+			SanatoriumName = sanatoriumName;
+		}
+
 		/// <summary>   Идентификатор санатория.    </summary>
 		private Int32 _sanatoriumID = default;
 

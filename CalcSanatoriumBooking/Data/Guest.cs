@@ -72,10 +72,10 @@ namespace CalcSanatoriumBooking.Data
 		}
 
 		/// <summary>  Вид размещения. </summary>
-		private TypeOfAccommodation? _currentTypeOfAccommodation = default;
+		private AccommodationType? _currentTypeOfAccommodation = default;
 
 		/// <summary>  Вид размещения. </summary>
-		public TypeOfAccommodation CurrentTypeOfAccommodation
+		public AccommodationType CurrentTypeOfAccommodation
 		{
 			get { return _currentTypeOfAccommodation!; }
 			set { _currentTypeOfAccommodation = value; }
@@ -97,7 +97,7 @@ namespace CalcSanatoriumBooking.Data
 					, DateTime endDateResidence
 					, Sanatorium currentSanatorium
 					, RoomCategory currentRoomCategory
-					, TypeOfAccommodation currentTypeOfAccommodation
+					, AccommodationType currentTypeOfAccommodation
 					, SanatoriumTariff currentSanatoriumTariff)
 		{
 			GuestID = guestID;

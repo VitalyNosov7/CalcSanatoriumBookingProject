@@ -33,7 +33,7 @@ namespace CalcSanatoriumBooking.Model
 								, DateTime endDateResidence
 								, Sanatorium currentSanatorium
 								, RoomCategory currentRoomCategory
-								, TypeOfAccommodation currentTypeOfAccommodation
+								, AccommodationType currentTypeOfAccommodation
 								, SanatoriumTariff currentSanatoriumTariff)
 		{
 			Guest createdGuest = new Guest(guestID

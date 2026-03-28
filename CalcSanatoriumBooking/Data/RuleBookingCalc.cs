@@ -1,6 +1,8 @@
 ﻿
 namespace CalcSanatoriumBooking.Data
 {
+	//	TODO:	Подумать, нужен ли этот класс?
+
 	//	В этом классе хранится информация о правиле(условии) расчета бронирования.
 	
 	/// <summary>Правило(условие) расчета бронирования</summary>
@@ -19,7 +21,7 @@ namespace CalcSanatoriumBooking.Data
 
 		private int _amountGuests;
 
-		public int MyProperty
+		public int AmountGuests
 		{
 			get { return _amountGuests; }
 			set { _amountGuests = value; }

@@ -30,10 +30,10 @@
 		}
 
 		/// <summary>Тип(вид) размещения</summary>
-		private TypeOfAccommodation? _currentTypeOfAccommodation = default;
+		private AccommodationType? _currentTypeOfAccommodation = default;
 
         /// <summary>Тип(вид) размещения</summary>
-        public TypeOfAccommodation CurrentTypeOfAccommodation
+        public AccommodationType CurrentTypeOfAccommodation
 		{
 			get { return _currentTypeOfAccommodation!; }
 			set { _currentTypeOfAccommodation = value; }
