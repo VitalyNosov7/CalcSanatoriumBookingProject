@@ -29,25 +29,7 @@
 			set { _currentRoomCategory = value; }
 		}
 
-		/// <summary>Тип(вид) размещения</summary>
-		private AccommodationType? _currentTypeOfAccommodation = default;
 
-        /// <summary>Тип(вид) размещения</summary>
-        public AccommodationType CurrentTypeOfAccommodation
-		{
-			get { return _currentTypeOfAccommodation!; }
-			set { _currentTypeOfAccommodation = value; }
-		}
-
-        /// <summary>Тариф(лечение, оздоровление, климатолечение и т.п)</summary>
-        private SanatoriumTariff? _currentSanatoriumTariff = default;
-
-        /// <summary>Тариф(лечение, оздоровление, климатолечение и т.п)</summary>
-        public SanatoriumTariff CurrentSanatoriumTariff
-		{
-			get { return _currentSanatoriumTariff!; }
-			set { _currentSanatoriumTariff = value; }
-		}
 
 		/// <summary>   Дата создания бронирования. </summary>
 		private DateOnly _dateBookingCreation = default;
@@ -89,6 +71,7 @@
 			set { _currentGuestList = value; }
 		}
 
+		//	Стоимость ппроживания на определенный период.
 		/// <summary>Список стоимости бронирования</summary>
 		private List<PriceBooking>? _currentPriceBooking = default;
 

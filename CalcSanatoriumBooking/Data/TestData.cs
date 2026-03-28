@@ -19,6 +19,8 @@ namespace CalcSanatoriumBooking.Data
 			LoadGuestsList();
 		}
 
+		#region Параметры бронирования
+
 		/// <summary>Начало бронирования</summary>
 		private DateTime _startBooking;
 
@@ -39,6 +41,7 @@ namespace CalcSanatoriumBooking.Data
 			set { _endBooking = value; }
 		}
 
+		#endregion Параметры бронирования
 
 		#region Санатории
 
@@ -171,7 +174,7 @@ namespace CalcSanatoriumBooking.Data
 																6315);
 			PriceBookingList.Add(currentPriceBooking);
 
-			currentPriceBooking.IndexBookingCategory = "1-1-1-1";
+			currentPriceBooking.BookingCategoryPriceIndex = "1-1-1-1";
 			currentPriceBooking.DatePriceActual = DateOnly.Parse("2025,11,17");
 			currentPriceBooking.StartDatePrice = DateOnly.Parse("2026, 11, 01");
 			currentPriceBooking.EndDatePrice = DateOnly.Parse("2026, 12, 31");
@@ -179,7 +182,7 @@ namespace CalcSanatoriumBooking.Data
 
 			PriceBookingList.Add(currentPriceBooking);
 
-			currentPriceBooking.IndexBookingCategory = "1-1-1-1";
+			currentPriceBooking.BookingCategoryPriceIndex = "1-1-1-1";
 			currentPriceBooking.DatePriceActual = DateOnly.Parse("2026,08,01");
 			currentPriceBooking.StartDatePrice = DateOnly.Parse("2026, 10, 01");
 			currentPriceBooking.EndDatePrice = DateOnly.Parse("2026, 10, 31");
@@ -187,7 +190,7 @@ namespace CalcSanatoriumBooking.Data
 
 			PriceBookingList.Add(currentPriceBooking);
 
-			currentPriceBooking.IndexBookingCategory = "1-1-1-1";
+			currentPriceBooking.BookingCategoryPriceIndex = "1-1-1-1";
 			currentPriceBooking.DatePriceActual = DateOnly.Parse("2026,08,01");
 			currentPriceBooking.StartDatePrice = DateOnly.Parse("2026, 11, 01");
 			currentPriceBooking.EndDatePrice = DateOnly.Parse("2026, 12, 31");
@@ -243,7 +246,6 @@ namespace CalcSanatoriumBooking.Data
 											, SanatoriumTariffList[0]);
 		}
 		#endregion Гости
-
 
 	}
 }

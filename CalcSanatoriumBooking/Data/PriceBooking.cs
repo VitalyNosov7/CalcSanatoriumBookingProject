@@ -45,28 +45,30 @@ namespace CalcSanatoriumBooking.Data
 		}
 
 		/// <summary>Индекс расчета бронирования(индекс: санатория; категория номера, вид размещения)</summary>
-		private String _indexBookingCategory = String.Empty;
+		private String _bookingCategoryPriceIndex = String.Empty;
 
 		/// <summary>Индекс расчета бронирования</summary>
-		public String IndexBookingCategory
+		public String BookingCategoryPriceIndex
 		{
-			get { return _indexBookingCategory; }
-			set { _indexBookingCategory = value; }
+			get { return _bookingCategoryPriceIndex; }
+			set { _bookingCategoryPriceIndex = value; }
 		}
 
+		//	TODO: Подумать над тем, чтобы добавить идентификаторы санатория; категория номера, вид размещения?!
+
 		/// <summary>Стоимость бронирования</summary>
-		/// <param name="indexBookingCategory">Индекс расчета бронирования(индекс: санатория; категория номера, вид размещения, лечение)</param>
+		/// <param name="bookingCategoryPriceIndex">Индекс расчета бронирования(индекс: санатория; категория номера, вид размещения, лечение)</param>
 		/// <param name="datePriceActual">Дата актуальности стоимости бронирования</param>
 		/// <param name="startDatePrice">Дата начала действия стоимости бронирования</param>
 		/// <param name="endDatePrice">Дата окончания действия стоимости бронирования</param>
 		/// <param name="currentPriceBooking">Cтоимость бронирования</param>
-		public PriceBooking(String indexBookingCategory
+		public PriceBooking(String bookingCategoryPriceIndex
 							,DateOnly datePriceActual
 							,DateOnly startDatePrice
 							,DateOnly endDatePrice
 							,Int32 currentPriceBooking)
 		{
-			IndexBookingCategory = indexBookingCategory;
+			BookingCategoryPriceIndex = bookingCategoryPriceIndex;
 			DatePriceActual = datePriceActual;
 			StartDatePrice = startDatePrice;
 			EndDatePrice = endDatePrice;
