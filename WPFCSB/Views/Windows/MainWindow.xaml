@@ -16,10 +16,10 @@
         </Grid>
         <Grid x:Name="TabArea" Background="LightGreen">
 
-            <!--<TabControl x:Name="tabControl">
+            <TabControl x:Name="MainTabControl">
 
 
-                <TabItem x:Name="tabItemStart">
+                <!-- <TabItem x:Name="tabItemStart">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <Ellipse Height="10" Width="10" Fill="Black" />
@@ -64,9 +64,9 @@
 
 
 
-                </TabItem>
+                </TabItem>-->
 
-            </TabControl>-->
+            </TabControl>
             
         </Grid>
     </DockPanel>
