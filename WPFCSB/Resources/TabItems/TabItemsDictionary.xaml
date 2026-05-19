@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFCSB">
+                    
+
+     <TabItem x:Key="tabItemBooking">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Height="10" Width="10" Fill="Black" />
+                            <TextBlock Margin="3">Стартовый  таб</TextBlock>
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <DockPanel Margin="5" LastChildFill="True">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="MediumPurple" Width="Auto" Height="50">
+
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="Cyan" Width="250" Height="Auto">
+                            <TextBlock Text="ФИО гостя" HorizontalAlignment="Center"/>
+                            <TextBox/>
+                            <TextBlock Text="Менеджер" HorizontalAlignment="Center"/>
+                            <ComboBox IsEditable="True" Height="20">
+                                <TextBlock>Антонова Оксана Викторовна</TextBlock>
+                                <TextBlock>Боровкова Кристина Викторовна</TextBlock>
+                                <TextBlock>Девочкина Юлия</TextBlock>
+                                <TextBlock>Ермакова Полина Евгеньевна</TextBlock>
+                            </ComboBox>
+                            <TextBlock Text="Санаторий" HorizontalAlignment="Center"/>
+                            <ComboBox IsEditable="True" Height="20">
+                                <TextBlock>Планета</TextBlock>
+                                <TextBlock>Сакрополь</TextBlock>
+                                <TextBlock>Киев</TextBlock>
+                                <TextBlock>Узбекистан</TextBlock>
+                                <TextBlock>Рябинка</TextBlock>
+                            </ComboBox>
+                            <TextBlock Text="Дата заезда" HorizontalAlignment="Center"/>
+                            <DatePicker/>
+                            <TextBlock Text="Дата выезда" HorizontalAlignment="Center"/>
+                            <DatePicker/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Background="Beige" Width="250" Height="Auto"></StackPanel>
+
+
+                        <StackPanel Orientation="Vertical"  Background="GreenYellow" Width="Auto" Height="Auto"></StackPanel>
+
+                    </DockPanel>
+                </TabItem>
+
+</ResourceDictionary>

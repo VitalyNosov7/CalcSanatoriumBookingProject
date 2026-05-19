@@ -4,70 +4,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCSB"
+        xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
     <DockPanel LastChildFill="True" Margin="5">
         <Grid Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30"/>
         <Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
         <Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
         <Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
+            <Grid.DataContext>
+                <vm:TabBookingViewModel/>
+            </Grid.DataContext>
             <!--<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Click="AddTabItem"/>
             <Button Content="Del" HorizontalAlignment="Left" Margin="15,61,0,0" VerticalAlignment="Top" Height="34" Width="64" Click="DelTabItem"/>-->
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddCommand}"/>
         </Grid>
         <Grid x:Name="TabArea" Background="LightGreen">
+            <Grid.DataContext>
+                <vm:TabBookingViewModel/>
+            </Grid.DataContext>
 
-            <TabControl x:Name="MainTabControl">
-
-
-                <!-- <TabItem x:Name="tabItemStart">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Height="10" Width="10" Fill="Black" />
-                            <TextBlock Margin="3">Стартовый  таб</TextBlock>
-                        </StackPanel>
-                    </TabItem.Header>
-
-                    <DockPanel Margin="5" LastChildFill="True">
-                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="MediumPurple" Width="Auto" Height="50">
-
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="Cyan" Width="250" Height="Auto">
-                            <TextBlock Text="ФИО гостя" HorizontalAlignment="Center"/>
-                            <TextBox/>
-                            <TextBlock Text="Менеджер" HorizontalAlignment="Center"/>
-                            <ComboBox IsEditable="True" Height="20">
-                                <TextBlock>Антонова Оксана Викторовна</TextBlock>
-                                <TextBlock>Боровкова Кристина Викторовна</TextBlock>
-                                <TextBlock>Девочкина Юлия</TextBlock>
-                                <TextBlock>Ермакова Полина Евгеньевна</TextBlock>
-                            </ComboBox>
-                            <TextBlock Text="Санаторий" HorizontalAlignment="Center"/>
-                            <ComboBox IsEditable="True" Height="20">
-                                <TextBlock>Планета</TextBlock>
-                                <TextBlock>Сакрополь</TextBlock>
-                                <TextBlock>Киев</TextBlock>
-                                <TextBlock>Узбекистан</TextBlock>
-                                <TextBlock>Рябинка</TextBlock>
-                            </ComboBox>
-                            <TextBlock Text="Дата заезда" HorizontalAlignment="Center"/>
-                            <DatePicker/>
-                            <TextBlock Text="Дата выезда" HorizontalAlignment="Center"/>
-                            <DatePicker/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Background="Beige" Width="250" Height="Auto"></StackPanel>
-
-
-                        <StackPanel Orientation="Vertical"  Background="GreenYellow" Width="Auto" Height="Auto"></StackPanel>
-
-                    </DockPanel>
-
-
-
-                </TabItem>-->
+            <TabControl x:Name="MainTabControl" ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTabItem}"  DataContext="{Binding SelectedTabItem}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                
 
             </TabControl>
-            
+
         </Grid>
     </DockPanel>
 </Window>

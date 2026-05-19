@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:WPFCSB"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/TabItems/TabItemsDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>         
     </Application.Resources>
 </Application>
