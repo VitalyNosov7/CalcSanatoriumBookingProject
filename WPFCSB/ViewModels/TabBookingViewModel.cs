@@ -52,7 +52,7 @@ namespace WPFCSB.ViewModels
                       //SelectedPhone = phone;
 
                       TabItem newTabItem = new TabItem();
-                      TabItems.Insert(0, newTabItem.So); // TODO: Вытащить TabItem из ресурса TabItemsDictionary.xaml
+                      TabItems.Insert(0, newTabItem); // TODO: Вытащить TabItem из ресурса TabItemsDictionary.xaml
                       SelectedTabItem = newTabItem;
                   }));
             }
