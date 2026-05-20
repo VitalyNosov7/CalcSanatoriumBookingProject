@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:WPFCSB">
 
    
-        <TabItem x:Key="tabItemBooking">
+        <TabItem x:Key="TabItemBooking">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Height="10" Width="10" Fill="Black" />

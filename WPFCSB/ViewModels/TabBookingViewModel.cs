@@ -51,10 +51,26 @@ namespace WPFCSB.ViewModels
                       //Phones.Insert(0, phone);
                       //SelectedPhone = phone;
 
-                      TabItem newTabItem = new TabItem();
-                      TabItems.Insert(0, newTabItem); // TODO: Вытащить TabItem из ресурса TabItemsDictionary.xaml
-                      SelectedTabItem = newTabItem;
+                      //TabItem newTabItem = new TabItem();
+                      //TabItems.Insert(0, newTabItem); // TODO: Вытащить TabItem из ресурса TabItemsDictionary.xaml
+                      //SelectedTabItem = newTabItem;
                   }));
+            }
+        }
+
+        public void AddTabFromResources()
+        {
+            TabControl tabControl = MainTabControl;
+
+            // Получаем TabItem из словаря ресурсов по ключу
+            if (Application.Current.Resources["TabItemBooking"] is TabItem tabItemFromResources)
+            {
+                // Добавляем в TabControl
+               MainTabControl.Items.Add(tabItemFromResources);
+            }
+            else
+            {
+                MessageBox.Show("Ресурс TabItemBooking не найден!");
             }
         }
 
@@ -88,9 +104,5 @@ namespace WPFCSB.ViewModels
             //stackPanelTabItemHeader.Visibility = Visibility.Collapsed;
         }
 
-        public TabBookingViewModel()
-        {
-         
-        }
     }
 }

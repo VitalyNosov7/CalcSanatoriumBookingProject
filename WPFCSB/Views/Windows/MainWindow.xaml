@@ -7,33 +7,36 @@
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    <!--<Window.DataContext>
+        --><!--<vm:MainWindowViewModel/>--><!--
+        <vm:TabBookingViewModel/>
+    </Window.DataContext>-->
 
     <DockPanel LastChildFill="True" Margin="5">
         <Grid Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30"/>
         <Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
         <Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
         <Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
-            <Grid.DataContext>
+            <!--<Grid.DataContext>
                 <vm:TabBookingViewModel/>
-            </Grid.DataContext>
+            </Grid.DataContext>-->
             <!--<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Click="AddTabItem"/>
             <Button Content="Del" HorizontalAlignment="Left" Margin="15,61,0,0" VerticalAlignment="Top" Height="34" Width="64" Click="DelTabItem"/>-->
             <Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddCommand}"/>
         </Grid>
         <Grid x:Name="TabArea" Background="LightGreen">
-            <Grid.DataContext>
+            <!--<Grid.DataContext>
                 <vm:TabBookingViewModel/>
-            </Grid.DataContext>
+            </Grid.DataContext>-->
 
-            <TabControl x:Name="MainTabControl" ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTabItem}"  DataContext="{Binding SelectedTabItem}">
-                <TabControl.ItemTemplate>
+            <TabControl x:Name="MainTabControl">
+            
+            <!--<TabControl x:Name="MainTabControl">-->
+                <!--<TabControl.ItemTemplate>
                     <DataTemplate>
                         
                     </DataTemplate>
-                </TabControl.ItemTemplate>
+                </TabControl.ItemTemplate>-->
                 
 
             </TabControl>
