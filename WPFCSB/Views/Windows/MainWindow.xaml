@@ -6,21 +6,25 @@
         xmlns:local="clr-namespace:WPFCSB"
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding Path=Title}" Height="450" Width="800">
+	<Window.DataContext>
+		<vm:MainWindowViewModel/>
+	</Window.DataContext>
 
 
-    <DockPanel LastChildFill="True" Margin="5">
-        <Grid Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30"/>
-        <Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
-        <Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
-        <Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
-            <Grid.DataContext>
-                <vm:TabBookingViewModel/>
-            </Grid.DataContext>
-            <Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddCommand}"/>
-        </Grid>
-        <Grid x:Name="TabArea" Background="LightGreen">
-            <TabControl x:Name="myTabControl"/>
-        </Grid>
-    </DockPanel>
+
+	<DockPanel LastChildFill="True" Margin="5">
+		<Grid Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30"/>
+		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
+		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
+		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
+			<Grid.DataContext>
+				<vm:TabBookingViewModel/>
+			</Grid.DataContext>
+			<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddCommand}"/>
+		</Grid>
+		<Grid x:Name="TabArea" Background="LightGreen">
+			<TabControl x:Name="myTabControl"/>
+		</Grid>
+	</DockPanel>
 </Window>
