@@ -9,10 +9,10 @@ using WPFCSB.Commands;
 
 namespace WPFCSB.ViewModels
 {
-    public  class TabBookingViewModel : INotifyPropertyChanged
+    public class TabBookingViewModel : INotifyPropertyChanged
     {
 
-     
+
         public ObservableCollection<TabItem>? TabItems { get; set; }
 
         private TabItem? _selectedTabItem;
