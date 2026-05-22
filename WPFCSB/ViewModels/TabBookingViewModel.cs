@@ -48,20 +48,5 @@ namespace WPFCSB.ViewModels
             }
         }
 
-        public void AddTabFromResources(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddTabItem(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DelTabItem(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

@@ -85,6 +85,7 @@ namespace CalcSanatoriumBooking.Data
 			Birthdate = birthdate;
 			Gender = gender;
 		}
+		public Person() { }
 
 	}
 }
