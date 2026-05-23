@@ -14,7 +14,12 @@
 
 
 	<DockPanel LastChildFill="True" Margin="5">
-		<Grid Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30"/>
+		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
+			<MenuItem Header="Файл">
+				<MenuItem Header="Выход" Command="{Binding ExitAppCommand}"/>
+			</MenuItem>
+			<MenuItem Header="Правка"/>
+		</Menu>
 		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
 		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
 		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">

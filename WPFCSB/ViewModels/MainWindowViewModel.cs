@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using WPFCSB.Commands;
 
 
 namespace WPFCSB.ViewModels
 {
 	public class MainWindowViewModel : INotifyPropertyChanged
 	{
+		#region реализация INotifyPropertyChanged
 		public event PropertyChangedEventHandler? PropertyChanged;
 		public void OnPropertyChanged([CallerMemberName] string propertyName = "")
 		{
@@ -26,6 +29,25 @@ namespace WPFCSB.ViewModels
 				OnPropertyChanged();
 			}
 		}
+		#endregion реализация INotifyPropertyChanged
+
+		#region Команды
+
+		// команда выхода из програмы
+		private RelayCommand exitAppCommand;
+		public RelayCommand ExitAppCommand
+		{
+			get
+			{
+				return exitAppCommand ??
+				  (exitAppCommand = new RelayCommand(obj =>
+				  {
+					Application.Current.Shutdown();
+				  }));
+			}
+		}
+
+		#endregion Команды
 
 	}
 }
