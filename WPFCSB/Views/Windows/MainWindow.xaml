@@ -29,7 +29,9 @@
 			<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddCommand}"/>
 		</Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">
-			<TabControl x:Name="myTabControl"/>
+			<TabControl x:Name="myTabControl">
+				<TabItem Header="TestHeader" Width="Auto" Height="Auto" FontFamily="Times New Roman" FontSize="20">Test</TabItem>
+			</TabControl>
 		</Grid>
 	</DockPanel>
 </Window>
