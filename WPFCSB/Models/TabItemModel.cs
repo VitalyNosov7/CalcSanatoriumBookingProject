@@ -19,18 +19,25 @@ namespace WPFCSB.Models
 
         //  TODO: Доработать метод создания TabItem
         /// <summary>Создать вкладку TabItem</summary>
-        public void CreateTabItem(ObservableCollection<Object> tabItemHeaderElements, ObservableCollection<Object> tabItemContentElements)
+        public void CreateTabItem()
         {
-            if (tabItemHeaderElements.Count == 0)
+            if (TabItemHeaderElements.Count == 0)
             {
                 AddTabItemHeaderElement((String)"New Tab");
+
             }
-            if (tabItemContentElements.Count == 0)
+            if (TabItemContentElements.Count == 0)
             {
                 AddTabItemContentElement((String)"Text Content");
             }
 
 
+        }
+
+        public TabItemModel(ObservableCollection<Object> tabItemHeaderElements, ObservableCollection<Object> tabItemContentElements)
+        {
+            TabItemHeaderElements = tabItemHeaderElements;
+            TabItemContentElements = tabItemContentElements;
         }
 
 
