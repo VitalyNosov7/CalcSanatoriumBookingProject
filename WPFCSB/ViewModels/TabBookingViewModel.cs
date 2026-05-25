@@ -2,15 +2,24 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
 using WPFCSB.Commands;
+using WPFCSB.Models;
 
 
 namespace WPFCSB.ViewModels
 {
     public class TabBookingViewModel : INotifyPropertyChanged
     {
+        /// <summary>Текущая модель TabItem</summary>
+        private TabItemModel? _currentTabItemModel;
+
+        public TabItemModel CurrentTabItemModel
+        {
+            get { return _currentTabItemModel!; }
+            set { _currentTabItemModel = value; }
+        }
+
 
 
         public ObservableCollection<TabItem>? TabItems { get; set; }
@@ -26,12 +35,17 @@ namespace WPFCSB.ViewModels
             }
         }
 
+
+
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName ));
         }
+
+        #region Команды
 
         // команда добавления нового объекта
         private RelayCommand? addCommand;
@@ -47,6 +61,8 @@ namespace WPFCSB.ViewModels
                   }));
             }
         }
+
+        #endregion Команды
 
     }
 }

@@ -1,11 +1,38 @@
 ﻿
 
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace WPFCSB.Models
 {
-	public class TabItemModel
-	{
+    public class TabItemModel
+    {
+        /// <summary>Текущий TabItem</summary>
+        private TabItem? _currentTabItem = default;
+
+        /// <summary>Текущий TabItem</summary>
+        public TabItem CurrentTabItem
+        {
+            get { return _currentTabItem!; }
+            set { _currentTabItem = value; }
+        }
+
+        //  TODO: Доработать метод создания TabItem
+        /// <summary>Создать вкладку TabItem</summary>
+        public void CreateTabItem(ObservableCollection<Object> tabItemHeaderElements, ObservableCollection<Object> tabItemContentElements)
+        {
+            if (tabItemHeaderElements.Count == 0)
+            {
+                AddTabItemHeaderElement((String)"New Tab");
+            }
+            if (tabItemContentElements.Count == 0)
+            {
+                AddTabItemContentElement((String)"Text Content");
+            }
+
+
+        }
+
 
         #region TabItemHeader
         /// <summary>"Элементы заголовка вкладки TabItem</summary>
@@ -13,19 +40,19 @@ namespace WPFCSB.Models
 
         /// <summary>"Элементы заголовка вкладки TabItem</summary>
         public ObservableCollection<Object> TabItemHeaderElements
-		{
-			get { return _tabItemHeaderElements!; }
-			set { _tabItemHeaderElements = value; }
-		}
+        {
+            get { return _tabItemHeaderElements!; }
+            set { _tabItemHeaderElements = value; }
+        }
 
         /// <summary>Добавить элемент в заголовок TabItemHeader </summary>
-        public void AddTabItemHeaderElement(Object  tabItemHeaderElement)
-		{
-			if (tabItemHeaderElement != null)
-			{
-				TabItemHeaderElements.Add(tabItemHeaderElement);
-			}
-		}
+        public void AddTabItemHeaderElement(Object tabItemHeaderElement)
+        {
+            if (tabItemHeaderElement != null)
+            {
+                TabItemHeaderElements.Add(tabItemHeaderElement);
+            }
+        }
 
         /// <summary>Удалить элемент из заголовка TabItemHeader </summary>
         public void RemoveTabItemHeaderElement(Int32 indexItem)
