@@ -6,30 +6,89 @@ namespace WPFCSB.Models
 {
 	public class TabItemModel
 	{
-		/// <summary>Заголовок вкладки</summary>
-		private ObservableCollection<Object>? _tabItemHeader;
 
-		/// <summary>Заголовок вкладки</summary>
-		public ObservableCollection<Object> TabItemHeader
+        #region TabItemHeader
+        /// <summary>"Элементы заголовка вкладки TabItem</summary>
+        private ObservableCollection<Object>? _tabItemHeaderElements;
+
+        /// <summary>"Элементы заголовка вкладки TabItem</summary>
+        public ObservableCollection<Object> TabItemHeaderElements
 		{
-			get { return _tabItemHeader!; }
-			set { _tabItemHeader = value; }
+			get { return _tabItemHeaderElements!; }
+			set { _tabItemHeaderElements = value; }
 		}
 
-		/// <summary>Заголовок содержимого вкладки</summary>
-		private ObservableCollection<Object>? _tabItemContent;
-
-		/// <summary>Заголовок содержимого вкладки</summary>
-		public ObservableCollection<Object>? TabItemContent
+        /// <summary>Добавить элемент в заголовок TabItemHeader </summary>
+        public void AddTabItemHeaderElement(Object  tabItemHeaderElement)
 		{
-			get { return _tabItemContent!; }
-			set { _tabItemContent = value; }
+			if (tabItemHeaderElement != null)
+			{
+				TabItemHeaderElements.Add(tabItemHeaderElement);
+			}
 		}
 
-		public void AddTabItemHeader(Object  tabItemHeader)
-		{
-			
-		}
+        /// <summary>Удалить элемент из заголовка TabItemHeader </summary>
+        public void RemoveTabItemHeaderElement(Int32 indexItem)
+        {
+            if (TabItemHeaderElements != null || TabItemHeaderElements?.Count > 0)
+            {
+                TabItemHeaderElements.RemoveAt(indexItem);
+            }
+        }
 
-	}
+        /// <summary>Заменить порядок элементов в заголовке TabItemHeader </summary>
+        public void MoveTabItemHeaderElement(Int32 oldIndexItem, Int32 newIndexItem)
+        {
+            if (TabItemHeaderElements != null || TabItemHeaderElements?.Count >= 2)
+            {
+                TabItemHeaderElements.Move(oldIndexItem, newIndexItem);
+            }
+        }
+        #endregion TabItemHeader
+
+        #region TabItemContext
+
+        /// <summary>Элементы содержимого вкладки TabItem</summary>
+        private ObservableCollection<Object>? _tabItemContentElements;
+
+        /// <summary>Элементы содержимого вкладки TabItem</summary>
+        public ObservableCollection<Object> TabItemContentElements
+        {
+            get { return _tabItemContentElements!; }
+            set { _tabItemContentElements = value; }
+        }
+
+
+        /// <summary>Добавить элемент в содержимое вкладки TabItemContent </summary>
+        public void AddTabItemContentElement(Object tabItemContentElement)
+        {
+            if (tabItemContentElement != null)
+            {
+                TabItemContentElements.Add(tabItemContentElement);
+            }
+        }
+
+        /// <summary>Удалить элемент из содержимого вкладки TabItemContent</summary>
+        public void RemoveTabItemContentElement(Int32 indexItem)
+        {
+            if (TabItemContentElements != null || TabItemContentElements?.Count > 0)
+            {
+                TabItemContentElements.RemoveAt(indexItem);
+            }
+        }
+
+        /// <summary>Заменить порядок элементов в содержимоv вкладки  TabItemContent </summary>
+        public void MoveTabItemContentElement(Int32 oldIndexItem, Int32 newIndexItem)
+        {
+            if (TabItemContentElements != null || TabItemContentElements?.Count >= 2)
+            {
+                TabItemContentElements.Move(oldIndexItem, newIndexItem);
+            }
+        }
+
+        #endregion TabItemContext
+
+
+
+    }
 }
