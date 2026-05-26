@@ -1,6 +1,7 @@
 ﻿
 
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WPFCSB.Models
@@ -17,27 +18,42 @@ namespace WPFCSB.Models
             set { _currentTabItem = value; }
         }
 
-        //  TODO: Доработать метод создания TabItem
         /// <summary>Создать вкладку TabItem</summary>
         public void CreateTabItem()
         {
-            if (TabItemHeaderElements.Count == 0)
+            TabItem createdTabItem = new TabItem();
+            StackPanel stackPanelHeader = new StackPanel();
+            StackPanel stackPanelContent = new StackPanel();
+
+            //  Заполняем Header в TabItem
+            if (TabItemHeaderElements.Count !=0 || TabItemHeaderElements != null)
             {
-                AddTabItemHeaderElement((String)"New Tab");
-
+                foreach(TabItem headerElement in TabItemHeaderElements)
+                {
+                    stackPanelHeader.Children.Add(headerElement);
+                }
+                createdTabItem.Header = stackPanelHeader;
             }
-            if (TabItemContentElements.Count == 0)
+            else { MessageBox.Show("Отсутствуют элементы заголовка в коллекции TabItemHeaderElements!"); }
+
+            //  Заполняем Content в TabItem
+            if (TabItemContentElements.Count != 0 || TabItemContentElements != null)
             {
-                AddTabItemContentElement((String)"Text Content");
+                foreach (TabItem contentElement in TabItemContentElements)
+                {
+                    stackPanelContent.Children.Add(contentElement);
+                }
+                createdTabItem.Content = stackPanelContent;
             }
+            else { MessageBox.Show("Отсутствуют элементы контента в коллекции TabItemContentElements!"); }
 
-
+            CurrentTabItem = createdTabItem;         
         }
 
         public TabItemModel(ObservableCollection<Object> tabItemHeaderElements, ObservableCollection<Object> tabItemContentElements)
         {
             TabItemHeaderElements = tabItemHeaderElements;
-            TabItemContentElements = tabItemContentElements;
+            TabItemContentElements = tabItemContentElements;           
         }
 
 
@@ -46,14 +62,14 @@ namespace WPFCSB.Models
         private ObservableCollection<Object>? _tabItemHeaderElements;
 
         /// <summary>"Элементы заголовка вкладки TabItem</summary>
-        public ObservableCollection<Object> TabItemHeaderElements
+        public  ObservableCollection<Object> TabItemHeaderElements
         {
             get { return _tabItemHeaderElements!; }
             set { _tabItemHeaderElements = value; }
         }
 
         /// <summary>Добавить элемент в заголовок TabItemHeader </summary>
-        public void AddTabItemHeaderElement(Object tabItemHeaderElement)
+        public  void AddTabItemHeaderElement(Object tabItemHeaderElement)
         {
             if (tabItemHeaderElement != null)
             {
