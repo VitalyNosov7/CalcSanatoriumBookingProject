@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPFCSB.ViewModels;
 
 namespace WPFCSB.Views.Windows
 {
@@ -10,6 +11,7 @@ namespace WPFCSB.Views.Windows
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }

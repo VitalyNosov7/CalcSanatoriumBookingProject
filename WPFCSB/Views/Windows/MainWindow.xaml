@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:WPFCSB"
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding Path=Title}" Height="450" Width="800">
+        Title="Окно" Height="450" Width="800">
 	<Window.DataContext>
-		<vm:MainWindowViewModel/>
+		<vm:MainViewModel/>
 	</Window.DataContext>
 
 
@@ -16,21 +16,54 @@
 	<DockPanel LastChildFill="True" Margin="5">
 		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
 			<MenuItem Header="Файл">
-				<MenuItem Header="Выход" Command="{Binding ExitAppCommand}"/>
+				<MenuItem Header="Выход" />
 			</MenuItem>
 			<MenuItem Header="Правка"/>
 		</Menu>
 		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
 		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
 		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
-			<Grid.DataContext>
-				<vm:TabBookingViewModel/>
-			</Grid.DataContext>
-			<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddCommand}"/>
-		</Grid>
+			<!--<Grid.DataContext>
+                <vm:TabItemViewModel/>
+			</Grid.DataContext>-->
+			<!--<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddBookingTabItemCommand}"/>-->
+            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+                <Button Content="Add Tab" Command="{Binding AddTabCommand}" Margin="0,0,10,0"/>
+                <Button Content="Remove Selected Tab"
+                    Command="{Binding RemoveTabCommand}"
+                    CommandParameter="{Binding SelectedTab}"/>
+            </StackPanel>
+        </Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">
-			<TabControl x:Name="myTabControl">
-				<TabItem Header="TestHeader" Width="Auto" Height="Auto" FontFamily="Times New Roman" FontSize="20">Test</TabItem>
+            <!--<Grid.DataContext>
+                <vm:TabItemViewModel/>
+            </Grid.DataContext>-->
+            <TabControl x:Name="myTabControl" ItemsSource="{Binding Tabs}"
+            SelectedItem="{Binding SelectedTab}" >
+
+                <TabControl.ItemTemplate>
+                    <!-- Шаблон для заголовка таба -->
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Header}"/>
+                            <Button Content="X"
+                                Command="{Binding DataContext.RemoveTabCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}"
+                                Margin="5,0,0,0"
+                                Padding="3,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <!-- Шаблон для содержимого таба -->
+                    <DataTemplate>
+                        <TextBox Text="{Binding Content}"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"/>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+                <!--<TabItem Header="TestHeader" Width="Auto" Height="Auto" FontFamily="Times New Roman" FontSize="20">Test</TabItem>-->
 			</TabControl>
 		</Grid>
 	</DockPanel>

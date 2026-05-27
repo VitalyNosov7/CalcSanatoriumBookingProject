@@ -3,7 +3,7 @@ namespace WPFCSB.ViewModels.Base
 {
 	// TODO: подумать, нужен ли этот класс(усложняю код)
 
-    public class TabItemViewModel
+    public class QQQQQ
     {
 		private Dictionary<Object,String> _header = default;
 
