@@ -26,6 +26,7 @@ namespace WPFCSB.ViewModels
             }
         }
 
+
         private string _content;
         public string Content
         {
