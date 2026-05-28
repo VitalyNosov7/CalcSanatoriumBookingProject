@@ -12,19 +12,18 @@ namespace WPFCSB.ViewModels
 	public class MainViewModel : INotifyPropertyChanged
 	{
 
-        private ObservableCollection<TabItemViewModel> _tabs;
-        private TabItemViewModel _selectedTab;
-
         public MainViewModel()
         {
-            Tabs = new ObservableCollection<TabItemViewModel>();
-            AddTabCommand = new RelayCommand(AddTab);
-            RemoveTabCommand = new RelayCommand(RemoveTab);
+            //  ИИ Алиса
+            //Tabs = new ObservableCollection<TabItemViewModel>();
+            //AddTabCommand = new RelayCommand(AddTab);
+            // RemoveTabCommand = new RelayCommand(RemoveTab);
 
-            // Добавляем начальный таб
-            AddTab();
+            //// Добавляем начальный таб
+            //AddTab();
         }
 
+        private ObservableCollection<TabItemViewModel> _tabs = new ObservableCollection<TabItemViewModel>();
         public ObservableCollection<TabItemViewModel> Tabs
         {
             get => _tabs;
@@ -34,6 +33,7 @@ namespace WPFCSB.ViewModels
                 OnPropertyChanged();
             }
         }
+        private TabItemViewModel _selectedTab;    
 
         public TabItemViewModel SelectedTab
         {
@@ -45,33 +45,79 @@ namespace WPFCSB.ViewModels
             }
         }
 
-        public ICommand AddTabCommand { get; }
-        public ICommand RemoveTabCommand { get; }
+        //  ИИ Алиса
+        //public ICommand AddTabCommand { get; }
 
-        private void AddTab(object parameter = null)
+
+        //private void AddTab(object parameter = null)
+        //{
+        //    var newTab = new TabItemViewModel
+        //    {
+        //        Header = $"Tab {Tabs.Count + 1}",
+        //        Content = $"Content of tab {Tabs.Count + 1}"
+        //    };
+        //    Tabs.Add(newTab);
+        //    SelectedTab = newTab;
+        //}
+
+        private RelayCommand addTabCommand;
+        public RelayCommand AddTabCommand
         {
-            var newTab = new TabItemViewModel
+            get
             {
-                Header = $"Tab {Tabs.Count + 1}",
-                Content = $"Content of tab {Tabs.Count + 1}"
-            };
-            Tabs.Add(newTab);
-            SelectedTab = newTab;
+                return addTabCommand ??
+                  (addTabCommand = new RelayCommand(obj =>
+                  {
+                      var newTab = new TabItemViewModel
+                      {
+                          Header = $"Tab {Tabs.Count + 1}",
+                          Content = $"Content of tab {Tabs.Count + 1}"
+                      };
+                      Tabs.Add(newTab);
+                      SelectedTab = newTab;
+                  }));
+            }
         }
 
-        private void RemoveTab(Object tabToRemove)
-        {
-            if (tabToRemove != null && Tabs.Contains(tabToRemove))
-            {
-                int index = Tabs.IndexOf((TabItemViewModel)tabToRemove);
-                Tabs.Remove((TabItemViewModel)tabToRemove);
+        //  ИИ Алиса
+        //public ICommand RemoveTabCommand { get; }
+        //private void RemoveTab(Object tabToRemove)
+        //{
+        //    if (tabToRemove != null && Tabs.Contains(tabToRemove))
+        //    {
+        //        int index = Tabs.IndexOf((TabItemViewModel)tabToRemove);
+        //        Tabs.Remove((TabItemViewModel)tabToRemove);
 
-                // Выбираем предыдущий таб, если текущий удалялся
-                if (Tabs.Any() && SelectedTab == tabToRemove)
-                {
-                    int newIndex = Math.Max(0, index - 1);
-                    SelectedTab = Tabs[newIndex];
-                }
+        //        // Выбираем предыдущий таб, если текущий удалялся
+        //        if (Tabs.Any() && SelectedTab == tabToRemove)
+        //        {
+        //            int newIndex = Math.Max(0, index - 1);
+        //            SelectedTab = Tabs[newIndex];
+        //        }
+        //    }
+        //}
+
+        private RelayCommand removeTabCommand;
+        public RelayCommand RemoveTabCommand
+        {
+            get
+            {
+                return removeTabCommand ??
+                  (removeTabCommand = new RelayCommand(tabToRemove =>
+                  {
+                      if (tabToRemove != null && Tabs.Contains(tabToRemove))
+                      {
+                          int index = Tabs.IndexOf((TabItemViewModel)tabToRemove);
+                          Tabs.Remove((TabItemViewModel)tabToRemove);
+
+                          // Выбираем предыдущий таб, если текущий удалялся
+                          if (Tabs.Any() && SelectedTab == tabToRemove)
+                          {
+                              int newIndex = Math.Max(0, index - 1);
+                              SelectedTab = Tabs[newIndex];
+                          }
+                      }
+                  }));
             }
         }
 

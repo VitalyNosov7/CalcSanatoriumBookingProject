@@ -16,8 +16,6 @@ namespace WPFCSB.ViewModels
     {
 
         private string _header;
-        private string _content;
-
         public string Header
         {
             get => _header;
@@ -28,6 +26,7 @@ namespace WPFCSB.ViewModels
             }
         }
 
+        private string _content;
         public string Content
         {
             get => _content;

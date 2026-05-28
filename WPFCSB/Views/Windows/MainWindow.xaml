@@ -63,8 +63,7 @@
                              VerticalScrollBarVisibility="Auto"/>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
-                <!--<TabItem Header="TestHeader" Width="Auto" Height="Auto" FontFamily="Times New Roman" FontSize="20">Test</TabItem>-->
-			</TabControl>
+            </TabControl>
 		</Grid>
 	</DockPanel>
 </Window>
