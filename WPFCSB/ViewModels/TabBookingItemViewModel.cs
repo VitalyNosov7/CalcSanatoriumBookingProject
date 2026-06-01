@@ -16,5 +16,28 @@ namespace WPFCSB.ViewModels
         }
         #endregion РЕАЛИЗАЦИЯ INotifyPropertyChanged
 
+
+        private String? _header;
+        public String Header
+        {
+            get => _header!;
+            set
+            {
+                _header = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private String? _content;
+        public String Content
+        {
+            get => _content!;
+            set
+            {
+                _content = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
