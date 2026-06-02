@@ -25,7 +25,7 @@ namespace WPFCSB.ViewModels
             MyTabItem = CreateTabItem();
         }
 
-
+         
         private String? _header;
         public String Header
         {
