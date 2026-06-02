@@ -3,6 +3,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using WPFCSB.Commands;
 
 namespace WPFCSB.ViewModels
@@ -29,6 +30,17 @@ namespace WPFCSB.ViewModels
             }
         }
 
+        private ObservableCollection<TabItem> _tabItems = new ObservableCollection<TabItem>();
+        public ObservableCollection<TabItem> TabItems
+        {
+            get => _tabItems;
+            set
+            {
+                _tabItems = value;
+                OnPropertyChanged();
+            }
+        }
+
         private TabBookingItemViewModel? _selectedTab;
 
         public TabBookingItemViewModel SelectedTab
@@ -37,6 +49,18 @@ namespace WPFCSB.ViewModels
             set
             {
                 _selectedTab = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private TabItem? _selectedTabItem;
+
+        public TabItem SelectedTabItem
+        {
+            get => _selectedTabItem!;
+            set
+            {
+                _selectedTabItem = value;
                 OnPropertyChanged();
             }
         }
@@ -58,6 +82,28 @@ namespace WPFCSB.ViewModels
                       };
                       Tabs.Add(newTab);
                       SelectedTab = newTab;
+                  }));
+            }
+        }
+
+        //  Добавление вкладки еще вариант
+        private RelayCommand? _addTabItemCommand;
+        public RelayCommand AddTabItemCommand
+        {
+            get
+            {
+                return _addTabItemCommand ??
+                  (addTabCommand = new RelayCommand(obj =>
+                  {
+
+
+                      var newTabItem = new TabBookingItemViewModel()
+                      {
+                          
+                      };
+                      //newTabItem.MyTabItem = newTabItem.CreateTabItem();
+                      Tabs.Add(newTabItem);
+                      SelectedTab = newTabItem;
                   }));
             }
         }
