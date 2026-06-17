@@ -1,5 +1,4 @@
-﻿
-    <Window x:Class="WPFCSB.Views.Windows.MainWindow"
+﻿<Window x:Class="WPFCSB.Views.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,26 +7,23 @@
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
         Title="Окно" Height="450" Width="800">
-	<Window.DataContext>
+    <Window.DataContext>
         <vm:ApplicationViewModel/>
-	</Window.DataContext>
-
-
-
-	<DockPanel LastChildFill="True" Margin="5">
-		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
-			<MenuItem Header="Файл">
-				<MenuItem Header="Выход" />
-			</MenuItem>
-			<MenuItem Header="Правка"/>
-		</Menu>
-		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
-		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
-		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
-			<!--<Grid.DataContext>
+    </Window.DataContext>
+    <DockPanel LastChildFill="True" Margin="5">
+        <Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" />
+            </MenuItem>
+            <MenuItem Header="Правка"/>
+        </Menu>
+        <Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
+        <Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
+        <Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
+            <!--<Grid.DataContext>
                 <vm:TabItemViewModel/>
 			</Grid.DataContext>-->
-			<!--<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddBookingTabItemCommand}"/>-->
+            <!--<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddBookingTabItemCommand}"/>-->
             <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
                 <Button Content="Add Tab" Command="{Binding AddTabCommand}" Margin="0,0,10,0"/>
                 <Button Content="Remove Selected Tab"
@@ -36,7 +32,7 @@
                 <Button Content="Add Tab" Command="{Binding AddTabItemCommand}" Margin="0,0,10,0"/>
             </StackPanel>
         </Grid>
-		<Grid x:Name="TabArea" Background="LightGreen">
+        <Grid x:Name="TabArea" Background="LightGreen">
             <!--<Grid.DataContext>
                 <vm:TabItemViewModel/>
             </Grid.DataContext>-->
@@ -46,27 +42,176 @@
                 <TabControl.ItemTemplate>
                     <!-- Шаблон для заголовка таба -->
                     <DataTemplate>
+
+
                         <StackPanel  Orientation="Horizontal" x:Name="HeaderPanel" >
-                            
-                            <!--<TextBlock Text="{Binding Header}"/>
+
+                            <TextBlock Text="{Binding Header}"/>
                             <Button Content="X"
                                 Command="{Binding DataContext.RemoveTabCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                 CommandParameter="{Binding}"
                                 Margin="5,0,0,0"
-                                Padding="3,0"/>-->
+                                Padding="3,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <!-- Шаблон для содержимого таба -->
                     <DataTemplate>
-                        <TextBox Text="{Binding Content}"
-                             TextWrapping="Wrap"
-                             AcceptsReturn="True"
-                             VerticalScrollBarVisibility="Auto"/>
+                        <!--<DockPanel LastChildFill="True" Margin="5">-->
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Name="StackPanelLeft_1"  
+                                        Background="Pink" 
+                                        Grid.Row="0" 
+                                        Grid.Column="0" 
+                                        Orientation="Vertical">
+                                <GroupBox Header="Данные бронирования" 
+                                          x:Name="BookingData"
+                                          Margin="3">
+                                    <StackPanel>
+                                        <TextBlock Margin="3,0,0,0" 
+                                                Width="100" 
+                                                Height="20" 
+                                                HorizontalAlignment="Left" 
+                                                VerticalAlignment="Bottom" 
+                                                Text="ФИО гостя"/>
+                                        <TextBox Text="" 
+                                                Margin="3,0,3,1"
+                                                TextWrapping="Wrap"
+                                                AcceptsReturn="True"
+                                                VerticalScrollBarVisibility="Auto"/>
+                                        <TextBlock Margin="3,0,0,0" 
+                                                 Width="100" 
+                                                 Height="20" 
+                                                 HorizontalAlignment="Left" 
+                                                 VerticalAlignment="Bottom" 
+                                                 Text="ФИО менеджера"/>
+                                        <TextBox Text="" 
+                                                 Margin="3,0,3,1"
+                                                 TextWrapping="Wrap"
+                                                 AcceptsReturn="True"
+                                                 VerticalScrollBarVisibility="Auto"/>
+                                        <StackPanel Orientation="Horizontal">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock Margin="3,0,0,0" 
+                                                               Width="100" 
+                                                               Height="20" 
+                                                               HorizontalAlignment="Left" 
+                                                               VerticalAlignment="Bottom" 
+                                                               Text="Дата заезда"/>
+                                                    <DatePicker Width="100"
+                                                                HorizontalAlignment="Left" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock Margin="3,0,0,0" 
+                                                               Width="100" 
+                                                               Height="20" 
+                                                               HorizontalAlignment="Left" 
+                                                               VerticalAlignment="Bottom" 
+                                                               Text="Дата выезда"/>
+                                                <DatePicker Width="100"
+                                                            HorizontalAlignment="Left" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Данные санатория" 
+                                          x:Name="SanatoriumData"
+                                          Margin="3">
+                                    <StackPanel>
+                                        <TextBlock Margin="3,0,0,0" 
+                                                     Width="100" 
+                                                     Height="20" 
+                                                     HorizontalAlignment="Left" 
+                                                     VerticalAlignment="Bottom" 
+                                                     Text="Санаторий"/>
+                                        <TextBox Text="{Binding Content}" 
+                                                     Margin="3,0,3,1"
+                                                     TextWrapping="Wrap"
+                                                     AcceptsReturn="True"
+                                                     VerticalScrollBarVisibility="Auto"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+
+
+
+                            <StackPanel Name="StackPanelLeft_2"  
+                                        Background="Brown" 
+                                        Grid.Row="0" 
+                                        Grid.Column="1" 
+                                        Orientation="Vertical">
+                                <GroupBox Header="Данные расчета" 
+                                          x:Name="CalcData"
+                                          Margin="3">
+                                    <StackPanel>
+                                        <TextBlock Margin="5" 
+                                                Width="100" 
+                                                Height="20" 
+                                                Text="Какой то текст"/>
+                                        <TextBox Text="{Binding Content}"
+                                                Margin="5"
+                                                TextWrapping="Wrap"
+                                                AcceptsReturn="True"
+                                                VerticalScrollBarVisibility="Auto"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+
+
+                            <StackPanel Name="StackPanelLeft_3"  Background="Yellow" Grid.Row="0" Grid.Column="2" Orientation="Vertical">
+                                <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
+                                <TextBox Text="{Binding Content}" Margin="5"
+                           TextWrapping="Wrap"
+                           AcceptsReturn="True"
+                           VerticalScrollBarVisibility="Auto"/>
+                            </StackPanel>
+
+                            <!--<Grid Name="GridLeft_1"  Background="Pink" Width="*" Height="Auto" >
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
+                                    <TextBox Text="{Binding Content}" Margin="5"
+                                                               TextWrapping="Wrap"
+                                                               AcceptsReturn="True"
+                                                               VerticalScrollBarVisibility="Auto"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Name="GridLeft_2"  Background="Brown" Width="Auto" Height="Auto">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
+                                    <TextBox Text="{Binding Content}" Margin="5"
+                                           TextWrapping="Wrap"
+                                           AcceptsReturn="True"
+                                           VerticalScrollBarVisibility="Auto"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Name="GridLeft_3"  Background="Yellow" Width="Auto" Height="Auto">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
+                                    <TextBox Text="{Binding Content}" Margin="5"
+                                          TextWrapping="Wrap"
+                                          AcceptsReturn="True"
+                                          VerticalScrollBarVisibility="Auto"/>      
+                                </StackPanel>
+                            </Grid>-->
+
+                        </Grid>
+                        <!--</DockPanel>-->
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
-		</Grid>
-	</DockPanel>
+        </Grid>
+    </DockPanel>
 </Window>

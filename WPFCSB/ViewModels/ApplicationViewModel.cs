@@ -99,7 +99,8 @@ namespace WPFCSB.ViewModels
 
                       var newTabItem = new TabBookingItemViewModel()
                       {
-                          
+                          Header = $"Tab {Tabs.Count + 1}",
+                          Content = $"Content of tab {Tabs.Count + 1}"
                       };
                       //newTabItem.MyTabItem = newTabItem.CreateTabItem();
                       Tabs.Add(newTabItem);
