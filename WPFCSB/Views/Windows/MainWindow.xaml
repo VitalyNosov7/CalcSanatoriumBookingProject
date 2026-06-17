@@ -101,6 +101,17 @@
                                                  TextWrapping="Wrap"
                                                  AcceptsReturn="True"
                                                  VerticalScrollBarVisibility="Auto"/>
+                                        <TextBlock Margin="3,0,0,0" 
+                                                   Width="100" 
+                                                   Height="20" 
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Санаторий"/>
+                                        <TextBox   Text="" 
+                                                   Margin="3,0,3,1"
+                                                   TextWrapping="Wrap"
+                                                   AcceptsReturn="True"
+                                                   VerticalScrollBarVisibility="Auto"/>
                                         <StackPanel Orientation="Horizontal">
                                                 <StackPanel Orientation="Vertical">
                                                     <TextBlock Margin="3,0,0,0" 
@@ -121,6 +132,19 @@
                                                                Text="Дата выезда"/>
                                                 <DatePicker Width="100"
                                                             HorizontalAlignment="Left" />
+                                                </StackPanel>
+
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Margin="3,0,0,0" 
+                                                           Width="100" 
+                                                           Height="20" 
+                                                           HorizontalAlignment="Left" 
+                                                           VerticalAlignment="Bottom" 
+                                                           Text="К-во ночей"/>
+                                                <TextBox   Text="" 
+                                                           Margin="3,0,3,1"
+                                                           Width="60"
+                                                           HorizontalAlignment="Left" />
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
