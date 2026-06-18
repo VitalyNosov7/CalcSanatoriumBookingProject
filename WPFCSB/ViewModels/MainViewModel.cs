@@ -9,7 +9,7 @@ using WPFCSB.ViewModels;
 
 namespace WPFCSB.ViewModels
 {
-	public class MainViewModel : INotifyPropertyChanged
+	public class MainViewModel /*: INotifyPropertyChanged*/
 	{
 
         public MainViewModel()
@@ -23,27 +23,27 @@ namespace WPFCSB.ViewModels
             //AddTab();
         }
 
-        private ObservableCollection<TabItemViewModel> _tabs = new ObservableCollection<TabItemViewModel>();
-        public ObservableCollection<TabItemViewModel> Tabs
-        {
-            get => _tabs;
-            set
-            {
-                _tabs = value;
-                OnPropertyChanged();
-            }
-        }
-        private TabItemViewModel _selectedTab;    
+        //private ObservableCollection<TabItemViewModel> _tabs = new ObservableCollection<TabItemViewModel>();
+        //public ObservableCollection<TabItemViewModel> Tabs
+        //{
+        //    get => _tabs;
+        //    set
+        //    {
+        //        _tabs = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+        //private TabItemViewModel _selectedTab;    
 
-        public TabItemViewModel SelectedTab
-        {
-            get => _selectedTab;
-            set
-            {
-                _selectedTab = value;
-                OnPropertyChanged();
-            }
-        }
+        //public TabItemViewModel SelectedTab
+        //{
+        //    get => _selectedTab;
+        //    set
+        //    {
+        //        _selectedTab = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         //  ИИ Алиса
         //public ICommand AddTabCommand { get; }
@@ -60,24 +60,24 @@ namespace WPFCSB.ViewModels
         //    SelectedTab = newTab;
         //}
 
-        private RelayCommand addTabCommand;
-        public RelayCommand AddTabCommand
-        {
-            get
-            {
-                return addTabCommand ??
-                  (addTabCommand = new RelayCommand(obj =>
-                  {
-                      var newTab = new TabItemViewModel
-                      {
-                          Header = $"Tab {Tabs.Count + 1}",
-                          Content = $"Content of tab {Tabs.Count + 1}"
-                      };
-                      Tabs.Add(newTab);
-                      SelectedTab = newTab;
-                  }));
-            }
-        }
+        //private RelayCommand addTabCommand;
+        //public RelayCommand AddTabCommand
+        //{
+        //    get
+        //    {
+        //        return addTabCommand ??
+        //          (addTabCommand = new RelayCommand(obj =>
+        //          {
+        //              var newTab = new TabItemViewModel
+        //              {
+        //                  Header = $"Tab {Tabs.Count + 1}",
+        //                  Content = $"Content of tab {Tabs.Count + 1}"
+        //              };
+        //              Tabs.Add(newTab);
+        //              SelectedTab = newTab;
+        //          }));
+        //    }
+        //}
 
         //  ИИ Алиса
         //public ICommand RemoveTabCommand { get; }
@@ -97,36 +97,36 @@ namespace WPFCSB.ViewModels
         //    }
         //}
 
-        private RelayCommand removeTabCommand;
-        public RelayCommand RemoveTabCommand
-        {
-            get
-            {
-                return removeTabCommand ??
-                  (removeTabCommand = new RelayCommand(tabToRemove =>
-                  {
-                      if (tabToRemove != null && Tabs.Contains(tabToRemove))
-                      {
-                          int index = Tabs.IndexOf((TabItemViewModel)tabToRemove);
-                          Tabs.Remove((TabItemViewModel)tabToRemove);
+        //private RelayCommand removeTabCommand;
+        //public RelayCommand RemoveTabCommand
+        //{
+        //    get
+        //    {
+        //        return removeTabCommand ??
+        //          (removeTabCommand = new RelayCommand(tabToRemove =>
+        //          {
+        //              if (tabToRemove != null && Tabs.Contains(tabToRemove))
+        //              {
+        //                  int index = Tabs.IndexOf((TabItemViewModel)tabToRemove);
+        //                  Tabs.Remove((TabItemViewModel)tabToRemove);
 
-                          // Выбираем предыдущий таб, если текущий удалялся
-                          if (Tabs.Any() && SelectedTab == tabToRemove)
-                          {
-                              int newIndex = Math.Max(0, index - 1);
-                              SelectedTab = Tabs[newIndex];
-                          }
-                      }
-                  }));
-            }
-        }
+        //                  // Выбираем предыдущий таб, если текущий удалялся
+        //                  if (Tabs.Any() && SelectedTab == tabToRemove)
+        //                  {
+        //                      int newIndex = Math.Max(0, index - 1);
+        //                      SelectedTab = Tabs[newIndex];
+        //                  }
+        //              }
+        //          }));
+        //    }
+        //}
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
         //#region реализация INotifyPropertyChanged
         //public event PropertyChangedEventHandler? PropertyChanged;

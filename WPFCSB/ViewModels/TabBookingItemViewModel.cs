@@ -22,7 +22,7 @@ namespace WPFCSB.ViewModels
 
         public TabBookingItemViewModel()
         {
-            MyTabItem = CreateTabItem();
+            //MyTabItem = CreateTabItem();
         }
 
          
@@ -49,17 +49,28 @@ namespace WPFCSB.ViewModels
             }
         }
 
-        private TabItem? _myTabItem = new TabItem();
+        private int myVar;
 
-        public TabItem MyTabItem
+        public int MyProperty
         {
-            get => _myTabItem!;
-            set
-            {
-                _myTabItem = value;
-                OnPropertyChanged();
-            }
+            get { return myVar; }
+            set { myVar = value; }
         }
+
+
+
+
+        //private TabItem? _myTabItem = new TabItem();
+
+        //public TabItem MyTabItem
+        //{
+        //    get => _myTabItem!;
+        //    set
+        //    {
+        //        _myTabItem = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public TabItem CreateTabItem()
         {

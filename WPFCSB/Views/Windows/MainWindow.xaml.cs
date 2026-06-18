@@ -11,7 +11,8 @@ namespace WPFCSB.Views.Windows
         public MainWindow()
         {
             InitializeComponent();
-           // DataContext = new MainViewModel();
+            // DataContext = new MainViewModel();
+            
         }
     }
 }

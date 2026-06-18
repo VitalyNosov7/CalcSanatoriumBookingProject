@@ -38,7 +38,10 @@
             </Grid.DataContext>-->
             <TabControl x:Name="myTabControl" ItemsSource="{Binding Tabs}"
             SelectedItem="{Binding SelectedTab}" >
-
+                <TabControl.DataContext>
+                    <vm:ApplicationViewModel/>
+                </TabControl.DataContext>
+                
                 <TabControl.ItemTemplate>
                     <!-- Шаблон для заголовка таба -->
                     <DataTemplate>
@@ -79,6 +82,8 @@
                                           x:Name="BookingData"
                                           Margin="3">
                                     <StackPanel>
+                                        
+                                        <!--ФИО ГОСТЯ-->
                                         <TextBlock Margin="3,0,0,0" 
                                                 Width="100" 
                                                 Height="20" 
@@ -90,41 +95,60 @@
                                                 TextWrapping="Wrap"
                                                 AcceptsReturn="True"
                                                 VerticalScrollBarVisibility="Auto"/>
+                                        
+                                        <!--ФИО МЕНЕДЖЕРА-->
                                         <TextBlock Margin="3,0,0,0" 
                                                  Width="100" 
                                                  Height="20" 
                                                  HorizontalAlignment="Left" 
                                                  VerticalAlignment="Bottom" 
                                                  Text="ФИО менеджера"/>
-                                        <TextBox Text="" 
-                                                 Margin="3,0,3,1"
-                                                 TextWrapping="Wrap"
-                                                 AcceptsReturn="True"
-                                                 VerticalScrollBarVisibility="Auto"/>
+                                        <ComboBox x:Name="ManagerFIO"  Margin="3,0,3,1">
+                                            <TextBlock>Антонова Оксана Викторовна</TextBlock>
+                                            <TextBlock>Боровкова Кристина Викторовна</TextBlock>
+                                            <TextBlock>Девочкина Юлия</TextBlock>
+                                            <TextBlock>Корниенко Надежда Евгеньевна</TextBlock>
+                                            <TextBlock>Кривошеина Ольга Владимировна</TextBlock>
+                                            <TextBlock>Кузнецова Ирина Геннадьевна</TextBlock>
+                                            <TextBlock>Огнева Алёна Ивановна</TextBlock>
+                                            <TextBlock>Юкнявичус Виолетта Викторовна</TextBlock>    
+                                        </ComboBox>
+
+                                        <!--НАЗВАНИЕ САНАТОРИЯ-->
                                         <TextBlock Margin="3,0,0,0" 
                                                    Width="100" 
                                                    Height="20" 
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Санаторий"/>
-                                        <TextBox   Text="" 
-                                                   Margin="3,0,3,1"
-                                                   TextWrapping="Wrap"
-                                                   AcceptsReturn="True"
-                                                   VerticalScrollBarVisibility="Auto"/>
+                                        <ComboBox  Margin="3,0,3,1">
+                                            <TextBlock>Планета</TextBlock>
+                                            <TextBlock>Киев</TextBlock>
+                                            <TextBlock>ТЭС</TextBlock>
+                                            <TextBlock>Сакрополь</TextBlock>
+                                            <TextBlock>Рябинка</TextBlock>
+                                            <TextBlock>Озеро сновидений</TextBlock>
+                                            <TextBlock>Узбекистан</TextBlock>
+                                        </ComboBox>
                                         <StackPanel Orientation="Horizontal">
-                                                <StackPanel Orientation="Vertical">
-                                                    <TextBlock Margin="3,0,0,0" 
+                                            
+                                            <StackPanel Orientation="Vertical">
+                                                
+                                                <!--ДАТА ЗАЕЗДА-->
+                                                <TextBlock Margin="3,0,0,0" 
                                                                Width="100" 
                                                                Height="20" 
                                                                HorizontalAlignment="Left" 
                                                                VerticalAlignment="Bottom" 
                                                                Text="Дата заезда"/>
-                                                    <DatePicker Width="100"
+                                                <DatePicker Width="100"
                                                                 HorizontalAlignment="Left" />
-                                                </StackPanel>
-                                                <StackPanel Orientation="Vertical">
-                                                    <TextBlock Margin="3,0,0,0" 
+                                            </StackPanel>
+                                            
+                                            <StackPanel Orientation="Vertical">
+
+                                                <!--ДАТА ВЫЕЗДА-->
+                                                <TextBlock Margin="3,0,0,0" 
                                                                Width="100" 
                                                                Height="20" 
                                                                HorizontalAlignment="Left" 
@@ -132,9 +156,11 @@
                                                                Text="Дата выезда"/>
                                                 <DatePicker Width="100"
                                                             HorizontalAlignment="Left" />
-                                                </StackPanel>
+                                            </StackPanel>
 
                                             <StackPanel Orientation="Vertical">
+
+                                                <!--КОЛИЧЕСТВО НОЧЕЙ-->
                                                 <TextBlock Margin="3,0,0,0" 
                                                            Width="100" 
                                                            Height="20" 
@@ -146,7 +172,30 @@
                                                            Width="60"
                                                            HorizontalAlignment="Left" />
                                             </StackPanel>
+                                            
                                         </StackPanel>
+
+                                        <!--КАТЕГОРИЯ САНАТОРИЯ-->
+                                        <TextBlock Margin="3,0,0,0" 
+                                                   Width="150" 
+                                                   Height="20" 
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Категория санатория"/>
+                                        <TextBox   Text="" 
+                                                   Margin="3,0,3,1"
+                                                   TextWrapping="Wrap"
+                                                   AcceptsReturn="True"
+                                                   VerticalScrollBarVisibility="Auto"/>
+
+                                        <!--ВИД РАЗМЕЩЕНИЯ-->
+                                        <TextBlock Margin="3,0,0,0" 
+                                                   Width="150" 
+                                                   Height="20"
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Вид размещения"/>
+                                        <TextBox   Margin="3,0,3,1"/>
                                     </StackPanel>
                                 </GroupBox>
 
