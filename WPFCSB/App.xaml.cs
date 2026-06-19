@@ -1,6 +1,6 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using WPFCSB.ViewModels;
+using WPFCSB.Views.Windows;
 
 namespace WPFCSB
 {
@@ -9,6 +9,15 @@ namespace WPFCSB
     /// </summary>
     public partial class App : Application
     {
+        private MainWindow MainWindow;
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            var applicationViewModel = new ApplicationViewModel();
+            MainWindow = new MainWindow { DataContext = applicationViewModel };
+            MainWindow.Show();
+        }
+
     }
 
 }

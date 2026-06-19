@@ -7,9 +7,9 @@
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
         Title="Окно" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:ApplicationViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <DockPanel LastChildFill="True" Margin="5">
         <Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
             <MenuItem Header="Файл">
@@ -20,10 +20,7 @@
         <Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
         <Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
         <Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
-            <!--<Grid.DataContext>
-                <vm:TabItemViewModel/>
-			</Grid.DataContext>-->
-            <!--<Button Content="Add" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Height="27" Width="74" Command="{Binding AddBookingTabItemCommand}"/>-->
+   
             <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
                 <Button Content="Add Tab" Command="{Binding AddTabCommand}" Margin="0,0,10,0"/>
                 <Button Content="Remove Selected Tab"
@@ -33,14 +30,9 @@
             </StackPanel>
         </Grid>
         <Grid x:Name="TabArea" Background="LightGreen">
-            <!--<Grid.DataContext>
-                <vm:TabItemViewModel/>
-            </Grid.DataContext>-->
-            <TabControl x:Name="myTabControl" ItemsSource="{Binding Tabs}"
+            <TabControl x:Name="myTabControl" ItemsSource="{Binding TabItems}"
             SelectedItem="{Binding SelectedTab}" >
-                <TabControl.DataContext>
-                    <vm:ApplicationViewModel/>
-                </TabControl.DataContext>
+             
                 
                 <TabControl.ItemTemplate>
                     <!-- Шаблон для заголовка таба -->
@@ -61,7 +53,7 @@
                 <TabControl.ContentTemplate>
                     <!-- Шаблон для содержимого таба -->
                     <DataTemplate>
-                        <!--<DockPanel LastChildFill="True" Margin="5">-->
+                      
                         <Grid>
 
                             <Grid.RowDefinitions>
@@ -143,8 +135,7 @@
                                                                Text="Дата заезда"/>
                                                 <DatePicker Width="100"
                                                                 HorizontalAlignment="Left" />
-                                            </StackPanel>
-                                            
+                                            </StackPanel>                                            
                                             <StackPanel Orientation="Vertical">
 
                                                 <!--ДАТА ВЫЕЗДА-->
@@ -157,7 +148,6 @@
                                                 <DatePicker Width="100"
                                                             HorizontalAlignment="Left" />
                                             </StackPanel>
-
                                             <StackPanel Orientation="Vertical">
 
                                                 <!--КОЛИЧЕСТВО НОЧЕЙ-->
@@ -174,7 +164,6 @@
                                             </StackPanel>
                                             
                                         </StackPanel>
-
                                         <!--КАТЕГОРИЯ САНАТОРИЯ-->
                                         <TextBlock Margin="3,0,0,0" 
                                                    Width="150" 
@@ -198,7 +187,6 @@
                                         <TextBox   Margin="3,0,3,1"/>
                                     </StackPanel>
                                 </GroupBox>
-
                                 <GroupBox Header="Данные санатория" 
                                           x:Name="SanatoriumData"
                                           Margin="3">
@@ -217,9 +205,6 @@
                                     </StackPanel>
                                 </GroupBox>
                             </StackPanel>
-
-
-
                             <StackPanel Name="StackPanelLeft_2"  
                                         Background="Brown" 
                                         Grid.Row="0" 
@@ -241,8 +226,6 @@
                                     </StackPanel>
                                 </GroupBox>
                             </StackPanel>
-
-
                             <StackPanel Name="StackPanelLeft_3"  Background="Yellow" Grid.Row="0" Grid.Column="2" Orientation="Vertical">
                                 <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
                                 <TextBox Text="{Binding Content}" Margin="5"
@@ -250,38 +233,7 @@
                            AcceptsReturn="True"
                            VerticalScrollBarVisibility="Auto"/>
                             </StackPanel>
-
-                            <!--<Grid Name="GridLeft_1"  Background="Pink" Width="*" Height="Auto" >
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
-                                    <TextBox Text="{Binding Content}" Margin="5"
-                                                               TextWrapping="Wrap"
-                                                               AcceptsReturn="True"
-                                                               VerticalScrollBarVisibility="Auto"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Name="GridLeft_2"  Background="Brown" Width="Auto" Height="Auto">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
-                                    <TextBox Text="{Binding Content}" Margin="5"
-                                           TextWrapping="Wrap"
-                                           AcceptsReturn="True"
-                                           VerticalScrollBarVisibility="Auto"/>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Name="GridLeft_3"  Background="Yellow" Width="Auto" Height="Auto">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
-                                    <TextBox Text="{Binding Content}" Margin="5"
-                                          TextWrapping="Wrap"
-                                          AcceptsReturn="True"
-                                          VerticalScrollBarVisibility="Auto"/>      
-                                </StackPanel>
-                            </Grid>-->
-
-                        </Grid>
-                        <!--</DockPanel>-->
+                        </Grid>                      
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>

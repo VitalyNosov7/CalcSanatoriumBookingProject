@@ -1,46 +1,40 @@
-﻿
-
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using WPFCSB.Commands;
+using WPFCSB.Models;
 
 namespace WPFCSB.ViewModels
 {
-    internal class ApplicationViewModel : INotifyPropertyChanged
+    internal class ApplicationViewModel
     {
-        #region РЕАЛИЗАЦИЯ INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
-        }
-        #endregion РЕАЛИЗАЦИЯ INotifyPropertyChanged
-
-        private ObservableCollection<TabBookingItemViewModel> _tabs = new ObservableCollection<TabBookingItemViewModel>();
-        public ObservableCollection<TabBookingItemViewModel> Tabs
-        {
-            get => _tabs;
-            set
-            {
-                _tabs = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<TabItem> _tabItems = new ObservableCollection<TabItem>();
-        public ObservableCollection<TabItem> TabItems
+        private ObservableCollection<TabBookingItemViewModel> _tabItems = new ObservableCollection<TabBookingItemViewModel>();
+        public ObservableCollection<TabBookingItemViewModel> TabItems
         {
             get => _tabItems;
             set
             {
                 _tabItems = value;
-                OnPropertyChanged();
             }
         }
+
+        public ApplicationViewModel()
+        {
+           // TabItems = new ObservableCollection<TabBookingItemViewModel>();
+        }
+
+        //  private TabItemBooking TabItemData;
+
+
+        //private ObservableCollection<TabItem> _tabItems = new ObservableCollection<TabItem>();
+        //public ObservableCollection<TabItem> TabItems
+        //{
+        //    get => _tabItems;
+        //    set
+        //    {
+        //        _tabItems = value;
+
+        //    }
+        //}
 
         private TabBookingItemViewModel? _selectedTab;
 
@@ -50,26 +44,26 @@ namespace WPFCSB.ViewModels
             set
             {
                 _selectedTab = value;
-                OnPropertyChanged();
+
             }
         }
 
-        private TabItem? _selectedTabItem;
+        //private TabItem? _selectedTabItem;
 
-        public TabItem SelectedTabItem
-        {
-            get => _selectedTabItem!;
-            set
-            {
-                _selectedTabItem = value;
-                OnPropertyChanged();
-            }
-        }
+        //public TabItem SelectedTabItem
+        //{
+        //    get => _selectedTabItem!;
+        //    set
+        //    {
+        //        _selectedTabItem = value;
 
-   
+        //    }
+        //}
+
+
 
         #region КОМАНДЫ
-        //  Добавление вкладки
+        // Добавление вкладки
         private RelayCommand? addTabCommand;
         public RelayCommand AddTabCommand
         {
@@ -78,39 +72,18 @@ namespace WPFCSB.ViewModels
                 return addTabCommand ??
                   (addTabCommand = new RelayCommand(obj =>
                   {
-                      var newTab = new TabBookingItemViewModel
-                      {
-                          Header = $"Tab {Tabs.Count + 1}",
-                          Content = $"Content of tab {Tabs.Count + 1}"
-                      };
-                      Tabs.Add(newTab);
+                      var newTab = new TabBookingItemViewModel($"Tab {TabItems.Count + 1}", $"Content of tab {TabItems.Count + 1}");
+                      //{
+                      //    Header = $"Tab {TabItems.Count + 1}",
+                      //    Content = $"Content of tab {TabItems.Count + 1}"
+                      //};
+                      TabItems.Add(newTab);
                       SelectedTab = newTab;
                   }));
             }
         }
 
-        //  Добавление вкладки еще вариант
-        private RelayCommand? _addTabItemCommand;
-        public RelayCommand AddTabItemCommand
-        {
-            get
-            {
-                return _addTabItemCommand ??
-                  (addTabCommand = new RelayCommand(obj =>
-                  {
 
-
-                      var newTabItem = new TabBookingItemViewModel()
-                      {
-                          Header = $"Tab {Tabs.Count + 1}",
-                          Content = $"Content of tab {Tabs.Count + 1}"
-                      };
-                      //newTabItem.MyTabItem = newTabItem.CreateTabItem();
-                      Tabs.Add(newTabItem);
-                      SelectedTab = newTabItem;
-                  }));
-            }
-        }
 
         //  Удаление вкладки
         private RelayCommand? removeTabCommand;
@@ -121,23 +94,23 @@ namespace WPFCSB.ViewModels
                 return removeTabCommand ??
                   (removeTabCommand = new RelayCommand(tabToRemove =>
                   {
-                      if (tabToRemove != null && Tabs.Contains(tabToRemove))
+                      if (tabToRemove != null && TabItems.Contains(tabToRemove))
                       {
-                          int index = Tabs.IndexOf((TabBookingItemViewModel)tabToRemove);
-                          Tabs.Remove((TabBookingItemViewModel)tabToRemove);
+                          int index = TabItems.IndexOf((TabBookingItemViewModel)tabToRemove);
+                          TabItems.Remove((TabBookingItemViewModel)tabToRemove);
 
                           // Выбираем предыдущий таб, если текущий удалялся
-                          if (Tabs.Any() && SelectedTab == tabToRemove)
+                          if (TabItems.Any() && SelectedTab == tabToRemove)
                           {
                               int newIndex = Math.Max(0, index - 1);
-                              SelectedTab = Tabs[newIndex];
+                              SelectedTab = TabItems[newIndex];
                           }
                       }
                   }));
             }
         }
 
-        #endregion КОМАНДЫ
+#endregion КОМАНДЫ
 
     }
 }
