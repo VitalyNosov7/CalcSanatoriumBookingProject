@@ -20,7 +20,12 @@ namespace WPFCSB.ViewModels.Base
 
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            // 1. Вариант
+            // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            // 2. Вариант
+            if (PropertyChanged != null)
+            { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
         }
     }
 

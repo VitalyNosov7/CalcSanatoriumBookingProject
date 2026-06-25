@@ -2,12 +2,13 @@
 using System.Windows.Controls;
 using WPFCSB.Commands;
 using WPFCSB.Models;
+using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
 {
-    internal class ApplicationViewModel
+    internal class ApplicationViewModel : ViewModelBase
     {
-        private ObservableCollection<TabBookingItemViewModel> _tabItems = new ObservableCollection<TabBookingItemViewModel>();
+        private ObservableCollection<TabBookingItemViewModel> _tabItems /*= new ObservableCollection<TabBookingItemViewModel>()*/;
         public ObservableCollection<TabBookingItemViewModel> TabItems
         {
             get => _tabItems;
@@ -19,7 +20,7 @@ namespace WPFCSB.ViewModels
 
         public ApplicationViewModel()
         {
-           // TabItems = new ObservableCollection<TabBookingItemViewModel>();
+            TabItems = new ObservableCollection<TabBookingItemViewModel>();
         }
 
         //  private TabItemBooking TabItemData;
@@ -41,11 +42,7 @@ namespace WPFCSB.ViewModels
         public TabBookingItemViewModel SelectedTab
         {
             get => _selectedTab!;
-            set
-            {
-                _selectedTab = value;
-
-            }
+            set => Set(ref _selectedTab, value);
         }
 
         //private TabItem? _selectedTabItem;
@@ -72,11 +69,12 @@ namespace WPFCSB.ViewModels
                 return addTabCommand ??
                   (addTabCommand = new RelayCommand(obj =>
                   {
-                      var newTab = new TabBookingItemViewModel($"Tab {TabItems.Count + 1}", $"Content of tab {TabItems.Count + 1}");
-                      //{
-                      //    Header = $"Tab {TabItems.Count + 1}",
-                      //    Content = $"Content of tab {TabItems.Count + 1}"
-                      //};
+                      var newTab = new TabBookingItemViewModel();
+                      {
+                          newTab.Header = $"Tab {TabItems.Count + 1}";
+                          newTab.Content = $"Content of tab {TabItems.Count + 1}";
+                      }
+                      ;
                       TabItems.Add(newTab);
                       SelectedTab = newTab;
                   }));

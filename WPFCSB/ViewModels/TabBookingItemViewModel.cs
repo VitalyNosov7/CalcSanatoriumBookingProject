@@ -12,11 +12,7 @@ namespace WPFCSB.ViewModels
 {
     internal class TabBookingItemViewModel : ViewModelBase /*, INotifyPropertyChanged*/
     {
-        public TabBookingItemViewModel(String header, String content)
-        {
-                _header = header;
-                _content = content;
-        }
+
 
         private String? _header;
         public String Header
@@ -33,17 +29,13 @@ namespace WPFCSB.ViewModels
             set => Set(ref _content, value);
         }
 
-        //private TabBookingItemViewModel? _selectedTab;
+        private TabBookingItemViewModel? _selectedTab;
 
-        //public TabBookingItemViewModel SelectedTab
-        //{
-        //    get => _selectedTab!;
-        //    set
-        //    {
-        //        _selectedTab = value;
-
-        //    }
-        //}
+        public TabBookingItemViewModel SelectedTab
+        {
+            get => _selectedTab!;
+            set => Set(ref _selectedTab, value);
+        }
 
 
         #region КОМАНДЫ
@@ -126,9 +118,9 @@ namespace WPFCSB.ViewModels
         //}
         //#endregion РЕАЛИЗАЦИЯ INotifyPropertyChanged
 
-   
 
-         
+
+
         //private String? _header;
         //public String Header
         //{
@@ -175,7 +167,7 @@ namespace WPFCSB.ViewModels
         //    }
         //}
 
-     
+
 
     }
 }

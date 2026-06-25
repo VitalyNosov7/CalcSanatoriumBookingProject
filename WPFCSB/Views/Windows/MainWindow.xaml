@@ -7,9 +7,7 @@
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
         Title="Окно" Height="450" Width="800">
-    <!--<Window.DataContext>
-        <vm:ApplicationViewModel/>
-    </Window.DataContext>-->
+
     <DockPanel LastChildFill="True" Margin="5">
         <Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
             <MenuItem Header="Файл">
@@ -26,7 +24,7 @@
                 <Button Content="Remove Selected Tab"
                     Command="{Binding RemoveTabCommand}"
                     CommandParameter="{Binding SelectedTab}"/>
-                <Button Content="Add Tab" Command="{Binding AddTabItemCommand}" Margin="0,0,10,0"/>
+                <!--<Button Content="Add Tab" Command="{Binding AddTabItemCommand}" Margin="0,0,10,0"/>-->
             </StackPanel>
         </Grid>
         <Grid x:Name="TabArea" Background="LightGreen">
@@ -70,6 +68,8 @@
                                         Grid.Row="0" 
                                         Grid.Column="0" 
                                         Orientation="Vertical">
+                                <TextBlock Text="{Binding Content}"/>
+
                                 <GroupBox Header="Данные бронирования" 
                                           x:Name="BookingData"
                                           Margin="3">
