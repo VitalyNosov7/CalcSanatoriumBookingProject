@@ -6,19 +6,9 @@ namespace WPFCSB.ViewModels.Base
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(field, value))
-                return false;
-
-            field = value;
-            NotifyPropertyChanged(propertyName);
-            return true;
-        }
-
-        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             // 1. Вариант
             // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -27,13 +17,15 @@ namespace WPFCSB.ViewModels.Base
             if (PropertyChanged != null)
             { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
         }
-    }
 
-    //public event PropertyChangedEventHandler? PropertyChanged;
-    //public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-    //{
-    //    if (PropertyChanged != null)
-    //    { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
-    //}
-    //#endregion РЕАЛИЗАЦИЯ INotifyPropertyChanged
+        protected bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+    }
 }

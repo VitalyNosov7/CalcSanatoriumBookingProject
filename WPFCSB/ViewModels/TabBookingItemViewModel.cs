@@ -1,16 +1,9 @@
 ﻿
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using WPFCSB.Commands;
 using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
 {
-    internal class TabBookingItemViewModel : ViewModelBase /*, INotifyPropertyChanged*/
+    internal class TabBookingItemViewModel : ViewModelBase
     {
 
 
@@ -36,6 +29,8 @@ namespace WPFCSB.ViewModels
             get => _selectedTab!;
             set => Set(ref _selectedTab, value);
         }
+
+
 
 
         #region КОМАНДЫ
@@ -108,66 +103,6 @@ namespace WPFCSB.ViewModels
         //}
 
         #endregion КОМАНДЫ
-
-        //#region РЕАЛИЗАЦИЯ INotifyPropertyChanged
-        //public event PropertyChangedEventHandler? PropertyChanged;
-        //public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        //{
-        //    if (PropertyChanged != null)
-        //    { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
-        //}
-        //#endregion РЕАЛИЗАЦИЯ INotifyPropertyChanged
-
-
-
-
-        //private String? _header;
-        //public String Header
-        //{
-        //    get => _header!;
-        //    set
-        //    {
-        //        _header = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-        //private String? _content;
-        //public String Content
-        //{
-        //    get => _content!;
-        //    set
-        //    {
-        //        _content = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int myVar;
-
-        //public int MyProperty
-        //{
-        //    get { return myVar; }
-        //    set { myVar = value; }
-        //}
-
-
-
-
-        //private TabItem? _myTabItem = new TabItem();
-
-        //public TabItem MyTabItem
-        //{
-        //    get => _myTabItem!;
-        //    set
-        //    {
-        //        _myTabItem = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
 
     }
 }

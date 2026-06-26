@@ -1,41 +1,25 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-
+﻿using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
 {
-    public class TabItemViewModel : INotifyPropertyChanged
+
+    // TODO: Класс нигде пока не используется.
+    public class TabItemViewModel : ViewModelBase
     {
 
-        private string _header;
-        public string Header
+        private String? _header;
+        public String Header
         {
-            get => _header;
-            set
-            {
-                _header = value;
-                OnPropertyChanged();
-            }
+            get => _header!;
+            set => Set(ref _header, value);
         }
 
 
-        private string _content;
-        public string Content
+        private String? _content;
+        public String Content
         {
-            get => _content;
-            set
-            {
-                _content = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get => _content!;
+            set => Set(ref _content, value);
         }
     }
 }

@@ -23,8 +23,7 @@
                 <Button Content="Add Tab" Command="{Binding AddTabCommand}" Margin="0,0,10,0"/>
                 <Button Content="Remove Selected Tab"
                     Command="{Binding RemoveTabCommand}"
-                    CommandParameter="{Binding SelectedTab}"/>
-                <!--<Button Content="Add Tab" Command="{Binding AddTabItemCommand}" Margin="0,0,10,0"/>-->
+                    CommandParameter="{Binding SelectedTab}"/>                
             </StackPanel>
         </Grid>
         <Grid x:Name="TabArea" Background="LightGreen">
