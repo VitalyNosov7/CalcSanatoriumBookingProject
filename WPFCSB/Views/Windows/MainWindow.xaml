@@ -94,16 +94,11 @@
                                                  HorizontalAlignment="Left" 
                                                  VerticalAlignment="Bottom" 
                                                  Text="ФИО менеджера"/>
-                                        <ComboBox x:Name="ManagerFIO"  Margin="3,0,3,1">
-                                            <TextBlock>Антонова Оксана Викторовна</TextBlock>
-                                            <TextBlock>Боровкова Кристина Викторовна</TextBlock>
-                                            <TextBlock>Девочкина Юлия</TextBlock>
-                                            <TextBlock>Корниенко Надежда Евгеньевна</TextBlock>
-                                            <TextBlock>Кривошеина Ольга Владимировна</TextBlock>
-                                            <TextBlock>Кузнецова Ирина Геннадьевна</TextBlock>
-                                            <TextBlock>Огнева Алёна Ивановна</TextBlock>
-                                            <TextBlock>Юкнявичус Виолетта Викторовна</TextBlock>    
-                                        </ComboBox>
+                                        <ComboBox x:Name="ManagerFIO"
+                                                  Margin="3,0,3,1"
+                                                  ItemsSource="{Binding ManagerFullNameList}"/>
+
+
 
                                         <!--НАЗВАНИЕ САНАТОРИЯ-->
                                         <TextBlock Margin="3,0,0,0" 

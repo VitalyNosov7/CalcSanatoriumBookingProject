@@ -1,11 +1,16 @@
 ﻿
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
 {
     internal class TabBookingItemViewModel : ViewModelBase
     {
-
+        public TabBookingItemViewModel()
+        {
+            LoadManagerFullNameList();
+        }
 
         private String? _header;
         public String Header
@@ -22,85 +27,48 @@ namespace WPFCSB.ViewModels
             set => Set(ref _content, value);
         }
 
-        private TabBookingItemViewModel? _selectedTab;
+        private ObservableCollection<String> _managerFullNameList = new ObservableCollection<String>();
 
-        public TabBookingItemViewModel SelectedTab
+        public ObservableCollection<String> ManagerFullNameList
         {
-            get => _selectedTab!;
-            set => Set(ref _selectedTab, value);
+            get { return _managerFullNameList; }
+            set => Set(ref _managerFullNameList, value);
         }
+
+        private String _selectedManagerFullName;
+
+        public String SelectedManagerFullName
+        {
+            get { return _selectedManagerFullName; }
+            set => Set(ref _selectedManagerFullName, value);
+        }
+
+
+        private void LoadManagerFullNameList()
+        {
+            ManagerFullNameList.Add("Боровкова Кристина Викторовна");
+            ManagerFullNameList.Add("Девочкина Юлия");
+            ManagerFullNameList.Add("Корниенко Надежда Евгеньевна");
+            ManagerFullNameList.Add("Кривошеина Ольга Владимировна");
+            ManagerFullNameList.Add("Кузнецова Ирина Геннадьевна");
+            ManagerFullNameList.Add("Огнева Алёна Ивановна");
+            ManagerFullNameList.Add("Юкнявичус Виолетта Викторовна");                 
+        }
+
+
+        //private TabBookingItemViewModel? _selectedTab;
+
+        //public TabBookingItemViewModel SelectedTab
+        //{
+        //    get => _selectedTab!;
+        //    set => Set(ref _selectedTab, value);
+        //}
 
 
 
 
         #region КОМАНДЫ
-        //  Добавление вкладки
-        //private RelayCommand? addTabCommand;
-        //public RelayCommand AddTabCommand
-        //{
-        //    get
-        //    {
-        //        return addTabCommand ??
-        //          (addTabCommand = new RelayCommand(obj =>
-        //          {
-        //              var newTab = new TabBookingItemViewModel
-        //              {
-        //                  Header = $"Tab {Tabs.Count + 1}",
-        //                  Content = $"Content of tab {Tabs.Count + 1}"
-        //              };
-        //              Tabs.Add(newTab);
-        //              SelectedTab = newTab;
-        //          }));
-        //    }
-        //}
 
-        //  Добавление вкладки еще вариант
-        //private RelayCommand? _addTabItemCommand;
-        //public RelayCommand AddTabItemCommand
-        //{
-        //    get
-        //    {
-        //        return _addTabItemCommand ??
-        //          (addTabCommand = new RelayCommand(obj =>
-        //          {
-
-
-        //              var newTabItem = new TabBookingItemViewModel()
-        //              {
-        //                  Header = $"Tab {Tabs.Count + 1}",
-        //                  Content = $"Content of tab {Tabs.Count + 1}"
-        //              };
-        //              //newTabItem.MyTabItem = newTabItem.CreateTabItem();
-        //              Tabs.Add(newTabItem);
-        //              SelectedTab = newTabItem;
-        //          }));
-        //    }
-        //}
-
-        ////  Удаление вкладки
-        //private RelayCommand? removeTabCommand;
-        //public RelayCommand RemoveTabCommand
-        //{
-        //    get
-        //    {
-        //        return removeTabCommand ??
-        //          (removeTabCommand = new RelayCommand(tabToRemove =>
-        //          {
-        //              if (tabToRemove != null && Tabs.Contains(tabToRemove))
-        //              {
-        //                  int index = Tabs.IndexOf((TabBookingItemViewModel)tabToRemove);
-        //                  Tabs.Remove((TabBookingItemViewModel)tabToRemove);
-
-        //                  // Выбираем предыдущий таб, если текущий удалялся
-        //                  if (Tabs.Any() && SelectedTab == tabToRemove)
-        //                  {
-        //                      int newIndex = Math.Max(0, index - 1);
-        //                      SelectedTab = Tabs[newIndex];
-        //                  }
-        //              }
-        //          }));
-        //    }
-        //}
 
         #endregion КОМАНДЫ
 
