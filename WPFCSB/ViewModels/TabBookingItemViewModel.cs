@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
@@ -27,33 +28,91 @@ namespace WPFCSB.ViewModels
             set => Set(ref _content, value);
         }
 
-        private ObservableCollection<String> _managerFullNameList = new ObservableCollection<String>();
+        private ObservableCollection<Manager> _managerFullNameList = new ObservableCollection<Manager>();
 
-        public ObservableCollection<String> ManagerFullNameList
+        public ObservableCollection<Manager> ManagerFullNameList
         {
             get { return _managerFullNameList; }
             set => Set(ref _managerFullNameList, value);
         }
 
-        private String _selectedManagerFullName;
+		private Manager _selectedManagerFullName = new Manager();
 
-        public String SelectedManagerFullName
+		public Manager SelectedManagerFullName
+		{
+			get { return _selectedManagerFullName; }
+			set => Set(ref _selectedManagerFullName, value);
+		}
+
+		//private String _selectedManagerFullName = "FIO";
+
+		//public String SelectedManagerFullName
+		//{
+		//	get { return _selectedManagerFullName; }
+		//	set => Set(ref _selectedManagerFullName, value);
+		//}
+
+		//  TODO: разработать загрузку саиска из класса
+		private void LoadManagerFullNameList()
         {
-            get { return _selectedManagerFullName; }
-            set => Set(ref _selectedManagerFullName, value);
-        }
+            ManagerFullNameList.Add(new Manager(1, new Person() { PersonID = 11,
+				Surname = "Боровкова",
+				Name = "Кристина",
+				Patronymic = "Викторовна" }));
+
+			ManagerFullNameList.Add(new Manager(2, new Person()
+			{
+				PersonID = 12,
+				Surname = "Девочкина",
+				Name = "Юлия",
+				Patronymic = "Владимировна"
+			}));
+
+			ManagerFullNameList.Add(new Manager(3, new Person()
+			{
+				PersonID = 13,
+				Surname = "Корниенко",
+				Name = "Надежда",
+				Patronymic = "Евгеньевна"
+			}));
+			ManagerFullNameList.Add(new Manager(4, new Person()
+			{
+				PersonID = 14,
+				Surname = "Кривошеина",
+				Name = "Ольга",
+				Patronymic = "Владимировна"
+			}));
+			ManagerFullNameList.Add(new Manager(5, new Person()
+			{
+				PersonID = 15,
+				Surname = "Кузнецова",
+				Name = "Ирина",
+				Patronymic = "Геннадьевна"
+			}));
+			ManagerFullNameList.Add(new Manager(6, new Person()
+			{
+				PersonID = 16,
+				Surname = "Огнева",
+				Name = "Алёна",
+				Patronymic = "Ивановна"
+			}));
+			ManagerFullNameList.Add(new Manager(7, new Person()
+			{
+				PersonID = 17,
+				Surname = "Юкнявичус",
+				Name = "Виолетта",
+				Patronymic = "Викторовна"
+			}));
 
 
-        private void LoadManagerFullNameList()
-        {
-            ManagerFullNameList.Add("Боровкова Кристина Викторовна");
-            ManagerFullNameList.Add("Девочкина Юлия");
-            ManagerFullNameList.Add("Корниенко Надежда Евгеньевна");
-            ManagerFullNameList.Add("Кривошеина Ольга Владимировна");
-            ManagerFullNameList.Add("Кузнецова Ирина Геннадьевна");
-            ManagerFullNameList.Add("Огнева Алёна Ивановна");
-            ManagerFullNameList.Add("Юкнявичус Виолетта Викторовна");                 
-        }
+			//ManagerFullNameList.Add("Боровкова Кристина Викторовна");
+			//ManagerFullNameList.Add("Девочкина Юлия Владимировна");
+			//ManagerFullNameList.Add("Корниенко Надежда Евгеньевна");
+			//ManagerFullNameList.Add("Кривошеина Ольга Владимировна");
+			//ManagerFullNameList.Add("Кузнецова Ирина Геннадьевна");
+			//ManagerFullNameList.Add("Огнева Алёна Ивановна");
+			//ManagerFullNameList.Add("Юкнявичус Виолетта Викторовна");                 
+		}
 
 
         //private TabBookingItemViewModel? _selectedTab;

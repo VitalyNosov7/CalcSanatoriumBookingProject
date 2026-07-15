@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using WPFCSB.Commands;
+using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
@@ -24,11 +25,17 @@ namespace WPFCSB.ViewModels
             set => Set(ref _selectedTab, value);
         }
 
+		
 
 
-        #region КОМАНДЫ
-        // Добавление вкладки
-        private RelayCommand? addTabCommand;
+		private void ManagerFIO_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+			//Person p = (Person)ManagerFIO.SelectedItem;
+		}
+
+		#region КОМАНДЫ
+		// Добавление вкладки
+		private RelayCommand? addTabCommand;
         public RelayCommand AddTabCommand
         {
             get
@@ -40,6 +47,7 @@ namespace WPFCSB.ViewModels
                       {
                           newTab.Header = $"Tab {TabItems.Count + 1}";
                           newTab.Content = $"Content of tab {TabItems.Count + 1}";
+                          newTab.SelectedManagerFullName = new Manager();
                       }
                       ;
                       TabItems.Add(newTab);

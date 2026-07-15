@@ -94,13 +94,29 @@
                                                  HorizontalAlignment="Left" 
                                                  VerticalAlignment="Bottom" 
                                                  Text="ФИО менеджера"/>
-                                        <ComboBox x:Name="ManagerFIO"
+										<ComboBox x:Name="ManagerFIO"
                                                   Margin="3,0,3,1"
-                                                  ItemsSource="{Binding ManagerFullNameList}"/>
+                                                  ItemsSource="{Binding ManagerFullNameList}"
+                                                  SelectedItem="{Binding SelectedManagerFullName}"
+                                                  >
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock>
+														<TextBlock.Text>
+															<MultiBinding StringFormat="{}{0} {1} {2}">
+																<Binding Path="ManagerPerson.Surname"/>
+																<Binding Path="ManagerPerson.Name"/>
+																<Binding Path="ManagerPerson.Patronymic"/>
+															</MultiBinding>
+														</TextBlock.Text>
+													</TextBlock>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+					
 
+										</ComboBox>
 
-
-                                        <!--НАЗВАНИЕ САНАТОРИЯ-->
+										<!--НАЗВАНИЕ САНАТОРИЯ-->
                                         <TextBlock Margin="3,0,0,0" 
                                                    Width="100" 
                                                    Height="20" 

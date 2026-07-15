@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPFCSB.Models;
 
 namespace WPFCSB.Views.Windows
 {
@@ -11,5 +12,6 @@ namespace WPFCSB.Views.Windows
         {
             InitializeComponent();
         }
+
     }
 }
