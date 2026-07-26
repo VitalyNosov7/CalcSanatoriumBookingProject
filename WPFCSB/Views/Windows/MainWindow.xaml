@@ -8,87 +8,87 @@
         mc:Ignorable="d"
         Title="Окно" Height="450" Width="800">
 
-    <DockPanel LastChildFill="True" Margin="5">
-        <Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Выход" />
-            </MenuItem>
-            <MenuItem Header="Правка"/>
-        </Menu>
-        <Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
-        <Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
-        <Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
-   
-            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
-                <Button Content="Add Tab" Command="{Binding AddTabCommand}" Margin="0,0,10,0"/>
-                <Button Content="Remove Selected Tab"
+	<DockPanel LastChildFill="True" Margin="5">
+		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
+			<MenuItem Header="Файл">
+				<MenuItem Header="Выход" />
+			</MenuItem>
+			<MenuItem Header="Правка"/>
+		</Menu>
+		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
+		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
+		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
+
+			<StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+				<Button Content="Add Tab" Command="{Binding AddTabCommand}" Margin="0,0,10,0"/>
+				<Button Content="Remove Selected Tab"
                     Command="{Binding RemoveTabCommand}"
-                    CommandParameter="{Binding SelectedTab}"/>                
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="TabArea" Background="LightGreen">
-            <TabControl x:Name="myTabControl" ItemsSource="{Binding TabItems}"
+                    CommandParameter="{Binding SelectedTab}"/>
+			</StackPanel>
+		</Grid>
+		<Grid x:Name="TabArea" Background="LightGreen">
+			<TabControl x:Name="myTabControl" ItemsSource="{Binding TabItems}"
             SelectedItem="{Binding SelectedTab}" >
-             
-                
-                <TabControl.ItemTemplate>
-                    <!-- Шаблон для заголовка таба -->
-                    <DataTemplate>
 
 
-                        <StackPanel  Orientation="Horizontal" x:Name="HeaderPanel" >
+				<TabControl.ItemTemplate>
+					<!-- Шаблон для заголовка таба -->
+					<DataTemplate>
 
-                            <TextBlock Text="{Binding Header}"/>
-                            <Button Content="X"
+
+						<StackPanel  Orientation="Horizontal" x:Name="HeaderPanel" >
+
+							<TextBlock Text="{Binding Header}"/>
+							<Button Content="X"
                                 Command="{Binding DataContext.RemoveTabCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                 CommandParameter="{Binding}"
                                 Margin="5,0,0,0"
                                 Padding="3,0"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
-                <TabControl.ContentTemplate>
-                    <!-- Шаблон для содержимого таба -->
-                    <DataTemplate>
-                      
-                        <Grid>
+						</StackPanel>
+					</DataTemplate>
+				</TabControl.ItemTemplate>
+				<TabControl.ContentTemplate>
+					<!-- Шаблон для содержимого таба -->
+					<DataTemplate>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+						<Grid>
 
-                            <StackPanel Name="StackPanelLeft_1"  
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Name="StackPanelLeft_1"  
                                         Background="Pink" 
                                         Grid.Row="0" 
                                         Grid.Column="0" 
                                         Orientation="Vertical">
-                                <TextBlock Text="{Binding Content}"/>
+								<TextBlock Text="{Binding Content}"/>
 
-                                <GroupBox Header="Данные бронирования" 
+								<GroupBox Header="Данные бронирования" 
                                           x:Name="BookingData"
                                           Margin="3">
-                                    <StackPanel>
-                                        
-                                        <!--ФИО ГОСТЯ-->
-                                        <TextBlock Margin="3,0,0,0" 
+									<StackPanel>
+
+										<!--ФИО ГОСТЯ-->
+										<TextBlock Margin="3,0,0,0" 
                                                 Width="100" 
                                                 Height="20" 
                                                 HorizontalAlignment="Left" 
                                                 VerticalAlignment="Bottom" 
                                                 Text="ФИО гостя"/>
-                                        <TextBox Text="" 
+										<TextBox Text="" 
                                                 Margin="3,0,3,1"
                                                 TextWrapping="Wrap"
                                                 AcceptsReturn="True"
                                                 VerticalScrollBarVisibility="Auto"/>
-                                        
-                                        <!--ФИО МЕНЕДЖЕРА-->
-                                        <TextBlock Margin="3,0,0,0" 
+
+										<!--ФИО МЕНЕДЖЕРА-->
+										<TextBlock Margin="3,0,0,0" 
                                                  Width="100" 
                                                  Height="20" 
                                                  HorizontalAlignment="Left" 
@@ -96,9 +96,8 @@
                                                  Text="ФИО менеджера"/>
 										<ComboBox x:Name="ManagerFIO"
                                                   Margin="3,0,3,1"
-                                                  ItemsSource="{Binding ManagerFullNameList}"
-                                                  SelectedItem="{Binding SelectedManagerFullName}"
-                                                  >
+                                                  ItemsSource="{Binding ManagerList}"
+                                                  SelectedItem="{Binding SelectedManager}">
 											<ComboBox.ItemTemplate>
 												<DataTemplate>
 													<TextBlock>
@@ -112,141 +111,150 @@
 													</TextBlock>
 												</DataTemplate>
 											</ComboBox.ItemTemplate>
-					
-
 										</ComboBox>
 
 										<!--НАЗВАНИЕ САНАТОРИЯ-->
-                                        <TextBlock Margin="3,0,0,0" 
+										<TextBlock Margin="3,0,0,0" 
                                                    Width="100" 
                                                    Height="20" 
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Санаторий"/>
-                                        <ComboBox  Margin="3,0,3,1">
-                                            <TextBlock>Планета</TextBlock>
-                                            <TextBlock>Киев</TextBlock>
-                                            <TextBlock>ТЭС</TextBlock>
-                                            <TextBlock>Сакрополь</TextBlock>
-                                            <TextBlock>Рябинка</TextBlock>
-                                            <TextBlock>Озеро сновидений</TextBlock>
-                                            <TextBlock>Узбекистан</TextBlock>
-                                        </ComboBox>
-                                        <StackPanel Orientation="Horizontal">
-                                            
-                                            <StackPanel Orientation="Vertical">
-                                                
-                                                <!--ДАТА ЗАЕЗДА-->
-                                                <TextBlock Margin="3,0,0,0" 
+										<ComboBox x:Name="Sanatorium"
+                                                  Margin="3,0,3,1"
+                                                  ItemsSource="{Binding SanatoriumList}"
+                                                  SelectedItem="{Binding SelectedSanatorium}">
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock>
+														<TextBlock.Text>
+															<MultiBinding StringFormat="{}{0}">
+																<Binding Path="SanatoriumName"/>
+															</MultiBinding>
+														</TextBlock.Text>
+													</TextBlock>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
+
+
+										<StackPanel Orientation="Horizontal">
+											<!--ДАТА ЗАЕЗДА-->
+											<StackPanel Orientation="Vertical">
+												<TextBlock Margin="3,0,0,0" 
                                                                Width="100" 
                                                                Height="20" 
                                                                HorizontalAlignment="Left" 
                                                                VerticalAlignment="Bottom" 
                                                                Text="Дата заезда"/>
-                                                <DatePicker Width="100"
-                                                                HorizontalAlignment="Left" />
-                                            </StackPanel>                                            
-                                            <StackPanel Orientation="Vertical">
-
-                                                <!--ДАТА ВЫЕЗДА-->
-                                                <TextBlock Margin="3,0,0,0" 
-                                                               Width="100" 
-                                                               Height="20" 
-                                                               HorizontalAlignment="Left" 
-                                                               VerticalAlignment="Bottom" 
-                                                               Text="Дата выезда"/>
-                                                <DatePicker Width="100"
-                                                            HorizontalAlignment="Left" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical">
-
-                                                <!--КОЛИЧЕСТВО НОЧЕЙ-->
-                                                <TextBlock Margin="3,0,0,0" 
+												<DatePicker Width="100"
+                                                            HorizontalAlignment="Left" 
+                                                            SelectedDate="{Binding CurrentBookingPeriod.StartDatePeriodBooking, 
+                                                                            Mode=TwoWay, 
+                                                                            UpdateSourceTrigger=PropertyChanged}"/>
+											</StackPanel>
+											<!--ДАТА ВЫЕЗДА-->
+											<StackPanel Orientation="Vertical">
+												<TextBlock Margin="3,0,0,0" 
+                                                                Width="100" 
+                                                                Height="20" 
+                                                                HorizontalAlignment="Left" 
+                                                                VerticalAlignment="Bottom" 
+                                                                Text="Дата выезда"/>
+												<DatePicker Width="100"
+                                                        HorizontalAlignment="Left" 
+                                                            SelectedDate="{Binding CurrentBookingPeriod.EndDatePeriodBooking, 
+                                                                            Mode=TwoWay, 
+                                                                            UpdateSourceTrigger=PropertyChanged}"/>
+											</StackPanel>
+											<!--КОЛИЧЕСТВО НОЧЕЙ-->
+											<StackPanel Orientation="Vertical">
+												<TextBlock Margin="3,0,0,0" 
                                                            Width="100" 
                                                            Height="20" 
                                                            HorizontalAlignment="Left" 
                                                            VerticalAlignment="Bottom" 
                                                            Text="К-во ночей"/>
-                                                <TextBox   Text="" 
+												<TextBox   Text="{Binding NumberOfNightsCommand}" 
                                                            Margin="3,0,3,1"
                                                            Width="60"
-                                                           HorizontalAlignment="Left" />
-                                            </StackPanel>
-                                            
-                                        </StackPanel>
-                                        <!--КАТЕГОРИЯ САНАТОРИЯ-->
-                                        <TextBlock Margin="3,0,0,0" 
+                                                           HorizontalAlignment="Left"/>
+											</StackPanel>
+
+										</StackPanel>
+										<!--КАТЕГОРИЯ САНАТОРИЯ-->
+										<TextBlock Margin="3,0,0,0" 
                                                    Width="150" 
                                                    Height="20" 
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Категория санатория"/>
-                                        <TextBox   Text="" 
+										<TextBox   Text="" 
                                                    Margin="3,0,3,1"
                                                    TextWrapping="Wrap"
                                                    AcceptsReturn="True"
                                                    VerticalScrollBarVisibility="Auto"/>
 
-                                        <!--ВИД РАЗМЕЩЕНИЯ-->
-                                        <TextBlock Margin="3,0,0,0" 
+										<!--ВИД РАЗМЕЩЕНИЯ-->
+										<TextBlock Margin="3,0,0,0" 
                                                    Width="150" 
                                                    Height="20"
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Вид размещения"/>
-                                        <TextBox   Margin="3,0,3,1"/>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Данные санатория" 
+										<TextBox   Margin="3,0,3,1"/>
+									</StackPanel>
+								</GroupBox>
+								<GroupBox Header="Данные санатория" 
                                           x:Name="SanatoriumData"
                                           Margin="3">
-                                    <StackPanel>
-                                        <TextBlock Margin="3,0,0,0" 
+									<StackPanel>
+										<TextBlock Margin="3,0,0,0" 
                                                      Width="100" 
                                                      Height="20" 
                                                      HorizontalAlignment="Left" 
                                                      VerticalAlignment="Bottom" 
                                                      Text="Санаторий"/>
-                                        <TextBox Text="{Binding Content}" 
+										<TextBox Text="{Binding Content}" 
                                                      Margin="3,0,3,1"
                                                      TextWrapping="Wrap"
                                                      AcceptsReturn="True"
                                                      VerticalScrollBarVisibility="Auto"/>
-                                    </StackPanel>
-                                </GroupBox>
-                            </StackPanel>
-                            <StackPanel Name="StackPanelLeft_2"  
+									</StackPanel>
+								</GroupBox>
+							</StackPanel>
+							<StackPanel Name="StackPanelLeft_2"  
                                         Background="Brown" 
                                         Grid.Row="0" 
                                         Grid.Column="1" 
                                         Orientation="Vertical">
-                                <GroupBox Header="Данные расчета" 
+								<GroupBox Header="Данные расчета" 
                                           x:Name="CalcData"
                                           Margin="3">
-                                    <StackPanel>
-                                        <TextBlock Margin="5" 
+									<StackPanel>
+										<TextBlock Margin="5" 
                                                 Width="100" 
                                                 Height="20" 
                                                 Text="Какой то текст"/>
-                                        <TextBox Text="{Binding Content}"
+										<TextBox Text="{Binding Content}"
                                                 Margin="5"
                                                 TextWrapping="Wrap"
                                                 AcceptsReturn="True"
                                                 VerticalScrollBarVisibility="Auto"/>
-                                    </StackPanel>
-                                </GroupBox>
-                            </StackPanel>
-                            <StackPanel Name="StackPanelLeft_3"  Background="Yellow" Grid.Row="0" Grid.Column="2" Orientation="Vertical">
-                                <TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
-                                <TextBox Text="{Binding Content}" Margin="5"
+									</StackPanel>
+								</GroupBox>
+							</StackPanel>
+							<StackPanel Name="StackPanelLeft_3"  Background="Yellow" Grid.Row="0" Grid.Column="2" Orientation="Vertical">
+								<TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
+								<TextBox Text="{Binding Content}" Margin="5"
                            TextWrapping="Wrap"
                            AcceptsReturn="True"
                            VerticalScrollBarVisibility="Auto"/>
-                            </StackPanel>
-                        </Grid>                      
-                    </DataTemplate>
-                </TabControl.ContentTemplate>
-            </TabControl>
-        </Grid>
-    </DockPanel>
+							</StackPanel>
+						</Grid>
+					</DataTemplate>
+				</TabControl.ContentTemplate>
+			</TabControl>
+		</Grid>
+	</DockPanel>
 </Window>

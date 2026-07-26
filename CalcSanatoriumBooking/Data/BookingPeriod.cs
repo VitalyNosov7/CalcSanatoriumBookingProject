@@ -1,6 +1,6 @@
 ﻿namespace CalcSanatoriumBooking.Data
 {
-	//	TODO:	Не понятно назначение этого класса!
+	//	TODO:	Не понятно как использовать этот класс!
 
     /// <summary>   Данные периода бронирования.    </summary>
     public class BookingPeriod : BookingCalcID
