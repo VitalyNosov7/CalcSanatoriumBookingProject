@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFCSB"
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
-        Title="Окно" Height="450" Width="800">
+        Title="Окно" Height="450" Width="1000">
 
 	<DockPanel LastChildFill="True" Margin="5">
 		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
@@ -175,7 +175,7 @@
                                                            HorizontalAlignment="Left" 
                                                            VerticalAlignment="Bottom" 
                                                            Text="К-во ночей"/>
-												<TextBox   Text="{Binding NumberOfNightsCommand}" 
+                                                <TextBox   Text="{Binding NumberOfNights}" 
                                                            Margin="3,0,3,1"
                                                            Width="60"
                                                            HorizontalAlignment="Left"/>
