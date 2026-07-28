@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using WPFCSB.Commands;
 using WPFCSB.Models;
@@ -34,8 +35,7 @@ namespace WPFCSB.ViewModels
         /// <summary>Контент(это пример, который далее можно удалить или объединить весь контент в это свойство).</summary>
         public String Content
         {
-            get => _content!;
-            //set => Set(ref _content, value);
+            get => _content!;        
             set => Set(ref _content, value);
         }
 
@@ -160,18 +160,24 @@ namespace WPFCSB.ViewModels
             get { return _currentBookingPeriod; }
             set
             {
-                Set(ref _currentBookingPeriod, value);
+                Set(ref _currentBookingPeriod, value);               
             }
         }
 
-        ///// <summary>Количество ночей.</summary>
-        //private Double _numberOfNights;
-        ///// <summary>Количество ночей.</summary>
-        //public Double NumberOfNights
-        //{
-        //    get { return _numberOfNights; }
-        //    set => Set(ref _numberOfNights, value);          
-        //}
+
+
+        /// <summary>Количество ночей.</summary>
+        private Int32 _numberOfNights;
+        /// <summary>Количество ночей.</summary>
+        public Int32 NumberOfNights
+        {
+            get { return _numberOfNights; }
+            set
+            {
+                Set(ref _numberOfNights, value);
+                
+            }
+        }
 
 
         #endregion ПЕРИОД БРОНИРОВАНИЯ
@@ -214,9 +220,9 @@ namespace WPFCSB.ViewModels
 
 
 
-                      TimeSpan difference = CurrentBookingPeriod.EndDatePeriodBooking -
-                      CurrentBookingPeriod.StartDatePeriodBooking;
-                      NumberOfNights = difference.Days;
+                      //TimeSpan difference = CurrentBookingPeriod.EndDatePeriodBooking -
+                      //CurrentBookingPeriod.StartDatePeriodBooking;
+                      //NumberOfNights = difference.Days;
 
 
                   }));

@@ -85,25 +85,25 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
-		// Получить количество ночей
-		private RelayCommand? numberOfNightsCommand;
-		public RelayCommand NumberOfNightsCommand
-		{
-			get
-			{
-				return numberOfNightsCommand ??
-				  (numberOfNightsCommand = new RelayCommand(obj =>
-				  {
-					  var currentTab = new TabBookingItemViewModel();
-					  {
-						  TimeSpan difference = currentTab.CurrentBookingPeriod.EndDatePeriodBooking -
-						  currentTab.CurrentBookingPeriod.StartDatePeriodBooking;
-						  currentTab.NumberOfNights = difference.Days;
-					  }
+		//// Получить количество ночей
+		//private RelayCommand? numberOfNightsCommand;
+		//public RelayCommand NumberOfNightsCommand
+		//{
+		//	get
+		//	{
+		//		return numberOfNightsCommand ??
+		//		  (numberOfNightsCommand = new RelayCommand(obj =>
+		//		  {
+		//			  var currentTab = new TabBookingItemViewModel();
+		//			  {
+		//				  TimeSpan difference = currentTab.CurrentBookingPeriod.EndDatePeriodBooking -
+		//				  currentTab.CurrentBookingPeriod.StartDatePeriodBooking;
+		//				  currentTab.NumberOfNights = difference.Days;
+		//			  }
 
-				  }));
-			}
-		}
+		//		  }));
+		//	}
+		//}
 
 		#endregion КОМАНДЫ
 

@@ -149,10 +149,11 @@
                                                                Text="Дата заезда"/>
 												<DatePicker Width="100"
                                                             HorizontalAlignment="Left" 
-                                                            SelectedDate="{Binding CurrentBookingPeriod.StartDatePeriodBooking, 
-                                                                            Mode=TwoWay, 
+                                                            SelectedDate="{Binding CurrentBookingPeriod.StartDatePeriodBooking,
+																			Mode=TwoWay,
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
-											</StackPanel>
+                                                
+                                            </StackPanel>
 											<!--ДАТА ВЫЕЗДА-->
 											<StackPanel Orientation="Vertical">
 												<TextBlock Margin="3,0,0,0" 
@@ -164,9 +165,10 @@
 												<DatePicker Width="100"
                                                         HorizontalAlignment="Left" 
                                                             SelectedDate="{Binding CurrentBookingPeriod.EndDatePeriodBooking, 
-                                                                            Mode=TwoWay, 
+																			Mode=TwoWay,
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
-											</StackPanel>
+                                                
+                                            </StackPanel>
 											<!--КОЛИЧЕСТВО НОЧЕЙ-->
 											<StackPanel Orientation="Vertical">
 												<TextBlock Margin="3,0,0,0" 
@@ -175,10 +177,12 @@
                                                            HorizontalAlignment="Left" 
                                                            VerticalAlignment="Bottom" 
                                                            Text="К-во ночей"/>
-                                                <TextBox   Text="{Binding NumberOfNights}" 
+                                                <TextBox   Text="{Binding CurrentBookingPeriod.NumberNightsBooked,  
+																UpdateSourceTrigger=PropertyChanged}" 
                                                            Margin="3,0,3,1"
                                                            Width="60"
-                                                           HorizontalAlignment="Left"/>
+                                                           HorizontalAlignment="Left"/>                                             
+														   
 											</StackPanel>
 
 										</StackPanel>
