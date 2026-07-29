@@ -160,7 +160,14 @@ namespace WPFCSB.ViewModels
             get { return _currentBookingPeriod; }
             set
             {
-                Set(ref _currentBookingPeriod, value);               
+                //OnPropertyChanged("StartDatePeriodBooking");
+                //OnPropertyChanged("EndDatePeriodBooking");
+                //OnPropertyChanged("NumberNightsBooked");
+                Set(ref _currentBookingPeriod, value);
+                //OnPropertyChanged("StartDatePeriodBooking");
+                //OnPropertyChanged("EndDatePeriodBooking");
+                //OnPropertyChanged("NumberNightsBooked");
+
             }
         }
 

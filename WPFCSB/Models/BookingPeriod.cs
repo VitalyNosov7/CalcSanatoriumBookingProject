@@ -1,16 +1,17 @@
 ﻿using System.Timers;
 using System.Windows;
+using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.Models
 {
     /// <summary>   Данные периода бронирования.    </summary>
-    public class BookingPeriod
+    public class BookingPeriod : ViewModelBase
     {
         public BookingPeriod(DateTime startDatePeriodBooking, DateTime endDatePeriodBooking)
         {
             StartDatePeriodBooking = startDatePeriodBooking;
             EndDatePeriodBooking = endDatePeriodBooking;
-            NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+            //NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
         }
 
         public BookingPeriod() { }
@@ -23,7 +24,9 @@ namespace WPFCSB.Models
         {
             get { return _startDatePeriodBooking; }
             set 
-            { _startDatePeriodBooking = value; 
+            {
+                //NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+                Set(ref _startDatePeriodBooking, value);
                 NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
             }
         }
@@ -35,7 +38,12 @@ namespace WPFCSB.Models
         public DateTime EndDatePeriodBooking
         {
             get { return _endDatePeriodBooking; }
-            set { _endDatePeriodBooking = value; NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days; }
+            set 
+            {
+                //NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+                Set(ref _endDatePeriodBooking, value);
+                NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+            }
         }
 
         /// <summary>   Количество ночей бронирования. </summary>
@@ -44,7 +52,9 @@ namespace WPFCSB.Models
         public Int32 NumberNightsBooked
         {
             get { return _numberNightsBooked; }
-            set { _numberNightsBooked = value; MessageBox.Show("Свойство NumberNightsBooked!"); }
+            set {
+                Set(ref _numberNightsBooked, value);  /* MessageBox.Show("Свойство NumberNightsBooked!");*/
+            }
         }
 
 

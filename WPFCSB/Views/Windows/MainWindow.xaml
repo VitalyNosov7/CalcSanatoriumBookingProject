@@ -150,7 +150,6 @@
 												<DatePicker Width="100"
                                                             HorizontalAlignment="Left" 
                                                             SelectedDate="{Binding CurrentBookingPeriod.StartDatePeriodBooking,
-																			Mode=TwoWay,
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
                                                 
                                             </StackPanel>
@@ -165,7 +164,6 @@
 												<DatePicker Width="100"
                                                         HorizontalAlignment="Left" 
                                                             SelectedDate="{Binding CurrentBookingPeriod.EndDatePeriodBooking, 
-																			Mode=TwoWay,
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
                                                 
                                             </StackPanel>
