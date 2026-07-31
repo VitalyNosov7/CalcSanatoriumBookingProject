@@ -35,7 +35,7 @@ namespace WPFCSB.ViewModels
         /// <summary>Контент(это пример, который далее можно удалить или объединить весь контент в это свойство).</summary>
         public String Content
         {
-            get => _content!;        
+            get => _content!;
             set => Set(ref _content, value);
         }
 
@@ -152,39 +152,84 @@ namespace WPFCSB.ViewModels
 
         #region ПЕРИОД БРОНИРОВАНИЯ
 
-        /// <summary>Период бронирования.</summary>
-        private BookingPeriod _currentBookingPeriod = new BookingPeriod();
-        /// <summary>Период бронирования.</summary>
-        public BookingPeriod CurrentBookingPeriod
+        ///// <summary>Период бронирования.</summary>
+        //private BookingPeriod _currentBookingPeriod = new BookingPeriod();
+        ///// <summary>Период бронирования.</summary>
+        //public BookingPeriod CurrentBookingPeriod
+        //{
+        //    get { return _currentBookingPeriod; }
+        //    set
+        //    {
+        //        Set(ref _currentBookingPeriod, value);
+        //    }
+        //}
+
+
+        /// <summary>   Дата начала периода бронирования. </summary>
+        private DateTime _startDatePeriodBooking = DateTime.Today;
+        /// <summary>   Дата начала периода  бронирования. </summary>
+        public DateTime StartDatePeriodBooking
         {
-            get { return _currentBookingPeriod; }
+            get { return _startDatePeriodBooking; }
             set
             {
-                //OnPropertyChanged("StartDatePeriodBooking");
-                //OnPropertyChanged("EndDatePeriodBooking");
-                //OnPropertyChanged("NumberNightsBooked");
-                Set(ref _currentBookingPeriod, value);
-                //OnPropertyChanged("StartDatePeriodBooking");
-                //OnPropertyChanged("EndDatePeriodBooking");
-                //OnPropertyChanged("NumberNightsBooked");
+                Set(ref _startDatePeriodBooking, value);
+                NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+            }
+        }
 
+        /// <summary>   Дата окончания периода  бронирования. </summary>
+        private DateTime _endDatePeriodBooking = DateTime.Now.AddDays(10);
+        /// <summary>   Дата окончания периода  бронирования. </summary>
+        public DateTime EndDatePeriodBooking
+        {
+            get { return _endDatePeriodBooking; }
+            set
+            {
+                Set(ref _endDatePeriodBooking, value);
+                NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+            }
+        }
+
+        /// <summary>   Количество ночей бронирования. </summary>
+        private Int32 _numberNightsBooked;
+        /// <summary>   Количество ночей бронирования. </summary>
+        public Int32 NumberNightsBooked
+        {
+            get { return _numberNightsBooked; }
+            set
+            {
+                Set(ref _numberNightsBooked, value);                
+            }
+        }
+
+        /// <summary>   Количество дней до бронирования. </summary>
+        private Int32 _numberDaysUntilBooking;
+        /// <summary>   Количество дней до бронирования. </summary>
+        public Int32 NumberDaysUntilBooking
+        {
+            get { return _numberDaysUntilBooking; }
+            set
+            {
+                Set(ref _numberDaysUntilBooking, value);
             }
         }
 
 
 
-        /// <summary>Количество ночей.</summary>
-        private Int32 _numberOfNights;
-        /// <summary>Количество ночей.</summary>
-        public Int32 NumberOfNights
-        {
-            get { return _numberOfNights; }
-            set
-            {
-                Set(ref _numberOfNights, value);
-                
-            }
-        }
+
+        ///// <summary>Количество ночей.</summary>
+        //private Int32 _numberOfNights;
+        ///// <summary>Количество ночей.</summary>
+        //public Int32 NumberOfNights
+        //{
+        //    get { return _numberOfNights; }
+        //    set
+        //    {
+        //        Set(ref _numberOfNights, value);
+        //    }
+        //}
+
 
 
         #endregion ПЕРИОД БРОНИРОВАНИЯ
@@ -196,6 +241,19 @@ namespace WPFCSB.ViewModels
 
 
         #endregion МЕТОДЫ
+
+        /// <summary>Получить интервал времени</summary>
+        /// <param name="startDatePeriodBooking">Дата начала периода бронирования</param>
+        /// <param name="endDatePeriodBooking">Дата окончания периода  бронирования</param>
+        /// <returns>Интервал времени</returns>
+        public TimeSpan GetTimeInterval(DateTime startDatePeriodBooking, DateTime endDatePeriodBooking)
+        {
+            TimeSpan timeInterval = default;
+
+            timeInterval = endDatePeriodBooking - startDatePeriodBooking;
+
+            return timeInterval;
+        }
 
         #region КОМАНДЫ
 

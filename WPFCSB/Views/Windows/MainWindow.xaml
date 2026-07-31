@@ -147,9 +147,10 @@
                                                                HorizontalAlignment="Left" 
                                                                VerticalAlignment="Bottom" 
                                                                Text="Дата заезда"/>
-												<DatePicker Width="100"
+												<DatePicker Name="StartDateBooking"
+															Width="100"
                                                             HorizontalAlignment="Left" 
-                                                            SelectedDate="{Binding CurrentBookingPeriod.StartDatePeriodBooking,
+                                                            SelectedDate="{Binding StartDatePeriodBooking,
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
                                                 
                                             </StackPanel>
@@ -162,28 +163,45 @@
                                                                 VerticalAlignment="Bottom" 
                                                                 Text="Дата выезда"/>
 												<DatePicker Width="100"
-                                                        HorizontalAlignment="Left" 
-                                                            SelectedDate="{Binding CurrentBookingPeriod.EndDatePeriodBooking, 
+															HorizontalAlignment="Left" 
+                                                            SelectedDate="{Binding EndDatePeriodBooking, 
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
                                                 
                                             </StackPanel>
+                                            
 											<!--КОЛИЧЕСТВО НОЧЕЙ-->
 											<StackPanel Orientation="Vertical">
-												<TextBlock Margin="3,0,0,0" 
-                                                           Width="100" 
+												<TextBlock Margin="0,0,0,0" 
+                                                           Width="70" 
                                                            Height="20" 
                                                            HorizontalAlignment="Left" 
                                                            VerticalAlignment="Bottom" 
                                                            Text="К-во ночей"/>
-                                                <TextBox   Text="{Binding CurrentBookingPeriod.NumberNightsBooked,  
-																UpdateSourceTrigger=PropertyChanged}" 
-                                                           Margin="3,0,3,1"
+                                                <TextBox   Text="{Binding NumberNightsBooked, 
+																UpdateSourceTrigger=PropertyChanged}" 														   
+                                                           Margin="0,0,0,0"
                                                            Width="60"
-                                                           HorizontalAlignment="Left"/>                                             
-														   
-											</StackPanel>
+                                                           HorizontalAlignment="Left"
+                                                           IsEnabled="False"/>   
+                                            </StackPanel>
 
-										</StackPanel>
+                                            <!--КОЛИЧЕСТВО ДНЕЙ ДО ЗАЕЗДА-->
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Margin="0,0,0,0" 
+                                                           Width="100" 
+                                                           Height="20" 
+                                                           HorizontalAlignment="Left" 
+                                                           VerticalAlignment="Bottom" 
+                                                           Text="Дней до заезда:"/>  
+                                                <TextBox   Text="{Binding NumberNightsBooked, 
+														UpdateSourceTrigger=PropertyChanged}" 														   
+                                                           Margin="0,0,0,0"
+                                                           Width="60"
+                                                           HorizontalAlignment="Left"
+                                                           IsEnabled="False"/>
+                                            </StackPanel>
+
+                                        </StackPanel>
 										<!--КАТЕГОРИЯ САНАТОРИЯ-->
 										<TextBlock Margin="3,0,0,0" 
                                                    Width="150" 

@@ -49,7 +49,8 @@ namespace WPFCSB.ViewModels
 						  newTab.Content = $"Content of tab {TabItems.Count + 1}";
 						  newTab.SelectedManager = new Manager();
 						  newTab.SelectedSanatorium = new Sanatorium();
-						  newTab.CurrentBookingPeriod = new BookingPeriod(DateTime.Now.AddDays(14), DateTime.Now.AddDays(24));
+						  //newTab.CurrentBookingPeriod = new BookingPeriod(DateTime.Now.AddDays(14), DateTime.Now.AddDays(24));
+						  newTab.NumberNightsBooked = newTab.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;
 					  }
 					  ;
 					  TabItems.Add(newTab);

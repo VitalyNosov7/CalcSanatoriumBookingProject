@@ -4,6 +4,8 @@ using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.Models
 {
+    // TODO: Подумать над дальнейшем использовании этого класса
+
     /// <summary>   Данные периода бронирования.    </summary>
     public class BookingPeriod : ViewModelBase
     {
@@ -11,7 +13,7 @@ namespace WPFCSB.Models
         {
             StartDatePeriodBooking = startDatePeriodBooking;
             EndDatePeriodBooking = endDatePeriodBooking;
-            //NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
+            NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
         }
 
         public BookingPeriod() { }
@@ -23,12 +25,7 @@ namespace WPFCSB.Models
         public DateTime StartDatePeriodBooking
         {
             get { return _startDatePeriodBooking; }
-            set 
-            {
-                //NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
-                Set(ref _startDatePeriodBooking, value);
-                NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
-            }
+            set { _startDatePeriodBooking = value; }
         }
 
         /// <summary>   Дата окончания периода  бронирования. </summary>
@@ -38,12 +35,7 @@ namespace WPFCSB.Models
         public DateTime EndDatePeriodBooking
         {
             get { return _endDatePeriodBooking; }
-            set 
-            {
-                //NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
-                Set(ref _endDatePeriodBooking, value);
-                NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
-            }
+            set { _endDatePeriodBooking = value; }
         }
 
         /// <summary>   Количество ночей бронирования. </summary>
@@ -52,9 +44,7 @@ namespace WPFCSB.Models
         public Int32 NumberNightsBooked
         {
             get { return _numberNightsBooked; }
-            set {
-                Set(ref _numberNightsBooked, value);  /* MessageBox.Show("Свойство NumberNightsBooked!");*/
-            }
+            set { _numberNightsBooked = value; }
         }
 
 
@@ -67,7 +57,7 @@ namespace WPFCSB.Models
             TimeSpan timeInterval = default;
 
             timeInterval = endDatePeriodBooking - startDatePeriodBooking;
-            
+
             return timeInterval;
         }
     }
