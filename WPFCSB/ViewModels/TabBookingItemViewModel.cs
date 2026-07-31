@@ -1,8 +1,5 @@
 ﻿
 using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
-using WPFCSB.Commands;
 using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
 
@@ -137,6 +134,7 @@ namespace WPFCSB.ViewModels
             set => Set(ref _selectedSanatorium, value);
         }
 
+        /// <summary>Загрузка списка санаториев</summary> // TODO: Разработать загрузку
         private void LoadSanatoriumList()
         {
             SanatoriumList.Add(new Sanatorium(1, "Планета"));
@@ -255,6 +253,7 @@ namespace WPFCSB.ViewModels
             set => Set(ref _selectedBookingOperation, value);
         }
 
+        /// <summary>Загрузка списка операций над бронированием</summary> // TODO: Разработать загрузку
         private void LoadBookingOperationList()
         {
             BookingOperationList.Add(new BookingOperation(1, "Заявка Отправить"));
@@ -291,10 +290,6 @@ namespace WPFCSB.ViewModels
 
         #region МЕТОДЫ
 
-
-
-        #endregion МЕТОДЫ
-
         /// <summary>Получить интервал времени</summary>
         /// <param name="startDatePeriodBooking">Дата начала периода бронирования</param>
         /// <param name="endDatePeriodBooking">Дата окончания периода  бронирования</param>
@@ -308,45 +303,9 @@ namespace WPFCSB.ViewModels
             return timeInterval;
         }
 
+        #endregion МЕТОДЫ
+
         #region КОМАНДЫ
-
-        // Получить количество ночей
-        private RelayCommand? numberOfNightsCommand;
-        public RelayCommand NumberOfNightsCommand
-        {
-            get
-            {
-                return numberOfNightsCommand ??
-                  (numberOfNightsCommand = new RelayCommand(obj =>
-                  {
-                      //var newTab = new TabBookingItemViewModel();
-                      //{
-                      // newTab.Header = $"Tab {TabItems.Count + 1}";
-                      // newTab.Content = $"Content of tab {TabItems.Count + 1}";
-                      // newTab.SelectedManager = new Manager();
-                      // newTab.SelectedSanatorium = new Sanatorium();
-                      // newTab.CurrentBookingPeriod = new BookingPeriod(DateTime.Now.AddDays(14), DateTime.Now.AddDays(24));
-                      //}
-                      //;
-
-                      //var currentTab = new TabBookingItemViewModel();
-                      //{
-                      // TimeSpan difference = currentTab.CurrentBookingPeriod.EndDatePeriodBooking -
-                      // currentTab.CurrentBookingPeriod.StartDatePeriodBooking;
-                      // currentTab.NumberOfNights = difference.Days;
-                      //}
-
-
-
-                      //TimeSpan difference = CurrentBookingPeriod.EndDatePeriodBooking -
-                      //CurrentBookingPeriod.StartDatePeriodBooking;
-                      //NumberOfNights = difference.Days;
-
-
-                  }));
-            }
-        }
-
 
         #endregion КОМАНДЫ
 
