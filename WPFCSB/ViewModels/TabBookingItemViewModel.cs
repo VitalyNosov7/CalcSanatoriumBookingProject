@@ -14,6 +14,7 @@ namespace WPFCSB.ViewModels
         {
             LoadManagerList();
             LoadSanatoriumList();
+            LoadBookingOperationList();
         }
 
         #region ЗАГОЛОВОК
@@ -233,6 +234,58 @@ namespace WPFCSB.ViewModels
 
 
         #endregion ПЕРИОД БРОНИРОВАНИЯ
+
+        #region ОПЕРАЦИИ БРОНИРОВАНИЯ
+
+        /// <summary>Список операций бронирования</summary>
+        private ObservableCollection<BookingOperation> _bookingOperationList = new ObservableCollection<BookingOperation>();
+        /// <summary>Список операций бронирования</summary>
+        public ObservableCollection<BookingOperation> BookingOperationList
+        {
+            get { return _bookingOperationList; }
+            set => Set(ref _bookingOperationList, value);
+        }
+
+        /// <summary>Выбранная операция бронирования</summary>
+        private BookingOperation _selectedBookingOperation = new BookingOperation();
+        /// <summary>Выбранная операция бронирования</summary>
+        public BookingOperation SelectedBookingOperation
+        {
+            get { return _selectedBookingOperation; }
+            set => Set(ref _selectedBookingOperation, value);
+        }
+
+        private void LoadBookingOperationList()
+        {
+            BookingOperationList.Add(new BookingOperation(1, "Заявка Отправить"));
+            BookingOperationList.Add(new BookingOperation(2, "Заявка отправлена"));
+            BookingOperationList.Add(new BookingOperation(3, "Коррекция Заявки Отправить"));
+            BookingOperationList.Add(new BookingOperation(4, "Коррекция Заявки отправлена"));
+            BookingOperationList.Add(new BookingOperation(5, "Путевка Отправить"));
+            BookingOperationList.Add(new BookingOperation(6, "Путевка Коррекция Отправить"));
+            BookingOperationList.Add(new BookingOperation(7, "Путевка отправлена"));
+            BookingOperationList.Add(new BookingOperation(8, "Путевка коррекция отправлена"));
+            BookingOperationList.Add(new BookingOperation(9, "Подтверждение оплаты отправить"));
+            BookingOperationList.Add(new BookingOperation(10, "Подтверждение коррекция отправить"));
+            BookingOperationList.Add(new BookingOperation(11, "Аннуляция Отправить"));
+            BookingOperationList.Add(new BookingOperation(12, "Аннуляция отправлена "));
+            BookingOperationList.Add(new BookingOperation(13, "Бронь оплаченная"));
+            BookingOperationList.Add(new BookingOperation(14, "Бронь которую аннулируем"));
+            BookingOperationList.Add(new BookingOperation(15, "Счет Отправить"));
+            BookingOperationList.Add(new BookingOperation(16, "Счет на доплату Отправить"));
+            BookingOperationList.Add(new BookingOperation(17, "Счет Коррекция Отправить"));
+            BookingOperationList.Add(new BookingOperation(18, "Ссылка на БО"));
+            BookingOperationList.Add(new BookingOperation(19, "Рассрочка Т-банк"));
+            BookingOperationList.Add(new BookingOperation(20, "Информация об оплате"));
+            BookingOperationList.Add(new BookingOperation(21, "Информация об оплате отправлена"));
+            BookingOperationList.Add(new BookingOperation(22, "Отмена письма"));
+            BookingOperationList.Add(new BookingOperation(23, "РЖМ Заявка Отправить"));
+            BookingOperationList.Add(new BookingOperation(24, "РЖМ Заявка отправлена"));
+            BookingOperationList.Add(new BookingOperation(25, "РЖМ Коррекция Заявки Отправить"));
+            BookingOperationList.Add(new BookingOperation(26, "РЖМ Коррекция Заявки отправлена"));
+        }
+
+        #endregion ОПЕРАЦИИ БРОНИРОВАНИЯ
 
         #endregion КОНТЕНТ
 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFCSB"
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
-        Title="Окно" Height="450" Width="1000">
+        Title="Окно" Height="800" Width="1600">
 
 	<DockPanel LastChildFill="True" Margin="5">
 		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
@@ -243,20 +243,41 @@
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>
-							<StackPanel Name="StackPanelLeft_2"  
+
+                            <!--ФОРМИРОВАНИЕ ШАБЛОНА-->
+                            <StackPanel Name="StackPanelLeft_2"  
                                         Background="Brown" 
                                         Grid.Row="0" 
                                         Grid.Column="1" 
                                         Orientation="Vertical">
-								<GroupBox Header="Данные расчета" 
+								<GroupBox Header="Формирование шаблона" 
                                           x:Name="CalcData"
                                           Margin="3">
-									<StackPanel>
-										<TextBlock Margin="5" 
-                                                Width="100" 
-                                                Height="20" 
-                                                Text="Какой то текст"/>
-										<TextBox Text="{Binding Content}"
+									<StackPanel Orientation="Vertical">
+                                        <TextBlock Margin="3,0,0,0" 
+                                                 Width="100" 
+                                                 Height="20" 
+                                                 HorizontalAlignment="Left" 
+                                                 VerticalAlignment="Bottom" 
+                                                Text="Операция"/>
+                                        <ComboBox x:Name="MessageTemplate"
+                                                  Margin="3,0,3,1"
+                                                  ItemsSource="{Binding BookingOperationList}"
+                                                  SelectedItem="{Binding SelectedBookingOperation}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}{0}">
+                                                                <Binding Path="BookingOperationName"/>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+
+                                        <TextBox Text="{Binding Content}"
                                                 Margin="5"
                                                 TextWrapping="Wrap"
                                                 AcceptsReturn="True"
