@@ -192,8 +192,8 @@
                                                            Height="20" 
                                                            HorizontalAlignment="Left" 
                                                            VerticalAlignment="Bottom" 
-                                                           Text="Дней до заезда:"/>  
-                                                <TextBox   Text="{Binding NumberNightsBooked, 
+                                                           Text="Дней до заезда:"/>
+												<TextBox   Text="{Binding NumberDaysUntilBooking, 
 														UpdateSourceTrigger=PropertyChanged}" 														   
                                                            Margin="0,0,0,0"
                                                            Width="60"

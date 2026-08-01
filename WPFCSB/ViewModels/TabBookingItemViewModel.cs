@@ -151,18 +151,6 @@ namespace WPFCSB.ViewModels
 
         #region ПЕРИОД БРОНИРОВАНИЯ
 
-        ///// <summary>Период бронирования.</summary>
-        //private BookingPeriod _currentBookingPeriod = new BookingPeriod();
-        ///// <summary>Период бронирования.</summary>
-        //public BookingPeriod CurrentBookingPeriod
-        //{
-        //    get { return _currentBookingPeriod; }
-        //    set
-        //    {
-        //        Set(ref _currentBookingPeriod, value);
-        //    }
-        //}
-
 
         /// <summary>   Дата начала периода бронирования. </summary>
         private DateTime _startDatePeriodBooking = DateTime.Today;
@@ -174,7 +162,8 @@ namespace WPFCSB.ViewModels
             {
                 Set(ref _startDatePeriodBooking, value);
                 NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
-            }
+				NumberDaysUntilBooking = GetTimeInterval(DateTime.Now, StartDatePeriodBooking.AddDays(1)).Days;
+			}
         }
 
         /// <summary>   Дата окончания периода  бронирования. </summary>
@@ -187,7 +176,9 @@ namespace WPFCSB.ViewModels
             {
                 Set(ref _endDatePeriodBooking, value);
                 NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
-            }
+				NumberDaysUntilBooking = GetTimeInterval(DateTime.Now, StartDatePeriodBooking.AddDays(1)).Days;
+
+			}
         }
 
         /// <summary>   Количество ночей бронирования. </summary>
@@ -213,22 +204,6 @@ namespace WPFCSB.ViewModels
                 Set(ref _numberDaysUntilBooking, value);
             }
         }
-
-
-
-
-        ///// <summary>Количество ночей.</summary>
-        //private Int32 _numberOfNights;
-        ///// <summary>Количество ночей.</summary>
-        //public Int32 NumberOfNights
-        //{
-        //    get { return _numberOfNights; }
-        //    set
-        //    {
-        //        Set(ref _numberOfNights, value);
-        //    }
-        //}
-
 
 
         #endregion ПЕРИОД БРОНИРОВАНИЯ
@@ -289,7 +264,7 @@ namespace WPFCSB.ViewModels
         #endregion КОНТЕНТ
 
         #region МЕТОДЫ
-
+        // TODO: ВЫнести этот метод в класс BookingPeriod
         /// <summary>Получить интервал времени</summary>
         /// <param name="startDatePeriodBooking">Дата начала периода бронирования</param>
         /// <param name="endDatePeriodBooking">Дата окончания периода  бронирования</param>
