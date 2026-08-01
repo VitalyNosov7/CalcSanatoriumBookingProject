@@ -253,6 +253,8 @@
 								<GroupBox Header="Формирование шаблона" 
                                           x:Name="CalcData"
                                           Margin="3">
+
+							<!--ОПЕРАЦИИ БРОНИРОВАНИЯ-->
 									<StackPanel Orientation="Vertical">
                                         <TextBlock Margin="3,0,0,0" 
                                                  Width="100" 
@@ -277,20 +279,66 @@
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
 
-                                        <TextBox Text="{Binding Content}"
-                                                Margin="5"
-                                                TextWrapping="Wrap"
-                                                AcceptsReturn="True"
-                                                VerticalScrollBarVisibility="Auto"/>
+										<StackPanel Orientation="Horizontal">
+											<Button Content="Сформировать шаблон" Command="{Binding GetTemplameMessageCommand}"  Margin="3,3"></Button>
+											<Button Content="Скопировать шаблон" Command="{Binding CopyTemplameMessageCommand}" Margin="3,3"></Button>
+										</StackPanel>
+
+										<!--РАСЧЕТ БРОНИ-->
+										<TextBlock Margin="0,0,0,0" 
+                                                   Width="70" 
+                                                   Height="20" 
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Расчет брони"/>
+
+										<TextBox Width="Auto" Height="50"/>
+
+										<!--ОПИСАНИЕ-->
+										<TextBlock Margin="0,0,0,0" 
+                                                   Width="70" 
+                                                   Height="20" 
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Описание"/>
+
+										<TextBox Width="Auto" Height="80"/>
+
+										<!--СФОРМИРОВАННЫЙ ШАБЛОН-->
+										<TextBlock Margin="0,0,0,0" 
+                                                   Width="70" 
+                                                   Height="20" 
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Описание"/>
+
+										<TextBox Text="{Binding SelectedTemplateMessage.TemplateMessageText}" 
+                                                    Width="Auto" 
+                                                    Height="200"/>  
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>
-							<StackPanel Name="StackPanelLeft_3"  Background="Yellow" Grid.Row="0" Grid.Column="2" Orientation="Vertical">
-								<TextBlock Margin="5" Width="100" Height="20" >Какой то текст</TextBlock>
-								<TextBox Text="{Binding Content}" Margin="5"
-                           TextWrapping="Wrap"
-                           AcceptsReturn="True"
-                           VerticalScrollBarVisibility="Auto"/>
+							<StackPanel Name="StackPanelLeft_3" 
+                                        Background="Yellow" 
+                                        Grid.Row="0"
+                                        Grid.Column="2" 
+                                        Orientation="Vertical">
+
+								<!--ИМЯ ФАЙЛА-->
+								<TextBlock Margin="0,0,0,0" 
+                                           Width="70" 
+                                           Height="20" 
+                                           HorizontalAlignment="Left" 
+                                           VerticalAlignment="Bottom" 
+                                           Text="Имя файла"/>    
+
+								<TextBox Width="Auto" />
+
+								<StackPanel Orientation="Horizontal">
+									<Button Margin="3,3">Создать имя файла</Button>
+									<Button Margin="3,3">Скопировать имя файла</Button>
+								</StackPanel>
+
 							</StackPanel>
 						</Grid>
 					</DataTemplate>

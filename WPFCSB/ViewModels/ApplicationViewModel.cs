@@ -5,7 +5,7 @@ using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
 {
-	internal class ApplicationViewModel : ViewModelBase
+	public class ApplicationViewModel : ViewModelBase
 	{
 		private ObservableCollection<TabBookingItemViewModel> _tabItems = new ObservableCollection<TabBookingItemViewModel>();
 		public ObservableCollection<TabBookingItemViewModel> TabItems
