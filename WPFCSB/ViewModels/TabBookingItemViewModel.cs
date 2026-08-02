@@ -235,31 +235,31 @@ namespace WPFCSB.ViewModels
 		/// <summary>Загрузка списка операций над бронированием</summary> // TODO: Разработать загрузку
 		private void LoadBookingOperationList()
 		{
-			BookingOperationList.Add(new BookingOperation(1, 1, "Заявка Отправить"));
+			BookingOperationList.Add(new BookingOperation(1, 1, "Заявка Отправить", "Заявка "));
 			BookingOperationList.Add(new BookingOperation(2, 2, "Заявка отправлена"));
-			BookingOperationList.Add(new BookingOperation(3, 3, "Коррекция Заявки Отправить"));
+			BookingOperationList.Add(new BookingOperation(3, 3, "Коррекция Заявки Отправить", "Коррекция заявки "));
 			BookingOperationList.Add(new BookingOperation(4, 4, "Коррекция Заявки отправлена"));
-			BookingOperationList.Add(new BookingOperation(5, 5, "Путевка Отправить"));
+			BookingOperationList.Add(new BookingOperation(5, 5, "Путевка Отправить", "Путевка "));
 			BookingOperationList.Add(new BookingOperation(6, 6, "Путевка Коррекция Отправить"));
 			BookingOperationList.Add(new BookingOperation(7, 7, "Путевка отправлена"));
 			BookingOperationList.Add(new BookingOperation(8, 8, "Путевка коррекция отправлена"));
-			BookingOperationList.Add(new BookingOperation(9, 9, "Подтверждение оплаты отправить"));
+			BookingOperationList.Add(new BookingOperation(9, 9, "Подтверждение оплаты отправить", "Подтверждение оплаты "));
 			BookingOperationList.Add(new BookingOperation(10, 10, "Подтверждение коррекция отправить"));
-			BookingOperationList.Add(new BookingOperation(11, 11, "Аннуляция Отправить"));
+			BookingOperationList.Add(new BookingOperation(11, 11, "Аннуляция Отправить", "Аннуляция "));
 			BookingOperationList.Add(new BookingOperation(12, 12, "Аннуляция отправлена "));
 			BookingOperationList.Add(new BookingOperation(13, 13, "Бронь оплаченная"));
 			BookingOperationList.Add(new BookingOperation(14, 14, "Бронь которую аннулируем"));
-			BookingOperationList.Add(new BookingOperation(15, 15, "Счет Отправить"));
-			BookingOperationList.Add(new BookingOperation(16, 16, "Счет на доплату Отправить"));
-			BookingOperationList.Add(new BookingOperation(17, 17, "Счет Коррекция Отправить"));
+			BookingOperationList.Add(new BookingOperation(15, 15, "Счет Отправить", "Счет "));
+			BookingOperationList.Add(new BookingOperation(16, 16, "Счет на доплату Отправить", "Счет на доплату "));
+			BookingOperationList.Add(new BookingOperation(17, 17, "Счет Коррекция Отправить", "Счет коррекция "));
 			BookingOperationList.Add(new BookingOperation(18, 18, "Ссылка на БО"));
 			BookingOperationList.Add(new BookingOperation(19, 19, "Рассрочка Т-банк"));
 			BookingOperationList.Add(new BookingOperation(20, 20, "Информация об оплате"));
 			BookingOperationList.Add(new BookingOperation(21, 21, "Информация об оплате отправлена"));
 			BookingOperationList.Add(new BookingOperation(22, 22, "Отмена письма"));
-			BookingOperationList.Add(new BookingOperation(23, 23, "РЖМ Заявка Отправить"));
+			BookingOperationList.Add(new BookingOperation(23, 23, "РЖМ Заявка Отправить", "РМЖ заявка "));
 			BookingOperationList.Add(new BookingOperation(24, 24, "РЖМ Заявка отправлена"));
-			BookingOperationList.Add(new BookingOperation(25, 25, "РЖМ Коррекция Заявки Отправить"));
+			BookingOperationList.Add(new BookingOperation(25, 25, "РЖМ Коррекция Заявки Отправить", "РМЖ Коррекция заявки "));
 			BookingOperationList.Add(new BookingOperation(26, 26, "РЖМ Коррекция Заявки отправлена"));
 		}
 
@@ -364,9 +364,9 @@ namespace WPFCSB.ViewModels
 				  {
 
 					  // 1. Определить какой шаблон выбран из списка шаблонов.
-					  // 1.1. Получаем ижентификатор шаблона из выбранной операции бронирования
-					  // TODO: Проверить, выбрана ли операция из списка
+					  // 1.1. Получаем ижентификатор шаблона из выбранной операции бронирования					  
 					  Int32 taxtTemplateID = SelectedBookingOperation.TextTemplateID;
+
 					  // 1.2. Находим, по полученному идентификатору, текстовый шаблон
 					  if (taxtTemplateID <= 0)
 					  {
@@ -426,8 +426,8 @@ namespace WPFCSB.ViewModels
 				return createFileNameCommand ??
 				  (createFileNameCommand = new RelayCommand(obj =>
 				  {
-
-					  MessageBox.Show("Создаем имя файла");
+					  FileName = SelectedBookingOperation.PrefixFileName;
+					 // MessageBox.Show("Создаем имя файла");
 
 				  }));
 			}

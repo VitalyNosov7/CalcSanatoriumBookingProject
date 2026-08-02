@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace WPFCSB.Models
 {
     /// <summary>Операция над бронированием</summary>
     public class BookingOperation
     {
-        public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName)
+        public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName, String prefixFileName)
         {
             BookingOperationID = bookingOperationID;
             BookingOperationName = bookingOperationName;
 			TextTemplateID = textTemplateID;
-
+			PrefixFileName = prefixFileName;
 		}
 
-        public BookingOperation() { }
+		public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName)
+		{
+			BookingOperationID = bookingOperationID;
+			BookingOperationName = bookingOperationName;
+			TextTemplateID = textTemplateID;
+		}
+
+		public BookingOperation() { }
 
         /// <summary>Идентификатор операции бронирования</summary>
         private Int32 _bookingOperationID;
@@ -45,5 +49,15 @@ namespace WPFCSB.Models
             set { _bookingOperationName = value; }
         }
 
-    }
+		/// <summary>Префикс для именования файла документа</summary>
+		private String _prefixFileName = String.Empty;
+		/// <summary>Префикс для именования файла документа</summary>
+		public String PrefixFileName
+		{
+			get { return _prefixFileName; }
+			set { _prefixFileName = value; }
+		}
+
+
+	}
 }
