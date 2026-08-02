@@ -1,10 +1,10 @@
 ﻿
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Interop;
 using WPFCSB.Commands;
 using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WPFCSB.ViewModels
 {
@@ -40,6 +40,38 @@ namespace WPFCSB.ViewModels
 			get => _content!;
 			set => Set(ref _content, value);
 		}
+
+		#region ГОСТИ
+
+		/// <summary>Список менеджеров</summary>
+		private ObservableCollection<Person> _guestList = new ObservableCollection<Person>();
+		/// <summary>Список менеджеров</summary>
+		public ObservableCollection<Person> GuestList
+		{
+			get { return _guestList; }
+			set => Set(ref _guestList, value);
+		}
+
+		/// <summary>Выбранный гость</summary>
+		private Person _selectedGuest;
+		/// <summary>Выбранный гость</summary>
+		public Person SelectedGuest
+		{
+			get { return _selectedGuest; }
+			set => Set(ref _selectedGuest, value);
+		}
+
+
+		/// <summary>ФИО основного гостя</summary>
+		private String _fullNameMainGuest;
+		/// <summary>ФИО основного гостя</summary>
+		public String FullNameMainGuest
+		{
+			get { return _fullNameMainGuest; }
+			set => Set(ref _fullNameMainGuest, value);
+		}
+
+		#endregion ГОСТИ
 
 		#region МЕНЕДЖЕРЫ
 
@@ -347,6 +379,36 @@ namespace WPFCSB.ViewModels
 			timeInterval = endDatePeriodBooking - startDatePeriodBooking;
 
 			return timeInterval;
+
+		}
+
+		/// <summary>Получить из полного ФИО - сокращенное</summary>
+		/// <param name="fullName">Полное ФИО</param>
+		/// <returns></returns>
+		public  String GetSurnameWithInitials(String fullName)
+		{
+			if (String.IsNullOrWhiteSpace(fullName))
+				return String.Empty;
+
+			var parts = fullName
+				.Trim()
+				.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+			if (parts.Length == 0)
+				return String.Empty;
+
+			String surname = parts[0].Trim();
+
+			if (parts.Length == 1)
+				return surname;
+
+			Char firstInitial = Char.ToUpper(parts[1][0]);
+
+			if (parts.Length == 2)
+				return $"{surname} {firstInitial}.";
+
+			Char secondInitial = Char.ToUpper(parts[2][0]);
+			return $"{surname} {firstInitial}.{secondInitial}.";
 		}
 
 		#endregion МЕТОДЫ
@@ -426,7 +488,9 @@ namespace WPFCSB.ViewModels
 				return createFileNameCommand ??
 				  (createFileNameCommand = new RelayCommand(obj =>
 				  {
-					  FileName = SelectedBookingOperation.PrefixFileName;
+					  FileName = SelectedBookingOperation.PrefixFileName + 
+					  " в санаторий " + SelectedSanatorium.SanatoriumName +
+					  " " + GetSurnameWithInitials(FullNameMainGuest);
 					 // MessageBox.Show("Создаем имя файла");
 
 				  }));

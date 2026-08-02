@@ -81,7 +81,7 @@
                                                 HorizontalAlignment="Left" 
                                                 VerticalAlignment="Bottom" 
                                                 Text="ФИО гостя"/>
-										<TextBox Text="" 
+										<TextBox Text="{Binding FullNameMainGuest}" 
                                                 Margin="3,0,3,1"
                                                 TextWrapping="Wrap"
                                                 AcceptsReturn="True"
