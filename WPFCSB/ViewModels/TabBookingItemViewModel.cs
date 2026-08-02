@@ -439,6 +439,7 @@ namespace WPFCSB.ViewModels
 						  if (TemplateMessageList != null)
 						  {
 							  SelectedTemplateMessage = TemplateMessageList.FirstOrDefault(textTemplate => textTemplate.TemplateMessageID == taxtTemplateID);
+							  CreateFileNameCommand.Execute(null);
 						  }
 						  else
 						  {
