@@ -4,6 +4,7 @@ using System.Windows;
 using WPFCSB.Commands;
 using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WPFCSB.ViewModels
 {
@@ -386,8 +387,33 @@ namespace WPFCSB.ViewModels
 				  (copyTemplameMessageCommand = new RelayCommand(obj =>
 				  {
 					  // 1. Скопировать в буфер сформированный шаблон.
+					  if(SelectedTemplateMessage != null)
+					  {
+						  Clipboard.SetText(SelectedTemplateMessage.TemplateMessageText);
+					  }
+					  else
+					  {
+						// TODO: Необхожимо грамотно обработать исключение!
+						  MessageBox.Show("Объект SelectedTemplateMessage, в классе TabBookingItemViewModel, равег значению null!");
+					  }
+			
 
-					  MessageBox.Show("Команда CopyTemplameMessageCommand");
+				  }));
+			}
+		}
+
+
+		// Сформировать имя файла
+		private RelayCommand? createFileNameCommand;
+		public RelayCommand CreateFileNameCommand
+		{
+			get
+			{
+				return createFileNameCommand ??
+				  (createFileNameCommand = new RelayCommand(obj =>
+				  {
+					 
+
 
 				  }));
 			}
