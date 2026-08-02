@@ -48,9 +48,10 @@ namespace WPFCSB.ViewModels
 						  newTab.Header = $"Tab {TabItems.Count + 1}";
 						  newTab.Content = $"Content of tab {TabItems.Count + 1}";
 						  newTab.SelectedManager = new Manager();
-						  newTab.SelectedSanatorium = new Sanatorium();						 
+						  newTab.SelectedSanatorium = new Sanatorium();
 						  newTab.NumberNightsBooked = newTab.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;
-						  newTab.SelectedBookingOperation = new BookingOperation();
+						  // TODO: Необходимо реализовать инициализацию данных
+						  newTab.SelectedBookingOperation = newTab.BookingOperationList.FirstOrDefault(bookingOperatio => bookingOperatio.BookingOperationID == 15);
 					  }
 					  ;
 					  TabItems.Add(newTab);
@@ -85,26 +86,6 @@ namespace WPFCSB.ViewModels
 				  }));
 			}
 		}
-
-		//// Получить количество ночей
-		//private RelayCommand? numberOfNightsCommand;
-		//public RelayCommand NumberOfNightsCommand
-		//{
-		//	get
-		//	{
-		//		return numberOfNightsCommand ??
-		//		  (numberOfNightsCommand = new RelayCommand(obj =>
-		//		  {
-		//			  var currentTab = new TabBookingItemViewModel();
-		//			  {
-		//				  TimeSpan difference = currentTab.CurrentBookingPeriod.EndDatePeriodBooking -
-		//				  currentTab.CurrentBookingPeriod.StartDatePeriodBooking;
-		//				  currentTab.NumberOfNights = difference.Days;
-		//			  }
-
-		//		  }));
-		//	}
-		//}
 
 		#endregion КОМАНДЫ
 
