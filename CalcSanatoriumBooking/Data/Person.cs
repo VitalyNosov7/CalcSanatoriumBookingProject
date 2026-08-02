@@ -5,6 +5,31 @@ namespace CalcSanatoriumBooking.Data
 	/// <summary>   Информация о персоне.   </summary>
 	public class Person
 	{
+
+		/// <summary>	Создать персону.	</summary>
+		/// <param name="personId">Идентификатор персоны</param>
+		/// <param name="surname">Фамилия персоны</param>
+		/// <param name="name">Имя персоны</param>
+		/// <param name="patronymic">Отчество персоны</param>
+		/// <param name="birthdate">Дата роджения персоны</param>
+		/// <param name="gender">Пол персоны</param>
+		public Person(Int32 personId
+						, String surname
+						, String name
+						, String patronymic
+						, DateTime birthdate
+						, Gender gender)
+		{
+			PersonID = personId;
+			Surname = surname;
+			Name = name;
+			Patronymic = patronymic;
+			Birthdate = birthdate;
+			Gender = gender;
+		}
+
+		public Person() { }
+
 		/// <summary>   Идентификатор персоны.  </summary>
 		private Int32 _personID = default;
 
@@ -64,28 +89,50 @@ namespace CalcSanatoriumBooking.Data
 			set { _gender = value; }
 		}
 
-		/// <summary>	Создать персону.	</summary>
-		/// <param name="personId">Идентификатор персоны</param>
-		/// <param name="surname">Фамилия персоны</param>
-		/// <param name="name">Имя персоны</param>
-		/// <param name="patronymic">Отчество персоны</param>
-		/// <param name="birthdate">Дата роджения персоны</param>
-		/// <param name="gender">Пол персоны</param>
-		public Person(Int32 personId
-						, String surname
-						, String name
-						, String patronymic
-						, DateTime birthdate
-						, Gender gender)
+		/// <summary>Получить полную ФИО</summary>
+		//public String GetFullName => $"{Surname} {Name} {Patronymic}".Trim(); // Сокращенный вариант
+		public String GetFullName()
 		{
-			PersonID = personId;
-			Surname = surname;
-			Name = name;
-			Patronymic = patronymic;
-			Birthdate = birthdate;
-			Gender = gender;
+			String returnableFullName = String.Empty;
+
+			if (String.IsNullOrEmpty(Surname))
+			{
+				return returnableFullName;
+			}
+			else
+			{
+				returnableFullName = $"{Surname} {Name} {Patronymic}".Trim();
+			}			
+
+			return returnableFullName;
 		}
-		public Person() { }
+
+
+		/// <summary>Получить сокращенную ФИО(фамилия и инициалы)</summary>
+		//public String GetSurnameWithInitials => String.IsNullOrEmpty(Patronymic)
+		//		? $"{Surname} {Name[0]}."
+		//		: $"{Surname} {Name[0]}.{Patronymic[0]}.";  // Сокращенный вариант
+
+		public String GetSurnameWithInitials()
+		{
+			String returnableSurnameWithInitials = String.Empty;
+
+			if (String.IsNullOrEmpty(Surname))
+			{
+				return returnableSurnameWithInitials;
+			}
+			if (String.IsNullOrEmpty(Patronymic))
+			{
+				returnableSurnameWithInitials = $"{Surname} {Name[0]}.";
+				return returnableSurnameWithInitials;
+			}
+			else
+			{
+				returnableSurnameWithInitials = $"{Surname} {Name[0]}.{Patronymic[0]}.";
+				return returnableSurnameWithInitials;
+			}
+		}
+		
 
 	}
 }
