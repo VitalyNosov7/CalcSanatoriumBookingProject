@@ -325,18 +325,18 @@
                                         Orientation="Vertical">
 
 								<!--ИМЯ ФАЙЛА-->
-								<TextBlock Margin="0,0,0,0" 
+								<TextBlock Margin="3,0,0,0" 
                                            Width="70" 
                                            Height="20" 
                                            HorizontalAlignment="Left" 
                                            VerticalAlignment="Bottom" 
-                                           Text="Имя файла"/>    
+                                           Text="Имя файла"/>
 
-								<TextBox Width="Auto" />
+								<TextBox Text="{Binding FileName}" Width="Auto" />
 
 								<StackPanel Orientation="Horizontal">
-									<Button Margin="3,3">Создать имя файла</Button>
-									<Button Margin="3,3">Скопировать имя файла</Button>
+									<Button Content="Создать имя файла" Command="{Binding CreateFileNameCommand}" Margin="3,3"></Button>
+									<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button> 
 								</StackPanel>
 
 							</StackPanel>

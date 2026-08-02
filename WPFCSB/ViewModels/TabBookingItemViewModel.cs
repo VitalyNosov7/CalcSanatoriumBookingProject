@@ -318,6 +318,20 @@ namespace WPFCSB.ViewModels
 
 		#endregion ШФБЛОНЫ
 
+		#region ФОРМИРОВАНИЕ ИМЕНИ ФАЙЛА
+
+		/// <summary>Имя файла документа</summary>
+		private String _fileName = String.Empty;
+		/// <summary>Имя файла документа</summary>
+		public String FileName
+		{
+			get { return _fileName; }
+			set => Set(ref _fileName!, value);
+		}
+
+
+		#endregion ФОРМИРОВАНИЕ ИМЕНИ ФАЙЛА
+
 		#endregion КОНТЕНТ
 
 		#region МЕТОДЫ
@@ -412,7 +426,32 @@ namespace WPFCSB.ViewModels
 				return createFileNameCommand ??
 				  (createFileNameCommand = new RelayCommand(obj =>
 				  {
-					 
+
+					  MessageBox.Show("Создаем имя файла");
+
+				  }));
+			}
+		}
+
+		// Скопировать имя файлв
+		private RelayCommand? copyFileNameCommand;
+		public RelayCommand CopyFileNameCommand
+		{
+			get
+			{
+				return copyFileNameCommand ??
+				  (copyFileNameCommand = new RelayCommand(obj =>
+				  {
+					  // 1. Скопировать в буфер сформированный шаблон.
+					  if (FileName != null)
+					  {
+						  Clipboard.SetText(FileName);
+					  }
+					  else
+					  {
+						  // TODO: Необхожимо грамотно обработать исключение!
+						  MessageBox.Show("Объект FileName, в классе TabBookingItemViewModel, равег значению null!");
+					  }
 
 
 				  }));
