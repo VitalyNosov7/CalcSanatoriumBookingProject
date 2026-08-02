@@ -261,7 +261,11 @@ namespace WPFCSB.ViewModels
 		public BookingOperation SelectedBookingOperation
 		{
 			get { return _selectedBookingOperation; }
-			set => Set(ref _selectedBookingOperation, value);
+			set 
+			{
+				Set(ref _selectedBookingOperation, value);
+				GetTemplameMessageCommand.Execute(null);
+			} 
 		}
 
 		/// <summary>Загрузка списка операций над бронированием</summary> // TODO: Разработать загрузку
@@ -432,7 +436,7 @@ namespace WPFCSB.ViewModels
 					  // 1.2. Находим, по полученному идентификатору, текстовый шаблон
 					  if (taxtTemplateID <= 0)
 					  {
-						  MessageBox.Show("Необходимо выбрать операцию!");
+						  //MessageBox.Show("Необходимо выбрать операцию!");
 					  }
 					  else
 					  {
