@@ -87,15 +87,48 @@ namespace WPFCSB.Models
 			set { _gender = value; }
 		}
 
-		/// <summary>Получить полное имя(ФИО) персоны.</summary>
-		/// <returns>Полное имя(ФИО) персоны.</returns>
-		public String GetFullNamePerson()
+		/// <summary>Получить полную ФИО</summary>
+		//public String GetFullName => $"{Surname} {Name} {Patronymic}".Trim(); // Сокращенный вариант
+		public String GetFullName()
 		{
-			String fullNamePerson = String.Empty;
+			String returnableFullName = String.Empty;
 
-			fullNamePerson = Surname.Trim() + " " + Name.Trim() + " " + Patronymic.Trim();
+			if (String.IsNullOrEmpty(Surname))
+			{
+				return returnableFullName;
+			}
+			else
+			{
+				returnableFullName = $"{Surname} {Name} {Patronymic}".Trim();
+			}
 
-			return fullNamePerson;
+			return returnableFullName;
+		}
+
+
+		/// <summary>Получить сокращенную ФИО(фамилия и инициалы)</summary>
+		//public String GetSurnameWithInitials => String.IsNullOrEmpty(Patronymic)
+		//		? $"{Surname} {Name[0]}."
+		//		: $"{Surname} {Name[0]}.{Patronymic[0]}.";  // Сокращенный вариант
+
+		public String GetSurnameWithInitials()
+		{
+			String returnableSurnameWithInitials = String.Empty;
+
+			if (String.IsNullOrEmpty(Surname))
+			{
+				return returnableSurnameWithInitials;
+			}
+			if (String.IsNullOrEmpty(Patronymic))
+			{
+				returnableSurnameWithInitials = $"{Surname} {Name[0]}.";
+				return returnableSurnameWithInitials;
+			}
+			else
+			{
+				returnableSurnameWithInitials = $"{Surname} {Name[0]}.{Patronymic[0]}.";
+				return returnableSurnameWithInitials;
+			}
 		}
 	}
 }
