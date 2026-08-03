@@ -30,5 +30,15 @@
 			get { return _sanatoriumName; }
 			set { _sanatoriumName = value; }
 		}
+
+        /// <summary> Электронная почта санатория.</summary>
+        private String _emailSanatorium = String.Empty;
+        /// <summary> Электронная почта санатория.</summary>
+        public String EmailSanatorium
+        {
+			get { return _emailSanatorium ; }
+			set { _emailSanatorium = value; }
+		}
+
 	}
 }
