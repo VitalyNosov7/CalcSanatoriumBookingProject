@@ -3,10 +3,11 @@
 	/// <summary>   Санаторий.  </summary>
 	public class Sanatorium
 	{
-		public Sanatorium(Int32 sanatoriumID, String sanatoriumName)
+		public Sanatorium(Int32 sanatoriumID, String sanatoriumName, String emailSanatorium)
 		{
 			SanatoriumID = sanatoriumID;
 			SanatoriumName = sanatoriumName;
+			EmailSanatorium = emailSanatorium;
 		}
 
 		public Sanatorium()	{}

@@ -172,14 +172,14 @@ namespace WPFCSB.ViewModels
         /// <summary>Загрузка списка санаториев</summary> // TODO: Разработать загрузку
         private void LoadSanatoriumList()
         {
-            SanatoriumList.Add(new Sanatorium(1, "Планета"));
-            SanatoriumList.Add(new Sanatorium(2, "Киев"));
-            SanatoriumList.Add(new Sanatorium(3, "Озеро Сновидений"));
-            SanatoriumList.Add(new Sanatorium(4, "Рябинка"));
-            SanatoriumList.Add(new Sanatorium(5, "Сакрополь"));
-            SanatoriumList.Add(new Sanatorium(6, "Узбекистан"));
-            SanatoriumList.Add(new Sanatorium(7, "ТЭС"));
-            SanatoriumList.Add(new Sanatorium(8, "Новый санаторий"));
+            SanatoriumList.Add(new Sanatorium(1, "Планета", "olgaakopyan@mail.ru"));
+            SanatoriumList.Add(new Sanatorium(2, "Киев", "alushtasankiev-rus@mail.ru"));
+            SanatoriumList.Add(new Sanatorium(3, "Озеро Сновидений", "admin@o-snov.com"));
+            SanatoriumList.Add(new Sanatorium(4, "Рябинка", "ribinka.buh@inbox.ru"));
+            SanatoriumList.Add(new Sanatorium(5, "Сакрополь", "sakropol@yandex.ru"));
+            SanatoriumList.Add(new Sanatorium(6, "Узбекистан", "marketing@yalta-uzbekistan.ru"));
+            SanatoriumList.Add(new Sanatorium(7, "ТЭС", "teshotel@rambler.ru"));
+            SanatoriumList.Add(new Sanatorium(8, "Новый санаторий", ""));
         }
 
         #endregion САНАТОРИИ
