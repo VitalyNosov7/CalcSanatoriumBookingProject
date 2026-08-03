@@ -351,7 +351,9 @@ namespace WPFCSB.ViewModels
         /// <summary>Загрузка списка шаблонов текста сообщений</summary> // TODO: Разработать загрузку
         private void LoadTemplateMessageList()
         {
-            TemplateMessageList.Add(new TemplateMessage(1, $"{SelectedSanatorium.EmailSanatorium}\r\nЗаявка   на {StartDatePeriodBooking} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{/*Расчет брони*/} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
+            // TODO: Разобраться, почему не затягивает почту в шаблон!
+
+            TemplateMessageList.Add(new TemplateMessage(1, $"{SelectedSanatorium.EmailSanatorium}\r\nЗаявка   на {StartDatePeriodBooking.Day} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
             TemplateMessageList.Add(new TemplateMessage(2, "Шаблон Заявка отправлена"));
             TemplateMessageList.Add(new TemplateMessage(3, "Шаблон Коррекция Заявки Отправить"));
             TemplateMessageList.Add(new TemplateMessage(4, "Шаблон Коррекция Заявки отправлена"));
