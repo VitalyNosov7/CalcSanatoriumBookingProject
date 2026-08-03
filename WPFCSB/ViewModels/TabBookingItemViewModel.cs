@@ -300,6 +300,34 @@ namespace WPFCSB.ViewModels
 
         #endregion ОПЕРАЦИИ БРОНИРОВАНИЯ
 
+        #region РАСЧЕТ БРОНИРОВАНИЯ
+
+        /// <summary>Расчет бронирования строковое представление</summary>
+        private String _calcBookingString;
+        /// <summary>Расчет бронирования строковое представление</summary>
+        public String CalcBookingString
+        {
+            get { return _calcBookingString; }
+            set => Set(ref _calcBookingString, value);
+        }
+
+
+        #endregion РАСЧЕТ БРОНИРОВАНИЯ
+
+        #region ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ БРНИРОВАНИЯ
+
+        /// <summary>Описание бронирования(дополнительная информация для формирования шаблона)</summary>
+        private String _descriptionBooking;
+        /// <summary>Описание бронирования(дополнительная информация для формирования шаблона)</summary>
+        public String DescriptionBooking
+        {
+            get { return _descriptionBooking; }
+            set => Set(ref _descriptionBooking, value);
+        }
+
+
+        #endregion ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ БРНИРОВАНИЯ
+
         #region ШФБЛОНЫ
 
         /// <summary>Список шаблонов текста сообщений</summary>
@@ -323,7 +351,7 @@ namespace WPFCSB.ViewModels
         /// <summary>Загрузка списка шаблонов текста сообщений</summary> // TODO: Разработать загрузку
         private void LoadTemplateMessageList()
         {
-            TemplateMessageList.Add(new TemplateMessage(1, "Шаблон Заявка Отправить"));
+            TemplateMessageList.Add(new TemplateMessage(1, $"{SelectedSanatorium.EmailSanatorium}\r\nЗаявка   на {StartDatePeriodBooking} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{/*Расчет брони*/} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
             TemplateMessageList.Add(new TemplateMessage(2, "Шаблон Заявка отправлена"));
             TemplateMessageList.Add(new TemplateMessage(3, "Шаблон Коррекция Заявки Отправить"));
             TemplateMessageList.Add(new TemplateMessage(4, "Шаблон Коррекция Заявки отправлена"));
