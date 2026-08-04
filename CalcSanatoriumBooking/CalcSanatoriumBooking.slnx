@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="../CalcSanatoriumBooking.UnitTests/CalcSanatoriumBooking.UnitTests.csproj" Id="e65c1304-02b3-4058-81bd-ded7aeee437f" />
+  <Project Path="../CollectionLAB/CollectionLAB.csproj" Id="5bc24941-a987-4ce2-b556-a1a57483e8ce" />
   <Project Path="../LabLINQ/LabLINQ.csproj" Id="30ff1087-af4d-4c7a-a1e1-173923d8f968" />
   <Project Path="../WPFCSB/WPFCSB.csproj" Id="773ba62e-404d-49c1-9624-59b761eb8622" />
   <Project Path="CalcSanatoriumBooking.csproj" />

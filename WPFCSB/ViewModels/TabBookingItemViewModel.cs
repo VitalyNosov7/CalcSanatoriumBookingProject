@@ -328,7 +328,7 @@ namespace WPFCSB.ViewModels
 
         #endregion ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ БРНИРОВАНИЯ
 
-        #region ШФБЛОНЫ
+        #region ШАБЛОНЫ
 
         /// <summary>Список шаблонов текста сообщений</summary>
         private ObservableCollection<TemplateMessage> _templateMessageList = new ObservableCollection<TemplateMessage>();
@@ -353,7 +353,8 @@ namespace WPFCSB.ViewModels
         {
             // TODO: Разобраться, почему не затягивает почту в шаблон!
 
-            TemplateMessageList.Add(new TemplateMessage(1, $"{SelectedSanatorium.EmailSanatorium}\r\nЗаявка   на {StartDatePeriodBooking.Day} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
+            //TemplateMessageList.Add(new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
+            TemplateMessageList.Add(new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
             TemplateMessageList.Add(new TemplateMessage(2, "Шаблон Заявка отправлена"));
             TemplateMessageList.Add(new TemplateMessage(3, "Шаблон Коррекция Заявки Отправить"));
             TemplateMessageList.Add(new TemplateMessage(4, "Шаблон Коррекция Заявки отправлена"));
@@ -381,7 +382,7 @@ namespace WPFCSB.ViewModels
             TemplateMessageList.Add(new TemplateMessage(26, "Шаблон РЖМ Коррекция Заявки отправлена"));
         }
 
-        #endregion ШФБЛОНЫ
+        #endregion ШАБЛОНЫ
 
         #region ФОРМИРОВАНИЕ ИМЕНИ ФАЙЛА
 
