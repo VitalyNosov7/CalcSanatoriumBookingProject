@@ -348,6 +348,24 @@ namespace WPFCSB.ViewModels
             set => Set(ref _selectedTemplateMessage!, value);
         }
 
+        /// <summary>Словарь переменных для шаблона</summary>
+        private Dictionary<String,String> _templateVariableDictionary;
+        /// <summary>Словарь переменных для шаблона</summary>
+        public Dictionary<String,String> TemplateVariableDictionary
+        {
+            get { return _templateVariableDictionary; }
+            set => Set(ref _templateVariableDictionary!, value);
+        }
+
+        private void LoadTemplateVariableDictionary()
+        {
+            TemplateVariableDictionary.Add("EmailSanatorium", "Значение ключа EmailSanatorium отсутствует");
+            TemplateVariableDictionary.Add("StartDatePeriodBooking", "Значение ключа StartDatePeriodBooking отсутствует");
+            TemplateVariableDictionary.Add("SurnameWithInitials", "Значение ключа SurnameWithInitials отсутствует");
+            TemplateVariableDictionary.Add("CalcBookingString", "Значение ключа CalcBookingString отсутствует");
+        }
+
+
         /// <summary>Загрузка списка шаблонов текста сообщений</summary> // TODO: Разработать загрузку
         private void LoadTemplateMessageList()
         {
@@ -381,6 +399,8 @@ namespace WPFCSB.ViewModels
             TemplateMessageList.Add(new TemplateMessage(25, "Шаблон РЖМ Коррекция Заявки Отправить"));
             TemplateMessageList.Add(new TemplateMessage(26, "Шаблон РЖМ Коррекция Заявки отправлена"));
         }
+
+
 
         #endregion ШАБЛОНЫ
 
