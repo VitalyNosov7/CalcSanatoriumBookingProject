@@ -31,6 +31,14 @@ namespace WPFCSB.Models
 			set { _templateMessageText = value; }
 		}
 
+		/// <summary>Переменные текста шаблона </summary>
+		private Dictionary<String,String> _textTemplateVariables = new Dictionary<String, String>();
+		/// <summary>Переменные текста шаблона </summary>
+		public Dictionary<String,String> TextTemplateVariables
+		{
+			get { return _textTemplateVariables; }
+			set { _textTemplateVariables = value; }
+		}
 
 	}
 }

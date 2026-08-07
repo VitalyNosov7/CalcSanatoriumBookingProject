@@ -15,7 +15,8 @@ namespace WPFCSB.ViewModels
             LoadSanatoriumList();
             LoadBookingOperationList();
             LoadTemplateMessageList();
-        }
+            LoadTemplateVariableDictionary();
+		}
 
         #region ЗАГОЛОВОК
         /// <summary>Заголовок вкладки.</summary>
@@ -166,7 +167,12 @@ namespace WPFCSB.ViewModels
         public Sanatorium SelectedSanatorium
         {
             get { return _selectedSanatorium; }
-            set => Set(ref _selectedSanatorium, value);
+            set
+            {
+                Set(ref _selectedSanatorium, value);
+				GetTemplameMessageCommand.Execute(null);
+
+			}
         }
 
         /// <summary>Загрузка списка санаториев</summary> // TODO: Разработать загрузку
@@ -348,10 +354,20 @@ namespace WPFCSB.ViewModels
             set => Set(ref _selectedTemplateMessage!, value);
         }
 
+
+        private String _resultTemplate;
+
+        public String ResultTemplate
+		{
+            get { return _resultTemplate; }
+			set => Set(ref _resultTemplate!, value);
+		}
+
+
         /// <summary>Словарь переменных для шаблона</summary>
-        private Dictionary<String,String> _templateVariableDictionary;
+        private Dictionary<String, String> _templateVariableDictionary = new Dictionary<String, String>();
         /// <summary>Словарь переменных для шаблона</summary>
-        public Dictionary<String,String> TemplateVariableDictionary
+        public Dictionary<String, String> TemplateVariableDictionary
         {
             get { return _templateVariableDictionary; }
             set => Set(ref _templateVariableDictionary!, value);
@@ -364,6 +380,14 @@ namespace WPFCSB.ViewModels
             TemplateVariableDictionary.Add("SurnameWithInitials", "Значение ключа SurnameWithInitials отсутствует");
             TemplateVariableDictionary.Add("CalcBookingString", "Значение ключа CalcBookingString отсутствует");
         }
+
+        //     private void LoadTemplateVariableDictionary()
+        //     {
+        //SelectedTemplateMessage?.TextTemplateVariables.Add("EmailSanatorium", "Значение ключа EmailSanatorium отсутствует");
+        //SelectedTemplateMessage?.TextTemplateVariables.Add("StartDatePeriodBooking", "Значение ключа StartDatePeriodBooking отсутствует");
+        //SelectedTemplateMessage?.TextTemplateVariables.Add("SurnameWithInitials", "Значение ключа SurnameWithInitials отсутствует");
+        //SelectedTemplateMessage?.TextTemplateVariables.Add("CalcBookingString", "Значение ключа CalcBookingString отсутствует");
+        //     }
 
 
         /// <summary>Загрузка списка шаблонов текста сообщений</summary> // TODO: Разработать загрузку
@@ -494,7 +518,48 @@ namespace WPFCSB.ViewModels
                           {
                               SelectedTemplateMessage = TemplateMessageList.FirstOrDefault(textTemplate => textTemplate.TemplateMessageID == taxtTemplateID);
                               CreateFileNameCommand.Execute(null!);
-                          }
+
+
+							  //var values = new Dictionary<string, object>
+							  //{
+							  // ["Name"] = "Анна",
+							  // ["Age"] = 30,
+							  // ["City"] = "Москва",
+							  // ["Role"] = "Разработчик"
+							  //};
+
+							  //string template = "Привет, {Name}! Тебе {Age} лет, ты живёшь в {City} и работаешь как {Role}.";
+
+							  //string result = template;
+							  //foreach (var kvp in values)
+							  //{
+							  // result = result.Replace($"{{{kvp.Key}}}", kvp.Value.ToString());
+							  //}
+
+							  //String templateMessage = SelectedTemplateMessage!.TemplateMessageText;
+							  //                     String resultMessage = templateMessage;
+
+							  //                     foreach (var item in SelectedTemplateMessage.TextTemplateVariables)
+							  //                     {
+							  //                         resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
+							  //}
+
+							  //SelectedTemplateMessage.TemplateMessageText = resultMessage;
+
+							  String templateMessage = SelectedTemplateMessage!.TemplateMessageText;
+							  String resultMessage = templateMessage;
+
+							  TemplateVariableDictionary["EmailSanatorium"] = SelectedSanatorium.EmailSanatorium;
+
+							  foreach (var item in TemplateVariableDictionary)
+							  {
+								  resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
+							  }
+                              ResultTemplate = resultMessage;
+							  //SelectedTemplateMessage.TemplateMessageText = resultMessage;
+         //                     MessageBox.Show(resultMessage);
+							  //MessageBox.Show(SelectedTemplateMessage.TemplateMessageText);
+						  }
                           else
                           {
                               // TODO: обработать исключение!
