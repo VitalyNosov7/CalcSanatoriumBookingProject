@@ -3,10 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
+        xmlns:ts="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+
         xmlns:local="clr-namespace:WPFCSB"
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
-        Title="Окно" Height="800" Width="1600">
+        Title="Окно" Height="800" Width="1200">
 
 	<DockPanel LastChildFill="True" Margin="5">
 		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
@@ -81,7 +86,7 @@
                                                 HorizontalAlignment="Left" 
                                                 VerticalAlignment="Bottom" 
                                                 Text="ФИО гостя"/>
-										<TextBox Text="{Binding FullNameMainGuest}" 
+										<TextBox Text="{Binding FullNameMainGuest, UpdateSourceTrigger=PropertyChanged}" 
                                                 Margin="3,0,3,1"
                                                 TextWrapping="Wrap"
                                                 AcceptsReturn="True"
@@ -97,16 +102,20 @@
 										<ComboBox x:Name="ManagerFIO"
                                                   Margin="3,0,3,1"
                                                   ItemsSource="{Binding ManagerList}"
-                                                  SelectedItem="{Binding SelectedManager}">
+                                                  SelectedItem="{Binding SelectedManager,UpdateSourceTrigger=PropertyChanged}"                                                 
+                                                  DisplayMemberPath="Name"
+                                                  IsTextSearchEnabled="True"                                            
+                                                  TextSearch.TextPath="ManagerPerson.FullNamePerson">
+
+
 											<ComboBox.ItemTemplate>
 												<DataTemplate>
 													<TextBlock>
 														<TextBlock.Text>
-															<MultiBinding StringFormat="{}{0} {1} {2}">
-																<Binding Path="ManagerPerson.Surname"/>
-																<Binding Path="ManagerPerson.Name"/>
-																<Binding Path="ManagerPerson.Patronymic"/>
+																<MultiBinding StringFormat="{}{0}">										
+																<Binding Path="ManagerPerson.FullNamePerson"/>
 															</MultiBinding>
+															
 														</TextBlock.Text>
 													</TextBlock>
 												</DataTemplate>
@@ -123,7 +132,10 @@
 										<ComboBox x:Name="Sanatorium"
                                                   Margin="3,0,3,1"
                                                   ItemsSource="{Binding SanatoriumList}"
-                                                  SelectedItem="{Binding SelectedSanatorium, Mode=TwoWay}">
+                                                  SelectedItem="{Binding SelectedSanatorium, UpdateSourceTrigger=PropertyChanged}"
+                                                  DisplayMemberPath="Name"
+                                                  IsTextSearchEnabled="True"                                            
+                                                  TextSearch.TextPath="SanatoriumName">
 											<ComboBox.ItemTemplate>
 												<DataTemplate>
 													<TextBlock>
@@ -262,11 +274,14 @@
                                                  HorizontalAlignment="Left" 
                                                  VerticalAlignment="Bottom" 
                                                 Text="Операция"/>
-                                        <ComboBox x:Name="MessageTemplate"
+										<ComboBox x:Name="MessageTemplate"
                                                   Margin="3,0,3,1"
                                                   ItemsSource="{Binding BookingOperationList}"
-                                                  SelectedItem="{Binding SelectedBookingOperation}">
-                                            <ComboBox.ItemTemplate>
+                                                  SelectedItem="{Binding SelectedBookingOperation, UpdateSourceTrigger=PropertyChanged}"
+                                                  DisplayMemberPath="Name"
+                                                  IsTextSearchEnabled="True"                                            
+                                                  TextSearch.TextPath="BookingOperationName">
+											<ComboBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <TextBlock>
                                                         <TextBlock.Text>
@@ -292,7 +307,9 @@
                                                    VerticalAlignment="Bottom" 
                                                    Text="Расчет брони"/>
 
-                                        <TextBox Text="{Binding CalcBookingString}" Width="Auto" Height="50"/>
+										<TextBox Text="{Binding CalcBookingString, UpdateSourceTrigger=PropertyChanged}" 
+                                                Width="Auto" 
+                                                Height="50"/>
 
 										<!--ОПИСАНИЕ-->
 										<TextBlock Margin="0,0,0,0" 
@@ -302,7 +319,9 @@
                                                    VerticalAlignment="Bottom" 
                                                    Text="Описание"/>
 
-										<TextBox Width="Auto" Height="80"/>
+										<TextBox Width="Auto" 
+                                                 Height="80"
+                                                 Text="{Binding DescriptionBooking,UpdateSourceTrigger=PropertyChanged}"/>   
 
 										<!--СФОРМИРОВАННЫЙ ШАБЛОН-->
 										<TextBlock Margin="0,0,0,0" 

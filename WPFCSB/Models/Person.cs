@@ -25,6 +25,7 @@ namespace WPFCSB.Models
 			Patronymic = patronymic;
 			Birthdate = birthdate;
 			Gender = gender;
+			FullNamePerson = GetFullName();
 		}
 		public Person() { }
 
@@ -42,7 +43,7 @@ namespace WPFCSB.Models
 		private String _surname = String.Empty;
 
 		/// <summary>   Фамилия персоны </summary>
-		public string Surname
+		public String Surname
 		{
 			get { return _surname; }
 			set { _surname = value; }
@@ -52,7 +53,7 @@ namespace WPFCSB.Models
 		private String _name = String.Empty;
 
 		/// <summary>   Имя персоны </summary>
-		public string Name
+		public String Name
 		{
 			get { return _name; }
 			set { _name = value; }
@@ -67,6 +68,17 @@ namespace WPFCSB.Models
 			get { return _patronymic; }
 			set { _patronymic = value; }
 		}
+
+		/// <summary>Полная ФИО персоны</summary>
+		private String _fullNamePerson = String.Empty;
+
+		/// <summary>Полная ФИО персоны</summary>
+		public String FullNamePerson
+		{
+			get { return _fullNamePerson; }
+			set { _fullNamePerson = GetFullName(); }
+		}
+		
 
 		/// <summary>   Дата рождения персоны.  </summary>
 		private DateTime _birthdate = default;

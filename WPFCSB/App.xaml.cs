@@ -9,15 +9,13 @@ namespace WPFCSB
     /// </summary>
     public partial class App : Application
     {
-        private MainWindow MainWindow;
+		private new MainWindow MainWindow = new MainWindow();
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+		private void Application_Startup(object sender, StartupEventArgs e)
         {
             var applicationViewModel = new ApplicationViewModel();
-            MainWindow = new MainWindow { DataContext = applicationViewModel };
+           MainWindow.DataContext = applicationViewModel;
             MainWindow.Show();
         }
-
     }
-
 }

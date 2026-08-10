@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using WPFCSB.Commands;
 using WPFCSB.Models;
+using WPFCSB.Resources;
 using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
@@ -68,7 +69,11 @@ namespace WPFCSB.ViewModels
         public String FullNameMainGuest
         {
             get { return _fullNameMainGuest; }
-            set => Set(ref _fullNameMainGuest, value);
+            set
+            {
+                Set(ref _fullNameMainGuest, value);
+				GetTemplameMessageCommand.Execute(null!);
+			}
         }
 
         #endregion ГОСТИ
@@ -96,57 +101,39 @@ namespace WPFCSB.ViewModels
         //  TODO: разработать загрузку(сортировку) саиска из класса
         private void LoadManagerList()
         {
-            ManagerList.Add(new Manager(1, new Person()
-            {
-                PersonID = 11,
-                Surname = "Боровкова",
-                Name = "Кристина",
-                Patronymic = "Викторовна"
-            }));
+            ManagerList.Add(new Manager(1, new Person(11, "Боровкова", "Кристина", "Викторовна",new DateTime(1977,01,01), Gender.Female)));
 
-            ManagerList.Add(new Manager(2, new Person()
-            {
-                PersonID = 12,
-                Surname = "Девочкина",
-                Name = "Юлия",
-                Patronymic = "Владимировна"
-            }));
+            ManagerList.Add(new Manager(2, new Person(12, "Девочкина", "Юлия", "Владимировна", new DateTime(1975,01,10), Gender.Female)));
 
-            ManagerList.Add(new Manager(3, new Person()
-            {
-                PersonID = 13,
-                Surname = "Корниенко",
-                Name = "Надежда",
-                Patronymic = "Евгеньевна"
-            }));
-            ManagerList.Add(new Manager(4, new Person()
-            {
-                PersonID = 14,
-                Surname = "Кривошеина",
-                Name = "Ольга",
-                Patronymic = "Владимировна"
-            }));
-            ManagerList.Add(new Manager(5, new Person()
-            {
-                PersonID = 15,
-                Surname = "Кузнецова",
-                Name = "Ирина",
-                Patronymic = "Геннадьевна"
-            }));
-            ManagerList.Add(new Manager(6, new Person()
-            {
-                PersonID = 16,
-                Surname = "Огнева",
-                Name = "Алёна",
-                Patronymic = "Ивановна"
-            }));
-            ManagerList.Add(new Manager(7, new Person()
-            {
-                PersonID = 17,
-                Surname = "Юкнявичус",
-                Name = "Виолетта",
-                Patronymic = "Викторовна"
-            }));
+            ManagerList.Add(new Manager(3, new Person(13, "Корниенко", "Надежда", "Евгеньевна", new DateTime(1976,12,06), Gender.Female)));
+            //ManagerList.Add(new Manager(4, new Person()
+            //{
+            //    PersonID = 14,
+            //    Surname = "Кривошеина",
+            //    Name = "Ольга",
+            //    Patronymic = "Владимировна"
+            //}));
+            //ManagerList.Add(new Manager(5, new Person()
+            //{
+            //    PersonID = 15,
+            //    Surname = "Кузнецова",
+            //    Name = "Ирина",
+            //    Patronymic = "Геннадьевна"
+            //}));
+            //ManagerList.Add(new Manager(6, new Person()
+            //{
+            //    PersonID = 16,
+            //    Surname = "Огнева",
+            //    Name = "Алёна",
+            //    Patronymic = "Ивановна"
+            //}));
+            //ManagerList.Add(new Manager(7, new Person()
+            //{
+            //    PersonID = 17,
+            //    Surname = "Юкнявичус",
+            //    Name = "Виолетта",
+            //    Patronymic = "Викторовна"
+            //}));
         }
         #endregion МЕНЕДЖЕРЫ
 
@@ -170,8 +157,7 @@ namespace WPFCSB.ViewModels
             set
             {
                 Set(ref _selectedSanatorium, value);
-				GetTemplameMessageCommand.Execute(null);
-
+				GetTemplameMessageCommand.Execute(String.Empty);
 			}
         }
 
@@ -204,7 +190,9 @@ namespace WPFCSB.ViewModels
                 Set(ref _startDatePeriodBooking, value);
                 NumberNightsBooked = GetTimeInterval(StartDatePeriodBooking, EndDatePeriodBooking).Days;
                 NumberDaysUntilBooking = GetTimeInterval(DateTime.Now, StartDatePeriodBooking.AddDays(1)).Days;
-            }
+				GetTemplameMessageCommand.Execute(null!);
+
+			}
         }
 
         /// <summary>   Дата окончания периода  бронирования. </summary>
@@ -252,7 +240,7 @@ namespace WPFCSB.ViewModels
         #region ОПЕРАЦИИ БРОНИРОВАНИЯ
 
         /// <summary>Список операций бронирования</summary>
-        private ObservableCollection<BookingOperation> _bookingOperationList = new ObservableCollection<BookingOperation>();
+        private ObservableCollection<BookingOperation>_bookingOperationList = new ObservableCollection<BookingOperation>();
         /// <summary>Список операций бронирования</summary>
         public ObservableCollection<BookingOperation> BookingOperationList
         {
@@ -309,12 +297,16 @@ namespace WPFCSB.ViewModels
         #region РАСЧЕТ БРОНИРОВАНИЯ
 
         /// <summary>Расчет бронирования строковое представление</summary>
-        private String _calcBookingString;
+        private String _calcBookingString = String.Empty;
         /// <summary>Расчет бронирования строковое представление</summary>
         public String CalcBookingString
         {
             get { return _calcBookingString; }
-            set => Set(ref _calcBookingString, value);
+            set
+            {
+                Set(ref _calcBookingString, value);
+				GetTemplameMessageCommand.Execute(null!);
+			}
         }
 
 
@@ -323,12 +315,16 @@ namespace WPFCSB.ViewModels
         #region ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ БРНИРОВАНИЯ
 
         /// <summary>Описание бронирования(дополнительная информация для формирования шаблона)</summary>
-        private String _descriptionBooking;
+        private String _descriptionBooking = String.Empty;
         /// <summary>Описание бронирования(дополнительная информация для формирования шаблона)</summary>
         public String DescriptionBooking
         {
             get { return _descriptionBooking; }
-            set => Set(ref _descriptionBooking, value);
+            set
+            {
+                Set(ref _descriptionBooking, value);
+				GetTemplameMessageCommand.Execute(null!);
+			}
         }
 
 
@@ -354,10 +350,10 @@ namespace WPFCSB.ViewModels
             set => Set(ref _selectedTemplateMessage!, value);
         }
 
-
-        private String _resultTemplate;
-
-        public String ResultTemplate
+		/// <summary>Сформированный шаблон</summary>
+		private String _resultTemplate = String.Empty;
+		/// <summary>Сформированный шаблон</summary>
+		public String ResultTemplate
 		{
             get { return _resultTemplate; }
 			set => Set(ref _resultTemplate!, value);
@@ -373,33 +369,26 @@ namespace WPFCSB.ViewModels
             set => Set(ref _templateVariableDictionary!, value);
         }
 
-        private void LoadTemplateVariableDictionary()
+		// TODO: Разработать загрузку
+		/// <summary>Загрузка переменных шаблона текста сообщений в словарь</summary> 
+		private void LoadTemplateVariableDictionary()
         {
             TemplateVariableDictionary.Add("EmailSanatorium", "Значение ключа EmailSanatorium отсутствует");
             TemplateVariableDictionary.Add("StartDatePeriodBooking", "Значение ключа StartDatePeriodBooking отсутствует");
             TemplateVariableDictionary.Add("SurnameWithInitials", "Значение ключа SurnameWithInitials отсутствует");
             TemplateVariableDictionary.Add("CalcBookingString", "Значение ключа CalcBookingString отсутствует");
-        }
+			TemplateVariableDictionary.Add("CurrendDate", "Значение ключа CurrendDate отсутствует");
+			TemplateVariableDictionary.Add("DescriptionBooking", "Значение ключа DescriptionBooking отсутствует");
+		}
 
-        //     private void LoadTemplateVariableDictionary()
-        //     {
-        //SelectedTemplateMessage?.TextTemplateVariables.Add("EmailSanatorium", "Значение ключа EmailSanatorium отсутствует");
-        //SelectedTemplateMessage?.TextTemplateVariables.Add("StartDatePeriodBooking", "Значение ключа StartDatePeriodBooking отсутствует");
-        //SelectedTemplateMessage?.TextTemplateVariables.Add("SurnameWithInitials", "Значение ключа SurnameWithInitials отсутствует");
-        //SelectedTemplateMessage?.TextTemplateVariables.Add("CalcBookingString", "Значение ключа CalcBookingString отсутствует");
-        //     }
-
-
-        /// <summary>Загрузка списка шаблонов текста сообщений</summary> // TODO: Разработать загрузку
-        private void LoadTemplateMessageList()
+		// TODO: Разработать загрузку
+		/// <summary>Загрузка списка шаблонов текста сообщений</summary> 
+		private void LoadTemplateMessageList()
         {
-            // TODO: Разобраться, почему не затягивает почту в шаблон!
-
-            //TemplateMessageList.Add(new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
-            TemplateMessageList.Add(new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {GetSurnameWithInitials(FullNameMainGuest)}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
-            TemplateMessageList.Add(new TemplateMessage(2, "Шаблон Заявка отправлена"));
-            TemplateMessageList.Add(new TemplateMessage(3, "Шаблон Коррекция Заявки Отправить"));
-            TemplateMessageList.Add(new TemplateMessage(4, "Шаблон Коррекция Заявки отправлена"));
+            TemplateMessageList.Add(new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
+            TemplateMessageList.Add(new TemplateMessage(2, "Заявка напр.{CurrendDate} на сумму {CalcBookingString}"));
+            TemplateMessageList.Add(new TemplateMessage(3, "{EmailSanatorium}\r\nКоррекция заявки на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста коррекцию заявки.\r\n{DescriptionBooking}\r\nРасчет брони: {CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
+            TemplateMessageList.Add(new TemplateMessage(4, "{CurrendDate} {DescriptionBooking}\r\nКоррекция Заявки напр. {CurrendDate} на сумму {CalcBookingString}"));
             TemplateMessageList.Add(new TemplateMessage(5, "Шаблон Путевка Отправить"));
             TemplateMessageList.Add(new TemplateMessage(6, "Шаблон Путевка Коррекция Отправить"));
             TemplateMessageList.Add(new TemplateMessage(7, "Шаблон Путевка отправлена"));
@@ -505,10 +494,11 @@ namespace WPFCSB.ViewModels
 
                       // 1. Определить какой шаблон выбран из списка шаблонов.
                       // 1.1. Получаем ижентификатор шаблона из выбранной операции бронирования					  
-                      Int32 taxtTemplateID = SelectedBookingOperation.TextTemplateID;
+                      Int32 textTemplateID = SelectedBookingOperation.TextTemplateID;
 
+                      // TODO: Обработать условие, если не выбрана операция бронирования из скиска(например выделить и переместить курсор в нужную область)
                       // 1.2. Находим, по полученному идентификатору, текстовый шаблон
-                      if (taxtTemplateID <= 0)
+                      if (textTemplateID <= 0)
                       {
                           //MessageBox.Show("Необходимо выбрать операцию!");
                       }
@@ -516,56 +506,33 @@ namespace WPFCSB.ViewModels
                       {
                           if (TemplateMessageList != null)
                           {
-                              SelectedTemplateMessage = TemplateMessageList.FirstOrDefault(textTemplate => textTemplate.TemplateMessageID == taxtTemplateID);
-                              CreateFileNameCommand.Execute(null!);
-
-
-							  //var values = new Dictionary<string, object>
-							  //{
-							  // ["Name"] = "Анна",
-							  // ["Age"] = 30,
-							  // ["City"] = "Москва",
-							  // ["Role"] = "Разработчик"
-							  //};
-
-							  //string template = "Привет, {Name}! Тебе {Age} лет, ты живёшь в {City} и работаешь как {Role}.";
-
-							  //string result = template;
-							  //foreach (var kvp in values)
-							  //{
-							  // result = result.Replace($"{{{kvp.Key}}}", kvp.Value.ToString());
-							  //}
-
-							  //String templateMessage = SelectedTemplateMessage!.TemplateMessageText;
-							  //                     String resultMessage = templateMessage;
-
-							  //                     foreach (var item in SelectedTemplateMessage.TextTemplateVariables)
-							  //                     {
-							  //                         resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
-							  //}
-
-							  //SelectedTemplateMessage.TemplateMessageText = resultMessage;
+                              SelectedTemplateMessage = TemplateMessageList.FirstOrDefault(textTemplate => textTemplate.TemplateMessageID == textTemplateID);
+                              CreateFileNameCommand.Execute("");
 
 							  String templateMessage = SelectedTemplateMessage!.TemplateMessageText;
 							  String resultMessage = templateMessage;
 
 							  TemplateVariableDictionary["EmailSanatorium"] = SelectedSanatorium.EmailSanatorium;
+							  TemplateVariableDictionary["StartDatePeriodBooking"] = StartDatePeriodBooking.ToShortDateString();
+							  TemplateVariableDictionary["SurnameWithInitials"] = GetSurnameWithInitials(FullNameMainGuest);
+							  TemplateVariableDictionary["CalcBookingString"] = CalcBookingString;
+							  TemplateVariableDictionary["CurrendDate"] = DateTime.Now.ToShortDateString();
+							  TemplateVariableDictionary["DescriptionBooking"] = DescriptionBooking;
+
 
 							  foreach (var item in TemplateVariableDictionary)
 							  {
 								  resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
 							  }
-                              ResultTemplate = resultMessage;
-							  //SelectedTemplateMessage.TemplateMessageText = resultMessage;
-         //                     MessageBox.Show(resultMessage);
-							  //MessageBox.Show(SelectedTemplateMessage.TemplateMessageText);
+
+							  ResultTemplate = resultMessage;
 						  }
                           else
                           {
                               // TODO: обработать исключение!
                               MessageBox.Show("Отсутствует список шаблонов сообщения! Класс TabBookingItemViewModel");
                           }
-                      }
+					  }
                   }));
 
             }
@@ -585,8 +552,9 @@ namespace WPFCSB.ViewModels
                       // 1. Скопировать в буфер сформированный шаблон.
                       if (SelectedTemplateMessage != null)
                       {
-                          Clipboard.SetText(SelectedTemplateMessage.TemplateMessageText);
-                      }
+						  //Clipboard.SetText(SelectedTemplateMessage.TemplateMessageText);
+						  Clipboard.SetText(ResultTemplate);
+					  }
                       else
                       {
                           // TODO: Необхожимо грамотно обработать исключение!
@@ -616,12 +584,9 @@ namespace WPFCSB.ViewModels
                       }
                       else 
                       {
-                          FileName = foundPrefix +
-                      " в санаторий " + SelectedSanatorium.SanatoriumName +
-                      " " + GetSurnameWithInitials(FullNameMainGuest);
-                      }
-                      
-                      // MessageBox.Show("Создаем имя файла");
+                        
+							  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + GetSurnameWithInitials(FullNameMainGuest);                          
+                      }                      
 
                   }));
             }

@@ -26,13 +26,6 @@ namespace WPFCSB.ViewModels
 		}
 
 
-
-
-		private void ManagerFIO_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-		{
-			//Person p = (Person)ManagerFIO.SelectedItem;
-		}
-
 		#region КОМАНДЫ
 		// Добавление вкладки
 		private RelayCommand? addTabCommand;
@@ -51,7 +44,7 @@ namespace WPFCSB.ViewModels
 						  newTab.SelectedSanatorium = new Sanatorium();
 						  newTab.NumberNightsBooked = newTab.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;
 						  // TODO: Необходимо реализовать инициализацию данных
-						  newTab.SelectedBookingOperation = newTab.BookingOperationList.FirstOrDefault(bookingOperatio => bookingOperatio.BookingOperationID == 15);
+						  newTab.SelectedBookingOperation = newTab.BookingOperationList.FirstOrDefault(bookingOperation => bookingOperation.BookingOperationID == 15);
 					  }
 					  ;
 					  TabItems.Add(newTab);

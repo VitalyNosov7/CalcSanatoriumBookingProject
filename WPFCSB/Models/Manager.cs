@@ -21,7 +21,7 @@ namespace WPFCSB.Models
 		}
 
 		/// <summary>   Идентификатор менеджера.  </summary>
-		private Int32 _managerID;
+		private Int32 _managerID = default;
 		/// <summary>   Идентификатор менеджера.  </summary>
 		public Int32 ManagerID
 		{
