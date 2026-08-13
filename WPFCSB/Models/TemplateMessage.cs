@@ -12,9 +12,6 @@
 			TemplateMessageText = templateMessageText;
 		}
 
-		/// <summary>Инициализация текстового шаблона без параметров</summary>
-		public TemplateMessage() { }
-
 		/// <summary>Идентификатор шаблона текста сообщения</summary>
 		private Int32 _templateMessageID;
 		/// <summary>Идентификатор шаблона текста сообщения</summary>

@@ -14,8 +14,8 @@ namespace WPFCSB.ViewModels
         {
             LoadManagerList();
             LoadSanatoriumList();
-            LoadBookingOperationList();
-            LoadTemplateMessageList();
+			LoadTemplateMessageList();
+			LoadBookingOperationList();            
             LoadTemplateVariableDictionary();
 		}
 
@@ -54,7 +54,7 @@ namespace WPFCSB.ViewModels
         }
 
         /// <summary>Выбранный гость</summary>
-        private Person _selectedGuest = new Person();
+        private Person _selectedGuest = null!;
         /// <summary>Выбранный гость</summary>
         public Person SelectedGuest
         {
@@ -90,7 +90,7 @@ namespace WPFCSB.ViewModels
         }
 
         /// <summary>Выбранный менеджер</summary>
-        private Manager _selectedManager = new Manager();
+        private Manager _selectedManager = null!;
         /// <summary>Выбранный менеджер</summary>
         public Manager SelectedManager
         {
@@ -249,7 +249,7 @@ namespace WPFCSB.ViewModels
         }
 
         /// <summary>Выбранная операция бронирования</summary>
-        private BookingOperation _selectedBookingOperation = new BookingOperation();
+        private BookingOperation _selectedBookingOperation = null!;
         /// <summary>Выбранная операция бронирования</summary>
         public BookingOperation SelectedBookingOperation
         {
@@ -264,32 +264,32 @@ namespace WPFCSB.ViewModels
         /// <summary>Загрузка списка операций над бронированием</summary> // TODO: Разработать загрузку
         private void LoadBookingOperationList()
         {
-            BookingOperationList.Add(new BookingOperation(1, 1, "Заявка Отправить", "Заявка "));
-            BookingOperationList.Add(new BookingOperation(2, 2, "Заявка отправлена"));
-            BookingOperationList.Add(new BookingOperation(3, 3, "Коррекция Заявки Отправить", "Коррекция заявки "));
-            BookingOperationList.Add(new BookingOperation(4, 4, "Коррекция Заявки отправлена"));
-            BookingOperationList.Add(new BookingOperation(5, 5, "Путевка Отправить", "Путевка "));
-            BookingOperationList.Add(new BookingOperation(6, 6, "Путевка Коррекция Отправить"));
-            BookingOperationList.Add(new BookingOperation(7, 7, "Путевка отправлена"));
-            BookingOperationList.Add(new BookingOperation(8, 8, "Путевка коррекция отправлена"));
-            BookingOperationList.Add(new BookingOperation(9, 9, "Подтверждение оплаты отправить", "Подтверждение оплаты "));
-            BookingOperationList.Add(new BookingOperation(10, 10, "Подтверждение коррекция отправить"));
-            BookingOperationList.Add(new BookingOperation(11, 11, "Аннуляция Отправить", "Аннуляция "));
-            BookingOperationList.Add(new BookingOperation(12, 12, "Аннуляция отправлена "));
-            BookingOperationList.Add(new BookingOperation(13, 13, "Бронь оплаченная"));
-            BookingOperationList.Add(new BookingOperation(14, 14, "Бронь которую аннулируем"));
-            BookingOperationList.Add(new BookingOperation(15, 15, "Счет Отправить", "Счет "));
-            BookingOperationList.Add(new BookingOperation(16, 16, "Счет на доплату Отправить", "Счет на доплату "));
-            BookingOperationList.Add(new BookingOperation(17, 17, "Счет Коррекция Отправить", "Счет коррекция "));
-            BookingOperationList.Add(new BookingOperation(18, 18, "Ссылка на БО"));
-            BookingOperationList.Add(new BookingOperation(19, 19, "Рассрочка Т-банк"));
-            BookingOperationList.Add(new BookingOperation(20, 20, "Информация об оплате"));
-            BookingOperationList.Add(new BookingOperation(21, 21, "Информация об оплате отправлена"));
-            BookingOperationList.Add(new BookingOperation(22, 22, "Отмена письма"));
-            BookingOperationList.Add(new BookingOperation(23, 23, "РЖМ Заявка Отправить", "РМЖ заявка "));
-            BookingOperationList.Add(new BookingOperation(24, 24, "РЖМ Заявка отправлена"));
-            BookingOperationList.Add(new BookingOperation(25, 25, "РЖМ Коррекция Заявки Отправить", "РМЖ Коррекция заявки "));
-            BookingOperationList.Add(new BookingOperation(26, 26, "РЖМ Коррекция Заявки отправлена"));
+            BookingOperationList.Add(new BookingOperation(1, new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."), "Заявка Отправить", "Заявка "));
+            BookingOperationList.Add(new BookingOperation(2, new TemplateMessage(2, "Заявка напр.{CurrendDate} на сумму {CalcBookingString}"), "Заявка отправлена"));
+            BookingOperationList.Add(new BookingOperation(3, new TemplateMessage(3, "{EmailSanatorium}\r\nКоррекция заявки на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста коррекцию заявки.\r\n{DescriptionBooking}\r\nРасчет брони: {CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."), "Коррекция Заявки Отправить", "Коррекция заявки "));
+            BookingOperationList.Add(new BookingOperation(4, new TemplateMessage(4, "{CurrendDate} {DescriptionBooking}\r\nКоррекция Заявки напр. {CurrendDate} на сумму {CalcBookingString}"), "Коррекция Заявки отправлена"));
+            BookingOperationList.Add(new BookingOperation(5, new TemplateMessage(5, "Шаблон Путевка Отправить"), "Путевка Отправить", "Путевка "));
+            BookingOperationList.Add(new BookingOperation(6, new TemplateMessage(6, "Шаблон Путевка Коррекция Отправить"), "Путевка Коррекция Отправить"));
+            BookingOperationList.Add(new BookingOperation(7, new TemplateMessage(7, "Шаблон Путевка отправлена"), "Путевка отправлена"));
+            BookingOperationList.Add(new BookingOperation(8, new TemplateMessage(8, "Шаблон Путевка коррекция отправлена"), "Путевка коррекция отправлена"));
+            BookingOperationList.Add(new BookingOperation(9, new TemplateMessage(9, "Шаблон Подтверждение оплаты отправить"), "Подтверждение оплаты отправить", "Подтверждение оплаты "));
+            BookingOperationList.Add(new BookingOperation(10, new TemplateMessage(10, "Шаблон Подтверждение коррекция отправить"), "Подтверждение коррекция отправить"));
+            BookingOperationList.Add(new BookingOperation(11, new TemplateMessage(11, "Шаблон Аннуляция Отправить"), "Аннуляция Отправить", "Аннуляция "));
+            BookingOperationList.Add(new BookingOperation(12, new TemplateMessage(12, "Шаблон Аннуляция отправлена "), "Аннуляция отправлена "));
+            BookingOperationList.Add(new BookingOperation(13, new TemplateMessage(13, "Шаблон Бронь оплаченная"), "Бронь оплаченная"));
+            BookingOperationList.Add(new BookingOperation(14, new TemplateMessage(14, "Шаблон Бронь которую аннулируем"), "Бронь которую аннулируем"));
+            BookingOperationList.Add(new BookingOperation(15, new TemplateMessage(15, "Шаблон Счет Отправить"), "Счет Отправить", "Счет "));
+            BookingOperationList.Add(new BookingOperation(16, new TemplateMessage(16, "Шаблон Счет на доплату Отправить"), "Счет на доплату Отправить", "Счет на доплату "));
+            BookingOperationList.Add(new BookingOperation(17, new TemplateMessage(17, "Шаблон Счет Коррекция Отправить"), "Счет Коррекция Отправить", "Счет коррекция "));
+            BookingOperationList.Add(new BookingOperation(18, new TemplateMessage(18, "Шаблон Ссылка на БО"), "Ссылка на БО"));
+            BookingOperationList.Add(new BookingOperation(19, new TemplateMessage(19, "Шаблон Рассрочка Т-банк"), "Рассрочка Т-банк"));
+            BookingOperationList.Add(new BookingOperation(20, new TemplateMessage(20, "Шаблон Информация об оплате"), "Информация об оплате"));
+            BookingOperationList.Add(new BookingOperation(21, new TemplateMessage(21, "Шаблон Информация об оплате отправлена"), "Информация об оплате отправлена"));
+            BookingOperationList.Add(new BookingOperation(22, new TemplateMessage(22, "Шаблон Отмена письма"), "Отмена письма"));
+            BookingOperationList.Add(new BookingOperation(23, new TemplateMessage(23, "Шаблон РЖМ Заявка Отправить"), "РЖМ Заявка Отправить", "РМЖ заявка "));
+            BookingOperationList.Add(new BookingOperation(24, new TemplateMessage(24, "Шаблон РЖМ Заявка отправлена"), "РЖМ Заявка отправлена"));
+            BookingOperationList.Add(new BookingOperation(25, new TemplateMessage(25, "Шаблон РЖМ Коррекция Заявки Отправить"), "РЖМ Коррекция Заявки Отправить", "РМЖ Коррекция заявки "));
+            BookingOperationList.Add(new BookingOperation(26, new TemplateMessage(26, "Шаблон РЖМ Коррекция Заявки отправлена"), "РЖМ Коррекция Заявки отправлена"));
         }
 
         #endregion ОПЕРАЦИИ БРОНИРОВАНИЯ
@@ -342,7 +342,7 @@ namespace WPFCSB.ViewModels
         }
 
         /// <summary>Выбранный шаблон текста сообщений</summary>
-        private TemplateMessage _selectedTemplateMessage = new TemplateMessage();
+        private TemplateMessage _selectedTemplateMessage = null!;
         /// <summary>Выбранный шаблон текста сообщений</summary>
         public TemplateMessage? SelectedTemplateMessage
         {
@@ -492,48 +492,76 @@ namespace WPFCSB.ViewModels
                   (getTemplameMessageCommand = new RelayCommand(obj =>
                   {
 
-                      // 1. Определить какой шаблон выбран из списка шаблонов.
-                      // 1.1. Получаем ижентификатор шаблона из выбранной операции бронирования					  
-                      Int32 textTemplateID = SelectedBookingOperation.TextTemplateID;
-
-                      // TODO: Обработать условие, если не выбрана операция бронирования из скиска(например выделить и переместить курсор в нужную область)
-                      // 1.2. Находим, по полученному идентификатору, текстовый шаблон
-                      if (textTemplateID <= 0)
+                      if (SelectedBookingOperation != null)
                       {
-                          //MessageBox.Show("Необходимо выбрать операцию!");
-                      }
-                      else
-                      {
-                          if (TemplateMessageList != null)
+						  String resultMessage = SelectedBookingOperation.CurrentTemplateMessage.TemplateMessageText;
+                          // TODO: вынести словарь в класс BookingOperation
+                          TemplateVariableDictionary["EmailSanatorium"] = SelectedSanatorium.EmailSanatorium;
+                          TemplateVariableDictionary["StartDatePeriodBooking"] = StartDatePeriodBooking.ToShortDateString();
+                          TemplateVariableDictionary["SurnameWithInitials"] = GetSurnameWithInitials(FullNameMainGuest);
+                          TemplateVariableDictionary["CalcBookingString"] = CalcBookingString;
+                          TemplateVariableDictionary["CurrendDate"] = DateTime.Now.ToShortDateString();
+                          TemplateVariableDictionary["DescriptionBooking"] = DescriptionBooking;
+
+                          foreach (var item in TemplateVariableDictionary)
                           {
-                              SelectedTemplateMessage = TemplateMessageList.FirstOrDefault(textTemplate => textTemplate.TemplateMessageID == textTemplateID);
-                              CreateFileNameCommand.Execute("");
-
-							  String templateMessage = SelectedTemplateMessage!.TemplateMessageText;
-							  String resultMessage = templateMessage;
-
-							  TemplateVariableDictionary["EmailSanatorium"] = SelectedSanatorium.EmailSanatorium;
-							  TemplateVariableDictionary["StartDatePeriodBooking"] = StartDatePeriodBooking.ToShortDateString();
-							  TemplateVariableDictionary["SurnameWithInitials"] = GetSurnameWithInitials(FullNameMainGuest);
-							  TemplateVariableDictionary["CalcBookingString"] = CalcBookingString;
-							  TemplateVariableDictionary["CurrendDate"] = DateTime.Now.ToShortDateString();
-							  TemplateVariableDictionary["DescriptionBooking"] = DescriptionBooking;
-
-
-							  foreach (var item in TemplateVariableDictionary)
-							  {
-								  resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
-							  }
-
-							  ResultTemplate = resultMessage;
-						  }
-                          else
-                          {
-                              // TODO: обработать исключение!
-                              MessageBox.Show("Отсутствует список шаблонов сообщения! Класс TabBookingItemViewModel");
+                              resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
                           }
+
+                          ResultTemplate = resultMessage;
+						  CreateFileNameCommand.Execute("");
 					  }
-                  }));
+
+
+					  // Старый код:
+					  //               Int32 textTemplateID = 0;
+
+					  //// 1. Определить какой шаблон выбран из списка шаблонов.
+					  //// 1.1. Получаем ижентификатор шаблона из выбранной операции бронирования		
+					  //if (SelectedBookingOperation != null)	
+					  //               {
+					  //  textTemplateID = SelectedBookingOperation.TextTemplateID;
+					  //}
+
+
+					  //               // TODO: Обработать условие, если не выбрана операция бронирования из скиска(например выделить и переместить курсор в нужную область)
+					  //               // 1.2. Находим, по полученному идентификатору, текстовый шаблон
+					  //               if (textTemplateID <= 0)
+					  //               {
+					  //                   //MessageBox.Show("Необходимо выбрать операцию!");
+					  //               }
+					  //               else
+					  //               {
+					  //                   if (TemplateMessageList != null)
+					  //                   {
+					  //                       SelectedTemplateMessage = TemplateMessageList.FirstOrDefault(textTemplate => textTemplate.TemplateMessageID == textTemplateID);
+					  //                       CreateFileNameCommand.Execute("");
+
+					  //  String templateMessage = SelectedTemplateMessage!.TemplateMessageText;
+					  //  String resultMessage = templateMessage;
+
+					  //  TemplateVariableDictionary["EmailSanatorium"] = SelectedSanatorium.EmailSanatorium;
+					  //  TemplateVariableDictionary["StartDatePeriodBooking"] = StartDatePeriodBooking.ToShortDateString();
+					  //  TemplateVariableDictionary["SurnameWithInitials"] = GetSurnameWithInitials(FullNameMainGuest);
+					  //  TemplateVariableDictionary["CalcBookingString"] = CalcBookingString;
+					  //  TemplateVariableDictionary["CurrendDate"] = DateTime.Now.ToShortDateString();
+					  //  TemplateVariableDictionary["DescriptionBooking"] = DescriptionBooking;
+
+
+					  //  foreach (var item in TemplateVariableDictionary)
+					  //  {
+					  //	  resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
+					  //  }
+
+					  //  ResultTemplate = resultMessage;
+					  // }
+					  //                   else
+					  //                   {
+					  //                       // TODO: обработать исключение!
+					  //                       MessageBox.Show("Отсутствует список шаблонов сообщения! Класс TabBookingItemViewModel");
+					  //                   }
+					  //}
+				  }));
 
             }
         }
@@ -550,15 +578,14 @@ namespace WPFCSB.ViewModels
                   (copyTemplameMessageCommand = new RelayCommand(obj =>
                   {
                       // 1. Скопировать в буфер сформированный шаблон.
-                      if (SelectedTemplateMessage != null)
+                      if (SelectedBookingOperation != null)
                       {
-						  //Clipboard.SetText(SelectedTemplateMessage.TemplateMessageText);
 						  Clipboard.SetText(ResultTemplate);
 					  }
                       else
                       {
                           // TODO: Необхожимо грамотно обработать исключение!
-                          MessageBox.Show("Объект SelectedTemplateMessage, в классе TabBookingItemViewModel, равег значению null!");
+                          MessageBox.Show("Объект SelectedBookingOperation, в классе TabBookingItemViewModel, равег значению null!");
                       }
 
 

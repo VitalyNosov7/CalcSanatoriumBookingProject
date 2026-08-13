@@ -40,11 +40,11 @@ namespace WPFCSB.ViewModels
 					  {
 						  newTab.Header = $"Tab {TabItems.Count + 1}";
 						  newTab.Content = $"Content of tab {TabItems.Count + 1}";
-						  newTab.SelectedManager = new Manager();
+						  newTab.SelectedManager = null!;
 						  newTab.SelectedSanatorium = new Sanatorium();
 						  newTab.NumberNightsBooked = newTab.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;
 						  // TODO: Необходимо реализовать инициализацию данных
-						  newTab.SelectedBookingOperation = newTab.BookingOperationList.FirstOrDefault(bookingOperation => bookingOperation.BookingOperationID == 15);
+						  newTab.SelectedBookingOperation = null!;
 					  }
 					  ;
 					  TabItems.Add(newTab);

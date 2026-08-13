@@ -6,30 +6,29 @@ namespace WPFCSB.Models
     {
 		/// <summary>Инициализация операции с бронированием с четырьмя параметрами</summary>
 		/// <param name="bookingOperationID">Идентификатор операции с бронированием</param>
-		/// <param name="textTemplateID">Идентификатор текстового шаблона</param>
+		/// <param name="textTemplate">Текстовый шаблон</param>
 		/// <param name="bookingOperationName">Название операции с бронированием</param>
 		/// <param name="prefixFileName">Префикс операции с бронированием</param>
-		public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName, String prefixFileName)
+		public BookingOperation(Int32 bookingOperationID, TemplateMessage textTemplate, String bookingOperationName, String prefixFileName)
         {
             BookingOperationID = bookingOperationID;
             BookingOperationName = bookingOperationName;
-			TextTemplateID = textTemplateID;
+			TextTemplateID = textTemplate.TemplateMessageID;
+			CurrentTemplateMessage = textTemplate;
 			PrefixFileName = prefixFileName;
 		}
 
 		/// <summary>Инициализация операции с бронированием с тремя параметрами</summary>
 		/// <param name="bookingOperationID">Идентификатор операции с бронированием</param>
-		/// <param name="textTemplateID">Идентификатор текстового шаблона</param>
+		/// <param name="textTemplate">Текстовый шаблон</param>
 		/// <param name="bookingOperationName">Название операции с бронированием</param>
-		public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName)
+		public BookingOperation(Int32 bookingOperationID, TemplateMessage textTemplate, String bookingOperationName)
 		{
 			BookingOperationID = bookingOperationID;
 			BookingOperationName = bookingOperationName;
-			TextTemplateID = textTemplateID;
+			TextTemplateID = textTemplate.TemplateMessageID;
+			CurrentTemplateMessage = textTemplate;
 		}
-
-		/// <summary>Инициализация операции с бронированием без параметров</summary>
-		public BookingOperation() { }
 
         /// <summary>Идентификатор операции бронирования</summary>
         private Int32 _bookingOperationID;
@@ -66,6 +65,15 @@ namespace WPFCSB.Models
 		{
 			get { return _prefixFileName; }
 			set { _prefixFileName = value; }
+		}
+
+		/// <summary>Текущий текстовый шаблон</summary>
+		private TemplateMessage _currentTemplateMessage = null!;
+		/// <summary>Текущий текстовый шаблон</summary>
+		public TemplateMessage CurrentTemplateMessage
+		{
+			get { return _currentTemplateMessage ; }
+			set { _currentTemplateMessage  = value; }
 		}
 	}
 }

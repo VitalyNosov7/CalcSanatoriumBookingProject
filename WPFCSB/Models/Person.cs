@@ -27,7 +27,7 @@ namespace WPFCSB.Models
 			Gender = gender;
 			FullNamePerson = GetFullName();
 		}
-		public Person() { }
+		//public Person() { }
 
 		/// <summary>   Идентификатор персоны.  </summary>
 		private Int32 _personID = default;

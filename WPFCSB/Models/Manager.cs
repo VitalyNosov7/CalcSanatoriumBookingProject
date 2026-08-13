@@ -1,4 +1,5 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WPFCSB.Models
 {
 	/// <summary>Класс содержит информацию о менеджере</summary>
@@ -6,22 +7,13 @@ namespace WPFCSB.Models
 	{
 		/// <summary>Инициализация менеджера с двумя параметрами: идентификатор и персона менеджера</summary>
 		/// <param name="managerId">Идентификатор менеджера</param>
-		/// <param name="managerPerson">Личность менеджера</param>
-		public Manager(Int32 managerId, Person managerPerson)
+		/// <param name="person">Личность менеджера</param>
+		public Manager(Int32 managerId,  Person person)
 		{
 			ManagerID = managerId;
-			ManagerPerson = managerPerson;
+			ManagerPersonID = person.PersonID;
+			ManagerPerson = person;
 		}
-
-		/// <summary>Инициализация менеджера с одним параметром: Идентификатор менеджера</summary>
-		/// <param name="managerId">Идентификатор менеджера</param>
-		public Manager(Int32 managerId)
-		{
-			ManagerID = managerId;
-		}
-
-		/// <summary>Инициализация менеджера без параметров</summary>
-		public Manager() { }
 
 		/// <summary>Идентификатор менеджера</summary>
 		private Int32 _managerID = default;
@@ -32,9 +24,19 @@ namespace WPFCSB.Models
 			set { _managerID = value; }
 		}
 
+		/// <summary>Идентификатор персоны менеджера</summary>
+		private Int32 _managerPersonID = default;
+		/// <summary>Идентификатор персоны менеджера</summary>
+		public Int32 ManagerPersonID
+		{
+			get { return _managerPersonID; }
+			set { _managerPersonID = value; }
+		}
+		
 		/// <summary>Личность менеджера</summary>
-		private Person _managerPerson = new Person();
+		private Person _managerPerson = null!;
 		/// <summary>Личность менеджера</summary>
+		[NotMapped]
 		public Person ManagerPerson
 		{
 			get { return _managerPerson; }
