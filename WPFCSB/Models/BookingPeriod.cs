@@ -1,6 +1,4 @@
-﻿using System.Timers;
-using System.Windows;
-using WPFCSB.ViewModels.Base;
+﻿using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.Models
 {

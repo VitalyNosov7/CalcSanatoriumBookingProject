@@ -1,10 +1,15 @@
 ﻿
 namespace WPFCSB.Models
 {
-    /// <summary>Операция над бронированием</summary>
+   /// <summary>Класс содержит информацию о операциях с бронированием</summary>
     public class BookingOperation
     {
-        public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName, String prefixFileName)
+		/// <summary>Инициализация операции с бронированием с четырьмя параметрами</summary>
+		/// <param name="bookingOperationID">Идентификатор операции с бронированием</param>
+		/// <param name="textTemplateID">Идентификатор текстового шаблона</param>
+		/// <param name="bookingOperationName">Название операции с бронированием</param>
+		/// <param name="prefixFileName">Префикс операции с бронированием</param>
+		public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName, String prefixFileName)
         {
             BookingOperationID = bookingOperationID;
             BookingOperationName = bookingOperationName;
@@ -12,6 +17,10 @@ namespace WPFCSB.Models
 			PrefixFileName = prefixFileName;
 		}
 
+		/// <summary>Инициализация операции с бронированием с тремя параметрами</summary>
+		/// <param name="bookingOperationID">Идентификатор операции с бронированием</param>
+		/// <param name="textTemplateID">Идентификатор текстового шаблона</param>
+		/// <param name="bookingOperationName">Название операции с бронированием</param>
 		public BookingOperation(Int32 bookingOperationID, Int32 textTemplateID, String bookingOperationName)
 		{
 			BookingOperationID = bookingOperationID;
@@ -19,6 +28,7 @@ namespace WPFCSB.Models
 			TextTemplateID = textTemplateID;
 		}
 
+		/// <summary>Инициализация операции с бронированием без параметров</summary>
 		public BookingOperation() { }
 
         /// <summary>Идентификатор операции бронирования</summary>
@@ -57,7 +67,5 @@ namespace WPFCSB.Models
 			get { return _prefixFileName; }
 			set { _prefixFileName = value; }
 		}
-
-
 	}
 }

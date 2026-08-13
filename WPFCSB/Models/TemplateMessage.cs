@@ -1,16 +1,18 @@
-﻿
-
-namespace WPFCSB.Models
+﻿namespace WPFCSB.Models
 {
-	/// <summary>Шаблон текста сообщения</summary>
+	/// <summary>Класс содержит информацию о текстовых шаблонах</summary>
 	public class TemplateMessage
 	{
+	/// <summary>Инициализация текстового шаблона с двумя параметрами</summary>
+	/// <param name="templateMessageID">Идентификатор текстового шаблона</param>
+	/// <param name="templateMessageText">Текст шаблона</param>
 		public TemplateMessage(Int32 templateMessageID, String templateMessageText)
 		{
 			TemplateMessageID = templateMessageID;
 			TemplateMessageText = templateMessageText;
 		}
 
+		/// <summary>Инициализация текстового шаблона без параметров</summary>
 		public TemplateMessage() { }
 
 		/// <summary>Идентификатор шаблона текста сообщения</summary>
@@ -30,15 +32,5 @@ namespace WPFCSB.Models
 			get { return _templateMessageText; }
 			set { _templateMessageText = value; }
 		}
-
-		/// <summary>Переменные текста шаблона </summary>
-		private Dictionary<String,String> _textTemplateVariables = new Dictionary<String, String>();
-		/// <summary>Переменные текста шаблона </summary>
-		public Dictionary<String,String> TextTemplateVariables
-		{
-			get { return _textTemplateVariables; }
-			set { _textTemplateVariables = value; }
-		}
-
 	}
 }

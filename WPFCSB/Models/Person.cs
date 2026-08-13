@@ -2,10 +2,10 @@
 
 namespace WPFCSB.Models
 {
-	/// <summary>   Информация о персоне.   </summary>
+	/// <summary>Класс содержит информацию о персоне</summary>
 	public class Person
 	{
-		/// <summary>	Создать персону.	</summary>
+		/// <summary>Инициализация персоны с пятью параметрами</summary>
 		/// <param name="personId">Идентификатор персоны</param>
 		/// <param name="surname">Фамилия персоны</param>
 		/// <param name="name">Имя персоны</param>
@@ -77,8 +77,7 @@ namespace WPFCSB.Models
 		{
 			get { return _fullNamePerson; }
 			set { _fullNamePerson = GetFullName(); }
-		}
-		
+		}		
 
 		/// <summary>   Дата рождения персоны.  </summary>
 		private DateTime _birthdate = default;
@@ -100,7 +99,6 @@ namespace WPFCSB.Models
 		}
 
 		/// <summary>Получить полную ФИО</summary>
-		//public String GetFullName => $"{Surname} {Name} {Patronymic}".Trim(); // Сокращенный вариант
 		public String GetFullName()
 		{
 			String returnableFullName = String.Empty;
@@ -119,10 +117,6 @@ namespace WPFCSB.Models
 
 
 		/// <summary>Получить сокращенную ФИО(фамилия и инициалы)</summary>
-		//public String GetSurnameWithInitials => String.IsNullOrEmpty(Patronymic)
-		//		? $"{Surname} {Name[0]}."
-		//		: $"{Surname} {Name[0]}.{Patronymic[0]}.";  // Сокращенный вариант
-
 		public String GetSurnameWithInitials()
 		{
 			String returnableSurnameWithInitials = String.Empty;
