@@ -1,5 +1,4 @@
-﻿
-namespace WPFCSB.Models
+﻿namespace WPFCSB.Models
 {
    /// <summary>Класс содержит информацию о операциях с бронированием</summary>
     public class BookingOperation

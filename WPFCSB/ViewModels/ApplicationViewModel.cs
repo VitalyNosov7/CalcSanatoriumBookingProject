@@ -42,7 +42,8 @@ namespace WPFCSB.ViewModels
 						  newTab.Content = $"Content of tab {TabItems.Count + 1}";
 						  newTab.SelectedManager = null!;
 						  newTab.SelectedSanatorium = new Sanatorium();
-						  newTab.NumberNightsBooked = newTab.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;
+						  DatePeriod currentDatePeriod = new DatePeriod();
+						  newTab.NumberNightsBooked = currentDatePeriod.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;						 
 						  // TODO: Необходимо реализовать инициализацию данных
 						  newTab.SelectedBookingOperation = null!;
 					  }

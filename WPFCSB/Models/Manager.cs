@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WPFCSB.Models
+﻿namespace WPFCSB.Models
 {
 	/// <summary>Класс содержит информацию о менеджере</summary>
 	public class Manager
@@ -35,8 +33,7 @@ namespace WPFCSB.Models
 		
 		/// <summary>Личность менеджера</summary>
 		private Person _managerPerson = null!;
-		/// <summary>Личность менеджера</summary>
-		[NotMapped]
+		/// <summary>Личность менеджера</summary>		
 		public Person ManagerPerson
 		{
 			get { return _managerPerson; }

@@ -27,51 +27,48 @@ namespace WPFCSB.Models
 			Gender = gender;
 			FullNamePerson = GetFullName();
 		}
-		//public Person() { }
 
-		/// <summary>   Идентификатор персоны.  </summary>
+		public Person() { }
+
+		/// <summary>Идентификатор персоны</summary>
 		private Int32 _personID = default;
-
-		/// <summary>   Идентификатор персоны.  </summary>
+		/// <summary>Идентификатор персоны</summary>
 		public Int32 PersonID
 		{
 			get { return _personID; }
 			set { _personID = value; }
 		}
 
-		/// <summary>   Фамилия персоны </summary>
+		/// <summary>Фамилия персоны</summary>
 		private String _surname = String.Empty;
-
-		/// <summary>   Фамилия персоны </summary>
+		/// <summary>Фамилия персоны</summary>
 		public String Surname
 		{
 			get { return _surname; }
 			set { _surname = value; }
 		}
 
-		/// <summary>   Имя персоны </summary>
+		/// <summary>Имя персоны</summary>
 		private String _name = String.Empty;
-
-		/// <summary>   Имя персоны </summary>
+		/// <summary>Имя персоны</summary>
 		public String Name
 		{
 			get { return _name; }
 			set { _name = value; }
 		}
 
-		/// <summary>   Отчество персоны </summary>
+		/// <summary>Отчество персоны</summary>
 		private String _patronymic = String.Empty;
-
-		/// <summary>   Отчество персоны </summary>
-		public String Patronymic
+		/// <summary>Отчество персоны</summary>
+		public String? Patronymic
 		{
 			get { return _patronymic; }
-			set { _patronymic = value; }
+			set { _patronymic = value!; }
 		}
 
+		// TODO: Подумать над целесообразностью этого свойства и поля
 		/// <summary>Полная ФИО персоны</summary>
 		private String _fullNamePerson = String.Empty;
-
 		/// <summary>Полная ФИО персоны</summary>
 		public String FullNamePerson
 		{
@@ -79,19 +76,19 @@ namespace WPFCSB.Models
 			set { _fullNamePerson = GetFullName(); }
 		}		
 
-		/// <summary>   Дата рождения персоны.  </summary>
+		/// <summary>Дата рождения персоны</summary>
 		private DateTime _birthdate = default;
-		/// <summary>   Дата рождения персоны.  </summary>
+		/// <summary>Дата рождения персоны</summary>
 		public DateTime Birthdate
 		{
 			get { return _birthdate; }
 			set { _birthdate = value; }
 		}
 
-		/// <summary>   Пол персоны.  </summary>
+		// TODO: Подумать как будет отображаться в базе данных
+		/// <summary>Пол персоны</summary>
 		private Gender _gender = default;
-
-		/// <summary>   Пол персоны.  </summary>
+		/// <summary>Пол персоны</summary>
 		public Gender Gender
 		{
 			get { return _gender; }
@@ -115,26 +112,34 @@ namespace WPFCSB.Models
 			return returnableFullName;
 		}
 
-
-		/// <summary>Получить сокращенную ФИО(фамилия и инициалы)</summary>
-		public String GetSurnameWithInitials()
+		/// <summary>Получить из полного ФИО - сокращенное</summary>
+		/// <param name="fullName">Полное ФИО</param>
+		/// <returns></returns>
+		public String GetSurnameWithInitials(String fullName)
 		{
-			String returnableSurnameWithInitials = String.Empty;
+			if (String.IsNullOrWhiteSpace(fullName))
+				return String.Empty;
 
-			if (String.IsNullOrEmpty(Surname))
-			{
-				return returnableSurnameWithInitials;
-			}
-			if (String.IsNullOrEmpty(Patronymic))
-			{
-				returnableSurnameWithInitials = $"{Surname} {Name[0]}.";
-				return returnableSurnameWithInitials;
-			}
-			else
-			{
-				returnableSurnameWithInitials = $"{Surname} {Name[0]}.{Patronymic[0]}.";
-				return returnableSurnameWithInitials;
-			}
+			var parts = fullName
+				.Trim()
+				.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+			if (parts.Length == 0)
+				return String.Empty;
+
+			// TODO: зделать первый символ заглавным
+			String surname = parts[0].Trim();
+
+			if (parts.Length == 1)
+				return surname;
+
+			Char firstInitial = Char.ToUpper(parts[1][0]);
+
+			if (parts.Length == 2)
+				return $"{surname} {firstInitial}.";
+
+			Char secondInitial = Char.ToUpper(parts[2][0]);
+			return $"{surname} {firstInitial}.{secondInitial}.";
 		}
 	}
 }

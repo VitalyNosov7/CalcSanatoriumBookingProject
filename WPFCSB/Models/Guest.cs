@@ -36,7 +36,6 @@ namespace WPFCSB.Models
 		/// <summary>Личность гостя</summary>
 		private Person _guestPerson = null!;
 		/// <summary>Личность гостя</summary>
-		[NotMapped]
 		public Person GuestPerson
 		{
 			get { return _guestPerson; }

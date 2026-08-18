@@ -12,6 +12,15 @@
 			set { _textTemplateVariableID = value; }
 		}
 
+		/// <summary>Наименование(константа) текстовой переменной для текстового шаблона</summary>
+		private String _constantNameTemplateVariable = String.Empty;
+		/// <summary>Наименование(константа) текстовой переменной для текстового шаблона</summary>
+		public String ConstantNameTemplateVariable
+		{
+			get { return _constantNameTemplateVariable ; }
+			set { _constantNameTemplateVariable  = value; }
+		}
+
 		/// <summary>Ключ текстовой переменной для текстового шаблона</summary>
 		private String _keyTextTemlateVariable = String.Empty;
 		/// <summary>Ключ текстовой переменной для текстового шаблона</summary>
