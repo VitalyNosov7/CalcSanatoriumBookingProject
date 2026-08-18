@@ -6,12 +6,14 @@
 		/// <summary>Инициализация менеджера с двумя параметрами: идентификатор и персона менеджера</summary>
 		/// <param name="managerId">Идентификатор менеджера</param>
 		/// <param name="person">Личность менеджера</param>
-		public Manager(Int32 managerId,  Person person)
+		public Manager(Int32 managerId, Person person)
 		{
 			ManagerID = managerId;
 			ManagerPersonID = person.PersonID;
 			ManagerPerson = person;
 		}
+
+		public Manager() { }
 
 		/// <summary>Идентификатор менеджера</summary>
 		private Int32 _managerID = default;
@@ -22,15 +24,15 @@
 			set { _managerID = value; }
 		}
 
-		/// <summary>Идентификатор персоны менеджера</summary>
+		/// <summary>Идентификатор персоны менеджера(Внешний ключ)</summary>
 		private Int32 _managerPersonID = default;
-		/// <summary>Идентификатор персоны менеджера</summary>
+		/// <summary>Идентификатор персоны менеджера(Внешний ключ)</summary>
 		public Int32 ManagerPersonID
 		{
 			get { return _managerPersonID; }
 			set { _managerPersonID = value; }
 		}
-		
+
 		/// <summary>Личность менеджера</summary>
 		private Person _managerPerson = null!;
 		/// <summary>Личность менеджера</summary>		

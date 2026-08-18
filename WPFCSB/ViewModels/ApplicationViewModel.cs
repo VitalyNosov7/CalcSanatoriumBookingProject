@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using WPFCSB.Commands;
+using WPFCSB.DataBase;
 using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
 
@@ -7,6 +8,11 @@ namespace WPFCSB.ViewModels
 {
 	public class ApplicationViewModel : ViewModelBase
 	{
+
+		public ApplicationViewModel()
+		{
+			using (ApplicationContext db = new ApplicationContext()) { }
+		}
 		private ObservableCollection<TabBookingItemViewModel> _tabItems = new ObservableCollection<TabBookingItemViewModel>();
 		public ObservableCollection<TabBookingItemViewModel> TabItems
 		{
