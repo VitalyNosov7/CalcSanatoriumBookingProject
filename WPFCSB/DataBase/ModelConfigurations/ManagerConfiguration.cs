@@ -15,7 +15,9 @@ namespace WPFCSB.DataBase.ModelConfigurations
 			   new Manager { ManagerID = 4, ManagerPersonID = 14 },
 			   new Manager { ManagerID = 5, ManagerPersonID = 15 },
 			   new Manager { ManagerID = 6, ManagerPersonID = 16 },
-			   new Manager { ManagerID = 7, ManagerPersonID = 17 }
+			   new Manager { ManagerID = 7, ManagerPersonID = 17 },
+			   new Manager { ManagerID = 8, ManagerPersonID = 18 },
+			   new Manager { ManagerID = 9, ManagerPersonID = 19 }
 	   );
 		}
 	}

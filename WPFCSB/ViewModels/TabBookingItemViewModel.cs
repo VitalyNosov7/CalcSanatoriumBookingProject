@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using WPFCSB.Commands;
+using WPFCSB.DataBase;
 using WPFCSB.Models;
-using WPFCSB.Resources;
 using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
@@ -11,7 +11,7 @@ namespace WPFCSB.ViewModels
 	{
 		public TabBookingItemViewModel()
 		{
-			LoadManagerList();
+			LoadManagerList();  // Загрузка списка менеджеров.
 			LoadSanatoriumList();
 			LoadTemplateMessageList();
 			LoadBookingOperationList();
@@ -107,42 +107,28 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _selectedManager, value);
 		}
 
-		//  TODO: разработать загрузку(сортировку) саиска из класса
+		// Загрузка списка менеджеров.
 		private void LoadManagerList()
 		{
-			ManagerList.Add(new Manager(1, new Person(11, "Боровкова", "Кристина", "Викторовна", new DateTime(1977, 01, 01), Gender.Female)));
 
-			ManagerList.Add(new Manager(2, new Person(12, "Девочкина", "Юлия", "Владимировна", new DateTime(1975, 01, 10), Gender.Female)));
+			// Загрузка списка менеджеров из базы данных.
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				var managerPersons = db.Persons.Join(db.Managers, // второй набор
+					p => p.PersonID, // свойство-селектор объекта из первого набора
+					m => m.ManagerPersonID, // свойство-селектор объекта из второго набора
+					(p, m) => new Manager// результат
+					{
+						ManagerID = m.ManagerID,
+						ManagerPersonID = m.ManagerPersonID,
+						ManagerPerson = new Person(p.PersonID, p.Surname, p.Name, p.Patronymic!, p.Birthdate, p.Gender)
+					});
 
-			ManagerList.Add(new Manager(3, new Person(13, "Корниенко", "Надежда", "Евгеньевна", new DateTime(1976, 12, 06), Gender.Female)));
-			//ManagerList.Add(new Manager(4, new Person()
-			//{
-			//    PersonID = 14,
-			//    Surname = "Кривошеина",
-			//    Name = "Ольга",
-			//    Patronymic = "Владимировна"
-			//}));
-			//ManagerList.Add(new Manager(5, new Person()
-			//{
-			//    PersonID = 15,
-			//    Surname = "Кузнецова",
-			//    Name = "Ирина",
-			//    Patronymic = "Геннадьевна"
-			//}));
-			//ManagerList.Add(new Manager(6, new Person()
-			//{
-			//    PersonID = 16,
-			//    Surname = "Огнева",
-			//    Name = "Алёна",
-			//    Patronymic = "Ивановна"
-			//}));
-			//ManagerList.Add(new Manager(7, new Person()
-			//{
-			//    PersonID = 17,
-			//    Surname = "Юкнявичус",
-			//    Name = "Виолетта",
-			//    Patronymic = "Викторовна"
-			//}));
+				foreach (var managerPerson in managerPersons)
+				{
+					ManagerList.Add(managerPerson);
+				}
+			}
 		}
 		#endregion МЕНЕДЖЕРЫ
 
@@ -170,17 +156,48 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
-		/// <summary>Загрузка списка санаториев</summary> // TODO: Разработать загрузку
+		/// <summary>Загрузка списка санаториев</summary>
 		private void LoadSanatoriumList()
 		{
-			SanatoriumList.Add(new Sanatorium(1, "Планета", "olgaakopyan@mail.ru"));
-			SanatoriumList.Add(new Sanatorium(2, "Киев", "alushtasankiev-rus@mail.ru"));
-			SanatoriumList.Add(new Sanatorium(3, "Озеро Сновидений", "admin@o-snov.com"));
-			SanatoriumList.Add(new Sanatorium(4, "Рябинка", "ribinka.buh@inbox.ru"));
-			SanatoriumList.Add(new Sanatorium(5, "Сакрополь", "sakropol@yandex.ru"));
-			SanatoriumList.Add(new Sanatorium(6, "Узбекистан", "marketing@yalta-uzbekistan.ru"));
-			SanatoriumList.Add(new Sanatorium(7, "ТЭС", "teshotel@rambler.ru"));
-			SanatoriumList.Add(new Sanatorium(8, "Новый санаторий", ""));
+
+			// Загрузка списка санаториев из базы данных.
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				var sanatoriums = db.Sanatoriums.ToList();
+				foreach (Sanatorium sanatorium in sanatoriums)
+				{
+					SanatoriumList.Add(sanatorium);
+				}
+				//Console.WriteLine("Список объектов:");
+				//foreach (User u in users)
+				//{
+				//	Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
+				//}
+
+				//var managerPersons = db.Persons.Join(db.Managers, // второй набор
+				//	p => p.PersonID, // свойство-селектор объекта из первого набора
+				//	m => m.ManagerPersonID, // свойство-селектор объекта из второго набора
+				//	(p, m) => new Manager// результат
+				//	{
+				//		ManagerID = m.ManagerID,
+				//		ManagerPersonID = m.ManagerPersonID,
+				//		ManagerPerson = new Person(p.PersonID, p.Surname, p.Name, p.Patronymic!, p.Birthdate, p.Gender)
+				//	});
+
+				//foreach (var managerPerson in managerPersons)
+				//{
+				//	ManagerList.Add(managerPerson);
+				//}
+			}
+
+			//SanatoriumList.Add(new Sanatorium(1, "Планета", "olgaakopyan@mail.ru"));
+			//SanatoriumList.Add(new Sanatorium(2, "Киев", "alushtasankiev-rus@mail.ru"));
+			//SanatoriumList.Add(new Sanatorium(3, "Озеро Сновидений", "admin@o-snov.com"));
+			//SanatoriumList.Add(new Sanatorium(4, "Рябинка", "ribinka.buh@inbox.ru"));
+			//SanatoriumList.Add(new Sanatorium(5, "Сакрополь", "sakropol@yandex.ru"));
+			//SanatoriumList.Add(new Sanatorium(6, "Узбекистан", "marketing@yalta-uzbekistan.ru"));
+			//SanatoriumList.Add(new Sanatorium(7, "ТЭС", "teshotel@rambler.ru"));
+			//SanatoriumList.Add(new Sanatorium(8, "Новый санаторий", ""));
 		}
 
 		#endregion САНАТОРИИ
@@ -443,7 +460,7 @@ namespace WPFCSB.ViewModels
 		#endregion КОНТЕНТ
 
 		#region МЕТОДЫ
-		
+
 
 
 		#endregion МЕТОДЫ
@@ -523,7 +540,7 @@ namespace WPFCSB.ViewModels
 						  FileName = foundPrefix;
 					  }
 					  else
-					  {						 
+					  {
 						  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
 					  }
 				  }));
