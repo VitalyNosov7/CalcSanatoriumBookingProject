@@ -9,7 +9,7 @@ namespace WPFCSB.DataBase
 		public ApplicationContext()
 		{
 		// Для тестирования создания базы данных. Перед миграцией закомментировать!
-			Database.EnsureDeleted();
+			//Database.EnsureDeleted();
 			Database.EnsureCreated();
 		}
 
@@ -19,8 +19,7 @@ namespace WPFCSB.DataBase
 		public DbSet<Sanatorium> Sanatoriums { get; set; } = null!;
 		public DbSet<TemplateMessage> TemplateMessages { get; set; } = null!;
 		public DbSet<BookingOperation> BookingOperations { get; set; } = null!;
-		
-		//public DbSet<TextTemplateVariable> TextTemplateVariables { get; set; } = null!;
+		public DbSet<TextTemplateVariable> TextTemplateVariables { get; set; } = null!;
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -35,8 +34,7 @@ namespace WPFCSB.DataBase
 			modelBuilder.ApplyConfiguration(new SanatoriumConfiguration());
 			modelBuilder.ApplyConfiguration(new TemplateMessageConfiguration());
 			modelBuilder.ApplyConfiguration(new BookingOperationConfiguration());
-			
-			//modelBuilder.ApplyConfiguration(new TextTemplateVariableConfiguration());
+			modelBuilder.ApplyConfiguration(new TextTemplateVariableConfiguration());
 		}
 	}
 }

@@ -31,7 +31,6 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _selectedTab, value);
 		}
 
-
 		#region КОМАНДЫ
 		// Добавление вкладки
 		private RelayCommand? addTabCommand;
@@ -59,8 +58,6 @@ namespace WPFCSB.ViewModels
 				  }));
 			}
 		}
-
-
 
 		//  Удаление вкладки
 		private RelayCommand? removeTabCommand;

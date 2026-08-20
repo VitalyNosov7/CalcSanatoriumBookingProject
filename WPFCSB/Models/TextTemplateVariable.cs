@@ -3,6 +3,16 @@
 	/// <summary>Класс содержит информацию о текстовой переменной для текстового шаблона</summary>
 	public class TextTemplateVariable
 	{
+		public TextTemplateVariable(Int32 textTemplateVariableID, String nameTemplateVariable, String keyTextTemlateVariable, String valueTextTemplateVariable)
+		{
+			TextTemplateVariableID = textTemplateVariableID;
+			NameTemplateVariable = nameTemplateVariable;
+			KeyTextTemlateVariable = keyTextTemlateVariable;
+			ValueTextTemplateVariable = valueTextTemplateVariable;
+		}
+
+		public TextTemplateVariable() { }
+
 		/// <summary>Идентификатор текстовой переменной для текстового шаблона</summary>
 		private Int32 _textTemplateVariableID;
 		/// <summary>Идентификатор текстовой переменной для текстового шаблона</summary>
@@ -12,13 +22,13 @@
 			set { _textTemplateVariableID = value; }
 		}
 
-		/// <summary>Наименование(константа) текстовой переменной для текстового шаблона</summary>
-		private String _constantNameTemplateVariable = String.Empty;
-		/// <summary>Наименование(константа) текстовой переменной для текстового шаблона</summary>
-		public String ConstantNameTemplateVariable
+		/// <summary>Наименование текстовой переменной для текстового шаблона</summary>
+		private String _nameTemplateVariable = String.Empty;
+		/// <summary>Наименование текстовой переменной для текстового шаблона</summary>
+		public String NameTemplateVariable
 		{
-			get { return _constantNameTemplateVariable ; }
-			set { _constantNameTemplateVariable  = value; }
+			get { return _nameTemplateVariable; }
+			set { _nameTemplateVariable = value; }
 		}
 
 		/// <summary>Ключ текстовой переменной для текстового шаблона</summary>
@@ -35,8 +45,8 @@
 		/// <summary>Значение текстовой переменной для текстового шаблона</summary>
 		public String ValueTextTemplateVariable
 		{
-			get { return _valueTextTemplateVariable ; }
-			set { _valueTextTemplateVariable  = value; }
+			get { return _valueTextTemplateVariable; }
+			set { _valueTextTemplateVariable = value; }
 		}
 	}
 }

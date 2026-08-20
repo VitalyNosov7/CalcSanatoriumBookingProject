@@ -351,6 +351,7 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _templateVariableDictionary!, value);
 		}
 
+		// TODO: подумать как избавиться от констант? Переменные должны быть только динамическими? Плюсы: константы защитят от нежелательных изменений в БД.
 		// Константы ключей словаря TemplateVariableDictionary:
 		const String EMAIL_SANATORIUM = "EmailSanatorium";
 		const String START_DATE_PERIOD_BOOKING = "StartDatePeriodBooking";
@@ -359,16 +360,20 @@ namespace WPFCSB.ViewModels
 		const String CURRENT_DATE = "CurrentDate";
 		const String DESCRIPTION_BOOKING = "DescriptionBooking";
 
-		// TODO: Разработать загрузку из базы данных
 		/// <summary>Загрузка переменных шаблона текста сообщений в словарь</summary> 
 		private void LoadTemplateVariableDictionary()
 		{
-			TemplateVariableDictionary.Add(EMAIL_SANATORIUM, "Значение ключа EmailSanatorium отсутствует");
-			TemplateVariableDictionary.Add(START_DATE_PERIOD_BOOKING, "Значение ключа StartDatePeriodBooking отсутствует");
-			TemplateVariableDictionary.Add(SURNAME_WITH_INITIALS, "Значение ключа SurnameWithInitials отсутствует");
-			TemplateVariableDictionary.Add(CALC_BOOKING_STRING, "Значение ключа CalcBookingString отсутствует");
-			TemplateVariableDictionary.Add(CURRENT_DATE, "Значение ключа CurrendDate отсутствует");
-			TemplateVariableDictionary.Add(DESCRIPTION_BOOKING, "Значение ключа DescriptionBooking отсутствует");
+
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				// Загрузка переменных текстового шаблона из базы данных
+				var textTemplateVariables = db.TextTemplateVariables.ToList();
+			
+				foreach (TextTemplateVariable t in textTemplateVariables)
+				{
+					TemplateVariableDictionary.Add(t.KeyTextTemlateVariable,t.ValueTextTemplateVariable);
+				}
+			}
 		}
 
 		#endregion ШАБЛОНЫ
@@ -406,26 +411,28 @@ namespace WPFCSB.ViewModels
 				return getTemplameMessageCommand ??
 				  (getTemplameMessageCommand = new RelayCommand(obj =>
 				  {
-
 					  if (SelectedBookingOperation != null)
 					  {
-						  String resultMessage = SelectedBookingOperation.TemplateMessageBookingOperation.TemplateMessageText;
-						  // TODO: вынести словарь в класс BookingOperation
-						  // TODO: разработать систему константных значений ключей
+						// Получаем текстовый шаблон, который содержит(или не содержит) текстовые переменные для динамической подстановки данных
+						  String resultMessage = SelectedBookingOperation.TemplateMessageBookingOperation.TemplateMessageText;						  
+						 
+						  // Динамическая подстановка значений в текстовые переменные
 						  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
 						  TemplateVariableDictionary[START_DATE_PERIOD_BOOKING] = StartDatePeriodBooking.ToShortDateString();
 						  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuest.GetSurnameWithInitials(FullNameMainGuest);
 						  TemplateVariableDictionary[CALC_BOOKING_STRING] = CalcBookingString;
 						  TemplateVariableDictionary[CURRENT_DATE] = DateTime.Now.ToShortDateString();
-						  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;
+						  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;						  
 
+						  // Подстановка значений из текстовых переменных в текстовый шаблон 
 						  foreach (var item in TemplateVariableDictionary)
 						  {
 							  resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
 						  }
 
 						  ResultTemplate = resultMessage;
-						  CreateFileNameCommand.Execute("");
+						  // Формируем название файла
+						  CreateFileNameCommand.Execute(""); 
 					  }
 				  }));
 			}
@@ -464,13 +471,14 @@ namespace WPFCSB.ViewModels
 				  (createFileNameCommand = new RelayCommand(obj =>
 				  {
 					  String foundPrefix = String.Empty;
-					  foundPrefix = SelectedBookingOperation.PrefixFileName;
-					  if (String.IsNullOrWhiteSpace(foundPrefix))
+					  if(String.IsNullOrWhiteSpace(SelectedBookingOperation.PrefixFileName))
 					  {
+						  foundPrefix = "";
 						  FileName = foundPrefix;
 					  }
 					  else
 					  {
+						  foundPrefix = SelectedBookingOperation.PrefixFileName;
 						  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
 					  }
 				  }));
