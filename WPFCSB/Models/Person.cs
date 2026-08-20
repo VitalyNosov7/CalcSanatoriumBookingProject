@@ -1,4 +1,5 @@
-﻿using WPFCSB.Resources;
+﻿using System.Globalization;
+using WPFCSB.Resources;
 
 namespace WPFCSB.Models
 {
@@ -127,8 +128,10 @@ namespace WPFCSB.Models
 			if (parts.Length == 0)
 				return String.Empty;
 
-			// TODO: зделать первый символ заглавным
 			String surname = parts[0].Trim();
+			// Делаем первый символ заглавной буквой
+			var culture = CultureInfo.CurrentCulture; 
+			surname = culture.TextInfo.ToTitleCase(surname.ToLower());
 
 			if (parts.Length == 1)
 				return surname;

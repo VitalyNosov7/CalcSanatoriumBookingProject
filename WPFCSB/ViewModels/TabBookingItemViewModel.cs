@@ -12,9 +12,8 @@ namespace WPFCSB.ViewModels
 		public TabBookingItemViewModel()
 		{
 			LoadManagerList();  // Загрузка списка менеджеров.
-			LoadSanatoriumList();
-			LoadTemplateMessageList();
-			LoadBookingOperationList();
+			LoadSanatoriumList(); // <summary> Загрузка списка санаториев
+			LoadBookingOperationList(); // Загрузка списка операций над бронированием вместе с текстовыми шаблонами
 			LoadTemplateVariableDictionary();
 		}
 
@@ -168,36 +167,7 @@ namespace WPFCSB.ViewModels
 				{
 					SanatoriumList.Add(sanatorium);
 				}
-				//Console.WriteLine("Список объектов:");
-				//foreach (User u in users)
-				//{
-				//	Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-				//}
-
-				//var managerPersons = db.Persons.Join(db.Managers, // второй набор
-				//	p => p.PersonID, // свойство-селектор объекта из первого набора
-				//	m => m.ManagerPersonID, // свойство-селектор объекта из второго набора
-				//	(p, m) => new Manager// результат
-				//	{
-				//		ManagerID = m.ManagerID,
-				//		ManagerPersonID = m.ManagerPersonID,
-				//		ManagerPerson = new Person(p.PersonID, p.Surname, p.Name, p.Patronymic!, p.Birthdate, p.Gender)
-				//	});
-
-				//foreach (var managerPerson in managerPersons)
-				//{
-				//	ManagerList.Add(managerPerson);
-				//}
 			}
-
-			//SanatoriumList.Add(new Sanatorium(1, "Планета", "olgaakopyan@mail.ru"));
-			//SanatoriumList.Add(new Sanatorium(2, "Киев", "alushtasankiev-rus@mail.ru"));
-			//SanatoriumList.Add(new Sanatorium(3, "Озеро Сновидений", "admin@o-snov.com"));
-			//SanatoriumList.Add(new Sanatorium(4, "Рябинка", "ribinka.buh@inbox.ru"));
-			//SanatoriumList.Add(new Sanatorium(5, "Сакрополь", "sakropol@yandex.ru"));
-			//SanatoriumList.Add(new Sanatorium(6, "Узбекистан", "marketing@yalta-uzbekistan.ru"));
-			//SanatoriumList.Add(new Sanatorium(7, "ТЭС", "teshotel@rambler.ru"));
-			//SanatoriumList.Add(new Sanatorium(8, "Новый санаторий", ""));
 		}
 
 		#endregion САНАТОРИИ
@@ -279,35 +249,29 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
-		/// <summary>Загрузка списка операций над бронированием</summary> // TODO: Разработать загрузку
+		/// <summary>Загрузка списка операций над бронированием вместе с текстовыми шаблонами</summary>
 		private void LoadBookingOperationList()
 		{
-			BookingOperationList.Add(new BookingOperation(1, new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."), "Заявка Отправить", "Заявка "));
-			BookingOperationList.Add(new BookingOperation(2, new TemplateMessage(2, "Заявка напр.{CurrentDate} на сумму {CalcBookingString}"), "Заявка отправлена"));
-			BookingOperationList.Add(new BookingOperation(3, new TemplateMessage(3, "{EmailSanatorium}\r\nКоррекция заявки на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста коррекцию заявки.\r\n{DescriptionBooking}\r\nРасчет брони: {CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."), "Коррекция Заявки Отправить", "Коррекция заявки "));
-			BookingOperationList.Add(new BookingOperation(4, new TemplateMessage(4, "{CurrentDate} {DescriptionBooking}\r\nКоррекция Заявки напр. {CurrentDate} на сумму {CalcBookingString}"), "Коррекция Заявки отправлена"));
-			BookingOperationList.Add(new BookingOperation(5, new TemplateMessage(5, "Шаблон Путевка Отправить"), "Путевка Отправить", "Путевка "));
-			BookingOperationList.Add(new BookingOperation(6, new TemplateMessage(6, "Шаблон Путевка Коррекция Отправить"), "Путевка Коррекция Отправить"));
-			BookingOperationList.Add(new BookingOperation(7, new TemplateMessage(7, "Шаблон Путевка отправлена"), "Путевка отправлена"));
-			BookingOperationList.Add(new BookingOperation(8, new TemplateMessage(8, "Шаблон Путевка коррекция отправлена"), "Путевка коррекция отправлена"));
-			BookingOperationList.Add(new BookingOperation(9, new TemplateMessage(9, "Шаблон Подтверждение оплаты отправить"), "Подтверждение оплаты отправить", "Подтверждение оплаты "));
-			BookingOperationList.Add(new BookingOperation(10, new TemplateMessage(10, "Шаблон Подтверждение коррекция отправить"), "Подтверждение коррекция отправить"));
-			BookingOperationList.Add(new BookingOperation(11, new TemplateMessage(11, "Шаблон Аннуляция Отправить"), "Аннуляция Отправить", "Аннуляция "));
-			BookingOperationList.Add(new BookingOperation(12, new TemplateMessage(12, "Шаблон Аннуляция отправлена "), "Аннуляция отправлена "));
-			BookingOperationList.Add(new BookingOperation(13, new TemplateMessage(13, "Шаблон Бронь оплаченная"), "Бронь оплаченная"));
-			BookingOperationList.Add(new BookingOperation(14, new TemplateMessage(14, "Шаблон Бронь которую аннулируем"), "Бронь которую аннулируем"));
-			BookingOperationList.Add(new BookingOperation(15, new TemplateMessage(15, "Шаблон Счет Отправить"), "Счет Отправить", "Счет "));
-			BookingOperationList.Add(new BookingOperation(16, new TemplateMessage(16, "Шаблон Счет на доплату Отправить"), "Счет на доплату Отправить", "Счет на доплату "));
-			BookingOperationList.Add(new BookingOperation(17, new TemplateMessage(17, "Шаблон Счет Коррекция Отправить"), "Счет Коррекция Отправить", "Счет коррекция "));
-			BookingOperationList.Add(new BookingOperation(18, new TemplateMessage(18, "Шаблон Ссылка на БО"), "Ссылка на БО"));
-			BookingOperationList.Add(new BookingOperation(19, new TemplateMessage(19, "Шаблон Рассрочка Т-банк"), "Рассрочка Т-банк"));
-			BookingOperationList.Add(new BookingOperation(20, new TemplateMessage(20, "Шаблон Информация об оплате"), "Информация об оплате"));
-			BookingOperationList.Add(new BookingOperation(21, new TemplateMessage(21, "Шаблон Информация об оплате отправлена"), "Информация об оплате отправлена"));
-			BookingOperationList.Add(new BookingOperation(22, new TemplateMessage(22, "Шаблон Отмена письма"), "Отмена письма"));
-			BookingOperationList.Add(new BookingOperation(23, new TemplateMessage(23, "Шаблон РЖМ Заявка Отправить"), "РЖМ Заявка Отправить", "РМЖ заявка "));
-			BookingOperationList.Add(new BookingOperation(24, new TemplateMessage(24, "Шаблон РЖМ Заявка отправлена"), "РЖМ Заявка отправлена"));
-			BookingOperationList.Add(new BookingOperation(25, new TemplateMessage(25, "Шаблон РЖМ Коррекция Заявки Отправить"), "РЖМ Коррекция Заявки Отправить", "РМЖ Коррекция заявки "));
-			BookingOperationList.Add(new BookingOperation(26, new TemplateMessage(26, "Шаблон РЖМ Коррекция Заявки отправлена"), "РЖМ Коррекция Заявки отправлена"));
+			// Загрузка списка операций над бронированием вместе с текстовыми шаблонами из базы данных
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				var bookingOperations = db.TemplateMessages.Join(db.BookingOperations, // второй набор
+					t => t.TemplateMessageID, // свойство-селектор объекта из первого набора
+					b => b.TextTemplateID, // свойство-селектор объекта из второго набора
+					(t, b) => new BookingOperation// результат
+					{
+						BookingOperationID = b.BookingOperationID,
+						BookingOperationName = b.BookingOperationName,
+						TextTemplateID = b.TextTemplateID,
+						TemplateMessageBookingOperation = new TemplateMessage(t.TemplateMessageID, t.TemplateMessageText),
+						PrefixFileName = b.PrefixFileName
+					});
+
+				foreach (var bookingOperation in bookingOperations)
+				{
+					BookingOperationList.Add(bookingOperation);
+				}
+			}
 		}
 
 		#endregion ОПЕРАЦИИ БРОНИРОВАНИЯ
@@ -407,40 +371,6 @@ namespace WPFCSB.ViewModels
 			TemplateVariableDictionary.Add(DESCRIPTION_BOOKING, "Значение ключа DescriptionBooking отсутствует");
 		}
 
-		// TODO: Разработать загрузку из базы данных
-		/// <summary>Загрузка списка шаблонов текста сообщений</summary> 
-		private void LoadTemplateMessageList()
-		{
-			TemplateMessageList.Add(new TemplateMessage(1, "{EmailSanatorium}\r\nЗаявка на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста заявку.\r\nРасчет брони:{CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
-			TemplateMessageList.Add(new TemplateMessage(2, "Заявка напр.{CurrendDate} на сумму {CalcBookingString}"));
-			TemplateMessageList.Add(new TemplateMessage(3, "{EmailSanatorium}\r\nКоррекция заявки на {StartDatePeriodBooking} {SurnameWithInitials}\r\nКоллеги, добрый день.\r\nПримите, пожалуйста коррекцию заявки.\r\n{DescriptionBooking}\r\nРасчет брони: {CalcBookingString} \r\nСпасибо.\r\nС уважением,  Виталий\r\nменеджер сервисного отдела."));
-			TemplateMessageList.Add(new TemplateMessage(4, "{CurrendDate} {DescriptionBooking}\r\nКоррекция Заявки напр. {CurrendDate} на сумму {CalcBookingString}"));
-			TemplateMessageList.Add(new TemplateMessage(5, "Шаблон Путевка Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(6, "Шаблон Путевка Коррекция Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(7, "Шаблон Путевка отправлена"));
-			TemplateMessageList.Add(new TemplateMessage(8, "Шаблон Путевка коррекция отправлена"));
-			TemplateMessageList.Add(new TemplateMessage(9, "Шаблон Подтверждение оплаты отправить"));
-			TemplateMessageList.Add(new TemplateMessage(10, "Шаблон Подтверждение коррекция отправить"));
-			TemplateMessageList.Add(new TemplateMessage(11, "Шаблон Аннуляция Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(12, "Шаблон Аннуляция отправлена "));
-			TemplateMessageList.Add(new TemplateMessage(13, "Шаблон Бронь оплаченная"));
-			TemplateMessageList.Add(new TemplateMessage(14, "Шаблон Бронь которую аннулируем"));
-			TemplateMessageList.Add(new TemplateMessage(15, "Шаблон Счет Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(16, "Шаблон Счет на доплату Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(17, "Шаблон Счет Коррекция Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(18, "Шаблон Ссылка на БО"));
-			TemplateMessageList.Add(new TemplateMessage(19, "Шаблон Рассрочка Т-банк"));
-			TemplateMessageList.Add(new TemplateMessage(20, "Шаблон Информация об оплате"));
-			TemplateMessageList.Add(new TemplateMessage(21, "Шаблон Информация об оплате отправлена"));
-			TemplateMessageList.Add(new TemplateMessage(22, "Шаблон Отмена письма"));
-			TemplateMessageList.Add(new TemplateMessage(23, "Шаблон РЖМ Заявка Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(24, "Шаблон РЖМ Заявка отправлена"));
-			TemplateMessageList.Add(new TemplateMessage(25, "Шаблон РЖМ Коррекция Заявки Отправить"));
-			TemplateMessageList.Add(new TemplateMessage(26, "Шаблон РЖМ Коррекция Заявки отправлена"));
-		}
-
-
-
 		#endregion ШАБЛОНЫ
 
 		#region ФОРМИРОВАНИЕ ИМЕНИ ФАЙЛА
@@ -479,7 +409,7 @@ namespace WPFCSB.ViewModels
 
 					  if (SelectedBookingOperation != null)
 					  {
-						  String resultMessage = SelectedBookingOperation.CurrentTemplateMessage.TemplateMessageText;
+						  String resultMessage = SelectedBookingOperation.TemplateMessageBookingOperation.TemplateMessageText;
 						  // TODO: вынести словарь в класс BookingOperation
 						  // TODO: разработать систему константных значений ключей
 						  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
