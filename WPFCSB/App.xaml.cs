@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPFCSB.Services;
 using WPFCSB.ViewModels;
 using WPFCSB.Views.Windows;
 
@@ -13,9 +14,9 @@ namespace WPFCSB
 
 		private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var applicationViewModel = new ApplicationViewModel();
+            var applicationViewModel = new ApplicationViewModel(new WindowManager());
            MainWindow.DataContext = applicationViewModel;
             MainWindow.Show();
         }
-    }
+	}
 }

@@ -2,17 +2,26 @@
 using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
+using WPFCSB.Services.Interfaces;
 using WPFCSB.ViewModels.Base;
+using WPFCSB.Views.Windows;
 
 namespace WPFCSB.ViewModels
 {
 	public class ApplicationViewModel : ViewModelBase
 	{
 
-		public ApplicationViewModel()
+
+
+		private readonly IWindowManager _windowManager;
+
+		public ApplicationViewModel(IWindowManager windowManager)
 		{
+			_windowManager = windowManager;
 			using (ApplicationContext db = new ApplicationContext()) { }
 		}
+
+		
 		private ObservableCollection<TabBookingItemViewModel> _tabItems = new ObservableCollection<TabBookingItemViewModel>();
 		public ObservableCollection<TabBookingItemViewModel> TabItems
 		{
@@ -80,6 +89,21 @@ namespace WPFCSB.ViewModels
 							  SelectedTab = TabItems[newIndex];
 						  }
 					  }
+				  }));
+			}
+		}
+
+		// Окно для работы с данными Person из базы данных 
+		private RelayCommand? openPersonWindomCommand;
+		public RelayCommand OpenPersonWindomCommand
+		{
+			get
+			{
+				return openPersonWindomCommand ??
+				  (openPersonWindomCommand = new RelayCommand((o) =>
+				  {
+					 // App.OpenSingleInstancePersonWindow();
+					  _windowManager.ShowOrActivate<PersonWindow>();
 				  }));
 			}
 		}

@@ -7,19 +7,20 @@ using WPFCSB.ViewModels.Base;
 
 namespace WPFCSB.ViewModels
 {
+	/// <summary>Модель представления вкладки с информацией о бронировании</summary>
 	public class TabBookingItemViewModel : ViewModelBase
 	{
 		public TabBookingItemViewModel()
 		{
 			LoadManagerList();  // Загрузка списка менеджеров.
-			LoadSanatoriumList(); // <summary> Загрузка списка санаториев
+			LoadSanatoriumList(); // Загрузка списка санаториев
 			LoadBookingOperationList(); // Загрузка списка операций над бронированием вместе с текстовыми шаблонами
-			LoadTemplateVariableDictionary();
+			LoadTemplateVariableDictionary(); // Загрузка переменных шаблона текста сообщений в словарь
 		}
 
 		#region ЗАГОЛОВОК
 
-		// TODO: выводить в заголовок информацию о текущем бронировании
+		// TODO: выводить в заголовок информацию о текущем бронировании(ФИО основного гостя)
 		/// <summary>Заголовок вкладки.</summary>
 		private String? _header;
 		/// <summary>Заголовок вкладки.</summary>
@@ -368,10 +369,10 @@ namespace WPFCSB.ViewModels
 			{
 				// Загрузка переменных текстового шаблона из базы данных
 				var textTemplateVariables = db.TextTemplateVariables.ToList();
-			
+
 				foreach (TextTemplateVariable t in textTemplateVariables)
 				{
-					TemplateVariableDictionary.Add(t.KeyTextTemlateVariable,t.ValueTextTemplateVariable);
+					TemplateVariableDictionary.Add(t.KeyTextTemlateVariable, t.ValueTextTemplateVariable);
 				}
 			}
 		}
@@ -413,16 +414,16 @@ namespace WPFCSB.ViewModels
 				  {
 					  if (SelectedBookingOperation != null)
 					  {
-						// Получаем текстовый шаблон, который содержит(или не содержит) текстовые переменные для динамической подстановки данных
-						  String resultMessage = SelectedBookingOperation.TemplateMessageBookingOperation.TemplateMessageText;						  
-						 
+						  // Получаем текстовый шаблон, который содержит(или не содержит) текстовые переменные для динамической подстановки данных
+						  String resultMessage = SelectedBookingOperation.TemplateMessageBookingOperation.TemplateMessageText;
+
 						  // Динамическая подстановка значений в текстовые переменные
 						  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
 						  TemplateVariableDictionary[START_DATE_PERIOD_BOOKING] = StartDatePeriodBooking.ToShortDateString();
 						  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuest.GetSurnameWithInitials(FullNameMainGuest);
 						  TemplateVariableDictionary[CALC_BOOKING_STRING] = CalcBookingString;
 						  TemplateVariableDictionary[CURRENT_DATE] = DateTime.Now.ToShortDateString();
-						  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;						  
+						  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;
 
 						  // Подстановка значений из текстовых переменных в текстовый шаблон 
 						  foreach (var item in TemplateVariableDictionary)
@@ -432,7 +433,7 @@ namespace WPFCSB.ViewModels
 
 						  ResultTemplate = resultMessage;
 						  // Формируем название файла
-						  CreateFileNameCommand.Execute(""); 
+						  CreateFileNameCommand.Execute("");
 					  }
 				  }));
 			}
@@ -471,7 +472,7 @@ namespace WPFCSB.ViewModels
 				  (createFileNameCommand = new RelayCommand(obj =>
 				  {
 					  String foundPrefix = String.Empty;
-					  if(String.IsNullOrWhiteSpace(SelectedBookingOperation.PrefixFileName))
+					  if (String.IsNullOrWhiteSpace(SelectedBookingOperation.PrefixFileName))
 					  {
 						  foundPrefix = "";
 						  FileName = foundPrefix;
