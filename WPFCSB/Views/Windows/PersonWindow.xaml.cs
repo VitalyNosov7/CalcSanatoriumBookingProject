@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPFCSB.ViewModels;
 namespace WPFCSB.Views.Windows
 {
 	/// <summary>
@@ -8,7 +9,9 @@ namespace WPFCSB.Views.Windows
 	{
 		public PersonWindow()
 		{
-			InitializeComponent();			
+			InitializeComponent();
+			// TODO: рассмотреть вариант через DI
+			DataContext = new PersonWindowViewModel();
 		}
 	}
 }

@@ -45,6 +45,7 @@ namespace WPFCSB.ViewModels
 
 		#region ГОСТИ
 
+		// TODO: Тут логично использовать класс User
 		/// <summary>Список гостей</summary>
 		private ObservableCollection<Person> _guestList = new ObservableCollection<Person>();
 		/// <summary>Список гостей</summary>
@@ -54,6 +55,7 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _guestList, value);
 		}
 
+		// TODO: Тут логично использовать класс User
 		/// <summary>Выбранный гость</summary>
 		private Person _selectedGuest = null!;
 		/// <summary>Выбранный гость</summary>

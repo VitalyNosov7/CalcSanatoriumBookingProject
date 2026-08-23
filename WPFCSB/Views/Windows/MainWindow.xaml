@@ -114,10 +114,10 @@
 												<DataTemplate>
 													<TextBlock>
 														<TextBlock.Text>
-																<MultiBinding StringFormat="{}{0}">										
+															<MultiBinding StringFormat="{}{0}">
 																<Binding Path="ManagerPerson.FullNamePerson"/>
 															</MultiBinding>
-															
+
 														</TextBlock.Text>
 													</TextBlock>
 												</DataTemplate>
@@ -166,8 +166,8 @@
                                                             HorizontalAlignment="Left" 
                                                             SelectedDate="{Binding StartDatePeriodBooking,
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
-                                                
-                                            </StackPanel>
+
+											</StackPanel>
 											<!--ДАТА ВЫЕЗДА-->
 											<StackPanel Orientation="Vertical">
 												<TextBlock Margin="3,0,0,0" 
@@ -180,9 +180,9 @@
 															HorizontalAlignment="Left" 
                                                             SelectedDate="{Binding EndDatePeriodBooking, 
                                                                             UpdateSourceTrigger=PropertyChanged}"/>
-                                                
-                                            </StackPanel>
-                                            
+
+											</StackPanel>
+
 											<!--КОЛИЧЕСТВО НОЧЕЙ-->
 											<StackPanel Orientation="Vertical">
 												<TextBlock Margin="0,0,0,0" 
@@ -191,17 +191,17 @@
                                                            HorizontalAlignment="Left" 
                                                            VerticalAlignment="Bottom" 
                                                            Text="К-во ночей"/>
-                                                <TextBox   Text="{Binding NumberNightsBooked, 
+												<TextBox   Text="{Binding NumberNightsBooked, 
 																UpdateSourceTrigger=PropertyChanged}" 														   
                                                            Margin="0,0,0,0"
                                                            Width="60"
                                                            HorizontalAlignment="Left"
-                                                           IsEnabled="False"/>   
-                                            </StackPanel>
+                                                           IsEnabled="False"/>
+											</StackPanel>
 
-                                            <!--КОЛИЧЕСТВО ДНЕЙ ДО ЗАЕЗДА-->
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock Margin="0,0,0,0" 
+											<!--КОЛИЧЕСТВО ДНЕЙ ДО ЗАЕЗДА-->
+											<StackPanel Orientation="Vertical">
+												<TextBlock Margin="0,0,0,0" 
                                                            Width="100" 
                                                            Height="20" 
                                                            HorizontalAlignment="Left" 
@@ -213,9 +213,9 @@
                                                            Width="60"
                                                            HorizontalAlignment="Left"
                                                            IsEnabled="False"/>
-                                            </StackPanel>
+											</StackPanel>
 
-                                        </StackPanel>
+										</StackPanel>
 										<!--КАТЕГОРИЯ САНАТОРИЯ-->
 										<TextBlock Margin="3,0,0,0" 
                                                    Width="150" 
@@ -258,8 +258,8 @@
 								</GroupBox>
 							</StackPanel>
 
-                            <!--ФОРМИРОВАНИЕ ШАБЛОНА-->
-                            <StackPanel Name="StackPanelLeft_2"  
+							<!--ФОРМИРОВАНИЕ ШАБЛОНА-->
+							<StackPanel Name="StackPanelLeft_2"  
                                         Background="Brown" 
                                         Grid.Row="0" 
                                         Grid.Column="1" 
@@ -268,9 +268,9 @@
                                           x:Name="CalcData"
                                           Margin="3">
 
-							<!--ОПЕРАЦИИ БРОНИРОВАНИЯ-->
+									<!--ОПЕРАЦИИ БРОНИРОВАНИЯ-->
 									<StackPanel Orientation="Vertical">
-                                        <TextBlock Margin="3,0,0,0" 
+										<TextBlock Margin="3,0,0,0" 
                                                  Width="100" 
                                                  Height="20" 
                                                  HorizontalAlignment="Left" 
@@ -284,17 +284,17 @@
                                                   IsTextSearchEnabled="True"                                            
                                                   TextSearch.TextPath="BookingOperationName">
 											<ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock>
-                                                        <TextBlock.Text>
-                                                            <MultiBinding StringFormat="{}{0}">
-                                                                <Binding Path="BookingOperationName"/>
-                                                            </MultiBinding>
-                                                        </TextBlock.Text>
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
+												<DataTemplate>
+													<TextBlock>
+														<TextBlock.Text>
+															<MultiBinding StringFormat="{}{0}">
+																<Binding Path="BookingOperationName"/>
+															</MultiBinding>
+														</TextBlock.Text>
+													</TextBlock>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
 
 										<StackPanel Orientation="Horizontal">
 											<Button Content="Сформировать шаблон" Command="{Binding GetTemplameMessageCommand}"  Margin="3,3"></Button>
@@ -323,7 +323,7 @@
 
 										<TextBox Width="Auto" 
                                                  Height="80"
-                                                 Text="{Binding DescriptionBooking,UpdateSourceTrigger=PropertyChanged}"/>   
+                                                 Text="{Binding DescriptionBooking,UpdateSourceTrigger=PropertyChanged}"/>
 
 										<!--СФОРМИРОВАННЫЙ ШАБЛОН-->
 										<TextBlock Margin="0,0,0,0" 
@@ -335,7 +335,7 @@
 
 										<TextBox Text="{Binding ResultTemplate}" 
                                                     Width="Auto" 
-                                                    Height="200"/>  
+                                                    Height="200"/>
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>
@@ -357,7 +357,7 @@
 
 								<StackPanel Orientation="Horizontal">
 									<Button Content="Создать имя файла" Command="{Binding CreateFileNameCommand}" Margin="3,3"></Button>
-									<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button> 
+									<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button>
 								</StackPanel>
 
 							</StackPanel>

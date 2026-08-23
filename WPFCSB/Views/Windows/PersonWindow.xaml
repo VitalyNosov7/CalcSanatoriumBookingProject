@@ -4,9 +4,120 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCSB.Views.Windows"
+		xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="PersonWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+	<DockPanel LastChildFill="True" Margin="5">
+
+		<Grid Name="GridTop" DockPanel.Dock="Top" Background="Coral" Width="Auto" Height="30">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Margin="3,3,3,3" >Поиск</TextBlock>
+
+				<TextBox Margin="3,3,3,3" 
+				HorizontalAlignment="Left" 
+				Width="200" 
+				Height="20" ></TextBox>
+
+				<Button Margin="3,3,3,3">Найти</Button>
+			</StackPanel>
+		</Grid>
+
+		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30">
+			<StackPanel Orientation="Horizontal">
+				<Button Margin="3,3,3,3">Добавить</Button>
+				<Button Margin="3,3,3,3">Редактировать</Button>
+				<Button Margin="3,3,3,3">Удалить</Button>
+			</StackPanel>
+		</Grid>
+
+		<StackPanel Orientation="Horizontal">
+
+			<Grid Width="200">
+				<StackPanel Orientation="Vertical">
+					<!--<TextBlock>Поиск</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+						HorizontalAlignment="Left" 
+						Width="190" 
+						Height="20" ></TextBox>-->
+					<TextBlock>ID</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+							HorizontalAlignment="Left" 
+							Width="50" 
+							Height="20" 
+							Text="{Binding SelectedPerson.PersonID}"
+							IsEnabled="False">
+					</TextBox>
+
+					<TextBlock>Фамилия</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+						HorizontalAlignment="Left" 
+						Width="190" 
+						Height="20" 
+						Text="{Binding SelectedPerson.Surname}">
+					</TextBox>
+
+					<TextBlock>Имя</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+						HorizontalAlignment="Left" 
+						Width="190" 
+						Height="20" 
+						Text="{Binding SelectedPerson.Name}">
+					</TextBox>
+
+					<TextBlock>Отчество</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+							HorizontalAlignment="Left" 
+							Width="190" 
+							Height="20" 
+							Text="{Binding SelectedPerson.Patronymic}">
+					</TextBox>
+
+					<TextBlock>Дата рождения</TextBlock>
+					<DatePicker Width="100"
+								HorizontalAlignment="Left"
+								Text="{Binding SelectedPerson.Birthdate}"/>
+
+					<TextBlock>Пол</TextBlock>
+					<ComboBox Margin="3,3,3,3" 
+							HorizontalAlignment="Left" 
+							Width="100" 
+							Height="20" 
+							Text="{Binding SelectedPerson.Gender}">
+						<TextBlock>Female</TextBlock>
+						<TextBlock>Male</TextBlock>
+					</ComboBox>
+
+				</StackPanel>
+			</Grid>
+
+			<Grid>
+				<StackPanel Width="Auto"
+							Orientation="Vertical">
+					<!--<TextBlock>Поиск</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+							HorizontalAlignment="Left" 
+							Width="190" 
+							Height="20" ></TextBox>-->
+
+					<ListView  Name="personssList" 
+								ItemsSource="{Binding Persons}"
+								SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+						<ListView.View >
+							<GridView >
+								<GridViewColumn DisplayMemberBinding="{Binding PersonID}" Width="30">ID</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding Surname}" Width="100">Фамилия</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding Name}" Width="100">Имя</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding Patronymic}" Width="100">Отчество</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding Birthdate}" Width="100">Дата рождения</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding Gender}" Width="Auto">Пол</GridViewColumn>
+							</GridView>
+						</ListView.View>
+					</ListView>
+				</StackPanel>
+			</Grid>
+
+
+		</StackPanel>
+
+	</DockPanel>
 </Window>

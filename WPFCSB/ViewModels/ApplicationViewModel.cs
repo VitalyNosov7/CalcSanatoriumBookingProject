@@ -18,7 +18,7 @@ namespace WPFCSB.ViewModels
 		public ApplicationViewModel(IWindowManager windowManager)
 		{
 			_windowManager = windowManager;
-			using (ApplicationContext db = new ApplicationContext()) { }
+			//using (ApplicationContext db = new ApplicationContext()) { }
 		}
 
 		
