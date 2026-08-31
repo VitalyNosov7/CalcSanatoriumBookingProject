@@ -1,7 +1,7 @@
 ﻿
 using System.Windows;
 
-namespace WPFCSB.Services.Interfaces
+namespace WPFCSB.Views.Interfaces
 {
 	public interface IWindowManager
 	{

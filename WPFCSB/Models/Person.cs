@@ -29,6 +29,26 @@ namespace WPFCSB.Models
 			FullNamePerson = GetFullName();
 		}
 
+		/// <summary>Инициализация персоны с пятью параметрами</summary>
+		/// <param name="surname">Фамилия персоны</param>
+		/// <param name="name">Имя персоны</param>
+		/// <param name="patronymic">Отчество персоны</param>
+		/// <param name="birthdate">Дата роджения персоны</param>
+		/// <param name="gender">Пол персоны</param>
+		public Person(	String surname
+						, String name
+						, String patronymic
+						, DateTime birthdate
+						, Gender gender)
+		{
+			Surname = surname;
+			Name = name;
+			Patronymic = patronymic;
+			Birthdate = birthdate;
+			Gender = gender;
+			FullNamePerson = GetFullName();
+		}
+
 		public Person() { }
 
 		/// <summary>Идентификатор персоны</summary>

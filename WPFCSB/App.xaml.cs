@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using WPFCSB.Services;
 using WPFCSB.ViewModels;
+using WPFCSB.Views.Services;
 using WPFCSB.Views.Windows;
 
 namespace WPFCSB

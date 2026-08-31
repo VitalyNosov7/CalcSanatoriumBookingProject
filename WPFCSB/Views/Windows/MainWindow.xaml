@@ -29,8 +29,10 @@
 				<Button Content="Remove Selected Tab"
                     Command="{Binding RemoveTabCommand}"
                     CommandParameter="{Binding SelectedTab}"/>
-				<Button Content="Person"
-                    Command="{Binding OpenPersonWindomCommand}"/>
+				<Button Content="Persons"
+						Command="{Binding OpenPersonWindomCommand}"/>
+				<Button Content="Managers"
+						 Command="{Binding OpenManagerWindomCommand}"/>
 			</StackPanel>
 		</Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">

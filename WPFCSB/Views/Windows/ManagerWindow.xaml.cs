@@ -1,18 +1,19 @@
 ﻿using System.Windows;
 using WPFCSB.ViewModels;
 using WPFCSB.Views.Services.DialogWindows;
+
 namespace WPFCSB.Views.Windows
 {
 	/// <summary>
-	/// Логика взаимодействия для PersonWindow.xaml
+	/// Логика взаимодействия для ManagerWindow.xaml
 	/// </summary>
-	public partial class PersonWindow : Window
+	public partial class ManagerWindow : Window
 	{
-		public PersonWindow()
+		public ManagerWindow()
 		{
 			InitializeComponent();
 			// TODO: рассмотреть вариант через DI
-			DataContext = new PersonWindowViewModel(new DialogService());
+			DataContext = new ManagerWindowViewModel(new DialogService());
 		}
 	}
 }

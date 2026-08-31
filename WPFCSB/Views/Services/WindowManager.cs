@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using WPFCSB.Services.Interfaces;
+using WPFCSB.Views.Interfaces;
 
-namespace WPFCSB.Services
+namespace WPFCSB.Views.Services
 {
 	class WindowManager : IWindowManager
 	{

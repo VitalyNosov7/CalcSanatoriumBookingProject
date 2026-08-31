@@ -2,8 +2,8 @@
 using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
-using WPFCSB.Services.Interfaces;
 using WPFCSB.ViewModels.Base;
+using WPFCSB.Views.Interfaces;
 using WPFCSB.Views.Windows;
 
 namespace WPFCSB.ViewModels
@@ -104,6 +104,21 @@ namespace WPFCSB.ViewModels
 				  {
 					 // App.OpenSingleInstancePersonWindow();
 					  _windowManager.ShowOrActivate<PersonWindow>();
+				  }));
+			}
+		}
+
+		// Окно для работы с данными Manager из базы данных 
+		private RelayCommand? openManagerWindomCommand;
+		public RelayCommand OpenManagerWindomCommand
+		{
+			get
+			{
+				return openManagerWindomCommand ??
+				  (openManagerWindomCommand = new RelayCommand((o) =>
+				  {
+					  // App.OpenSingleInstancePersonWindow();
+					  _windowManager.ShowOrActivate<ManagerWindow>();
 				  }));
 			}
 		}
