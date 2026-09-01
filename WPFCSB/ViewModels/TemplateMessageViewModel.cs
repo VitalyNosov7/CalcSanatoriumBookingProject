@@ -1,10 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Xml.Linq;
 using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
-using WPFCSB.Resources;
 using WPFCSB.ViewModels.Base;
 using WPFCSB.Views.Interfaces;
 

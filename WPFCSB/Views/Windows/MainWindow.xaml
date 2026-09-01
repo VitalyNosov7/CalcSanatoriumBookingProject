@@ -32,11 +32,13 @@
 				<Button Content="Persons"
 						Command="{Binding OpenPersonWindomCommand}"/>
 				<Button Content="Managers"
-						 Command="{Binding OpenManagerWindomCommand}"/>
+						Command="{Binding OpenManagerWindomCommand}"/>
 				<Button Content="Sanatoriums"
-					 Command="{Binding OpenSanatoriumWindomCommand}"/>
+						Command="{Binding OpenSanatoriumWindomCommand}"/>
 				<Button Content="TemplateMessages"
-				 Command="{Binding OpenTemplateMessageWindomCommand}"/>
+						Command="{Binding OpenTemplateMessageWindomCommand}"/>
+				<Button Content="TextTemplateMessages"
+						Command="{Binding OpenTextTemplateVariableWindowCommand}"/>
 			</StackPanel>
 		</Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">

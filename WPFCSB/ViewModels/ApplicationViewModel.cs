@@ -151,6 +151,20 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
+		// Окно для работы с данными TextTemplateVariable из базы данных 
+		private RelayCommand? openTextTemplateVariableWindowCommand;
+		public RelayCommand OpenTextTemplateVariableWindowCommand
+		{
+			get
+			{
+				return openTextTemplateVariableWindowCommand ??
+				  (openTextTemplateVariableWindowCommand = new RelayCommand((o) =>
+				  {
+					  _windowManager.ShowOrActivate<TextTemplateVariableWindow>();
+				  }));
+			}
+		}
+
 		#endregion КОМАНДЫ
 
 	}

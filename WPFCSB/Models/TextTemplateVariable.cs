@@ -11,6 +11,13 @@
 			ValueTextTemplateVariable = valueTextTemplateVariable;
 		}
 
+		public TextTemplateVariable(String nameTemplateVariable, String keyTextTemlateVariable, String valueTextTemplateVariable)
+		{			
+			NameTemplateVariable = nameTemplateVariable;
+			KeyTextTemlateVariable = keyTextTemlateVariable;
+			ValueTextTemplateVariable = valueTextTemplateVariable;
+		}
+
 		public TextTemplateVariable() { }
 
 		/// <summary>Идентификатор текстовой переменной для текстового шаблона</summary>

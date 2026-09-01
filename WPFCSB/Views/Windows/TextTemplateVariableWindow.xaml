@@ -1,0 +1,104 @@
+﻿<Window x:Class="WPFCSB.Views.Windows.TextTemplateVariableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFCSB.Views.Windows"
+        mc:Ignorable="d"
+        Title="TextTemplateVariableWindow" Height="450" Width="800">
+	<DockPanel LastChildFill="True" Margin="5">
+
+		<!--<Grid Name="GridTop" DockPanel.Dock="Top" Background="Coral" Width="Auto" Height="30">
+	<StackPanel Orientation="Horizontal">
+		<TextBlock Margin="3,3,3,3" >Поиск</TextBlock>
+
+		<TextBox Margin="3,3,3,3" 
+		HorizontalAlignment="Left" 
+		Width="200" 
+		Height="20" ></TextBox>
+
+		<Button Margin="3,3,3,3">Найти</Button>
+	</StackPanel>
+</Grid>-->
+
+		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30">
+			<StackPanel Orientation="Horizontal">
+				<Button Margin="3,3,3,3" Command="{Binding AddTextTemplateVariableFromDBCommand}">Добавить</Button>
+				<Button Margin="3,3,3,3" Command ="{Binding EeditTextTemplateVariableFromDBCommand}">Редактировать</Button>
+				<Button Margin="3,3,3,3" Command="{Binding DeleteTextTemplateVariableToDBCommand}">Удалить</Button>
+				<Button Margin="3,3,3,3" Command="{Binding DeselectTextTemplateVariableCommand}">Снять выделение</Button>
+				<Button Margin="3,3,3,3" Command="{Binding UpdateDataЬTextTemplateVariableFromDBCommand}">Обновить данные</Button>
+			</StackPanel>
+		</Grid>
+
+		<StackPanel Orientation="Horizontal">
+
+			<Grid Width="250">
+				<StackPanel Orientation="Vertical">
+
+					<TextBlock>TextTemplateVariableID</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="50" 
+					Height="20" 
+					Text="{Binding TextTemplateVariableID}"
+					IsEnabled="False">
+					</TextBox>
+
+
+					<TextBlock>NameTemplateVariable</TextBlock>
+					<TextBox Name="TextTemplateVariabName"
+					Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="190" 
+					Height="20" 
+					Text="{Binding NameTemplateVariable}">
+					</TextBox>
+
+					<TextBlock>KeyTextTemlateVariable</TextBlock>
+					<TextBox Name="KeyTextTemplateVariab"
+					Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="190" 
+					Height="20" 
+					Text="{Binding KeyTextTemlateVariable}">
+					</TextBox>
+
+					<TextBlock>ValueTextTemplateVariable</TextBlock>
+					<TextBox Name="ValueTextTemplateVariable"
+					Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="190" 
+					Height="100" 
+					Text="{Binding ValueTextTemplateVariable}">
+					</TextBox>
+
+				</StackPanel>
+			</Grid>
+
+			<Grid>
+				<StackPanel Width="Auto"
+					Orientation="Vertical">
+
+					<ListView  Name="templateMessagesList" 
+						Height="350"
+						ScrollViewer.VerticalScrollBarVisibility="Auto"
+						ItemsSource="{Binding TextTemplateVariables}"
+						SelectedItem="{Binding SelectedTextTemplateVariable, Mode=TwoWay}">
+						<ListView.View >
+							<GridView >
+								<GridViewColumn DisplayMemberBinding="{Binding TextTemplateVariableID}" Width="100">TemplateMessageID</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding NameTemplateVariable}" Width="150">TemplateMessageText</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding KeyTextTemlateVariable}" Width="150">TemplateMessageText</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding ValueTextTemplateVariable}" Width="150">TemplateMessageText</GridViewColumn>
+							</GridView>
+						</ListView.View>
+					</ListView>
+				</StackPanel>
+			</Grid>
+
+
+		</StackPanel>
+
+	</DockPanel>
+</Window>
