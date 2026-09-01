@@ -17,8 +17,7 @@ namespace WPFCSB.ViewModels
 
 		public ApplicationViewModel(IWindowManager windowManager)
 		{
-			_windowManager = windowManager;
-			//using (ApplicationContext db = new ApplicationContext()) { }
+			_windowManager = windowManager;		
 		}
 
 		
@@ -119,6 +118,35 @@ namespace WPFCSB.ViewModels
 				  {
 					  // App.OpenSingleInstancePersonWindow();
 					  _windowManager.ShowOrActivate<ManagerWindow>();
+				  }));
+			}
+		}
+
+		// Окно для работы с данными Sanatorium из базы данных 
+		private RelayCommand? openSanatoriumWindomCommand;
+		public RelayCommand OpenSanatoriumWindomCommand
+		{
+			get
+			{
+				return openSanatoriumWindomCommand ??
+				  (openSanatoriumWindomCommand = new RelayCommand((o) =>
+				  {
+					  // App.OpenSingleInstancePersonWindow();
+					  _windowManager.ShowOrActivate<SanatoriumWindow>();
+				  }));
+			}
+		}
+
+		// Окно для работы с данными TemplateMessage из базы данных 
+		private RelayCommand? openTemplateMessageWindomCommand;
+		public RelayCommand OpenTemplateMessageWindomCommand
+		{
+			get
+			{
+				return openTemplateMessageWindomCommand ??
+				  (openTemplateMessageWindomCommand = new RelayCommand((o) =>
+				  {
+					  _windowManager.ShowOrActivate<TemplateMessageWindow>();
 				  }));
 			}
 		}

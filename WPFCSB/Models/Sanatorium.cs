@@ -14,6 +14,15 @@
 			EmailSanatorium = emailSanatorium;
 		}
 
+		/// <summary>Инициализация санатория с тремя параметрами</summary>
+		/// <param name="sanatoriumName">Название санатория</param>
+		/// <param name="emailSanatorium">Электронный адрес санатория</param>
+		public Sanatorium( String sanatoriumName, String emailSanatorium)
+		{
+			SanatoriumName = sanatoriumName;
+			EmailSanatorium = emailSanatorium;
+		}
+
 		/// <summary>Инициализация санатория без параметров</summary>
 		public Sanatorium()	{}
 

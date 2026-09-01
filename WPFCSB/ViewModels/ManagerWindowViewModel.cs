@@ -136,7 +136,7 @@ namespace WPFCSB.ViewModels
 							  Person? foundManagerPerson = db.Persons.Find(manager.ManagerPersonID);
 							  if(foundManagerPerson != null)
 							  {
-								  Person CreatedNewPerson = new Person
+								  Person createdNewPerson = new Person
 								  {
 									  PersonID = foundManagerPerson.PersonID,
 									  Surname = foundManagerPerson.Surname,
@@ -146,7 +146,7 @@ namespace WPFCSB.ViewModels
 									  Gender = foundManagerPerson.Gender,
 									  FullNamePerson = foundManagerPerson.FullNamePerson
 								  };
-								  manager.ManagerPerson = CreatedNewPerson;
+								  manager.ManagerPerson = createdNewPerson;
 								  Managers.Add(manager);
 							  }
 							  else

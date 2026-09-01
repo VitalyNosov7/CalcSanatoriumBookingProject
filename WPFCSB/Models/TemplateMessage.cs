@@ -3,14 +3,23 @@
 	/// <summary>Класс содержит информацию о текстовых шаблонах</summary>
 	public class TemplateMessage
 	{
-	/// <summary>Инициализация текстового шаблона с двумя параметрами</summary>
-	/// <param name="templateMessageID">Идентификатор текстового шаблона</param>
-	/// <param name="templateMessageText">Текст шаблона</param>
+		/// <summary>Инициализация текстового шаблона с двумя параметрами</summary>
+		/// <param name="templateMessageID">Идентификатор текстового шаблона</param>
+		/// <param name="templateMessageText">Текст шаблона</param>
 		public TemplateMessage(Int32 templateMessageID, String templateMessageText)
 		{
 			TemplateMessageID = templateMessageID;
 			TemplateMessageText = templateMessageText;
 		}
+
+		/// <summary>Инициализация текстового шаблона с двумя параметрами</summary>
+		/// <param name="templateMessageText">Текст шаблона</param>
+		public TemplateMessage(String templateMessageText)
+		{
+			TemplateMessageText = templateMessageText;
+		}
+
+		public TemplateMessage() { }
 
 		/// <summary>Идентификатор шаблона текста сообщения</summary>
 		private Int32 _templateMessageID;

@@ -125,8 +125,9 @@ namespace WPFCSB.ViewModels
 							  Persons.Add(person);
 						  }
 
-						  SelectedPerson = null!;
-						  ClearPropertyPerson();
+						  //SelectedPerson = null!;
+						  //ClearPropertyPerson(); 
+						  DeselectPersonCommand.Execute(null!);
 					  }
 
 				  }));
