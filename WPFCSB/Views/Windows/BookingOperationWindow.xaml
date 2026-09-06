@@ -1,0 +1,205 @@
+﻿<Window x:Class="WPFCSB.Views.Windows.BookingOperationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFCSB.Views.Windows"
+        mc:Ignorable="d"
+        Title="BookingOperationWindow" Height="500" Width="1000">
+	<DockPanel LastChildFill="True" Margin="5">
+
+		<!--<Grid Name="GridTop" DockPanel.Dock="Top" Background="Coral" Width="Auto" Height="30">
+	<StackPanel Orientation="Horizontal">
+		<TextBlock Margin="3,3,3,3" >Поиск</TextBlock>
+
+		<TextBox Margin="3,3,3,3" 
+		HorizontalAlignment="Left" 
+		Width="200" 
+		Height="20" ></TextBox>
+
+		<Button Margin="3,3,3,3">Найти</Button>
+	</StackPanel>
+</Grid>-->
+
+		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30">
+			<StackPanel Orientation="Horizontal">
+				<Button Margin="3,3,3,3" Command="{Binding AddBookingOperationFromDBCommand}">Добавить</Button>
+				<Button Margin="3,3,3,3" Command ="{Binding EditBookingOperationToDBCommand}">Редактировать</Button>
+				<Button Margin="3,3,3,3" Command="{Binding DeleteBookingOperationToDBCommand}">Удалить</Button>
+				<Button Margin="3,3,3,3" Command="{Binding DeselectBookingOperationCommand}">Снять выделение</Button>
+				<Button Margin="3,3,3,3" Command="{Binding UpdateDataЬBookingOperationFromDBCommand}">Обновить данные</Button>
+				<Button Margin="3,3,3,3" Command="{Binding OpenWindowsCommands.OpenTextTemplateVariableWindowCommand}">Текстовые переменные</Button>
+			</StackPanel>
+		</Grid>
+
+		<StackPanel Orientation="Horizontal">
+
+			<Grid Width="200">
+				<StackPanel Orientation="Vertical">
+
+					<TextBlock>BookingOperationID</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="50" 
+					Height="20" 
+					Text="{Binding BookingOperationID}"
+					IsEnabled="False">
+					</TextBox>
+
+					<TextBlock>TextTemplateID</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="50" 
+					Height="20" 
+					Text="{Binding TextTemplateID}"
+					IsEnabled="False">
+					</TextBox>
+
+					<TextBlock>BookingOperationName</TextBlock>
+					<TextBox Name="PersonSurname"
+					Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="190" 
+					Height="20" 
+					Text="{Binding BookingOperationName}">
+					</TextBox>
+
+					<TextBlock>TemplateMessageText</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+					HorizontalAlignment="Left" 
+					Width="190" 
+					Height="200" 
+					Text="{Binding TemplateMessageText}"
+					AcceptsReturn="True"
+					TextWrapping="Wrap"
+					VerticalScrollBarVisibility="Auto"
+					MinLines="3"
+					MaxLines="10">
+					</TextBox>
+
+					<TextBlock>PrefixFileName</TextBlock>
+					<TextBox Margin="3,3,3,3" 
+						HorizontalAlignment="Left" 
+						Width="190" 
+						Height="20" 
+						Text="{Binding PrefixFileName}">
+					</TextBox>
+
+					
+
+
+				</StackPanel>
+			</Grid>
+
+			<Grid>
+				<StackPanel Width="Auto"
+					Orientation="Vertical">
+
+					<DataGrid ItemsSource="{Binding BookingOperations}" 
+							  SelectedItem="{Binding SelectedBookingOperation, Mode=TwoWay}"
+							  AutoGenerateColumns="False"
+							  GridLinesVisibility="All"
+							  CanUserAddRows="False"
+							  IsReadOnly="True"
+							  Height="400">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="BOID" Binding="{Binding BookingOperationID}" Width="50"/>
+							<DataGridTextColumn Header="BOName" Binding="{Binding BookingOperationName}" Width="150"/>
+							<DataGridTextColumn Header="Префикс" Binding="{Binding PrefixFileName}" Width="150"/>
+							<DataGridTextColumn Header="TemplateID" Binding="{Binding TextTemplateID}" Width="50"/>
+							<DataGridTextColumn Header="Шаблон" Binding="{Binding TemplateMessageBookingOperation.TemplateMessageText}" Width="200"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+					<!--<ListView  Name="managersList" 
+						Height="350"
+						ScrollViewer.VerticalScrollBarVisibility="Auto"
+						ItemsSource="{Binding BookingOperations}"
+						SelectedItem="{Binding SelectedBookingOperation, Mode=TwoWay}"
+						HorizontalContentAlignment="Stretch">
+
+
+						<ListView.ItemContainerStyle>
+							<Style TargetType="ListViewItem">
+								<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+								--><!-- Горизонтальные линии (нижняя граница строки) --><!--
+								<Setter Property="BorderBrush" Value="LightGray"/>
+								<Setter Property="BorderThickness" Value="0,0,0,1"/>
+							</Style>
+						</ListView.ItemContainerStyle>
+
+						<ListView.View >
+							<GridView >
+
+								<GridViewColumn Header="BOID" Width="150">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											--><!-- Вертикальные линии: левая граница ячейки --><!--
+											<Border BorderBrush="LightGray" 
+													BorderThickness="1,0,0,0"
+													 Padding="5,2"
+													 VerticalAlignment="Stretch">
+												<TextBlock Text="{Binding BookingOperationID}"/>
+											</Border>
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+
+								<GridViewColumn Header="BOName" Width="150">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											--><!-- Вертикальные линии: левая граница ячейки --><!--
+											<Border BorderBrush="LightGray" 
+													BorderThickness="1,0,0,0"
+													 Padding="5,2"
+													 VerticalAlignment="Stretch">
+												<TextBlock Text="{Binding BookingOperationName}"/>
+											</Border>
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+
+								<GridViewColumn Header="TextTemplateID" Width="150">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											--><!-- Вертикальные линии: левая граница ячейки --><!--
+											<Border BorderBrush="LightGray" 
+													BorderThickness="1,0,0,0"
+													 Padding="5,2"
+													 VerticalAlignment="Stretch">
+												<TextBlock Text="{Binding TextTemplateID}"/>
+											</Border>
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+
+								<GridViewColumn Header="TemplateMessageBO" Width="150">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											--><!-- Вертикальные линии: левая граница ячейки --><!--
+											<Border BorderBrush="LightGray" 
+													BorderThickness="1,0,0,0"
+													 Padding="5,2"
+													 VerticalAlignment="Stretch">
+												<TextBlock Text="{Binding TemplateMessageBookingOperation.TemplateMessageText}"/>
+											</Border>
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+
+								--><!--<GridViewColumn DisplayMemberBinding="{Binding BookingOperationID}" Width="80">BookingOperationID</GridViewColumn>	
+								<GridViewColumn DisplayMemberBinding="{Binding BookingOperationName}" Width="150">Орерация</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding PrefixFileName}" Width="150">Префикс</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding TextTemplateID}" Width="80">TemplateID</GridViewColumn>
+								<GridViewColumn DisplayMemberBinding="{Binding TemplateMessageBookingOperation.TemplateMessageText}" Width="300">Шаблон</GridViewColumn>--><!--		
+							</GridView>
+						</ListView.View>
+					</ListView>-->
+				</StackPanel>
+			</Grid>
+
+
+		</StackPanel>
+
+	</DockPanel>
+</Window>

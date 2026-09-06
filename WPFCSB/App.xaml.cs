@@ -14,7 +14,7 @@ namespace WPFCSB
 
 		private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var applicationViewModel = new ApplicationViewModel(new WindowManager());
+            var applicationViewModel = new ApplicationViewModel(/*new WindowManager()*/);
            MainWindow.DataContext = applicationViewModel;
             MainWindow.Show();
         }

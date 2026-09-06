@@ -70,7 +70,12 @@
 					HorizontalAlignment="Left" 
 					Width="190" 
 					Height="100" 
-					Text="{Binding ValueTextTemplateVariable}">
+					Text="{Binding ValueTextTemplateVariable}"
+					AcceptsReturn="True"
+					TextWrapping="Wrap"
+					VerticalScrollBarVisibility="Auto"
+					MinLines="3"
+					MaxLines="10">
 					</TextBox>
 
 				</StackPanel>
@@ -79,21 +84,59 @@
 			<Grid>
 				<StackPanel Width="Auto"
 					Orientation="Vertical">
-
-					<ListView  Name="templateMessagesList" 
+					<DataGrid ItemsSource="{Binding TextTemplateVariables}" 
+					  SelectedItem="{Binding SelectedTextTemplateVariable, Mode=TwoWay}"
+					  AutoGenerateColumns="False"
+					  GridLinesVisibility="All"
+					  CanUserAddRows="False"
+					  IsReadOnly="True"
+					  Height="400">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="TVID" Binding="{Binding TextTemplateVariableID}" Width="50"/>
+							<DataGridTextColumn Header="TVName" Binding="{Binding NameTemplateVariable}" Width="150"/>
+							<DataGridTextColumn Header="KeyTV" Binding="{Binding KeyTextTemlateVariable}" Width="150"/>							
+							<DataGridTextColumn Header="ValueTV" Binding="{Binding ValueTextTemplateVariable}" Width="200"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<!--<ListView  Name="templateMessagesList" 
 						Height="350"
 						ScrollViewer.VerticalScrollBarVisibility="Auto"
 						ItemsSource="{Binding TextTemplateVariables}"
-						SelectedItem="{Binding SelectedTextTemplateVariable, Mode=TwoWay}">
+						SelectedItem="{Binding SelectedTextTemplateVariable, Mode=TwoWay}"
+						HorizontalContentAlignment="Stretch">
+
+						<ListView.ItemContainerStyle>
+							<Style TargetType="ListViewItem">
+								<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+								--><!-- Горизонтальные линии (нижняя граница строки) --><!--
+								<Setter Property="BorderBrush" Value="LightGray"/>
+								<Setter Property="BorderThickness" Value="0,0,0,1"/>
+							</Style>
+						</ListView.ItemContainerStyle>
+
 						<ListView.View >
 							<GridView >
-								<GridViewColumn DisplayMemberBinding="{Binding TextTemplateVariableID}" Width="100">TemplateMessageID</GridViewColumn>
+
+								<GridViewColumn Header="TemplateVariableID" Width="150">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											--><!-- Вертикальные линии: левая граница ячейки --><!--
+											<Border BorderBrush="LightGray" 
+													BorderThickness="1,0,0,0"
+													 Padding="5,2">
+												<TextBlock Text="{Binding TextTemplateVariableID}"/>
+											</Border>
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>-->
+
+								<!--<GridViewColumn DisplayMemberBinding="{Binding TextTemplateVariableID}" Width="100">TemplateMessageID</GridViewColumn>
 								<GridViewColumn DisplayMemberBinding="{Binding NameTemplateVariable}" Width="150">TemplateMessageText</GridViewColumn>
 								<GridViewColumn DisplayMemberBinding="{Binding KeyTextTemlateVariable}" Width="150">TemplateMessageText</GridViewColumn>
-								<GridViewColumn DisplayMemberBinding="{Binding ValueTextTemplateVariable}" Width="150">TemplateMessageText</GridViewColumn>
-							</GridView>
+								<GridViewColumn DisplayMemberBinding="{Binding ValueTextTemplateVariable}" Width="150">TemplateMessageText</GridViewColumn>-->
+							<!--</GridView>
 						</ListView.View>
-					</ListView>
+					</ListView>-->
 				</StackPanel>
 			</Grid>
 

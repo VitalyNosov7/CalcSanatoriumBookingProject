@@ -4,6 +4,7 @@ using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
+using WPFCSB.Views.Services;
 
 namespace WPFCSB.ViewModels
 {
@@ -12,10 +13,15 @@ namespace WPFCSB.ViewModels
 	{
 		public TabBookingItemViewModel()
 		{
-			LoadManagerList();  // Загрузка списка менеджеров.
-			LoadSanatoriumList(); // Загрузка списка санаториев
-			LoadBookingOperationList(); // Загрузка списка операций над бронированием вместе с текстовыми шаблонами
-			LoadTemplateVariableDictionary(); // Загрузка переменных шаблона текста сообщений в словарь
+			LoadingListsFromDatabase(); // Загрузка списков из базы данных		
+		}
+
+		private OpenWindowsCommands _openWindowsCommands = new OpenWindowsCommands(new WindowManager());
+
+		public OpenWindowsCommands OpenWindowsCommands
+		{
+			get { return _openWindowsCommands; }
+			set { _openWindowsCommands = value; }
 		}
 
 		#region ЗАГОЛОВОК
@@ -45,7 +51,6 @@ namespace WPFCSB.ViewModels
 
 		#region ГОСТИ
 
-		// TODO: Тут логично использовать класс User
 		/// <summary>Список гостей</summary>
 		private ObservableCollection<Person> _guestList = new ObservableCollection<Person>();
 		/// <summary>Список гостей</summary>
@@ -125,7 +130,7 @@ namespace WPFCSB.ViewModels
 						ManagerPersonID = m.ManagerPersonID,
 						ManagerPerson = new Person(p.PersonID, p.Surname, p.Name, p.Patronymic!, p.Birthdate, p.Gender)
 					});
-
+				ManagerList.Clear();
 				foreach (var managerPerson in managerPersons)
 				{
 					ManagerList.Add(managerPerson);
@@ -146,7 +151,7 @@ namespace WPFCSB.ViewModels
 		}
 
 		/// <summary>Выбранный санаторий</summary>
-		private Sanatorium _selectedSanatorium = new Sanatorium();
+		private Sanatorium _selectedSanatorium = null!;
 		/// <summary>Выбранный санаторий</summary>
 		public Sanatorium SelectedSanatorium
 		{
@@ -166,6 +171,7 @@ namespace WPFCSB.ViewModels
 			using (ApplicationContext db = new ApplicationContext())
 			{
 				var sanatoriums = db.Sanatoriums.ToList();
+				//	SanatoriumList.Clear();
 				foreach (Sanatorium sanatorium in sanatoriums)
 				{
 					SanatoriumList.Add(sanatorium);
@@ -269,7 +275,7 @@ namespace WPFCSB.ViewModels
 						TemplateMessageBookingOperation = new TemplateMessage(t.TemplateMessageID, t.TemplateMessageText),
 						PrefixFileName = b.PrefixFileName
 					});
-
+				BookingOperationList.Clear();
 				foreach (var bookingOperation in bookingOperations)
 				{
 					BookingOperationList.Add(bookingOperation);
@@ -374,6 +380,7 @@ namespace WPFCSB.ViewModels
 
 				foreach (TextTemplateVariable t in textTemplateVariables)
 				{
+					TemplateVariableDictionary.Clear();
 					TemplateVariableDictionary.Add(t.KeyTextTemlateVariable, t.ValueTextTemplateVariable);
 				}
 			}
@@ -395,15 +402,54 @@ namespace WPFCSB.ViewModels
 
 		#endregion ФОРМИРОВАНИЕ ИМЕНИ ФАЙЛА
 
-		#endregion КОНТЕНТ
+		#endregion КОНЕЦ КОНТЕНТ
 
 		#region МЕТОДЫ
 
+		/// <summary>Загрузка списков из базы данных</summary>
+		private void LoadingListsFromDatabase()
+		{
+			CleanFields(); // Очищаем поля
+			LoadManagerList();  // Загрузка списка менеджеров.
+			LoadSanatoriumList(); // Загрузка списка санаториев
+			LoadBookingOperationList(); // Загрузка списка операций над бронированием вместе с текстовыми шаблонами
+			LoadTemplateVariableDictionary(); // Загрузка переменных шаблона текста сообщений в словарь
+		}
 
+		/// <summary>Очистить поля</summary>
+		private void CleanFields()
+		{
+			ResultTemplate = String.Empty;
+			FileName = String.Empty;
+			SanatoriumList.Clear();
+		}
+
+		// TODO : возможно метод не понадобится.
+		//private void LoadTemplameMessage()
+		//{
+		//	using (ApplicationContext db = new ApplicationContext())
+		//	{
+
+		//	}
+		//}
 
 		#endregion МЕТОДЫ
 
 		#region КОМАНДЫ
+
+		// Загрузка списков из базы данных
+		private RelayCommand? _loadingListsFromDatabaseCommand;
+		public RelayCommand LoadingListsFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingListsFromDatabaseCommand ??
+				  (_loadingListsFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  LoadingListsFromDatabase();
+				  }));
+			}
+		}
 
 		// Получить шаблон текстового сообщения
 		private RelayCommand? getTemplameMessageCommand;
@@ -414,18 +460,28 @@ namespace WPFCSB.ViewModels
 				return getTemplameMessageCommand ??
 				  (getTemplameMessageCommand = new RelayCommand(obj =>
 				  {
+
 					  if (SelectedBookingOperation != null)
 					  {
+
 						  // Получаем текстовый шаблон, который содержит(или не содержит) текстовые переменные для динамической подстановки данных
 						  String resultMessage = SelectedBookingOperation.TemplateMessageBookingOperation.TemplateMessageText;
-
+						  // TODO: ОШИБКА при вызове метода  LoadingListsFromDatabase(); Если проверить SelectedSanatorium на null и выкитуть из метода(команды) то программа продолжает работать
 						  // Динамическая подстановка значений в текстовые переменные
-						  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
-						  TemplateVariableDictionary[START_DATE_PERIOD_BOOKING] = StartDatePeriodBooking.ToShortDateString();
-						  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuest.GetSurnameWithInitials(FullNameMainGuest);
-						  TemplateVariableDictionary[CALC_BOOKING_STRING] = CalcBookingString;
-						  TemplateVariableDictionary[CURRENT_DATE] = DateTime.Now.ToShortDateString();
-						  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;
+						  if (SelectedSanatorium != null)
+						  {
+							  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
+							  TemplateVariableDictionary[START_DATE_PERIOD_BOOKING] = StartDatePeriodBooking.ToShortDateString();
+							  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+							  TemplateVariableDictionary[CALC_BOOKING_STRING] = CalcBookingString;
+							  TemplateVariableDictionary[CURRENT_DATE] = DateTime.Now.ToShortDateString();
+							  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;
+						  }
+						  else
+						  {
+							  //MessageBox.Show("Необходимо выбрать санаторий");
+							  return;
+						  }
 
 						  // Подстановка значений из текстовых переменных в текстовый шаблон 
 						  foreach (var item in TemplateVariableDictionary)
@@ -457,8 +513,8 @@ namespace WPFCSB.ViewModels
 					  }
 					  else
 					  {
-						  // TODO: Необхожимо грамотно обработать исключение!
-						  MessageBox.Show("Объект SelectedBookingOperation, в классе TabBookingItemViewModel, равег значению null!");
+						  //MessageBox.Show("Необходимо выбрать операцию пронирования");
+						  return;
 					  }
 				  }));
 			}
@@ -473,17 +529,34 @@ namespace WPFCSB.ViewModels
 				return createFileNameCommand ??
 				  (createFileNameCommand = new RelayCommand(obj =>
 				  {
-					  String foundPrefix = String.Empty;
-					  if (String.IsNullOrWhiteSpace(SelectedBookingOperation.PrefixFileName))
+					  // TODO : ошибка null при вызове команды, если не выбрана операция
+					  if (SelectedBookingOperation != null)
 					  {
-						  foundPrefix = "";
-						  FileName = foundPrefix;
+						  String foundPrefix = String.Empty;
+						  if (String.IsNullOrWhiteSpace(SelectedBookingOperation.PrefixFileName))
+						  {
+							  foundPrefix = "";
+							  FileName = foundPrefix;
+						  }
+						  else
+						  {
+							  foundPrefix = SelectedBookingOperation.PrefixFileName;
+							  if (SelectedSanatorium != null)
+							  {
+								  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+							  }
+							  else
+							  {
+								  FileName = foundPrefix + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+							  }
+						  }
 					  }
 					  else
 					  {
-						  foundPrefix = SelectedBookingOperation.PrefixFileName;
-						  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+						 // MessageBox.Show("Необходимо выбрать операцию бронирования!");
+						  return;
 					  }
+
 				  }));
 			}
 		}

@@ -20,7 +20,15 @@
 			</MenuItem>
 			<MenuItem Header="Правка"/>
 		</Menu>
-		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50"/>
+
+		<!-- Top панель главного окна-->
+		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50">
+			<StackPanel Orientation="Horizontal">
+				<Button Content="Обновить списки"></Button>
+			</StackPanel>
+		</Grid>
+		<!--КОНЕЦ Top панель главного окна-->
+
 		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
 		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
 
@@ -30,29 +38,30 @@
                     Command="{Binding RemoveTabCommand}"
                     CommandParameter="{Binding SelectedTab}"/>
 				<Button Content="Persons"
-						Command="{Binding OpenPersonWindomCommand}"/>
+						Command="{Binding OpenWindowsCommands.OpenPersonWindomCommand}"/>
 				<Button Content="Managers"
-						Command="{Binding OpenManagerWindomCommand}"/>
+						Command="{Binding OpenWindowsCommands.OpenManagerWindomCommand}"/>
 				<Button Content="Sanatoriums"
-						Command="{Binding OpenSanatoriumWindomCommand}"/>
-				<Button Content="TemplateMessages"
-						Command="{Binding OpenTemplateMessageWindomCommand}"/>
-				<Button Content="TextTemplateMessages"
-						Command="{Binding OpenTextTemplateVariableWindowCommand}"/>
+						Command="{Binding OpenWindowsCommands.OpenSanatoriumWindomCommand}"/>
+				<!--<Button Content="TemplateMessages"
+						Command="{Binding OpenTemplateMessageWindomCommand}"/>-->
+				<Button Content="TextVariables"
+						Command="{Binding OpenWindowsCommands.OpenTextTemplateVariableWindowCommand}"/>
+				<Button Content="BookingOperation"
+					Command="{Binding OpenWindowsCommands.OpenBookingOperationWindowCommand}"/>
 			</StackPanel>
 		</Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">
+
+
+			<!-- ОБЛАСТЬ ВКЛАДОК -->
 			<TabControl x:Name="myTabControl" ItemsSource="{Binding TabItems}"
             SelectedItem="{Binding SelectedTab}" >
 
-
+				<!-- Заголовок вкладки -->
 				<TabControl.ItemTemplate>
-					<!-- Шаблон для заголовка таба -->
 					<DataTemplate>
-
-
 						<StackPanel  Orientation="Horizontal" x:Name="HeaderPanel" >
-
 							<TextBlock Text="{Binding Header}"/>
 							<Button Content="X"
                                 Command="{Binding DataContext.RemoveTabCommand, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -62,14 +71,15 @@
 						</StackPanel>
 					</DataTemplate>
 				</TabControl.ItemTemplate>
+				<!--КОНЕЦ заголовок вкладки -->
+
+				<!-- Содержимое вкладки -->
 				<TabControl.ContentTemplate>
-					<!-- Шаблон для содержимого таба -->
 					<DataTemplate>
-
 						<Grid>
-
 							<Grid.RowDefinitions>
 								<RowDefinition Height="*" />
+								<RowDefinition Height="50" />
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*"/>
@@ -77,6 +87,7 @@
 								<ColumnDefinition Width="*"/>
 							</Grid.ColumnDefinitions>
 
+							<!--Данные бронирования-->
 							<StackPanel Name="StackPanelLeft_1"  
                                         Background="Pink" 
                                         Grid.Row="0" 
@@ -109,28 +120,35 @@
                                                  HorizontalAlignment="Left" 
                                                  VerticalAlignment="Bottom" 
                                                  Text="ФИО менеджера"/>
-										<ComboBox x:Name="ManagerFIO"
-                                                  Margin="3,0,3,1"
-                                                  ItemsSource="{Binding ManagerList}"
-                                                  SelectedItem="{Binding SelectedManager,UpdateSourceTrigger=PropertyChanged}"                                                 
-                                                  DisplayMemberPath="Name"
-                                                  IsTextSearchEnabled="True"                                            
-                                                  TextSearch.TextPath="ManagerPerson.FullNamePerson">
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="ManagerFIO"
+														Width="300"
+														Margin="3,0,3,1"
+														ItemsSource="{Binding ManagerList}"
+														SelectedItem="{Binding SelectedManager,UpdateSourceTrigger=PropertyChanged}"                                                 
+														DisplayMemberPath="Name"
+														IsTextSearchEnabled="True"                                            
+														TextSearch.TextPath="ManagerPerson.FullNamePerson">
 
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
+																	<Binding Path="ManagerPerson.FullNamePerson"/>
+																</MultiBinding>
 
-											<ComboBox.ItemTemplate>
-												<DataTemplate>
-													<TextBlock>
-														<TextBlock.Text>
-															<MultiBinding StringFormat="{}{0}">
-																<Binding Path="ManagerPerson.FullNamePerson"/>
-															</MultiBinding>
-
-														</TextBlock.Text>
-													</TextBlock>
-												</DataTemplate>
-											</ComboBox.ItemTemplate>
-										</ComboBox>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+											<Button Content="BD"
+													Command="{Binding OpenWindowsCommands.OpenManagerWindomCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+										</StackPanel>
 
 										<!--НАЗВАНИЕ САНАТОРИЯ-->
 										<TextBlock Margin="3,0,0,0" 
@@ -139,26 +157,33 @@
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Санаторий"/>
-										<ComboBox x:Name="Sanatorium"
-                                                  Margin="3,0,3,1"
-                                                  ItemsSource="{Binding SanatoriumList}"
-                                                  SelectedItem="{Binding SelectedSanatorium, UpdateSourceTrigger=PropertyChanged}"
-                                                  DisplayMemberPath="Name"
-                                                  IsTextSearchEnabled="True"                                            
-                                                  TextSearch.TextPath="SanatoriumName">
-											<ComboBox.ItemTemplate>
-												<DataTemplate>
-													<TextBlock>
-														<TextBlock.Text>
-															<MultiBinding StringFormat="{}{0}">
-																<Binding Path="SanatoriumName"/>
-															</MultiBinding>
-														</TextBlock.Text>
-													</TextBlock>
-												</DataTemplate>
-											</ComboBox.ItemTemplate>
-										</ComboBox>
-
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="Sanatorium"
+													  Width="300"
+													  Margin="3,0,3,1"
+													  ItemsSource="{Binding SanatoriumList}"
+													  SelectedItem="{Binding SelectedSanatorium, UpdateSourceTrigger=PropertyChanged}"
+													  DisplayMemberPath="Name"
+													  IsTextSearchEnabled="True"                                            
+													  TextSearch.TextPath="SanatoriumName">
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
+																	<Binding Path="SanatoriumName"/>
+																</MultiBinding>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+											<Button Content="BD"
+													Command="{Binding OpenWindowsCommands.OpenSanatoriumWindomCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+										</StackPanel>
 
 										<StackPanel Orientation="Horizontal">
 											<!--ДАТА ЗАЕЗДА-->
@@ -265,8 +290,9 @@
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>
+							<!--КОНЕЦ Данные бронирования-->
 
-							<!--ФОРМИРОВАНИЕ ШАБЛОНА-->
+							<!--Формирование шаблона-->
 							<StackPanel Name="StackPanelLeft_2"  
                                         Background="Brown" 
                                         Grid.Row="0" 
@@ -283,27 +309,34 @@
                                                  Height="20" 
                                                  HorizontalAlignment="Left" 
                                                  VerticalAlignment="Bottom" 
-                                                Text="Операция"/>
-										<ComboBox x:Name="MessageTemplate"
+                                                 Text="Операция"/>
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="MessageTemplate"
+												  Width="300"
                                                   Margin="3,0,3,1"
                                                   ItemsSource="{Binding BookingOperationList}"
                                                   SelectedItem="{Binding SelectedBookingOperation, UpdateSourceTrigger=PropertyChanged}"
                                                   DisplayMemberPath="Name"
                                                   IsTextSearchEnabled="True"                                            
                                                   TextSearch.TextPath="BookingOperationName">
-											<ComboBox.ItemTemplate>
-												<DataTemplate>
-													<TextBlock>
-														<TextBlock.Text>
-															<MultiBinding StringFormat="{}{0}">
-																<Binding Path="BookingOperationName"/>
-															</MultiBinding>
-														</TextBlock.Text>
-													</TextBlock>
-												</DataTemplate>
-											</ComboBox.ItemTemplate>
-										</ComboBox>
-
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
+																	<Binding Path="BookingOperationName"/>
+																</MultiBinding>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+											<Button Content="BD"
+													Command="{Binding OpenWindowsCommands.OpenBookingOperationWindowCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+										</StackPanel>
 										<StackPanel Orientation="Horizontal">
 											<Button Content="Сформировать шаблон" Command="{Binding GetTemplameMessageCommand}"  Margin="3,3"></Button>
 											<Button Content="Скопировать шаблон" Command="{Binding CopyTemplameMessageCommand}" Margin="3,3"></Button>
@@ -347,32 +380,56 @@
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>
+							<!--КОНЕЦ Формирование шаблона-->
+
+							<!--Дополнительная панель-->
 							<StackPanel Name="StackPanelLeft_3" 
                                         Background="Yellow" 
                                         Grid.Row="0"
                                         Grid.Column="2" 
                                         Orientation="Vertical">
-
-								<!--ИМЯ ФАЙЛА-->
-								<TextBlock Margin="3,0,0,0" 
+								<GroupBox Header="Дополнительная панель" 
+										  x:Name="RitePanelTab"
+										  Margin="3">
+									<StackPanel Orientation="Vertical">
+										<!--Имя файла-->
+										<TextBlock Margin="3,0,0,0" 
                                            Width="70" 
                                            Height="20" 
                                            HorizontalAlignment="Left" 
                                            VerticalAlignment="Bottom" 
                                            Text="Имя файла"/>
 
-								<TextBox Text="{Binding FileName}" Width="Auto" />
+										<TextBox Text="{Binding FileName}" Width="Auto" />
 
-								<StackPanel Orientation="Horizontal">
-									<Button Content="Создать имя файла" Command="{Binding CreateFileNameCommand}" Margin="3,3"></Button>
-									<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button>
-								</StackPanel>
-
+										<StackPanel Orientation="Horizontal">
+											<Button Content="Создать имя файла" Command="{Binding CreateFileNameCommand}" Margin="3,3"></Button>
+											<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button>
+										</StackPanel>
+										<!--КОНЕЦ Имя файла-->
+									</StackPanel>
+								</GroupBox>
 							</StackPanel>
+							<!--Дополнительная панель-->
+
+							<!--Bottom панель вкладки-->
+							<StackPanel Name="TabStackPanelBottom"  
+										Background="ForestGreen" 
+										Grid.Row="1" 
+										Grid.ColumnSpan="3"
+										Orientation="Horizontal">
+
+								<Button Content="Обновить списки"
+								Command="{Binding LoadingListsFromDatabaseCommand}"/>
+							</StackPanel>
+							<!--Bottom панель вкладки-->
 						</Grid>
 					</DataTemplate>
 				</TabControl.ContentTemplate>
+				<!-- КОНЕЦ содержимое вкладки -->
 			</TabControl>
+			<!--КОНЕЦ ОБЛАСТЬ ВКЛАДОК -->
+
 		</Grid>
 	</DockPanel>
 </Window>

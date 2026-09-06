@@ -52,7 +52,12 @@
 					HorizontalAlignment="Left" 
 					Width="200" 
 					Height="250" 
-					Text="{Binding TemplateMessageText}">
+					Text="{Binding TemplateMessageText}"
+					AcceptsReturn="True"
+					TextWrapping="Wrap"
+					VerticalScrollBarVisibility="Auto"
+					MinLines="3"
+					MaxLines="10">	
 					</TextBox>					
 
 				</StackPanel>

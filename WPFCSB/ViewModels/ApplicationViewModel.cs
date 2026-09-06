@@ -3,24 +3,28 @@ using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
 using WPFCSB.ViewModels.Base;
-using WPFCSB.Views.Interfaces;
-using WPFCSB.Views.Windows;
+using WPFCSB.Views.Services;
 
 namespace WPFCSB.ViewModels
 {
 	public class ApplicationViewModel : ViewModelBase
 	{
+		//private readonly IWindowManager _windowManager;
 
+		//public ApplicationViewModel(/*IWindowManager windowManager*/)
+		//{
+		//	//_windowManager = windowManager;		
+		//}
 
+		private OpenWindowsCommands _openWindowsCommands = new OpenWindowsCommands(new WindowManager());
 
-		private readonly IWindowManager _windowManager;
-
-		public ApplicationViewModel(IWindowManager windowManager)
+		public OpenWindowsCommands OpenWindowsCommands
 		{
-			_windowManager = windowManager;		
+			get { return _openWindowsCommands; }
+			set { _openWindowsCommands = value; }
 		}
 
-		
+
 		private ObservableCollection<TabBookingItemViewModel> _tabItems = new ObservableCollection<TabBookingItemViewModel>();
 		public ObservableCollection<TabBookingItemViewModel> TabItems
 		{
@@ -54,7 +58,7 @@ namespace WPFCSB.ViewModels
 						  newTab.Header = $"Tab {TabItems.Count + 1}";
 						  newTab.Content = $"Content of tab {TabItems.Count + 1}";
 						  newTab.SelectedManager = null!;
-						  newTab.SelectedSanatorium = new Sanatorium();
+						  newTab.SelectedSanatorium = null!;
 						  DatePeriod currentDatePeriod = new DatePeriod();
 						  newTab.NumberNightsBooked = currentDatePeriod.GetTimeInterval(newTab.StartDatePeriodBooking, newTab.EndDatePeriodBooking).Days;						 
 						  // TODO: Необходимо реализовать инициализацию данных
@@ -92,78 +96,92 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
-		// Окно для работы с данными Person из базы данных 
-		private RelayCommand? openPersonWindomCommand;
-		public RelayCommand OpenPersonWindomCommand
-		{
-			get
-			{
-				return openPersonWindomCommand ??
-				  (openPersonWindomCommand = new RelayCommand((o) =>
-				  {
-					 // App.OpenSingleInstancePersonWindow();
-					  _windowManager.ShowOrActivate<PersonWindow>();
-				  }));
-			}
-		}
+		//// Окно для работы с данными Person из базы данных 
+		//private RelayCommand? openPersonWindomCommand;
+		//public RelayCommand OpenPersonWindomCommand
+		//{
+		//	get
+		//	{
+		//		return openPersonWindomCommand ??
+		//		  (openPersonWindomCommand = new RelayCommand((o) =>
+		//		  {
+		//			 // App.OpenSingleInstancePersonWindow();
+		//			  _windowManager.ShowOrActivate<PersonWindow>();
+		//		  }));
+		//	}
+		//}
 
-		// Окно для работы с данными Manager из базы данных 
-		private RelayCommand? openManagerWindomCommand;
-		public RelayCommand OpenManagerWindomCommand
-		{
-			get
-			{
-				return openManagerWindomCommand ??
-				  (openManagerWindomCommand = new RelayCommand((o) =>
-				  {
-					  // App.OpenSingleInstancePersonWindow();
-					  _windowManager.ShowOrActivate<ManagerWindow>();
-				  }));
-			}
-		}
+		//// Окно для работы с данными Manager из базы данных 
+		//private RelayCommand? openManagerWindomCommand;
+		//public RelayCommand OpenManagerWindomCommand
+		//{
+		//	get
+		//	{
+		//		return openManagerWindomCommand ??
+		//		  (openManagerWindomCommand = new RelayCommand((o) =>
+		//		  {
+		//			  // App.OpenSingleInstancePersonWindow();
+		//			  _windowManager.ShowOrActivate<ManagerWindow>();
+		//		  }));
+		//	}
+		//}
 
-		// Окно для работы с данными Sanatorium из базы данных 
-		private RelayCommand? openSanatoriumWindomCommand;
-		public RelayCommand OpenSanatoriumWindomCommand
-		{
-			get
-			{
-				return openSanatoriumWindomCommand ??
-				  (openSanatoriumWindomCommand = new RelayCommand((o) =>
-				  {
-					  // App.OpenSingleInstancePersonWindow();
-					  _windowManager.ShowOrActivate<SanatoriumWindow>();
-				  }));
-			}
-		}
+		//// Окно для работы с данными Sanatorium из базы данных 
+		//private RelayCommand? openSanatoriumWindomCommand;
+		//public RelayCommand OpenSanatoriumWindomCommand
+		//{
+		//	get
+		//	{
+		//		return openSanatoriumWindomCommand ??
+		//		  (openSanatoriumWindomCommand = new RelayCommand((o) =>
+		//		  {
+		//			  // App.OpenSingleInstancePersonWindow();
+		//			  _windowManager.ShowOrActivate<SanatoriumWindow>();
+		//		  }));
+		//	}
+		//}
 
-		// Окно для работы с данными TemplateMessage из базы данных 
-		private RelayCommand? openTemplateMessageWindomCommand;
-		public RelayCommand OpenTemplateMessageWindomCommand
-		{
-			get
-			{
-				return openTemplateMessageWindomCommand ??
-				  (openTemplateMessageWindomCommand = new RelayCommand((o) =>
-				  {
-					  _windowManager.ShowOrActivate<TemplateMessageWindow>();
-				  }));
-			}
-		}
+		//// Окно для работы с данными TemplateMessage из базы данных 
+		//private RelayCommand? openTemplateMessageWindomCommand;
+		//public RelayCommand OpenTemplateMessageWindomCommand
+		//{
+		//	get
+		//	{
+		//		return openTemplateMessageWindomCommand ??
+		//		  (openTemplateMessageWindomCommand = new RelayCommand((o) =>
+		//		  {
+		//			  _windowManager.ShowOrActivate<TemplateMessageWindow>();
+		//		  }));
+		//	}
+		//}
 
-		// Окно для работы с данными TextTemplateVariable из базы данных 
-		private RelayCommand? openTextTemplateVariableWindowCommand;
-		public RelayCommand OpenTextTemplateVariableWindowCommand
-		{
-			get
-			{
-				return openTextTemplateVariableWindowCommand ??
-				  (openTextTemplateVariableWindowCommand = new RelayCommand((o) =>
-				  {
-					  _windowManager.ShowOrActivate<TextTemplateVariableWindow>();
-				  }));
-			}
-		}
+		//// Окно для работы с данными TextTemplateVariable из базы данных 
+		//private RelayCommand? openTextTemplateVariableWindowCommand;
+		//public RelayCommand OpenTextTemplateVariableWindowCommand
+		//{
+		//	get
+		//	{
+		//		return openTextTemplateVariableWindowCommand ??
+		//		  (openTextTemplateVariableWindowCommand = new RelayCommand((o) =>
+		//		  {
+		//			  _windowManager.ShowOrActivate<TextTemplateVariableWindow>();
+		//		  }));
+		//	}
+		//}
+
+		//// Окно для работы с данными BookingOperation из базы данных  BookingOperationWindowViewModel
+		//private RelayCommand? _openBookingOperationWindowCommand;
+		//public RelayCommand OpenBookingOperationWindowCommand
+		//{
+		//	get
+		//	{
+		//		return _openBookingOperationWindowCommand ??
+		//		  (_openBookingOperationWindowCommand = new RelayCommand((o) =>
+		//		  {
+		//			  _windowManager.ShowOrActivate<BookingOperationWindow>();
+		//		  }));
+		//	}
+		//}
 
 		#endregion КОМАНДЫ
 

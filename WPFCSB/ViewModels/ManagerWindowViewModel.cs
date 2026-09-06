@@ -60,14 +60,14 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _managerPersonID, value);
 		}
 
-		/// <summary>Личность менеджера</summary>
-		private Person _managerPerson = null!;
-		/// <summary>Личность менеджера</summary>		
-		public Person ManagerPerson
-		{
-			get { return _managerPerson; }
-			set => Set(ref _managerPerson, value);
-		}
+		///// <summary>Личность менеджера</summary>
+		//private Person _managerPerson = null!;
+		///// <summary>Личность менеджера</summary>		
+		//public Person ManagerPerson
+		//{
+		//	get { return _managerPerson; }
+		//	set => Set(ref _managerPerson, value);
+		//}
 
 		/// <summary>Фамилия персоны</summary>
 		private String _surname = String.Empty;
@@ -178,7 +178,6 @@ namespace WPFCSB.ViewModels
 					  using (ApplicationContext db = new ApplicationContext())
 					  {
 						  Person newPerson = CreateNewPerson();
-						  //db.Persons.Add(newPerson);
 
 						  db.Persons.Add(newPerson);
 						  db.SaveChanges();
@@ -364,14 +363,15 @@ namespace WPFCSB.ViewModels
 			Name = String.Empty;
 			Patronymic = String.Empty;
 			Birthdate = DateTime.Today;
+		//	ManagerPerson = null!;
 			Gender = default;
 		}
 
 		private Person CreateNewPerson()
 		{
 			// TODO: разработать валидатор - 1. первые символы ФИО заглавными буквами, 2. Проверка даты рождения
-			Person CreatedNewPerson = new Person(Surname, Name, Patronymic!, Birthdate, Gender);
-			return CreatedNewPerson;
+			Person createdNewPerson = new Person(Surname, Name, Patronymic!, Birthdate, Gender);
+			return createdNewPerson;
 		}
 	}
 }
