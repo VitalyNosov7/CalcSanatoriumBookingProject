@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WPFCSB.Models
+﻿namespace WPFCSB.Models
 {
 	/// <summary>Класс содержит информацию о госте(клиенте)</summary>
 	public class Guest

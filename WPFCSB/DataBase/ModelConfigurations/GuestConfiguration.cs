@@ -8,9 +8,11 @@ namespace WPFCSB.DataBase.ModelConfigurations
 	{
 		public void Configure(EntityTypeBuilder<Guest> builder)
 		{
-			new Guest() { GuestID = 1, GuestPersonID = 10 };
-			new Guest() { GuestID = 2, GuestPersonID = 11 };
-			new Guest() { GuestID = 3, GuestPersonID = 12 };
+			builder.HasData(
+			new Guest{ GuestID = 1, GuestPersonID = 10 },
+			new Guest{ GuestID = 2, GuestPersonID = 11 },
+			new Guest{ GuestID = 3, GuestPersonID = 12 }
+			);
 		}
 	}
 }

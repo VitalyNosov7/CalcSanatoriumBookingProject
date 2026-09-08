@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Documents;
 using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
@@ -207,6 +208,9 @@ namespace WPFCSB.ViewModels
 			set
 			{
 				Set(ref _selectedSanatorium, value);
+				LoadRoomCategoryList();
+				LoadAccommodationTypeList();
+				LoadTarifCategoryList();
 				GetTemplameMessageCommand.Execute(String.Empty);
 			}
 		}
@@ -281,6 +285,171 @@ namespace WPFCSB.ViewModels
 		}
 
 		#endregion ПЕРИОД БРОНИРОВАНИЯ
+
+
+		#region КАТЕГОРИЯ НОМЕРА
+
+		/// <summary>Весь список категорий номера из базы данных</summary>
+		private List<RoomCategory> _roomCategoryFullList = new List<RoomCategory>();
+		/// <summary>Весь список категорий номера из базы данных</summary>
+		private List<RoomCategory> RoomCategoryFullList
+		{
+			get { return _roomCategoryFullList; }
+			set { _roomCategoryFullList = value; }
+		}
+
+
+		/// <summary>Список категорий номера</summary>
+		private ObservableCollection<RoomCategory> _roomCategoryList = new ObservableCollection<RoomCategory>();
+		/// <summary>Список категорий номера</summary>
+		public ObservableCollection<RoomCategory> RoomCategoryList
+		{
+			get { return _roomCategoryList; }
+			set => Set(ref _roomCategoryList, value);
+		}
+
+		/// <summary>Выбранная категория номера</summary>
+		private RoomCategory _selectedRoomCategory = null!;
+		/// <summary>Выбранная категория номера</summary>
+		public RoomCategory SelectedRoomCategory
+		{
+			get { return _selectedRoomCategory; }
+			set => Set(ref _selectedRoomCategory, value);
+		}
+
+
+		/// <summary>Загрузка списка категорий номеров</summary>
+		private void LoadRoomCategoryFullList()
+		{
+
+			// Загрузка всего списка категорий номеров из базы данных.
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				RoomCategoryFullList = db.RoomCategories.ToList();			
+			}
+		}
+
+		/// <summary>Загрузка списка категорий номеров в зависимости от того какой санаторий был выбран</summary>
+		private void LoadRoomCategoryList()
+		{
+			if (SelectedSanatorium != null)
+			{
+				var filteredRoomCategory = RoomCategoryFullList.Where(x => x.SanatoriumID == SelectedSanatorium.SanatoriumID).ToList();
+				RoomCategoryList = new ObservableCollection<RoomCategory>(filteredRoomCategory);
+			}
+			else { return; }
+		}
+
+		#endregion КАТЕГОРИЯ НОМЕРА
+
+
+		#region ВИД РАЗМЕЩЕНИЯ
+
+		/// <summary>Весь список видов размещения из базы данных</summary>
+		private List<AccommodationType> _accommodationTypeFullList = new List<AccommodationType>();
+		/// <summary>Весь список видов размещения из базы данных</summary>
+		private List<AccommodationType> AccommodationTypeFullList
+		{
+			get { return _accommodationTypeFullList; }
+			set { _accommodationTypeFullList = value; }
+		}
+
+		/// <summary>Список видов размещения</summary>
+		private ObservableCollection<AccommodationType> _accommodationTypeList = new ObservableCollection<AccommodationType>();
+		/// <summary>Список видов размещения</summary>
+		public ObservableCollection<AccommodationType> AccommodationTypeList
+		{
+			get { return _accommodationTypeList; }
+			set => Set(ref _accommodationTypeList, value);
+		}
+
+		/// <summary>Выбранный вид размещения</summary>
+		private AccommodationType _selectedAccommodationType = null!;
+		/// <summary>Выбранный вид размещения</summary>
+		public AccommodationType SelectedAccommodationType
+		{
+			get { return _selectedAccommodationType; }
+			set => Set(ref _selectedAccommodationType, value);
+		}
+
+		/// <summary>Загрузка списка видов размещения</summary>
+		private void LoadAccommodationTypeFullList()
+		{
+
+			// Загрузка всего списка видов размещения из базы данных.
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				AccommodationTypeFullList = db.AccommodationTypes.ToList();
+			}
+		}
+
+
+		/// <summary>Загрузка списка видов размещения в зависимости от того какой санаторий был выбран</summary>
+		private void LoadAccommodationTypeList()
+		{
+			if (SelectedSanatorium != null)
+			{
+				var filteredAccommodationType = AccommodationTypeFullList.Where(x => x.SanatoriumID == SelectedSanatorium.SanatoriumID).ToList();
+				AccommodationTypeList = new ObservableCollection<AccommodationType>(filteredAccommodationType);
+			}
+			else { return; }
+		}
+
+		#endregion ВИД РАЗМЕЩЕНИЯ
+
+
+		#region КАТЕГОРИЯ ТАРИФА
+
+		/// <summary>Весь список категорий тарифов из базы данных</summary>
+		private List<TarifCategory> _tarifCategoryFullList = new List<TarifCategory>();
+		/// <summary>Весь список категорий тарифов из базы данных</summary>
+		private List<TarifCategory> TarifCategoryFullList
+		{
+			get { return _tarifCategoryFullList; }
+			set { _tarifCategoryFullList = value; }
+		}
+
+		/// <summary>Список категорий тарифов</summary>
+		private ObservableCollection<TarifCategory> _tarifCategoryList = new ObservableCollection<TarifCategory>();
+		/// <summary>Список категорий тарифов</summary>
+		public ObservableCollection<TarifCategory> TarifCategoryList
+		{
+			get { return _tarifCategoryList; }
+			set => Set(ref _tarifCategoryList, value);
+		}
+
+		/// <summary>Выбранная  категория тарифа</summary>
+		private TarifCategory _selectedTarifCategory = null!;
+		/// <summary>Выбранная  категория тарифа</summary>
+		public TarifCategory SelectedTarifCategory
+		{
+			get { return _selectedTarifCategory; }
+			set => Set(ref _selectedTarifCategory, value);
+		}
+
+		/// <summary>Загрузка списка категорий тарифов</summary>
+		private void LoadTarifCategoryFullList()
+		{
+
+			// Загрузка всего списка категорий тарифов из базы данных.
+			using (ApplicationContext db = new ApplicationContext())
+			{
+				TarifCategoryFullList = db.TarifCategories.ToList();
+			}
+		}
+
+		/// <summary>Загрузка списка  категорий тарифов в зависимости от того какой санаторий был выбран</summary>
+		private void LoadTarifCategoryList()
+		{
+			if (SelectedSanatorium != null)
+			{
+				var filteredTarifCategory = TarifCategoryFullList.Where(x => x.SanatoriumID == SelectedSanatorium.SanatoriumID).ToList();
+				TarifCategoryList = new ObservableCollection<TarifCategory>(filteredTarifCategory);
+			}
+			else { return; }
+		}
+
+		#endregion КАТЕГОРИЯ ТАРИФА
 
 		#region ОПЕРАЦИИ БРОНИРОВАНИЯ
 
@@ -460,6 +629,9 @@ namespace WPFCSB.ViewModels
 			CleanFields(); // Очищаем поля
 			LoadManagerList();  // Загрузка списка менеджеров.
 			LoadSanatoriumList(); // Загрузка списка санаториев
+			LoadRoomCategoryFullList(); // Загрузка всех категорий номеров
+			LoadAccommodationTypeFullList(); // Загрузка всех видов размещения
+			LoadTarifCategoryFullList(); // Загрузка всех категорий тарифов
 			LoadBookingOperationList(); // Загрузка списка операций над бронированием вместе с текстовыми шаблонами
 			LoadTemplateVariableDictionary(); // Загрузка переменных шаблона текста сообщений в словарь
 		}
@@ -601,7 +773,7 @@ namespace WPFCSB.ViewModels
 					  }
 					  else
 					  {
-						 // MessageBox.Show("Необходимо выбрать операцию бронирования!");
+						  // MessageBox.Show("Необходимо выбрать операцию бронирования!");
 						  return;
 					  }
 

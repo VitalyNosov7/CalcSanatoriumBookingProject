@@ -293,20 +293,20 @@
                                                    VerticalAlignment="Bottom" 
                                                    Text="Вид размещения"/>
 										<StackPanel Orientation="Horizontal">
-											<ComboBox x:Name="TypeOfAccommodation"
+											<ComboBox x:Name="AccommodationType"
 												  Width="300"
 												  Margin="3,0,3,1"
-												  ItemsSource="{Binding RoomCategoryList}"
-												  SelectedItem="{Binding SelectedTypeOfAccommodation, UpdateSourceTrigger=PropertyChanged}"
+												  ItemsSource="{Binding AccommodationTypeList}"
+												  SelectedItem="{Binding SelectedAccommodationType, UpdateSourceTrigger=PropertyChanged}"
 												  DisplayMemberPath="Name"
 												  IsTextSearchEnabled="True"                                            
-												  TextSearch.TextPath="TypeOfAccommodationName">
+												  TextSearch.TextPath="AccommodationTypeName">
 											<ComboBox.ItemTemplate>
 												<DataTemplate>
 													<TextBlock>
 														<TextBlock.Text>
 															<MultiBinding StringFormat="{}{0}">
-																<Binding Path="TypeOfAccommodationName"/>
+																	<Binding Path="AccommodationTypeName"/>
 															</MultiBinding>
 														</TextBlock.Text>
 													</TextBlock>
@@ -352,13 +352,13 @@
 													  SelectedItem="{Binding SelectedTarifCategory, UpdateSourceTrigger=PropertyChanged}"
 													  DisplayMemberPath="Name"
 													  IsTextSearchEnabled="True"                                            
-													  TextSearch.TextPath="TarifCategory">
+													  TextSearch.TextPath="TarifCategoryName">
 												<ComboBox.ItemTemplate>
 													<DataTemplate>
 														<TextBlock>
 															<TextBlock.Text>
 																<MultiBinding StringFormat="{}{0}">
-																	<Binding Path="TarifCategory"/>
+																	<Binding Path="TarifCategoryName"/>
 																</MultiBinding>
 															</TextBlock.Text>
 														</TextBlock>
