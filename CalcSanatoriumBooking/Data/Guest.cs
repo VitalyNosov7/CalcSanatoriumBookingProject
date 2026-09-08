@@ -1,113 +1,45 @@
-﻿using CalcSanatoriumBooking.Resources;
-
-
-namespace CalcSanatoriumBooking.Data
+﻿namespace CalcSanatoriumBooking.Data
 {
-	/// <summary>   Информация о госте. </summary>
+	/// <summary>Информация о госте</summary>
 	public class Guest
 	{
-		/// <summary>   Идентификатор гостя.  </summary>
+		/// <summary>Инициализация гостя с двумя параметрами: идентификатор и персона гостя</summary>
+		/// <param name="_guestID">Идентификатор гостя</param>
+		/// <param name="person">Личность гостя</param>
+		public Guest(Int32 _guestID, Person person)
+		{
+			GuestID = _guestID;
+			GuestPersonID = person.PersonID;
+			GuestPerson = person;
+		}
+
+		public Guest() { }
+		/// <summary>Идентификатор гостя</summary>
 		private Int32 _guestID = default;
 
-		/// <summary>   Идентификатор гостя.  </summary>
+		/// <summary>Идентификатор гостя</summary>
 		public Int32 GuestID
 		{
 			get { return _guestID; }
 			set { _guestID = value; }
 		}
 
-		/// <summary>   Информация о персоне.  </summary>
-		private Person? _currentPerson = default;
-
-		/// <summary>   Информация о персоне.  </summary>
-		public Person CurrentPerson
+		/// <summary>Идентификатор персоны гостя(Внешний ключ)</summary>
+		private Int32 _guestPersonID = default;
+		/// <summary>Идентификатор персоны гостя(Внешний ключ)</summary>
+		public Int32 GuestPersonID
 		{
-			get
-			{
-				if (_currentPerson == null) { } //	TODO:	Что должно происходить если null?
-				return _currentPerson!;
-			}
-			set { _currentPerson = value; }
+			get { return _guestPersonID; }
+			set { _guestPersonID = value; }
 		}
 
-		/// <summary>   Дата начала проживания. </summary>
-		private DateTime _startDateResidence = default;
-
-		/// <summary>   Дата начала проживания. </summary>
-		public DateTime StartDateResidence
+		/// <summary>Личность гостя</summary>
+		private Person _guestPerson = null!;
+		/// <summary>Личность гостя</summary>		
+		public Person GuestPerson
 		{
-			get { return _startDateResidence; }
-			set { _startDateResidence = value; }
-		}
-
-		/// <summary>   Дата окончания проживания. </summary>
-		private DateTime _endDateResidence = default;
-
-		/// <summary>   Дата окончания проживания. </summary>
-		public DateTime EndDateResidence
-		{
-			get { return _endDateResidence; }
-			set { _endDateResidence = value; }
-		}
-
-		/// <summary>  Санаторий </summary>
-		private Sanatorium? _currentSanatorium = default;
-
-		/// <summary>  Санаторий </summary>
-		public Sanatorium CurrentSanatorium
-		{
-			get { return _currentSanatorium!; }
-			set { _currentSanatorium = value; }
-
-		}
-
-		/// <summary>  Категория номера </summary>
-		private RoomCategory? _currentRoomCategory = default;
-
-		/// <summary>  Категория номера </summary>
-		public RoomCategory CurrentRoomCategory
-		{
-			get { return _currentRoomCategory!; }
-			set { _currentRoomCategory = value; }
-		}
-
-		/// <summary>  Вид размещения. </summary>
-		private AccommodationType? _currentTypeOfAccommodation = default;
-
-		/// <summary>  Вид размещения. </summary>
-		public AccommodationType CurrentTypeOfAccommodation
-		{
-			get { return _currentTypeOfAccommodation!; }
-			set { _currentTypeOfAccommodation = value; }
-		}
-
-		/// <summary>Тариф санатория(с лечением, без лечения, климатолечение, оздоровление)</summary>
-		private SanatoriumTariff? _currentSanatoriumTariff = default;
-
-		/// <summary>Тариф санатория(с лечением, без лечения, климатолечение, оздоровление)</summary>
-		public SanatoriumTariff CurrentSanatoriumTariff
-		{
-			get { return _currentSanatoriumTariff!; }
-			set { _currentSanatoriumTariff = value; }
-		}
-
-		public Guest(Int32 guestID
-					, Person currentPerson
-					, DateTime startDateResidence
-					, DateTime endDateResidence
-					, Sanatorium currentSanatorium
-					, RoomCategory currentRoomCategory
-					, AccommodationType currentTypeOfAccommodation
-					, SanatoriumTariff currentSanatoriumTariff)
-		{
-			GuestID = guestID;
-			CurrentPerson = currentPerson;
-			StartDateResidence = startDateResidence;
-			EndDateResidence = endDateResidence;
-			CurrentSanatorium = currentSanatorium;
-			CurrentRoomCategory = currentRoomCategory;
-			CurrentTypeOfAccommodation = currentTypeOfAccommodation;
-			CurrentSanatoriumTariff = currentSanatoriumTariff;
+			get { return _guestPerson; }
+			set { _guestPerson = value; }
 		}
 	}
 }

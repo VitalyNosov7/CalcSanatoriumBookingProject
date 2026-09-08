@@ -49,35 +49,82 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _content, value);
 		}
 
+		#region ПЕРСОНА
+
+		///// <summary>Список гостей</summary>
+		//private ObservableCollection<Person> _guestList = new ObservableCollection<Person>();
+		///// <summary>Список гостей</summary>
+		//public ObservableCollection<Person> GuestList
+		//{
+		//	get { return _guestList; }
+		//	set => Set(ref _guestList, value);
+		//}
+
+		//// TODO: Тут логично использовать класс User
+		///// <summary>Выбранный гость</summary>
+		//private Person _selectedGuest = null!;
+		///// <summary>Выбранный гость</summary>
+		//public Person SelectedGuest
+		//{
+		//	get { return _selectedGuest; }
+		//	set => Set(ref _selectedGuest, value);
+		//}
+
+
+		// Доступ к методам класса Person
+		/// <summary>Основной гость</summary>
+		private Person _mainGuestPerson = new Person();
+		/// <summary>Основной гость</summary>
+		public Person MainGuestPerson
+		{
+			get { return _mainGuestPerson; }
+			set { _mainGuestPerson = value; }
+		}
+		#endregion ПЕРСОНА
+
 		#region ГОСТИ
 
 		/// <summary>Список гостей</summary>
-		private ObservableCollection<Person> _guestList = new ObservableCollection<Person>();
+		private ObservableCollection<Guest> _guestList = new ObservableCollection<Guest>();
 		/// <summary>Список гостей</summary>
-		public ObservableCollection<Person> GuestList
+		public ObservableCollection<Guest> GuestList
 		{
 			get { return _guestList; }
 			set => Set(ref _guestList, value);
 		}
 
-		// TODO: Тут логично использовать класс User
 		/// <summary>Выбранный гость</summary>
-		private Person _selectedGuest = null!;
+		private Guest _selectedGuest = null!;
 		/// <summary>Выбранный гость</summary>
-		public Person SelectedGuest
+		public Guest SelectedGuest
 		{
 			get { return _selectedGuest; }
 			set => Set(ref _selectedGuest, value);
 		}
 
-		/// <summary>Основной гость</summary>
-		private Person _mainGuest = new Person();
-		/// <summary>Основной гость</summary>
-		public Person MainGuest
-		{
-			get { return _mainGuest; }
-			set { _mainGuest = value; }
-		}
+		//// Загрузка списка гостей.
+		//private void LoadGuestList()
+		//{
+
+		//	// Загрузка списка гостей из базы данных.
+		//	using (ApplicationContext db = new ApplicationContext())
+		//	{
+		//		var guestPersons = db.Persons.Join(db.Guests, // второй набор
+		//			p => p.PersonID, // свойство-селектор объекта из первого набора
+		//			m => m.GuestPersonID, // свойство-селектор объекта из второго набора
+		//			(p, m) => new Guest// результат
+		//			{
+		//				GuestID = m.GuestID,
+		//				GuestPersonID = m.GuestPersonID,
+		//				GuestPerson = new Person(p.PersonID, p.Surname, p.Name, p.Patronymic!, p.Birthdate, p.Gender)
+		//			});
+		//		ManagerList.Clear();
+		//		foreach (var guestPerson in guestPersons)
+		//		{
+		//			GuestList.Add(guestPerson);
+		//		}
+		//	}
+		//}
 
 		/// <summary>ФИО основного гостя</summary>
 		private String _fullNameMainGuest = String.Empty;
@@ -93,6 +140,7 @@ namespace WPFCSB.ViewModels
 		}
 
 		#endregion ГОСТИ
+
 
 		#region МЕНЕДЖЕРЫ
 
@@ -472,7 +520,7 @@ namespace WPFCSB.ViewModels
 						  {
 							  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
 							  TemplateVariableDictionary[START_DATE_PERIOD_BOOKING] = StartDatePeriodBooking.ToShortDateString();
-							  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+							  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuestPerson.GetSurnameWithInitials(FullNameMainGuest);
 							  TemplateVariableDictionary[CALC_BOOKING_STRING] = CalcBookingString;
 							  TemplateVariableDictionary[CURRENT_DATE] = DateTime.Now.ToShortDateString();
 							  TemplateVariableDictionary[DESCRIPTION_BOOKING] = DescriptionBooking;
@@ -543,11 +591,11 @@ namespace WPFCSB.ViewModels
 							  foundPrefix = SelectedBookingOperation.PrefixFileName;
 							  if (SelectedSanatorium != null)
 							  {
-								  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+								  FileName = foundPrefix + " в санаторий " + SelectedSanatorium.SanatoriumName + " " + MainGuestPerson.GetSurnameWithInitials(FullNameMainGuest);
 							  }
 							  else
 							  {
-								  FileName = foundPrefix + MainGuest.GetSurnameWithInitials(FullNameMainGuest);
+								  FileName = foundPrefix + MainGuestPerson.GetSurnameWithInitials(FullNameMainGuest);
 							  }
 						  }
 					  }

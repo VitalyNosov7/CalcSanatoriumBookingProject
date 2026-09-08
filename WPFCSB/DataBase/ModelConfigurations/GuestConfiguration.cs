@@ -8,7 +8,9 @@ namespace WPFCSB.DataBase.ModelConfigurations
 	{
 		public void Configure(EntityTypeBuilder<Guest> builder)
 		{
-			throw new NotImplementedException();
+			new Guest() { GuestID = 1, GuestPersonID = 10 };
+			new Guest() { GuestID = 2, GuestPersonID = 11 };
+			new Guest() { GuestID = 3, GuestPersonID = 12 };
 		}
 	}
 }

@@ -14,12 +14,16 @@ namespace WPFCSB.DataBase
 		}
 
 		public DbSet<Person> Persons { get; set; } = null!;
+		public DbSet<PersonCategory> PersonCategories { get; set; } = null!;
 		public DbSet<Manager> Managers { get; set; } = null!;
-		//public DbSet<Guest> Guests { get; set; } = null!;
+		public DbSet<Guest> Guests { get; set; } = null!;
 		public DbSet<Sanatorium> Sanatoriums { get; set; } = null!;
 		public DbSet<TemplateMessage> TemplateMessages { get; set; } = null!;
 		public DbSet<BookingOperation> BookingOperations { get; set; } = null!;
 		public DbSet<TextTemplateVariable> TextTemplateVariables { get; set; } = null!;
+		public DbSet<RoomCategory> RoomCategories { get; set; } = null!;
+		public DbSet<TarifCategory> TarifCategories { get; set; } = null!;
+		public DbSet<AccommodationType> AccommodationTypes { get; set; } = null!;
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -29,12 +33,16 @@ namespace WPFCSB.DataBase
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new PersonConfiguration());
+			modelBuilder.ApplyConfiguration(new PersonCategoryConfiguration());
 			modelBuilder.ApplyConfiguration(new ManagerConfiguration());
-			//modelBuilder.ApplyConfiguration(new GuestConfiguration());
+			modelBuilder.ApplyConfiguration(new GuestConfiguration());
 			modelBuilder.ApplyConfiguration(new SanatoriumConfiguration());
 			modelBuilder.ApplyConfiguration(new TemplateMessageConfiguration());
 			modelBuilder.ApplyConfiguration(new BookingOperationConfiguration());
 			modelBuilder.ApplyConfiguration(new TextTemplateVariableConfiguration());
+			modelBuilder.ApplyConfiguration(new RoomCategoryConfiguration());
+			modelBuilder.ApplyConfiguration(new TarifCategoryConfiguration());
+			modelBuilder.ApplyConfiguration(new AccommodationTypeConfiguration());
 		}
 	}
 }

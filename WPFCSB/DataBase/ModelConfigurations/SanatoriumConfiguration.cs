@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WPFCSB.Models;
-using WPFCSB.Resources;
 
 namespace WPFCSB.DataBase.ModelConfigurations
 {
@@ -17,8 +16,7 @@ namespace WPFCSB.DataBase.ModelConfigurations
 			new Sanatorium(4, "Рябинка", "ribinka.buh@inbox.ru"),
 			new Sanatorium(5, "Сакрополь", "sakropol@yandex.ru"),
 			new Sanatorium(6, "Узбекистан", "marketing@yalta-uzbekistan.ru"),
-			new Sanatorium(7, "ТЭС", "teshotel@rambler.ru"),
-			new Sanatorium(8, "Новый санаторий", "")
+			new Sanatorium(7, "ТЭС", "teshotel@rambler.ru")
 		   );
 		}
 	}

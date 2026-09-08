@@ -14,22 +14,35 @@
         Title="Окно" Height="800" Width="1200">
 
 	<DockPanel LastChildFill="True" Margin="5">
+		<!-- Меню панель главного окна-->
 		<Menu Name="GridTop1" DockPanel.Dock="Top" Background="Tan" Width="Auto" Height="30">
 			<MenuItem Header="Файл">
 				<MenuItem Header="Выход" />
 			</MenuItem>
 			<MenuItem Header="Правка"/>
+			<MenuItem Header="База данных" >
+				<MenuItem Header="Персоны" Command="{Binding OpenWindowsCommands.OpenPersonWindomCommand}"></MenuItem>
+				<MenuItem Header="Менеджеры" Command="{Binding OpenWindowsCommands.OpenManagerWindomCommand}"></MenuItem>
+				<MenuItem Header="Санатории" Command="{Binding OpenWindowsCommands.OpenSanatoriumWindomCommand}"></MenuItem>
+				<MenuItem Header="Операции бронирования" Command="{Binding OpenWindowsCommands.OpenBookingOperationWindowCommand}"></MenuItem>
+				<MenuItem Header="Переменные в тексте" Command="{Binding OpenWindowsCommands.OpenTextTemplateVariableWindowCommand}"></MenuItem>
+			</MenuItem>
 		</Menu>
+		<!--КОНЕЦ Меню панель главного окна-->
 
-		<!-- Top панель главного окна-->
-		<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50">
+		<!-- ТОП панель главного окна-->
+		<!--<Grid Name="GridTop2" DockPanel.Dock="Top" Background="AliceBlue" Width="Auto" Height="50">
 			<StackPanel Orientation="Horizontal">
-				<Button Content="Обновить списки"></Button>
+				<Button Content="Тестовая кнопка"></Button>
 			</StackPanel>
-		</Grid>
-		<!--КОНЕЦ Top панель главного окна-->
+		</Grid>-->
+		<!--КОНЕЦ ТОП панель главного окна-->
 
+		<!-- BOTTOM панель главного окна-->
 		<Grid Name="GridBottom" DockPanel.Dock="Bottom" Background="BlanchedAlmond" Width="Auto" Height="30"/>
+		<!-- КОНЕЦ BOTTOM панель главного окна-->
+
+		<!-- LEFT панель главного окна-->
 		<Grid Name="GridLeft" DockPanel.Dock="Left" Background="Aquamarine" Width="100" Height="Auto">
 
 			<StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
@@ -37,22 +50,10 @@
 				<Button Content="Remove Selected Tab"
                     Command="{Binding RemoveTabCommand}"
                     CommandParameter="{Binding SelectedTab}"/>
-				<Button Content="Persons"
-						Command="{Binding OpenWindowsCommands.OpenPersonWindomCommand}"/>
-				<Button Content="Managers"
-						Command="{Binding OpenWindowsCommands.OpenManagerWindomCommand}"/>
-				<Button Content="Sanatoriums"
-						Command="{Binding OpenWindowsCommands.OpenSanatoriumWindomCommand}"/>
-				<!--<Button Content="TemplateMessages"
-						Command="{Binding OpenTemplateMessageWindomCommand}"/>-->
-				<Button Content="TextVariables"
-						Command="{Binding OpenWindowsCommands.OpenTextTemplateVariableWindowCommand}"/>
-				<Button Content="BookingOperation"
-					Command="{Binding OpenWindowsCommands.OpenBookingOperationWindowCommand}"/>
 			</StackPanel>
 		</Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">
-
+		<!-- КОНЕЦ LEFT панель главного окна-->
 
 			<!-- ОБЛАСТЬ ВКЛАДОК -->
 			<TabControl x:Name="myTabControl" ItemsSource="{Binding TabItems}"
@@ -93,7 +94,7 @@
                                         Grid.Row="0" 
                                         Grid.Column="0" 
                                         Orientation="Vertical">
-								<TextBlock Text="{Binding Content}"/>
+								<TextBlock Text="{Binding Content}"/><!--TODO: Подумать как через эту привязку пожно подгружать основное содержимое TabItem-->
 
 								<GroupBox Header="Данные бронирования" 
                                           x:Name="BookingData"
@@ -256,11 +257,33 @@
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Категория санатория"/>
-										<TextBox   Text="" 
-                                                   Margin="3,0,3,1"
-                                                   TextWrapping="Wrap"
-                                                   AcceptsReturn="True"
-                                                   VerticalScrollBarVisibility="Auto"/>
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="RoomCategory"
+												  Width="300"
+												  Margin="3,0,3,1"
+												  ItemsSource="{Binding RoomCategoryList}"
+												  SelectedItem="{Binding SelectedRoomCategory, UpdateSourceTrigger=PropertyChanged}"
+												  DisplayMemberPath="Name"
+												  IsTextSearchEnabled="True"                                            
+												  TextSearch.TextPath="RoomCategoryName">
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock>
+														<TextBlock.Text>
+															<MultiBinding StringFormat="{}{0}">
+																<Binding Path="RoomCategoryName"/>
+															</MultiBinding>
+														</TextBlock.Text>
+													</TextBlock>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
+											<Button Content="BD"
+													Command="{Binding }"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+										</StackPanel>
 
 										<!--ВИД РАЗМЕЩЕНИЯ-->
 										<TextBlock Margin="3,0,0,0" 
@@ -269,10 +292,110 @@
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
                                                    Text="Вид размещения"/>
-										<TextBox   Margin="3,0,3,1"/>
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="TypeOfAccommodation"
+												  Width="300"
+												  Margin="3,0,3,1"
+												  ItemsSource="{Binding RoomCategoryList}"
+												  SelectedItem="{Binding SelectedTypeOfAccommodation, UpdateSourceTrigger=PropertyChanged}"
+												  DisplayMemberPath="Name"
+												  IsTextSearchEnabled="True"                                            
+												  TextSearch.TextPath="TypeOfAccommodationName">
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock>
+														<TextBlock.Text>
+															<MultiBinding StringFormat="{}{0}">
+																<Binding Path="TypeOfAccommodationName"/>
+															</MultiBinding>
+														</TextBlock.Text>
+													</TextBlock>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
+											<Button Content="BD"
+												Command="{Binding }"
+												Width="30"
+												Height="20"
+												Margin="3,3,3,3"/>
+										</StackPanel>
+
+										<!--ГОСТЬ-->
+										<TextBlock Margin="3,0,0,0" 
+												   Width="150" 
+												   Height="20"
+												   HorizontalAlignment="Left" 
+												   VerticalAlignment="Bottom" 
+												   Text="Гость"/>
+										<StackPanel Orientation="Horizontal">
+
+											<TextBox Width="300"
+												Margin="3,0,3,1"></TextBox>
+											<Button Content="BD"
+												Command="{Binding }"
+												Width="30"
+												Height="20"
+												Margin="3,3,3,3"/>
+										</StackPanel>
+										<!--ТАРИФ-->
+										<TextBlock Margin="3,0,0,0" 
+												   Width="150" 
+												   Height="20"
+												   HorizontalAlignment="Left" 
+												   VerticalAlignment="Bottom" 
+												   Text="Тариф"/>		
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="TarifCategory"
+													  Width="300"
+													  Margin="3,0,3,1"
+													  ItemsSource="{Binding TarifCategoryList}"
+													  SelectedItem="{Binding SelectedTarifCategory, UpdateSourceTrigger=PropertyChanged}"
+													  DisplayMemberPath="Name"
+													  IsTextSearchEnabled="True"                                            
+													  TextSearch.TextPath="TarifCategory">
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
+																	<Binding Path="TarifCategory"/>
+																</MultiBinding>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+											<Button Content="BD"
+								Command="{Binding }"
+								Width="30"
+								Height="20"
+								Margin="3,3,3,3"/>
+										</StackPanel>
+
+										
+
+										<StackPanel Orientation="Horizontal">
+											<Button Content="Добавить" Margin="3,3,3,3" Width="100"></Button>
+											<Button Content="Удалить" Margin="3,3,3,3"  Width="100"></Button>
+										</StackPanel>
+
+										<!--СПИСОК ГОСТЕЙ-->
+										<TextBlock Margin="3,0,0,0" 
+												   Width="150" 
+												   Height="20"
+												   HorizontalAlignment="Left" 
+												   VerticalAlignment="Bottom" 
+												   Text="Гости"/>
+
+										<TextBox Width="350" 
+												Height="100"
+												HorizontalAlignment="Left">
+											
+										</TextBox>
+
 									</StackPanel>
 								</GroupBox>
-								<GroupBox Header="Данные санатория" 
+								<!--<GroupBox Header="Данные санатория" 
                                           x:Name="SanatoriumData"
                                           Margin="3">
 									<StackPanel>
@@ -288,7 +411,7 @@
                                                      AcceptsReturn="True"
                                                      VerticalScrollBarVisibility="Auto"/>
 									</StackPanel>
-								</GroupBox>
+								</GroupBox>-->
 							</StackPanel>
 							<!--КОНЕЦ Данные бронирования-->
 

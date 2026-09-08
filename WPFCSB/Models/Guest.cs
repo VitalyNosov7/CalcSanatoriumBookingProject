@@ -2,7 +2,7 @@
 
 namespace WPFCSB.Models
 {
-/// <summary>Класс содержит информацию о госте(клиенте)</summary>
+	/// <summary>Класс содержит информацию о госте(клиенте)</summary>
 	public class Guest
 	{
 		/// <summary>Инициализация гостя с двумя параметрами: идентификатор и персона гостя</summary>
@@ -14,6 +14,8 @@ namespace WPFCSB.Models
 			GuestPersonID = person.PersonID;
 			GuestPerson = person;
 		}
+
+		public Guest() { }
 
 		/// <summary>Идентификатор гостя</summary>
 		private Int32 _guestID;

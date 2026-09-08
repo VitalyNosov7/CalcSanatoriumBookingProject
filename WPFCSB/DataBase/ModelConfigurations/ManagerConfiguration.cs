@@ -9,15 +9,15 @@ namespace WPFCSB.DataBase.ModelConfigurations
 		public void Configure(EntityTypeBuilder<Manager> builder)
 		{
 			builder.HasData(
-			   new Manager { ManagerID = 1, ManagerPersonID = 11 },
-			   new Manager { ManagerID = 2, ManagerPersonID = 12 },
-			   new Manager { ManagerID = 3, ManagerPersonID = 13 },
-			   new Manager { ManagerID = 4, ManagerPersonID = 14 },
-			   new Manager { ManagerID = 5, ManagerPersonID = 15 },
-			   new Manager { ManagerID = 6, ManagerPersonID = 16 },
-			   new Manager { ManagerID = 7, ManagerPersonID = 17 },
-			   new Manager { ManagerID = 8, ManagerPersonID = 18 },
-			   new Manager { ManagerID = 9, ManagerPersonID = 19 }
+			   new Manager { ManagerID = 1, ManagerPersonID = 1 },
+			   new Manager { ManagerID = 2, ManagerPersonID = 2 },
+			   new Manager { ManagerID = 3, ManagerPersonID = 3 },
+			   new Manager { ManagerID = 4, ManagerPersonID = 4 },
+			   new Manager { ManagerID = 5, ManagerPersonID = 5 },
+			   new Manager { ManagerID = 6, ManagerPersonID = 6 },
+			   new Manager { ManagerID = 7, ManagerPersonID = 7 },
+			   new Manager { ManagerID = 8, ManagerPersonID = 8 },
+			   new Manager { ManagerID = 9, ManagerPersonID = 9 }
 	   );
 		}
 	}
