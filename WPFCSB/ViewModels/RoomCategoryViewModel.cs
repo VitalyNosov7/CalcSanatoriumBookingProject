@@ -96,7 +96,7 @@ namespace WPFCSB.ViewModels
 		}
 
 		/// <summary>Текущий санаторий</summary>
-		private Sanatorium _currentSanatorium;
+		private Sanatorium _currentSanatorium = null!;
 		/// <summary>Текущий санаторий</summary>
 		public Sanatorium CurrentSanatorium
 		{
@@ -147,23 +147,6 @@ namespace WPFCSB.ViewModels
 								  MessageBox.Show("Данные о санатории не найдены в базе данных!");
 								  return;
 							  }
-							  //RoomCategory? foundRoomCategory = db.RoomCategories.Find(roomCategory.RoomCategoryID);
-							  //if (foundRoomCategory != null)
-							  //{
-							  // RoomCategory createdNewfoundRoomCategory = new RoomCategory()
-							  // {
-							  //  RoomCategoryID = roomCategory.RoomCategoryID,
-							  //  SanatoriumID = roomCategory.SanatoriumID,
-							  //  RoomCategoryName = roomCategory.RoomCategoryName
-							  // };
-
-							  // RoomCategories.Add(createdNewfoundRoomCategory);
-							  //}
-							  //else
-							  //{
-							  // MessageBox.Show("Данные о категориях номеров не найдены в базе данных!");
-							  // return;
-							  //}
 
 						  }
 
@@ -244,7 +227,7 @@ namespace WPFCSB.ViewModels
 						  }
 						  else
 						  {
-							  MessageBox.Show("Данные не сохранились. Проверьте выбран ли санаторий!");
+							 // MessageBox.Show("Данные не сохранились. Проверьте выбран ли санаторий!");
 							  return;
 						  }
 					  }
@@ -404,7 +387,9 @@ namespace WPFCSB.ViewModels
 			RoomCategory createdNewRoomCategory = null!;
 			if (SanatoriumID > 0)
 			{
-				createdNewRoomCategory = new RoomCategory(SanatoriumID, RoomCategoryName);
+				//createdNewRoomCategory = new RoomCategory(SanatoriumID, RoomCategoryName);
+				createdNewRoomCategory = new RoomCategory()
+				{ SanatoriumID = SanatoriumID, RoomCategoryName = RoomCategoryName };
 				return createdNewRoomCategory;
 			}
 			else

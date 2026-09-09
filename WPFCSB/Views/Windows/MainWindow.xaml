@@ -332,13 +332,13 @@
 											</ComboBox.ItemTemplate>
 										</ComboBox>
 											<Button Content="DB"
-												Command="{Binding }"
+												Command="{Binding OpenWindowsCommands.OpenAccommodationTypeWindowCommand}"
 												Width="30"
 												Height="20"
 												Margin="3,3,3,3"/>
 
 											<Button Content="R"
-													Command="{Binding }"
+													Command="{Binding LoadingAccommodationTypeListFromDatabaseCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>

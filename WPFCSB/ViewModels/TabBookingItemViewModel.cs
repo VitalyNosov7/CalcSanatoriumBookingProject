@@ -709,6 +709,21 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
+		// Загрузка списка видах размещения из базы данных
+		private RelayCommand? _loadingAccommodationTypeListFromDatabaseCommand;
+		public RelayCommand LoadingAccommodationTypeListFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingAccommodationTypeListFromDatabaseCommand ??
+				  (_loadingAccommodationTypeListFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  LoadAccommodationTypeFullList();
+					  LoadAccommodationTypeList();
+				  }));
+			}
+		}
+
 
 
 		// Загрузка списков из базы данных

@@ -5,20 +5,32 @@
 	{
 		/// <summary>Инициализация вида размещения с тремя параметрами</summary>
 		/// <param name="accommodationTypeID">Идентификатор вида размещения</param>
+		/// <param name="sanatorium">"Экземпляр санатория</param>
+		/// <param name="accommodationTypeName">Наименование вида размещения</param>
+		public AccommodationType(Int32 accommodationTypeID, Sanatorium sanatorium, String accommodationTypeName)
+		{
+			AccommodationTypeID = accommodationTypeID;
+			SanatoriumID = sanatorium.SanatoriumID;
+			CurrentSanatorium = sanatorium;
+			AccommodationTypeName = accommodationTypeName;
+		}
+
+		/// <summary>Инициализация вида размещения с двумя параметрами</summary>
+		/// <param name="sanatorium">"Экземпляр санатория</param>
+		/// <param name="accommodationTypeName">Наименование вида размещения</param>
+		public AccommodationType(Sanatorium sanatorium, String accommodationTypeName)
+		{
+			SanatoriumID = sanatorium.SanatoriumID;
+			AccommodationTypeName = accommodationTypeName;
+		}
+
+		/// <summary>Инициализация вида размещения с тремя параметрами</summary>
+		/// <param name="accommodationTypeID">Идентификатор вида размещения</param>
 		/// <param name="sanatoriumID">Идентификатор санатория</param>
 		/// <param name="accommodationTypeName">Наименование вида размещения</param>
 		public AccommodationType(Int32 accommodationTypeID, Int32 sanatoriumID, String accommodationTypeName)
 		{
 			AccommodationTypeID = accommodationTypeID;
-			SanatoriumID = sanatoriumID;
-			AccommodationTypeName = accommodationTypeName;
-		}
-
-		/// <summary>Инициализация вида размещения с двумя параметрами</summary>
-		/// <param name="sanatoriumID">Идентификатор санатория</param>
-		/// <param name="accommodationTypeName">Наименование вида размещения</param>
-		public AccommodationType(Int32 sanatoriumID, String accommodationTypeName)
-		{
 			SanatoriumID = sanatoriumID;
 			AccommodationTypeName = accommodationTypeName;
 		}
@@ -42,6 +54,15 @@
 		{
 			get { return _sanatoriumID; }
 			set { _sanatoriumID = value; }
+		}
+
+		/// <summary>Текущий санаторий</summary>
+		private Sanatorium _currentSanatorium = null!;
+		/// <summary>Текущий санаторий</summary>
+		public Sanatorium CurrentSanatorium
+		{
+			get { return _currentSanatorium; }
+			set { _currentSanatorium = value; }
 		}
 
 		/// <summary>Наименование вида размещения</summary>

@@ -113,5 +113,19 @@ namespace WPFCSB.Commands
 				  }));
 			}
 		}
+
+		// Окно для работы с данными AccommodationType из базы данных  
+		private RelayCommand? _openAccommodationTypeWindowCommand;
+		public RelayCommand OpenAccommodationTypeWindowCommand
+		{
+			get
+			{
+				return _openAccommodationTypeWindowCommand ??
+				  (_openAccommodationTypeWindowCommand = new RelayCommand((o) =>
+				  {
+					  _windowManager.ShowOrActivate<AccommodationTypeWindow>();
+				  }));
+			}
+		}
 	}
 }

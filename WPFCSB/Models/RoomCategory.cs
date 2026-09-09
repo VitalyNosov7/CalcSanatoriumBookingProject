@@ -5,20 +5,32 @@
 	{
 		/// <summary>Конструктор категории номера с тремя параметрами</summary>
 		/// <param name="roomCategoryID">Идентификатор категории номера санатория</param>
+		/// <param name="sanatorium">Идентификатор санатория</param>
+		/// <param name="roomCategoryName">Наименование категории номера санатория</param>
+		public RoomCategory(Int32 roomCategoryID, Sanatorium sanatorium, String roomCategoryName)
+		{
+			RoomCategoryID = roomCategoryID;
+			SanatoriumID = sanatorium.SanatoriumID;
+			CurrentSanatorium = sanatorium;
+			RoomCategoryName = roomCategoryName;
+		}
+
+		/// <summary>Конструктор категории номера с двумя параметрами</summary>		
+		/// <param name="sanatorium"> Экземпляр санатория</param>
+		/// <param name="roomCategoryName">Наименование категории номера санатория</param>
+		public RoomCategory(Sanatorium sanatorium, String roomCategoryName)
+		{
+			SanatoriumID = sanatorium.SanatoriumID;
+			RoomCategoryName = roomCategoryName;
+		}
+
+		/// <summary>Конструктор категории номера с тремя параметрами</summary>
+		/// <param name="roomCategoryID">Идентификатор категории номера санатория</param>
 		/// <param name="sanatoriumID">Идентификатор санатория</param>
 		/// <param name="roomCategoryName">Наименование категории номера санатория</param>
 		public RoomCategory(Int32 roomCategoryID, Int32 sanatoriumID, String roomCategoryName)
 		{
 			RoomCategoryID = roomCategoryID;
-			SanatoriumID = sanatoriumID;
-			RoomCategoryName = roomCategoryName;
-		}
-
-		/// <summary>Конструктор категории номера с двумя параметрами</summary>		
-		/// <param name="sanatoriumID">Идентификатор санатория</param>
-		/// <param name="roomCategoryName">Наименование категории номера санатория</param>
-		public RoomCategory(Int32 sanatoriumID, String roomCategoryName)
-		{
 			SanatoriumID = sanatoriumID;
 			RoomCategoryName = roomCategoryName;
 		}
@@ -45,7 +57,7 @@
 		}
 
 		/// <summary>Текущий санаторий</summary>
-		private Sanatorium _currentSanatorium;
+		private Sanatorium _currentSanatorium = null!;
 		/// <summary>Текущий санаторий</summary>
 		public Sanatorium CurrentSanatorium
 		{
