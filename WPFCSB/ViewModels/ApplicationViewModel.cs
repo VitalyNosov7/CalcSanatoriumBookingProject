@@ -16,6 +16,11 @@ namespace WPFCSB.ViewModels
 		//	//_windowManager = windowManager;		
 		//}
 
+		public ApplicationViewModel()
+		{
+			AddTabCommand.Execute(null!);
+		}
+
 		private OpenWindowsCommands _openWindowsCommands = new OpenWindowsCommands(new WindowManager());
 
 		public OpenWindowsCommands OpenWindowsCommands

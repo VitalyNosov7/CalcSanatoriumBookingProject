@@ -36,16 +36,16 @@ namespace CalcSanatoriumBooking.Model
 								, AccommodationType currentTypeOfAccommodation
 								, SanatoriumTariff currentSanatoriumTariff)
 		{
-			Guest createdGuest = new Guest(guestID
-											, currentPerson
-											, startDateResidence
-											, endDateResidence
-											, currentSanatorium
-											, currentRoomCategory
-											, currentTypeOfAccommodation
-											, currentSanatoriumTariff);
+			//Guest createdGuest = new Guest(guestID
+			//								, currentPerson
+			//								, startDateResidence
+			//								, endDateResidence
+			//								, currentSanatorium
+			//								, currentRoomCategory
+			//								, currentTypeOfAccommodation
+			//								, currentSanatoriumTariff);
 
-				CurrentGuestList.Add(createdGuest);
+				//CurrentGuestList.Add(createdGuest);
 		}
 
 		/// <summary>	Прочитать(получиль) гостя из списока List<Guest>.	</summary>

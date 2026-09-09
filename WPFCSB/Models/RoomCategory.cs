@@ -44,6 +44,16 @@
 			set { _sanatoriumID = value; }
 		}
 
+		/// <summary>Текущий санаторий</summary>
+		private Sanatorium _currentSanatorium;
+		/// <summary>Текущий санаторий</summary>
+		public Sanatorium CurrentSanatorium
+		{
+			get { return _currentSanatorium; }
+			set { _currentSanatorium = value; }
+		}
+
+
 		/// <summary>Наименование категории номера санатория</summary>
 		private String _roomCategoryName = String.Empty;
 		/// <summary>Наименование категории номера санатория</summary>

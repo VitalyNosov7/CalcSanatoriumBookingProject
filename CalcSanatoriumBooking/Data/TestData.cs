@@ -236,14 +236,14 @@ namespace CalcSanatoriumBooking.Data
 		#region Гости
 		public void LoadGuestsList()
 		{
-			Guest guestIvanovII = new Guest(11
-											, PersonList[0]
-											, StartBooking
-											, EndBooking
-											, SanatoriumList[0]
-											, RoomCategoryList[0]
-											, AccommodationTypeList[0]
-											, SanatoriumTariffList[0]);
+			//Guest guestIvanovII = new Guest(11
+			//								, PersonList[0]
+			//								, StartBooking
+			//								, EndBooking
+			//								, SanatoriumList[0]
+			//								, RoomCategoryList[0]
+			//								, AccommodationTypeList[0]
+			//								, SanatoriumTariffList[0]);
 		}
 		#endregion Гости
 

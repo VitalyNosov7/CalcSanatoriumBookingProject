@@ -70,8 +70,8 @@
 					<ListView  Name="templateMessagesList" 
 						Height="350"
 						ScrollViewer.VerticalScrollBarVisibility="Auto"
-						ItemsSource="{Binding TemplateMessages}"
-						SelectedItem="{Binding SelectedTemplateMessage, Mode=TwoWay}">
+						ItemsSource="{Binding RoomCategories}"
+						SelectedItem="{Binding SelectedRoomCategory, Mode=TwoWay}">
 						<ListView.View >
 							<GridView >
 								<GridViewColumn DisplayMemberBinding="{Binding TemplateMessageID}" Width="100">TemplateMessageID</GridViewColumn>

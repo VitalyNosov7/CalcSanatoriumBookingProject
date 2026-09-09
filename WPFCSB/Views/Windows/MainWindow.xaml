@@ -11,7 +11,7 @@
         xmlns:local="clr-namespace:WPFCSB"
         xmlns:vm="clr-namespace:WPFCSB.ViewModels"
         mc:Ignorable="d"
-        Title="Окно" Height="800" Width="1200">
+        Title="Окно" Height="800" Width="1310">
 
 	<DockPanel LastChildFill="True" Margin="5">
 		<!-- Меню панель главного окна-->
@@ -26,6 +26,7 @@
 				<MenuItem Header="Санатории" Command="{Binding OpenWindowsCommands.OpenSanatoriumWindomCommand}"></MenuItem>
 				<MenuItem Header="Операции бронирования" Command="{Binding OpenWindowsCommands.OpenBookingOperationWindowCommand}"></MenuItem>
 				<MenuItem Header="Переменные в тексте" Command="{Binding OpenWindowsCommands.OpenTextTemplateVariableWindowCommand}"></MenuItem>
+				<MenuItem Header="Категории номера" Command="{Binding OpenWindowsCommands.OpenRoomCategoryWindowCommand}"></MenuItem>
 			</MenuItem>
 		</Menu>
 		<!--КОНЕЦ Меню панель главного окна-->
@@ -144,8 +145,14 @@
 													</DataTemplate>
 												</ComboBox.ItemTemplate>
 											</ComboBox>
-											<Button Content="BD"
+											<Button Content="DB"
 													Command="{Binding OpenWindowsCommands.OpenManagerWindomCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+
+											<Button Content="R"
+													Command="{Binding LoadingManagerListFromDatabaseCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
@@ -179,11 +186,17 @@
 													</DataTemplate>
 												</ComboBox.ItemTemplate>
 											</ComboBox>
-											<Button Content="BD"
+											<Button Content="DB"
 													Command="{Binding OpenWindowsCommands.OpenSanatoriumWindomCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
+
+											<Button Content="R"
+													Command="{Binding LoadingSanatoriumListFromDatabaseCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>	
 										</StackPanel>
 
 										<StackPanel Orientation="Horizontal">
@@ -278,11 +291,16 @@
 												</DataTemplate>
 											</ComboBox.ItemTemplate>
 										</ComboBox>
-											<Button Content="BD"
-													Command="{Binding }"
+											<Button Content="DB"
+													Command="{Binding OpenWindowsCommands.OpenRoomCategoryWindowCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
+											<Button Content="R"
+													Command="{Binding LoadingRoomCategoryListFromDatabaseCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>		
 										</StackPanel>
 
 										<!--ВИД РАЗМЕЩЕНИЯ-->
@@ -313,11 +331,17 @@
 												</DataTemplate>
 											</ComboBox.ItemTemplate>
 										</ComboBox>
-											<Button Content="BD"
+											<Button Content="DB"
 												Command="{Binding }"
 												Width="30"
 												Height="20"
 												Margin="3,3,3,3"/>
+
+											<Button Content="R"
+													Command="{Binding }"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
 										</StackPanel>
 
 										<!--ГОСТЬ-->
@@ -331,7 +355,7 @@
 
 											<TextBox Width="300"
 												Margin="3,0,3,1"></TextBox>
-											<Button Content="BD"
+											<Button Content="DB"
 												Command="{Binding }"
 												Width="30"
 												Height="20"
@@ -365,14 +389,17 @@
 													</DataTemplate>
 												</ComboBox.ItemTemplate>
 											</ComboBox>
-											<Button Content="BD"
-								Command="{Binding }"
-								Width="30"
-								Height="20"
-								Margin="3,3,3,3"/>
-										</StackPanel>
-
-										
+											<Button Content="DB"
+													Command="{Binding }"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+											<Button Content="R"
+													Command="{Binding }"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+										</StackPanel>										
 
 										<StackPanel Orientation="Horizontal">
 											<Button Content="Добавить" Margin="3,3,3,3" Width="100"></Button>
@@ -394,24 +421,7 @@
 										</TextBox>
 
 									</StackPanel>
-								</GroupBox>
-								<!--<GroupBox Header="Данные санатория" 
-                                          x:Name="SanatoriumData"
-                                          Margin="3">
-									<StackPanel>
-										<TextBlock Margin="3,0,0,0" 
-                                                     Width="100" 
-                                                     Height="20" 
-                                                     HorizontalAlignment="Left" 
-                                                     VerticalAlignment="Bottom" 
-                                                     Text="Санаторий"/>
-										<TextBox Text="{Binding Content}" 
-                                                     Margin="3,0,3,1"
-                                                     TextWrapping="Wrap"
-                                                     AcceptsReturn="True"
-                                                     VerticalScrollBarVisibility="Auto"/>
-									</StackPanel>
-								</GroupBox>-->
+								</GroupBox>						
 							</StackPanel>
 							<!--КОНЕЦ Данные бронирования-->
 
@@ -454,8 +464,13 @@
 													</DataTemplate>
 												</ComboBox.ItemTemplate>
 											</ComboBox>
-											<Button Content="BD"
+											<Button Content="DB"
 													Command="{Binding OpenWindowsCommands.OpenBookingOperationWindowCommand}"
+													Width="30"
+													Height="20"
+													Margin="3,3,3,3"/>
+											<Button Content="R"
+													Command="{Binding }"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>

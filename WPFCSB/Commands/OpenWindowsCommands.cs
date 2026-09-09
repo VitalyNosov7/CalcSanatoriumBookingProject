@@ -1,4 +1,5 @@
-﻿using WPFCSB.Views.Interfaces;
+﻿using WPFCSB.Models;
+using WPFCSB.Views.Interfaces;
 using WPFCSB.Views.Windows;
 
 namespace WPFCSB.Commands
@@ -85,7 +86,7 @@ namespace WPFCSB.Commands
 			}
 		}
 
-		// Окно для работы с данными BookingOperation из базы данных  BookingOperationWindowViewModel
+		// Окно для работы с данными BookingOperation из базы данных  
 		private RelayCommand? _openBookingOperationWindowCommand;
 		public RelayCommand OpenBookingOperationWindowCommand
 		{
@@ -95,6 +96,20 @@ namespace WPFCSB.Commands
 				  (_openBookingOperationWindowCommand = new RelayCommand((o) =>
 				  {
 					  _windowManager.ShowOrActivate<BookingOperationWindow>();
+				  }));
+			}
+		}
+
+		// Окно для работы с данными RoomCategory из базы данных  
+		private RelayCommand? _openRoomCategoryWindowCommand;
+		public RelayCommand OpenRoomCategoryWindowCommand
+		{
+			get
+			{
+				return _openRoomCategoryWindowCommand ??
+				  (_openRoomCategoryWindowCommand = new RelayCommand((o) =>
+				  {
+					  _windowManager.ShowOrActivate<RoomCategoryWindow>();
 				  }));
 			}
 		}

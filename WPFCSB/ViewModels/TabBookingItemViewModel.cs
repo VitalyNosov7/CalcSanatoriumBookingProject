@@ -325,7 +325,7 @@ namespace WPFCSB.ViewModels
 			// Загрузка всего списка категорий номеров из базы данных.
 			using (ApplicationContext db = new ApplicationContext())
 			{
-				RoomCategoryFullList = db.RoomCategories.ToList();			
+				RoomCategoryFullList = db.RoomCategories.ToList();
 			}
 		}
 
@@ -339,6 +339,9 @@ namespace WPFCSB.ViewModels
 			}
 			else { return; }
 		}
+
+
+
 
 		#endregion КАТЕГОРИЯ НОМЕРА
 
@@ -641,7 +644,9 @@ namespace WPFCSB.ViewModels
 		{
 			ResultTemplate = String.Empty;
 			FileName = String.Empty;
+			ManagerList.Clear();
 			SanatoriumList.Clear();
+			RoomCategoryList.Clear();
 		}
 
 		// TODO : возможно метод не понадобится.
@@ -656,6 +661,55 @@ namespace WPFCSB.ViewModels
 		#endregion МЕТОДЫ
 
 		#region КОМАНДЫ
+
+
+		// Загрузка списка санаториев из базы данных
+		private RelayCommand? _loadingSanatoriumListFromDatabaseCommand;
+		public RelayCommand LoadingSanatoriumListFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingSanatoriumListFromDatabaseCommand ??
+				  (_loadingSanatoriumListFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  SanatoriumList.Clear();
+					  LoadSanatoriumList();
+				  }));
+			}
+		}
+
+
+		// Загрузка списка менеджеров из базы данных
+		private RelayCommand? _loadingManagerListFromDatabaseCommand;
+		public RelayCommand LoadingManagerListFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingManagerListFromDatabaseCommand ??
+				  (_loadingManagerListFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  ManagerList.Clear();
+					  LoadManagerList();
+				  }));
+			}
+		}
+
+		// Загрузка списка категорий номеров из базы данных
+		private RelayCommand? _loadingRoomCategoryListFromDatabaseCommand;
+		public RelayCommand LoadingRoomCategoryListFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingRoomCategoryListFromDatabaseCommand ??
+				  (_loadingRoomCategoryListFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  LoadRoomCategoryFullList();
+					  LoadRoomCategoryList();
+				  }));
+			}
+		}
+
+
 
 		// Загрузка списков из базы данных
 		private RelayCommand? _loadingListsFromDatabaseCommand;
