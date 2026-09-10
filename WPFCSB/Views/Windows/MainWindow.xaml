@@ -390,12 +390,12 @@
 												</ComboBox.ItemTemplate>
 											</ComboBox>
 											<Button Content="DB"
-													Command="{Binding }"
+													Command="{Binding OpenWindowsCommands.OpenTarifCategoryeWindowCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
 											<Button Content="R"
-													Command="{Binding }"
+													Command="{Binding LoadingTarifCategoryListFromDatabaseCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
@@ -427,9 +427,9 @@
 
 							<!--Формирование шаблона-->
 							<StackPanel Name="StackPanelLeft_2"  
-                                        Background="Brown" 
+                                        Background="Bisque" 
                                         Grid.Row="0" 
-                                        Grid.Column="1" 
+                                        Grid.Column="2" 
                                         Orientation="Vertical">
 								<GroupBox Header="Формирование шаблона" 
                                           x:Name="CalcData"
@@ -470,7 +470,7 @@
 													Height="20"
 													Margin="3,3,3,3"/>
 											<Button Content="R"
-													Command="{Binding }"
+													Command="{Binding LoadingBookingOperationListFromDatabaseCommand}"
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
@@ -478,6 +478,24 @@
 										<StackPanel Orientation="Horizontal">
 											<Button Content="Сформировать шаблон" Command="{Binding GetTemplameMessageCommand}"  Margin="3,3"></Button>
 											<Button Content="Скопировать шаблон" Command="{Binding CopyTemplameMessageCommand}" Margin="3,3"></Button>
+										</StackPanel>
+
+										<StackPanel Orientation="Vertical">
+											<!--Имя файла-->
+											<TextBlock Margin="3,0,0,0" 
+													   Width="70" 
+													   Height="20" 
+													   HorizontalAlignment="Left" 
+													   VerticalAlignment="Bottom" 
+													   Text="Имя файла"/>	
+
+											<TextBox Text="{Binding FileName}" Width="Auto" />
+
+											<StackPanel Orientation="Horizontal">
+												<Button Content="Создать имя файла" Command="{Binding CreateFileNameCommand}" Margin="3,3"></Button>
+												<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button>
+											</StackPanel>
+											<!--КОНЕЦ Имя файла-->
 										</StackPanel>
 
 										<!--РАСЧЕТ БРОНИ-->
@@ -522,29 +540,37 @@
 
 							<!--Дополнительная панель-->
 							<StackPanel Name="StackPanelLeft_3" 
-                                        Background="Yellow" 
+                                        Background="PaleGoldenrod" 
                                         Grid.Row="0"
-                                        Grid.Column="2" 
+                                        Grid.Column="1" 
                                         Orientation="Vertical">
 								<GroupBox Header="Дополнительная панель" 
 										  x:Name="RitePanelTab"
 										  Margin="3">
-									<StackPanel Orientation="Vertical">
-										<!--Имя файла-->
+									<StackPanel>
+									<TextBlock Margin="3,0,0,0" 
+												Width="100" 
+												Height="20" 
+												HorizontalAlignment="Left" 
+												VerticalAlignment="Bottom" 
+												Text="Скидки"/>
+									<TextBox Text="" 
+												Margin="3,0,3,1"
+												TextWrapping="Wrap"
+												AcceptsReturn="True"
+												VerticalScrollBarVisibility="Auto"/>
+
 										<TextBlock Margin="3,0,0,0" 
-                                           Width="70" 
-                                           Height="20" 
-                                           HorizontalAlignment="Left" 
-                                           VerticalAlignment="Bottom" 
-                                           Text="Имя файла"/>
-
-										<TextBox Text="{Binding FileName}" Width="Auto" />
-
-										<StackPanel Orientation="Horizontal">
-											<Button Content="Создать имя файла" Command="{Binding CreateFileNameCommand}" Margin="3,3"></Button>
-											<Button Content="Скопировать имя файла" Command="{Binding CopyFileNameCommand}" Margin="3,3"></Button>
-										</StackPanel>
-										<!--КОНЕЦ Имя файла-->
+													Width="100" 
+													Height="20" 
+													HorizontalAlignment="Left" 
+													VerticalAlignment="Bottom" 
+													Text="Доп услуги"/>	
+										<TextBox Text="" 
+												Margin="3,0,3,1"
+												TextWrapping="Wrap"
+												AcceptsReturn="True"
+												VerticalScrollBarVisibility="Auto"/>
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>

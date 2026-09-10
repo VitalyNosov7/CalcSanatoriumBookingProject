@@ -647,6 +647,8 @@ namespace WPFCSB.ViewModels
 			ManagerList.Clear();
 			SanatoriumList.Clear();
 			RoomCategoryList.Clear();
+			AccommodationTypeList.Clear();
+			TarifCategoryList.Clear();
 		}
 
 		// TODO : возможно метод не понадобится.
@@ -673,6 +675,9 @@ namespace WPFCSB.ViewModels
 				  (_loadingSanatoriumListFromDatabaseCommand = new RelayCommand(obj =>
 				  {
 					  SanatoriumList.Clear();
+					  RoomCategoryList.Clear();
+					  AccommodationTypeList.Clear();
+					  TarifCategoryList.Clear();
 					  LoadSanatoriumList();
 				  }));
 			}
@@ -724,7 +729,34 @@ namespace WPFCSB.ViewModels
 			}
 		}
 
+		// Загрузка списка категория тарифа из базы данных
+		private RelayCommand? _loadingTarifCategoryListFromDatabaseCommand;
+		public RelayCommand LoadingTarifCategoryListFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingTarifCategoryListFromDatabaseCommand ??
+				  (_loadingTarifCategoryListFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  LoadTarifCategoryFullList();
+					  LoadTarifCategoryList();
+				  }));
+			}
+		}
 
+		// Загрузка списка операций бронирования из базы данных
+		private RelayCommand? _loadingBookingOperationListFromDatabaseCommand;
+		public RelayCommand LoadingBookingOperationListFromDatabaseCommand
+		{
+			get
+			{
+				return _loadingBookingOperationListFromDatabaseCommand ??
+				  (_loadingBookingOperationListFromDatabaseCommand = new RelayCommand(obj =>
+				  {
+					  LoadBookingOperationList();
+				  }));
+			}
+		}
 
 		// Загрузка списков из базы данных
 		private RelayCommand? _loadingListsFromDatabaseCommand;

@@ -1,7 +1,7 @@
 ﻿
 namespace WPFCSB.Models
 {
-	/// <summary>Класс содержит информацию о категории тарифа санатория</summary>
+	/// <summary>Класс содержит информацию о категории тарифа санатория(с лечением, без лечения, оздоровление и т.п.)</summary>
 	public class TarifCategory
 	{
 		/// <summary>Конструктор категории тарифа санатория с тремя параметрами</summary>
@@ -42,6 +42,15 @@ namespace WPFCSB.Models
 		{
 			get { return _sanatoriumID; }
 			set { _sanatoriumID = value; }
+		}
+
+		/// <summary>Текущий санаторий</summary>
+		private Sanatorium _currentSanatorium = null!;
+		/// <summary>Текущий санаторий</summary>
+		public Sanatorium CurrentSanatorium
+		{
+			get { return _currentSanatorium; }
+			set { _currentSanatorium = value; }
 		}
 
 		/// <summary>Наименование категории тарифа санатория</summary>
