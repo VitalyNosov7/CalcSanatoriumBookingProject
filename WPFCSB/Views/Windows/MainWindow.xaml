@@ -54,7 +54,7 @@
 			</StackPanel>
 		</Grid>
 		<Grid x:Name="TabArea" Background="LightGreen">
-		<!-- КОНЕЦ LEFT панель главного окна-->
+			<!-- КОНЕЦ LEFT панель главного окна-->
 
 			<!-- ОБЛАСТЬ ВКЛАДОК -->
 			<TabControl x:Name="myTabControl" ItemsSource="{Binding TabItems}"
@@ -81,6 +81,7 @@
 						<Grid>
 							<Grid.RowDefinitions>
 								<RowDefinition Height="*" />
+								<RowDefinition Height="160" />
 								<RowDefinition Height="50" />
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
@@ -95,13 +96,43 @@
                                         Grid.Row="0" 
                                         Grid.Column="0" 
                                         Orientation="Vertical">
-								<TextBlock Text="{Binding Content}"/><!--TODO: Подумать как через эту привязку пожно подгружать основное содержимое TabItem-->
+								<TextBlock Text="{Binding Content}"/>
+								<!--TODO: Подумать как через эту привязку пожно подгружать основное содержимое TabItem-->
 
 								<GroupBox Header="Данные бронирования" 
                                           x:Name="BookingData"
                                           Margin="3">
 									<StackPanel>
 
+										<!--ПОРЯДКОВЫЙ НОМЕР БРОНИРОВАНИЯ-->
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Margin="3,0,0,0" 
+													Width="100" 
+													Height="20" 
+													HorizontalAlignment="Left" 
+													VerticalAlignment="Bottom" 
+													Text="№ Бронирования"/>
+											<TextBox Text="" 
+													Margin="3,0,3,1"
+													Width="60" 
+													Height="20" 
+													TextWrapping="Wrap"
+													AcceptsReturn="True"
+													VerticalScrollBarVisibility="Auto"
+													HorizontalAlignment="Left" />
+											<!--ДАТА СОЗДАНИЯ БРОНИРОВАНИЯ-->
+											<TextBlock Margin="3,0,3,0" 
+													   Width="100" 
+													   Height="20" 
+													   HorizontalAlignment="Left" 
+													   VerticalAlignment="Bottom" 
+													   Text="Дата создания:"/>		
+											<DatePicker Name="CreateDateBooking"
+														Width="100"
+														HorizontalAlignment="Left" 
+														SelectedDate=""/>
+										</StackPanel>
+							
 										<!--ФИО ГОСТЯ-->
 										<TextBlock Margin="3,0,0,0" 
                                                 Width="100" 
@@ -196,7 +227,7 @@
 													Command="{Binding LoadingSanatoriumListFromDatabaseCommand}"
 													Width="30"
 													Height="20"
-													Margin="3,3,3,3"/>	
+													Margin="3,3,3,3"/>
 										</StackPanel>
 
 										<StackPanel Orientation="Horizontal">
@@ -279,18 +310,18 @@
 												  DisplayMemberPath="Name"
 												  IsTextSearchEnabled="True"                                            
 												  TextSearch.TextPath="RoomCategoryName">
-											<ComboBox.ItemTemplate>
-												<DataTemplate>
-													<TextBlock>
-														<TextBlock.Text>
-															<MultiBinding StringFormat="{}{0}">
-																<Binding Path="RoomCategoryName"/>
-															</MultiBinding>
-														</TextBlock.Text>
-													</TextBlock>
-												</DataTemplate>
-											</ComboBox.ItemTemplate>
-										</ComboBox>
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
+																	<Binding Path="RoomCategoryName"/>
+																</MultiBinding>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
 											<Button Content="DB"
 													Command="{Binding OpenWindowsCommands.OpenRoomCategoryWindowCommand}"
 													Width="30"
@@ -300,7 +331,7 @@
 													Command="{Binding LoadingRoomCategoryListFromDatabaseCommand}"
 													Width="30"
 													Height="20"
-													Margin="3,3,3,3"/>		
+													Margin="3,3,3,3"/>
 										</StackPanel>
 
 										<!--ВИД РАЗМЕЩЕНИЯ-->
@@ -319,18 +350,18 @@
 												  DisplayMemberPath="Name"
 												  IsTextSearchEnabled="True"                                            
 												  TextSearch.TextPath="AccommodationTypeName">
-											<ComboBox.ItemTemplate>
-												<DataTemplate>
-													<TextBlock>
-														<TextBlock.Text>
-															<MultiBinding StringFormat="{}{0}">
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
 																	<Binding Path="AccommodationTypeName"/>
-															</MultiBinding>
-														</TextBlock.Text>
-													</TextBlock>
-												</DataTemplate>
-											</ComboBox.ItemTemplate>
-										</ComboBox>
+																</MultiBinding>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
 											<Button Content="DB"
 												Command="{Binding OpenWindowsCommands.OpenAccommodationTypeWindowCommand}"
 												Width="30"
@@ -342,6 +373,46 @@
 													Width="30"
 													Height="20"
 													Margin="3,3,3,3"/>
+										</StackPanel>
+
+										<!--ТАРИФ-->
+										<TextBlock Margin="3,0,0,0" 
+								   Width="150" 
+								   Height="20"
+								   HorizontalAlignment="Left" 
+								   VerticalAlignment="Bottom" 
+								   Text="Тариф"/>
+										<StackPanel Orientation="Horizontal">
+											<ComboBox x:Name="TarifCategory"
+												  Width="300"
+												  Margin="3,0,3,1"
+												  ItemsSource="{Binding TarifCategoryList}"
+												  SelectedItem="{Binding SelectedTarifCategory, UpdateSourceTrigger=PropertyChanged}"
+												  DisplayMemberPath="Name"
+												  IsTextSearchEnabled="True"                                            
+												  TextSearch.TextPath="TarifCategoryName">
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock>
+															<TextBlock.Text>
+																<MultiBinding StringFormat="{}{0}">
+																	<Binding Path="TarifCategoryName"/>
+																</MultiBinding>
+															</TextBlock.Text>
+														</TextBlock>
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+											<Button Content="DB"
+												Command="{Binding OpenWindowsCommands.OpenTarifCategoryeWindowCommand}"
+												Width="30"
+												Height="20"
+												Margin="3,3,3,3"/>
+											<Button Content="R"
+												Command="{Binding LoadingTarifCategoryListFromDatabaseCommand}"
+												Width="30"
+												Height="20"
+												Margin="3,3,3,3"/>
 										</StackPanel>
 
 										<!--ГОСТЬ-->
@@ -361,52 +432,14 @@
 												Height="20"
 												Margin="3,3,3,3"/>
 										</StackPanel>
-										<!--ТАРИФ-->
-										<TextBlock Margin="3,0,0,0" 
-												   Width="150" 
-												   Height="20"
-												   HorizontalAlignment="Left" 
-												   VerticalAlignment="Bottom" 
-												   Text="Тариф"/>		
-										<StackPanel Orientation="Horizontal">
-											<ComboBox x:Name="TarifCategory"
-													  Width="300"
-													  Margin="3,0,3,1"
-													  ItemsSource="{Binding TarifCategoryList}"
-													  SelectedItem="{Binding SelectedTarifCategory, UpdateSourceTrigger=PropertyChanged}"
-													  DisplayMemberPath="Name"
-													  IsTextSearchEnabled="True"                                            
-													  TextSearch.TextPath="TarifCategoryName">
-												<ComboBox.ItemTemplate>
-													<DataTemplate>
-														<TextBlock>
-															<TextBlock.Text>
-																<MultiBinding StringFormat="{}{0}">
-																	<Binding Path="TarifCategoryName"/>
-																</MultiBinding>
-															</TextBlock.Text>
-														</TextBlock>
-													</DataTemplate>
-												</ComboBox.ItemTemplate>
-											</ComboBox>
-											<Button Content="DB"
-													Command="{Binding OpenWindowsCommands.OpenTarifCategoryeWindowCommand}"
-													Width="30"
-													Height="20"
-													Margin="3,3,3,3"/>
-											<Button Content="R"
-													Command="{Binding LoadingTarifCategoryListFromDatabaseCommand}"
-													Width="30"
-													Height="20"
-													Margin="3,3,3,3"/>
-										</StackPanel>										
+										
 
 										<StackPanel Orientation="Horizontal">
 											<Button Content="Добавить" Margin="3,3,3,3" Width="100"></Button>
 											<Button Content="Удалить" Margin="3,3,3,3"  Width="100"></Button>
 										</StackPanel>
 
-										<!--СПИСОК ГОСТЕЙ-->
+										<!--СПИСОК ГОСТЕЙ--><!--
 										<TextBlock Margin="3,0,0,0" 
 												   Width="150" 
 												   Height="20"
@@ -417,11 +450,10 @@
 										<TextBox Width="350" 
 												Height="100"
 												HorizontalAlignment="Left">
-											
-										</TextBox>
+										</TextBox>-->
 
 									</StackPanel>
-								</GroupBox>						
+								</GroupBox>
 							</StackPanel>
 							<!--КОНЕЦ Данные бронирования-->
 
@@ -487,7 +519,7 @@
 													   Height="20" 
 													   HorizontalAlignment="Left" 
 													   VerticalAlignment="Bottom" 
-													   Text="Имя файла"/>	
+													   Text="Имя файла"/>
 
 											<TextBox Text="{Binding FileName}" Width="Auto" />
 
@@ -498,17 +530,29 @@
 											<!--КОНЕЦ Имя файла-->
 										</StackPanel>
 
-										<!--РАСЧЕТ БРОНИ-->
+										<!--РАСЧЕТ БРОНИ ДЛЯ ГОСТЕЙ--><!--
 										<TextBlock Margin="0,0,0,0" 
-                                                   Width="70" 
+                                                   Width="200" 
                                                    Height="20" 
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
-                                                   Text="Расчет брони"/>
+                                                   Text="Расчет брони для гостей"/>
 
 										<TextBox Text="{Binding CalcBookingString, UpdateSourceTrigger=PropertyChanged}" 
                                                 Width="Auto" 
-                                                Height="50"/>
+                                                Height="40"/>
+
+										--><!--РАСЧЕТ БРОНИ ДЛЯ САНАТОРИЯ--><!--
+										<TextBlock Margin="0,0,0,0" 
+												   Width="200" 
+												   Height="20" 
+												   HorizontalAlignment="Left" 
+												   VerticalAlignment="Bottom" 
+												   Text="Расчет брони для санатория"/>
+
+										<TextBox Text="{Binding CalcBookingString, UpdateSourceTrigger=PropertyChanged}" 
+												Width="Auto" 
+												Height="40"/>-->
 
 										<!--ОПИСАНИЕ-->
 										<TextBlock Margin="0,0,0,0" 
@@ -519,7 +563,7 @@
                                                    Text="Описание"/>
 
 										<TextBox Width="Auto" 
-                                                 Height="80"
+                                                 Height="50"
                                                  Text="{Binding DescriptionBooking,UpdateSourceTrigger=PropertyChanged}"/>
 
 										<!--СФОРМИРОВАННЫЙ ШАБЛОН-->
@@ -528,7 +572,7 @@
                                                    Height="20" 
                                                    HorizontalAlignment="Left" 
                                                    VerticalAlignment="Bottom" 
-                                                   Text="Описание"/>
+                                                   Text="Шаблон"/>
 
 										<TextBox Text="{Binding ResultTemplate}" 
                                                     Width="Auto" 
@@ -544,17 +588,17 @@
                                         Grid.Row="0"
                                         Grid.Column="1" 
                                         Orientation="Vertical">
-								<GroupBox Header="Дополнительная панель" 
+								<GroupBox Header="Расчет бронирования" 
 										  x:Name="RitePanelTab"
 										  Margin="3">
 									<StackPanel>
-									<TextBlock Margin="3,0,0,0" 
+										<TextBlock Margin="3,0,0,0" 
 												Width="100" 
 												Height="20" 
 												HorizontalAlignment="Left" 
 												VerticalAlignment="Bottom" 
 												Text="Скидки"/>
-									<TextBox Text="" 
+										<TextBox Text="" 
 												Margin="3,0,3,1"
 												TextWrapping="Wrap"
 												AcceptsReturn="True"
@@ -565,12 +609,36 @@
 													Height="20" 
 													HorizontalAlignment="Left" 
 													VerticalAlignment="Bottom" 
-													Text="Доп услуги"/>	
+													Text="Доп услуги"/>
 										<TextBox Text="" 
 												Margin="3,0,3,1"
 												TextWrapping="Wrap"
 												AcceptsReturn="True"
 												VerticalScrollBarVisibility="Auto"/>
+
+										<!--РАСЧЕТ БРОНИ ДЛЯ ГОСТЕЙ-->
+										<TextBlock Margin="0,0,0,0" 
+                                                   Width="200" 
+                                                   Height="20" 
+                                                   HorizontalAlignment="Left" 
+                                                   VerticalAlignment="Bottom" 
+                                                   Text="Расчет брони для гостей"/>
+
+										<TextBox Text="{Binding CalcBookingString, UpdateSourceTrigger=PropertyChanged}" 
+                                                Width="Auto" 
+                                                Height="40"/>
+
+										<!--РАСЧЕТ БРОНИ ДЛЯ САНАТОРИЯ-->
+										<TextBlock Margin="0,0,0,0" 
+												   Width="200" 
+												   Height="20" 
+												   HorizontalAlignment="Left" 
+												   VerticalAlignment="Bottom" 
+												   Text="Расчет брони для санатория"/>
+
+										<TextBox Text="{Binding CalcBookingString, UpdateSourceTrigger=PropertyChanged}" 
+												Width="Auto" 
+												Height="40"/>
 									</StackPanel>
 								</GroupBox>
 							</StackPanel>
@@ -579,12 +647,42 @@
 							<!--Bottom панель вкладки-->
 							<StackPanel Name="TabStackPanelBottom"  
 										Background="ForestGreen" 
-										Grid.Row="1" 
+										Grid.Row="2" 
 										Grid.ColumnSpan="3"
 										Orientation="Horizontal">
 
 								<Button Content="Обновить списки"
-								Command="{Binding LoadingListsFromDatabaseCommand}"/>
+										Margin="3,3,3,3"
+										Command="{Binding LoadingListsFromDatabaseCommand}"/>
+								<Button Content="Сохранить"
+										Margin="3,3,3,3"
+										Command="{Binding }"/>
+								<Button Content="Открыть"
+										Margin="3,3,3,3"
+										Command="{Binding }"/>
+							</StackPanel>
+							<!--Bottom панель вкладки-->
+
+							<!--Bottom панель вкладки-->
+							<StackPanel Name="TabStackPanelBottom2"  
+							Background="Gainsboro" 
+							Grid.Row="1" 
+							Grid.ColumnSpan="3"
+							Orientation="Vertical">
+
+								<!--СПИСОК ГОСТЕЙ-->
+								<!--<TextBlock Margin="3,0,0,0" 
+									   Width="100" 
+									   Height="20"
+									   HorizontalAlignment="Left" 
+									   VerticalAlignment="Bottom" 
+									   Text="Гости"/>-->
+
+								<TextBox Width="1200" 
+									Height="155"
+									Margin="3,3,3,3"
+									HorizontalAlignment="Left">
+								</TextBox>
 							</StackPanel>
 							<!--Bottom панель вкладки-->
 						</Grid>

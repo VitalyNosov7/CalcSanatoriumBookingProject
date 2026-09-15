@@ -1,6 +1,4 @@
-﻿
-
-namespace WPFCSB.Resources
+﻿namespace WPFCSB.Resources
 {
     /// <summary>   Пол </summary>
     public enum Gender

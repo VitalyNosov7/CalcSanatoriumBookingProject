@@ -9,7 +9,7 @@ namespace WPFCSB.DataBase
 		public ApplicationContext()
 		{
 		// Для тестирования создания базы данных. Перед миграцией закомментировать!
-			//Database.EnsureDeleted();
+			Database.EnsureDeleted();
 			Database.EnsureCreated();
 		}
 
@@ -24,6 +24,9 @@ namespace WPFCSB.DataBase
 		public DbSet<RoomCategory> RoomCategories { get; set; } = null!;
 		public DbSet<TarifCategory> TarifCategories { get; set; } = null!;
 		public DbSet<AccommodationType> AccommodationTypes { get; set; } = null!;
+		public DbSet<MonetaryCurrency> MonetaryCurrencies { get; set; } = null!;
+		public DbSet<PriceTargetCategory> PriceTargetCategories { get; set; } = null!;
+		public DbSet<PriceBooking> PriceBookings { get; set; } = null!;
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -43,6 +46,9 @@ namespace WPFCSB.DataBase
 			modelBuilder.ApplyConfiguration(new RoomCategoryConfiguration());
 			modelBuilder.ApplyConfiguration(new TarifCategoryConfiguration());
 			modelBuilder.ApplyConfiguration(new AccommodationTypeConfiguration());
+			modelBuilder.ApplyConfiguration(new MonetaryCurrencyConfiguration());
+			modelBuilder.ApplyConfiguration(new PriceTargetCategoryConfiguration());
+			modelBuilder.ApplyConfiguration(new PriceBookingConfiguration());
 		}
 	}
 }

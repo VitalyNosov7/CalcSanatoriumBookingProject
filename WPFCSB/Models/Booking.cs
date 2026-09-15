@@ -1,0 +1,79 @@
+﻿namespace WPFCSB.Models
+{
+	/// <summary>Класс содержит информацию бронировании</summary>
+	public class Booking
+	{
+		/// <summary>Идентификатор бронирования</summary>
+		private Int32 _bookingID = default;
+		/// <summary>Идентификатор бронирования</summary>
+		public Int32 BookingID
+		{
+			get { return _bookingID; }
+			set { _bookingID = value; }
+		}
+
+		// Порядковый номер бронирования в данном случае означает, что бронирование с этим номером в дальнейшем будет иметь разный статус(новая бронь, коррекция и т.п.)
+		/// <summary>Порядковый номер бронирования(НЕ идентификатор!)</summary>
+		private Int32 _bookingNumber = default;
+		/// <summary>Порядковый номер бронирования(НЕ идентификатор!)</summary>
+		public Int32 BookingNumber
+		{
+			get { return _bookingNumber; }
+			set { _bookingNumber = value; }
+		}
+
+		/// <summary>Дата создания бронирования</summary>
+		private DateTime _createDate = default;
+		/// <summary>Дата создания бронирования</summary>
+		public DateTime CreateDate
+		{
+			get { return _createDate; }
+			set { _createDate = value; }
+		}
+
+		/// <summary>Дата начала бронирования</summary>
+		private DateTime _startDate = default;
+		/// <summary>Дата начала бронирования</summary>
+		public DateTime StartDate
+		{
+			get { return _startDate; }
+			set { _startDate = value; }
+		}
+
+		/// <summary>Дата окончания бронирования</summary>
+		private DateTime _endDate = default;
+		/// <summary>Дата окончания бронирования</summary>
+		public DateTime EndDate
+		{
+			get { return _endDate; }
+			set { _endDate = value; }
+		}
+
+		/// <summary>Список с расчетами бронирования</summary>
+		private List<CalcBooking> _calcBookingList = null!;
+		/// <summary>Список с расчетами бронирования</summary>
+		public List<CalcBooking> CalcBookingList
+		{
+			get { return _calcBookingList; }
+			set { _calcBookingList = value; }
+		}
+
+		/// <summary>Стоимость бронирования для гостей</summary>
+		private Decimal _priceFromGuest = default;
+		/// <summary>Стоимость бронирования для гостей</summary>
+		public Decimal PriceFromGuest
+		{
+			get { return _priceFromGuest; }
+			set { _priceFromGuest = value; }
+		}
+
+		/// <summary>Стоимость бронирования для санатория</summary>
+		private Decimal _priceFromSanatorium = default;
+		/// <summary>Стоимость бронирования для санатория</summary>
+		public Decimal PriceFromSanatorium
+		{
+			get { return _priceFromSanatorium; }
+			set { _priceFromSanatorium = value; }
+		}
+	}
+}

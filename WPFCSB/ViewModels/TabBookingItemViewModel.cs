@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Documents;
 using WPFCSB.Commands;
 using WPFCSB.DataBase;
 using WPFCSB.Models;
