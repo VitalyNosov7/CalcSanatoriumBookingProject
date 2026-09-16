@@ -579,9 +579,10 @@ namespace WPFCSB.ViewModels
 			set => Set(ref _templateVariableDictionary!, value);
 		}
 
-		// TODO: подумать как избавиться от констант? Переменные должны быть только динамическими? Плюсы: константы защитят от нежелательных изменений в БД.
-		// Константы ключей словаря TemplateVariableDictionary:
-		const String EMAIL_SANATORIUM = "EmailSanatorium";
+        // TODO: подумать как избавиться от констант? Переменные должны быть только динамическими? Плюсы: константы защитят от нежелательных изменений в БД.
+        // Константы ключей словаря TemplateVariableDictionary:
+        const String SANATORIUM_NAME = "SanatoriumName";
+        const String EMAIL_SANATORIUM = "EmailSanatorium";
 		const String START_DATE_PERIOD_BOOKING = "StartDatePeriodBooking";
 		const String SURNAME_WITH_INITIALS = "SurnameWithInitials";
 		const String CALC_BOOKING_STRING = "CalcBookingString";
@@ -790,7 +791,8 @@ namespace WPFCSB.ViewModels
 						  // Динамическая подстановка значений в текстовые переменные
 						  if (SelectedSanatorium != null)
 						  {
-							  TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
+                              TemplateVariableDictionary[SANATORIUM_NAME] = SelectedSanatorium.SanatoriumName;
+                              TemplateVariableDictionary[EMAIL_SANATORIUM] = SelectedSanatorium.EmailSanatorium;
 							  TemplateVariableDictionary[START_DATE_PERIOD_BOOKING] = StartDatePeriodBooking.ToShortDateString();
 							  TemplateVariableDictionary[SURNAME_WITH_INITIALS] = MainGuestPerson.GetSurnameWithInitials(FullNameMainGuest);
 							  TemplateVariableDictionary[CALC_BOOKING_STRING] = CalcBookingString;
