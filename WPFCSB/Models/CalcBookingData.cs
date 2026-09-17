@@ -1,15 +1,15 @@
 ﻿namespace WPFCSB.Models
 {
-	/// <summary>Класс содержит информацию о расчете бронирования</summary>
-	public class CalcBooking
+	/// <summary>Класс содержит данные о расчете бронирования</summary>
+	public class CalcBookingData
 	{
-		/// <summary>Идентификатор расчете бронирования</summary>
-		private Int32 _calcBookingID = default;
-		/// <summary>Идентификатор расчете бронирования</summary>
-		public Int32 CalcBookingID
+		/// <summary>Идентификатор данных о расчете бронирования</summary>
+		private Int32 _calcBookingDataID = default;
+		/// <summary>Идентификатор данных о расчете бронирования</summary>
+		public Int32 CalcBookingDataID
 		{
-			get { return _calcBookingID; }
-			set { _calcBookingID = value; }
+			get { return _calcBookingDataID; }
+			set { _calcBookingDataID = value; }
 		}
 
 		// Порядковый номер бронирования в данном случае означает, что бронирование с этим номером в дальнейшем будет иметь разный статус(новая бронь, коррекция и т.п.)
@@ -66,6 +66,16 @@
 			get { return _currentGuest; }
 			set { _currentGuest = value; }
 		}
+
+		/// <summary>Основной гость(на которого оформляется бронь)</summary>
+		private Boolean _guestWhoOrdering = false;
+		/// <summary>Основной гость(на которого оформляется бронь)</summary>
+		public Boolean GuestWhoOrdering
+		{
+			get { return _guestWhoOrdering; }
+			set { _guestWhoOrdering = value; }
+		}
+
 
 		/// <summary>Идентификатор санатория</summary>
 		private Int32 _sanatoriumID = default;

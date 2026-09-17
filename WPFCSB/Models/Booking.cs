@@ -49,14 +49,24 @@
 			set { _endDate = value; }
 		}
 
-		/// <summary>Список с расчетами бронирования</summary>
-		private List<CalcBooking> _calcBookingList = null!;
-		/// <summary>Список с расчетами бронирования</summary>
-		public List<CalcBooking> CalcBookingList
+		/// <summary>Список с данными  по текущему бронированию</summary>
+		private List<CalcBookingData> _calcBookingList = null!;
+		/// <summary>Список с данными по текущему бронированию</summary>
+		public List<CalcBookingData> CalcBookingList
 		{
 			get { return _calcBookingList; }
 			set { _calcBookingList = value; }
 		}
+
+		/// <summary>Гость текущего бронирования</summary>
+		private Guest _currentBookingGuest = null!;
+		/// <summary>Гость текущего бронирования</summary>
+		public Guest CurrentBookingGuest
+		{
+			get { return _currentBookingGuest; }
+			set { _currentBookingGuest = value; }
+		}
+
 
 		/// <summary>Стоимость бронирования для гостей</summary>
 		private Decimal _priceFromGuest = default;
@@ -67,6 +77,15 @@
 			set { _priceFromGuest = value; }
 		}
 
+		/// <summary>Расчет стоимости бронирования для гостей(в виде строки)</summary>
+		private String _calcBookingCostFromGuest = String.Empty;
+		/// <summary>Расчет стоимости бронирования для гостей(в виде строки)</summary>
+		public String CalcBookingCostFromGuest
+		{
+			get { return _calcBookingCostFromGuest; }
+			set { _calcBookingCostFromGuest = value; }
+		}
+
 		/// <summary>Стоимость бронирования для санатория</summary>
 		private Decimal _priceFromSanatorium = default;
 		/// <summary>Стоимость бронирования для санатория</summary>
@@ -74,6 +93,15 @@
 		{
 			get { return _priceFromSanatorium; }
 			set { _priceFromSanatorium = value; }
+		}
+
+		/// <summary>Расчет стоимости бронирования для санатория(в виде строки)</summary>
+		private String _calcBookingCostFromSanatorium = String.Empty;
+		/// <summary>Расчет стоимости бронирования для санатория(в виде строки)</summary>
+		public String CalcBookingCostFromSanatorium
+		{
+			get { return _calcBookingCostFromSanatorium; }
+			set { _calcBookingCostFromSanatorium = value; }
 		}
 	}
 }
