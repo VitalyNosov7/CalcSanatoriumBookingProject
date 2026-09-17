@@ -159,7 +159,11 @@ namespace WPFCSB.ViewModels
 		public Manager SelectedManager
 		{
 			get { return _selectedManager; }
-			set => Set(ref _selectedManager, value);
+			set
+			{
+                Set(ref _selectedManager, value);
+                GetTemplameMessageCommand.Execute(null!);
+            } 
 		}
 
 		// Загрузка списка менеджеров.
@@ -588,9 +592,10 @@ namespace WPFCSB.ViewModels
 		const String CALC_BOOKING_STRING = "CalcBookingString";
 		const String CURRENT_DATE = "CurrentDate";
 		const String DESCRIPTION_BOOKING = "DescriptionBooking";
+        const String MANAGER_NAME = "ManagerName";
 
-		/// <summary>Загрузка переменных шаблона текста сообщений в словарь</summary> 
-		private void LoadTemplateVariableDictionary()
+        /// <summary>Загрузка переменных шаблона текста сообщений в словарь</summary> 
+        private void LoadTemplateVariableDictionary()
 		{
 
 			using (ApplicationContext db = new ApplicationContext())
@@ -801,12 +806,20 @@ namespace WPFCSB.ViewModels
 						  }
 						  else
 						  {
-							  //MessageBox.Show("Необходимо выбрать санаторий");
 							  return;
 						  }
 
-						  // Подстановка значений из текстовых переменных в текстовый шаблон 
-						  foreach (var item in TemplateVariableDictionary)
+						  if(SelectedManager != null)
+						  {
+                              TemplateVariableDictionary[MANAGER_NAME] = SelectedManager.ManagerPerson.Name;
+                          }
+                          else
+                          {
+                              return;
+                          }
+
+                          // Подстановка значений из текстовых переменных в текстовый шаблон 
+                          foreach (var item in TemplateVariableDictionary)
 						  {
 							  resultMessage = resultMessage.Replace($"{{{item.Key}}}", item.Value.ToString());
 						  }
