@@ -49,13 +49,22 @@
 			set { _endDate = value; }
 		}
 
-		/// <summary>Список с данными  по текущему бронированию</summary>
+		/// <summary>Список с данными о расчете бронирования по текущему бронированию</summary>
 		private List<CalcBookingData> _calcBookingList = null!;
-		/// <summary>Список с данными по текущему бронированию</summary>
+		/// <summary>Список с данными о расчете бронирования по текущему бронированию</summary>
 		public List<CalcBookingData> CalcBookingList
 		{
 			get { return _calcBookingList; }
 			set { _calcBookingList = value; }
+		}
+
+		/// <summary>Список с данными о расчете  дополнительных услугаъ(товарах) по текущему бронированию</summary>
+		private List<CalcAdditionalServiceData> _calcAdditionalServiceList = null!;
+		/// <summary>Список с данными о расчете  дополнительных услугаъ(товарах) по текущему бронированию</summary>
+		public List<CalcAdditionalServiceData> CalcAdditionalServiceList
+		{
+			get { return _calcAdditionalServiceList; }
+			set { _calcAdditionalServiceList = value; }
 		}
 
 		/// <summary>Гость текущего бронирования</summary>
