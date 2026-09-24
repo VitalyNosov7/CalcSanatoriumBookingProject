@@ -6,6 +6,7 @@ using System.Windows.Controls;
 
 namespace WPFCSB.Models
 {
+// TODO : класс нигде не используется
     public class TabItemModel
     {
         /// <summary>Текущий TabItem</summary>

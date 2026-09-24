@@ -9,10 +9,10 @@ using WPFCSB.Views.Interfaces;
 
 namespace WPFCSB.ViewModels
 {
-	public class ManagerWindowViewModel : ViewModelBase
+	public class ManagerViewModel : ViewModelBase
 	{
 
-		public ManagerWindowViewModel(IDialogService dialogService)
+		public ManagerViewModel(IDialogService dialogService)
 		{
 			ExtractDataManagerFromDBCommand.Execute(null!);
 			_dialogService = dialogService;

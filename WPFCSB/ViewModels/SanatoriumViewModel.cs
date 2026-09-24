@@ -8,9 +8,9 @@ using WPFCSB.Views.Interfaces;
 
 namespace WPFCSB.ViewModels
 {
-	public class SanatoriumWindowViewModel : ViewModelBase
+	public class SanatoriumViewModel : ViewModelBase
 	{
-		public SanatoriumWindowViewModel(IDialogService dialogService)
+		public SanatoriumViewModel(IDialogService dialogService)
 		{
 			ExtractDataSanatoriumFromDBCommand.Execute(null!);
 			_dialogService = dialogService;

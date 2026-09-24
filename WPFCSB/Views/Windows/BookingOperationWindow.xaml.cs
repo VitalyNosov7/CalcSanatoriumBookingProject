@@ -13,7 +13,7 @@ namespace WPFCSB.Views.Windows
 		{
 			InitializeComponent();
 			// TODO: рассмотреть вариант через DI
-			DataContext = new BookingOperationWindowViewModel(new DialogService());
+			DataContext = new BookingOperationViewModel(new DialogService());
 		}
 	}
 }

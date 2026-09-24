@@ -1,6 +1,6 @@
 ﻿namespace WPFCSB.Models
 {
-	/// <summary>Класс содержит информацию бронировании</summary>
+	/// <summary>Класс содержит информацию о бронировании</summary>
 	public class Booking
 	{
 		/// <summary>Идентификатор бронирования</summary>
@@ -10,16 +10,6 @@
 		{
 			get { return _bookingID; }
 			set { _bookingID = value; }
-		}
-
-		// Порядковый номер бронирования в данном случае означает, что бронирование с этим номером в дальнейшем будет иметь разный статус(новая бронь, коррекция и т.п.)
-		/// <summary>Порядковый номер бронирования(НЕ идентификатор!)</summary>
-		private Int32 _bookingNumber = default;
-		/// <summary>Порядковый номер бронирования(НЕ идентификатор!)</summary>
-		public Int32 BookingNumber
-		{
-			get { return _bookingNumber; }
-			set { _bookingNumber = value; }
 		}
 
 		/// <summary>Дата создания бронирования</summary>

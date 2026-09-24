@@ -12,14 +12,13 @@
 			set { _paymentID = value; }
 		}
 
-		// Порядковый номер бронирования в данном случае означает, что бронирование с этим номером в дальнейшем будет иметь разный статус(новая бронь, коррекция и т.п.)
-		/// <summary>Порядковый номер бронирования(НЕ идентификатор!)</summary>
-		private Int32 _bookingNumber = default;
-		/// <summary>Порядковый номер бронирования(НЕ идентификатор!)</summary>
-		public Int32 BookingNumber
+		/// <summary>Идентификатор бронирования</summary>
+		private Int32 _bookingID = default;
+		/// <summary>Идентификатор бронирования</summary>
+		public Int32 BookingID
 		{
-			get { return _bookingNumber; }
-			set { _bookingNumber = value; }
+			get { return _bookingID; }
+			set { _bookingID = value; }
 		}
 
 		/// <summary>Дата платежа за бронирования</summary>

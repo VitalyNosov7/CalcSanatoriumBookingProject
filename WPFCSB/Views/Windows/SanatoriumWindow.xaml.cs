@@ -13,7 +13,7 @@ namespace WPFCSB.Views.Windows
 		public SanatoriumWindow()
 		{
 			InitializeComponent();
-			DataContext = new SanatoriumWindowViewModel(new DialogService());
+			DataContext = new SanatoriumViewModel(new DialogService());
 		}
 	}
 }

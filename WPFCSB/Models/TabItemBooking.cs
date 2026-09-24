@@ -3,8 +3,8 @@ namespace WPFCSB.Models
 {
     public class TabItemBooking
     {
-
-        private String? _header;
+		// TODO : класс нигде не используется
+		private String? _header;
         public String Header
         {
             get => _header!;

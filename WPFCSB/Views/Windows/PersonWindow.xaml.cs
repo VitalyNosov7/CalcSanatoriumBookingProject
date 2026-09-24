@@ -12,7 +12,7 @@ namespace WPFCSB.Views.Windows
 		{
 			InitializeComponent();
 			// TODO: рассмотреть вариант через DI
-			DataContext = new PersonWindowViewModel(new DialogService());
+			DataContext = new PersonViewModel(new DialogService());
 		}
 	}
 }

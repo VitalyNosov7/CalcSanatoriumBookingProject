@@ -9,9 +9,9 @@ using WPFCSB.Views.Services;
 
 namespace WPFCSB.ViewModels
 {
-	public class BookingOperationWindowViewModel : ViewModelBase
+	public class BookingOperationViewModel : ViewModelBase
 	{
-		public BookingOperationWindowViewModel(IDialogService dialogService)
+		public BookingOperationViewModel(IDialogService dialogService)
 		{
 			ExtractDataBookingOperationFromDBCommand.Execute(null!);
 			_dialogService = dialogService;
