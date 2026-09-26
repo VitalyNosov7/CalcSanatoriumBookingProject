@@ -12,6 +12,24 @@
 			set { _bookingID = value; }
 		}
 
+		/// <summary>Идентификатор санатория</summary>
+		private Int32 _sanatoriumID = default;
+		/// <summary>Идентификатор санатория</summary>
+		public Int32 SanatoriumID
+		{
+			get { return _sanatoriumID; }
+			set { _sanatoriumID = value; }
+		}
+
+		/// <summary>Санаторий</summary>
+		private Sanatorium _currentSanatorium = null!;
+		/// <summary>Санаторий</summary>
+		public Sanatorium CurrentSanatorium
+		{
+			get { return _currentSanatorium; }
+			set { _currentSanatorium = value; }
+		}
+
 		/// <summary>Дата создания бронирования</summary>
 		private DateTime _createDate = default;
 		/// <summary>Дата создания бронирования</summary>

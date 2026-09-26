@@ -75,25 +75,6 @@
 			set { _guestWhoOrdering = value; }
 		}
 
-
-		/// <summary>Идентификатор санатория</summary>
-		private Int32 _sanatoriumID = default;
-		/// <summary>Идентификатор санатория</summary>
-		public Int32 SanatoriumID
-		{
-			get { return _sanatoriumID; }
-			set { _sanatoriumID = value; }
-		}
-
-		/// <summary>Санаторий</summary>
-		private Sanatorium _currentSanatorium = null!;
-		/// <summary>Санаторий</summary>
-		public Sanatorium CurrentSanatorium
-		{
-			get { return _currentSanatorium; }
-			set { _currentSanatorium = value; }
-		}
-
 		/// <summary>Идентификатор категории номера</summary>
 		private Int32 _roomCategoryID = default;
 		/// <summary>Идентификатор категории номера</summary>
@@ -167,15 +148,6 @@
 			set { _calcResultFromGuest = value; }
 		}
 
-		/// <summary>Результат расчета бронирования в виде строки для гостей</summary>
-		private String _calcResultFromGuestToString = String.Empty;
-		/// <summary>Результат расчета бронирования в виде строки для гостей</summary>
-		public String CalcResultFromGuestToString
-		{
-			get { return _calcResultFromGuestToString; }
-			set { _calcResultFromGuestToString = value; }
-		}
-
 		/// <summary>Стоимость бронирования для санатория</summary>
 		private Decimal _priceFromSanatorium = default;
 		/// <summary>Стоимость бронирования для санатория</summary>
@@ -183,6 +155,15 @@
 		{
 			get { return _priceFromSanatorium; }
 			set { _priceFromSanatorium = value; }
+		}
+
+		/// <summary>Результат расчета бронирования в виде строки для гостей</summary>
+		private String _calcResultFromGuestToString = String.Empty;
+		/// <summary>Результат расчета бронирования в виде строки для гостей</summary>
+		public String CalcResultFromGuestToString
+		{
+			get { return _calcResultFromGuestToString; }
+			set { _calcResultFromGuestToString = value; }
 		}
 
 		/// <summary>Результат расчета бронирования для санатория</summary>
